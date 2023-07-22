@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "types": ["vite/client"],
+    /* Bundler mode */
+    "moduleResolution": "node", // 변경된 옵션
+    "isolatedModules": true,
+    "noEmit": false, // JavaScript 파일 출력을 허용
+    "declaration": true, // d.ts 파일 생성을 허용
+    "emitDeclarationOnly": true, // d.ts 파일만 출력
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+    "@vitejs/plugin-react": ["node_modules/@vitejs/plugin-react/dist/index.es.js"]
+    },
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

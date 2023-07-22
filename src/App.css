@@ -1,0 +1,51 @@
+.leaf__falling {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  opacity: 0.5;
+  z-index: 9999;
+  animation: leaf-fall 5s linear infinite;
+}
+
+@keyframes leaf-fall {
+  0% {
+    top: -10%;
+    left: -5%;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 110%;
+    left: 100%;
+    transform: rotate(180deg);
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgb(0, 149, 241) 0%, rgb(70, 206, 255) 10%, rgb(250, 250, 129) 80%);
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 33%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgb(0, 128, 0) 0%, rgb(135, 214, 52) 20%, rgb(255, 213, 59) 130%);
+  border-radius: 100% 100% 0 0 / 25% 25% 0 0;
+}
+
+#content {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  z-index: 1;
+}
+

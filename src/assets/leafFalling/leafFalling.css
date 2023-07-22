@@ -1,0 +1,27 @@
+.leaf__falling {
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  z-index: -100;
+  animation: leaf-fall 5s linear infinite;
+  --start-left: 100; 
+  --end-left: 100;   
+}
+
+/* 아래로 갈수록 사라지게 만듬, 페이지의 70퍼센트에서 사라지게 함 (단풍잎 때문에 페이지 높이가 계속 달라지는 것 방지) */
+@keyframes leaf-fall {
+  0% {
+     opacity: 0.5;
+      top: -10%;
+      left: var(--start-left);  
+      transform: rotate(0deg);
+  }
+  100% {
+      opacity: 0;
+      top: 70%;
+      left: var(--end-left); 
+      transform: rotate(90deg);
+  }
+}
