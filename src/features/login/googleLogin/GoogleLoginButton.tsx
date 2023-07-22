@@ -20,7 +20,7 @@ const GoogleLoginButton = () => {
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
     try {
       const tokenId = 'tokenId' in credentialResponse ? credentialResponse.tokenId : credentialResponse;
-      const response = await axios.post('http://localhost:8080/login', {
+      const response = await axios.post('http://localhost:8080/auth/login/google', {
         token: tokenId, // Google에서 발급한 토큰을 서버에 전달
       });
 

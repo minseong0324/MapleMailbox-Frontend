@@ -73,14 +73,31 @@ function SelectTreeCharacter() {
 
   const handleSubmit = () => {
     const selectedData = {
-      tree: selectedTree,
-      character: selectedCharacter
+      tree: selectedTree, //string
+      character: selectedCharacter //string
     };
     dispatch(setTree(selectedTree));
     dispatch(setCharacter(selectedCharacter));
     console.log(selectedData);
-
-    // 나무, 캐릭터 선택 후, 홈으로 이동
+  
+    // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
+    fetch('https://localhost:8080', { // 백엔드 서버의 URL을 입력하세요.
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(selectedData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      // 백엔드 서버로부터의 응답 처리 로직을 작성하세요.
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  
+    // 홈으로 이동
     navigate('/Ownerhome');
   }
 

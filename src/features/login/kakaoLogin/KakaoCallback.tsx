@@ -21,7 +21,7 @@ const KakaoCallback: React.FC = () => {
     }
 
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post('auth/login/naver', { code, state })
+    axios.post('http://localhost:8080/auth/login/kakao', { code, state })
       .then((response) => {
         // 서버로부터 받은 사용자 정보와 토큰을 로컬 스토리지에 저장
         localStorage.setItem('user', JSON.stringify(response.data.user));

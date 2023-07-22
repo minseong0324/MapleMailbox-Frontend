@@ -72,7 +72,7 @@ function Login() {
       // API 요청 등
       // 이부분은 백엔드 API가 준비되면 주석 해제하고 사용
       try {
-        const response = await axios.post("http://localhost:8080/login", {
+        const response = await axios.post("http://localhost:8080/auth/login/Self", {
           email,
           password,
         });
