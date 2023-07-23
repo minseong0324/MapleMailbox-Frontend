@@ -18,6 +18,7 @@ const Button = styled.button`
 `;
 
   const CenteredWrapper = styled.div`
+  font-family: 'LeeSeoyun';
   position: relative; 
   display: flex;
   flex-direction: column;

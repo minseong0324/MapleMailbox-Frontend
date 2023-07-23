@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSelector} from 'react-redux';
 import { RootState } from '../../../app/store';
-import MenuBeforeLogin from '../../../components/MenuBeforeLogin';
-import Modal from '../../../components/Modal';
+import MenuBeforeLogin from '../../../components/MenuBeforeLogin/MenuBeforeLogin';
+import Modal from '../../../components/Modal/Modal';
 import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
 import { s } from './style'
 import { useNavigate } from 'react-router-dom';  // useNavigate import

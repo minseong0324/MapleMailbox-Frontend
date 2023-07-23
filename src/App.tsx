@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VisitorHome from './pages/home/VisitorHome/VisitorHome';
 import Home from './pages/home/Home';
-import UserProvider from './components/UserProvider';
+import UserProvider from './components/UserProvider/UserProvider';
 import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
 import HomeBeforeLogin from './pages/home/HomeBeforeLogin/HomeBeforeLogin';

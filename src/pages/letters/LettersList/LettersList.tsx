@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/Modal/Modal';
 import axios from 'axios';
 import MapleLeaf from '../../../assets/leafImg/MapleLeaf.png';
 import GinkgoLeaf from '../../../assets/leafImg/GinkgoLeaf.png';

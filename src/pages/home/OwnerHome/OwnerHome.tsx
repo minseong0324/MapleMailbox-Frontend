@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Menu from '../../../components/Menu';
-import Modal from '../../../components/Modal';
+import Menu from '../../../components/Menu/Menu';
+import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
 import { formatDistance, subDays } from 'date-fns'; 
