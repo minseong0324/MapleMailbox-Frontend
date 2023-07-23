@@ -6,7 +6,6 @@ import Modal from '../../../components/Modal/Modal';
 import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
 import { s } from './style'
 import { useNavigate } from 'react-router-dom';  // useNavigate import
-import "../Home.css"
 import GinkgoCharImg from '../../../assets/charImg/ginkgo-small-big2.png';
 
 

@@ -7,7 +7,6 @@ import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
 import { formatDistance, subDays } from 'date-fns'; 
-import "../Home.css"
 import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small-big2.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small-big2.png';
@@ -62,6 +61,7 @@ function VisitorHome() {
   const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
   const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태
   const [letterContent, setLetterContent] = useState('');  // 편지 내용을 관리하는 상태
+  const [userName, setUserName] = useState(null); //사용자의 이름을 저장하는 상태변수입니다.
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
@@ -80,6 +80,7 @@ function VisitorHome() {
         const userInfo = await getUserInfoFromServer(userId);
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
+        setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
       }
     };
     fetchUserInfo();
@@ -187,9 +188,9 @@ function VisitorHome() {
     setServiceModalOpen(true);
   };
 
-  // 링크 공유를 위한 함수입니다.
+  // 내 나무 보러가기 버튼 클릭 후 자신의 홈으로 이동하기 위한 함수
   const handleShareLink = () => {
-    navigate('/OwnerHome');
+    navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
   };
 
   return (

@@ -6,7 +6,6 @@ import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
 import { formatDistance, subDays } from 'date-fns'; 
-import "../Home.css"
 import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small-big2.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small-big2.png';
