@@ -81,7 +81,7 @@ function SelectTreeCharacter() {
     console.log(selectedData);
   
     // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-    fetch('https://localhost:8080', { // 백엔드 서버의 URL을 입력하세요.
+    fetch('https://localhost:8080', { // 엔드포인트 맞춰야함
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

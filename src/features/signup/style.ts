@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SignUpWrapper = styled.div`
+ const SignUpWrapper = styled.div`
   font-family: 'LeeSeoyun';
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@ export const SignUpWrapper = styled.div`
   height: 100vh;
 `;
 
-export const SignUpForm = styled.form`
+ const SignUpForm = styled.form`
   font-family: 'LeeSeoyun';
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const SignUpForm = styled.form`
   gap: 20px;
 `;
 
-export const SignUpInput = styled.input`
+ const SignUpInput = styled.input`
 border-radius: 10px;
 border: 1px solid #DDDDDD;
   font-family: 'LeeSeoyun';
@@ -26,7 +26,7 @@ border: 1px solid #DDDDDD;
   width: 200px;
 `;
 
-export const SignUpButton = styled.button`
+ const SignUpButton = styled.button`
   font-family: 'LeeSeoyun';
   width: 250px; // 버튼 너비를 조정
   height: 35px; // 버튼 높이를 조정
@@ -39,3 +39,10 @@ export const SignUpButton = styled.button`
   position: relative;
   z-index: 2;
 `;
+
+export const s = {
+  SignUpWrapper,
+  SignUpForm,
+  SignUpInput,
+  SignUpButton
+}
