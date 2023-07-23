@@ -178,25 +178,25 @@ function OwnerHome() {
     }
   };
 
-
-  
-
   // 편지를 확인하는 함수
-const handleReadLetters = () => {
-  if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것.
-  //if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
-    setReadModalOpen(true);
-  } else {
-    const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜
-    const endDate = new Date(); // 현재 날짜
-
-    if (startDate <= subDays(endDate, 30)) { // 첫 번째 편지를 받은 날짜가 30일 이전인지 확인합니다.
+  const handleReadLetters = () => {
+    //if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것. 테스트용.
+    if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
       setReadModalOpen(true);
-    } else {
-      alert(`편지는 ${formatDistance(startDate, endDate)} 후에 열람 가능합니다.`);
+    } else if (letters.length > 0) { // 편지가 1개 이상 있을 때만 첫 번째 편지의 날짜를 확인합니다.
+      const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜
+      const endDate = new Date(); // 현재 날짜
+  
+      if (startDate <= subDays(endDate, 30)) { // 첫 번째 편지를 받은 날짜가 30일 이전인지 확인합니다.
+        setReadModalOpen(true);
+      } else {
+        alert(`편지는 ${formatDistance(startDate, endDate)} 후에 열람 가능합니다.`);
+      }
+    } else { // 편지가 없을 때는 경고 메시지를 표시합니다.
+      alert('편지가 없습니다.');
     }
-  }
-};
+  };
+  
 
   // 링크 공유 함수
   const handleShareLink = () => {
