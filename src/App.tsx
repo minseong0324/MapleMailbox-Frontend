@@ -4,7 +4,7 @@ import Home from './features/home/Home';
 import Login from './features/login/Login';
 import SignUp from './features/signup/SignUp';
 import HomeBeforeLogin from './features/home/HomeBeforeLogin';
-import OwnerHome from './features/home/OwnerHome';
+import OwnerHome from './features/home/OwnerHome/OwnerHome';
 import "./App.css"
 import LeafFalling from './assets/leafFalling/leafFalling'
 import SelectTreeCharacter from './features/select/selectTreeCharacter';

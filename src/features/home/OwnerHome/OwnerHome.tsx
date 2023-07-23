@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Menu from '../../components/Menu';
-import Modal from '../../components/Modal';
-import initialTreeImage from '../../assets/treeImg/MainTree.png';
-import {s} from './OwnerHomeStyle'
+import Menu from '../../../components/Menu';
+import Modal from '../../../components/Modal';
+import initialTreeImage from '../../../assets/treeImg/MainTree.png';
+import {s} from './style'
 import { formatDistance, subDays } from 'date-fns'; 
-import "./Home.css"
-import LettersList from '../letters/LettersList';
-import MapleCharacter from '../../assets/charImg/maple-small-big2.png';
-import GinkgoCharacter from '../../assets/charImg/ginkgo-small-big2.png';
+import "../Home.css"
+import LettersList from '../../letters/LettersList';
+import MapleCharacter from '../../../assets/charImg/maple-small-big2.png';
+import GinkgoCharacter from '../../../assets/charImg/ginkgo-small-big2.png';
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
@@ -54,8 +54,6 @@ const importImages = async (prefix: string, count: number) => {
   }
   return images;
 };
-
-
 
 function OwnerHome() {
   // 모달 상태에 대한 상태변수들입니다.
