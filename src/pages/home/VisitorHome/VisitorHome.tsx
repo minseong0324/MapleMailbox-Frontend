@@ -35,8 +35,8 @@ const getUserInfoFromServer = async (userId: string) => {
 
     // 사용자의 나무와 캐릭터 정보를 반환합니다.
     return {
-      treeType: userInfo.treeType,
-      characterType: userInfo.characterType,
+      treeType: userInfo.treeType, //사용자 나무 종류
+      characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
     };
   } catch (error) {
@@ -78,8 +78,8 @@ function VisitorHome() {
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
-        setTreeType(userInfo?.treeType);
-        setCharacterType(userInfo?.characterType);
+        setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
+        setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
       }
     };
@@ -209,7 +209,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     <s.CenteredWrapper>
       <s.TextsStyle>
         <s.StyledH3>가을을 기다리며,</s.StyledH3>
-        <s.StyledH1>{userId}의 단풍나무</s.StyledH1>
+        <s.StyledH1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.StyledH1>
         <s.StyledP>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.StyledP>
       </s.TextsStyle>
       <s.TreeImageWrapper>

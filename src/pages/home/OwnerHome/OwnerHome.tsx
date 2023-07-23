@@ -34,7 +34,7 @@ const getUserInfoFromServer = async (userId: string) => {
 
     // 사용자의 나무와 캐릭터 정보를 반환합니다.
     return {
-      treeType: userInfo.treeType,
+      treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType,
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
     };
@@ -222,7 +222,7 @@ function OwnerHome() {
         <s.CenteredWrapper>
             <s.TextsStyle>
               <s.StyledH3>가을을 기다리며,</s.StyledH3>
-              <s.StyledH1>{userName}의 단풍나무</s.StyledH1>
+              <s.StyledH1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.StyledH1>
               <s.StyledP>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.StyledP>
             </s.TextsStyle>
 
