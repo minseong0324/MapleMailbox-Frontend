@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeTreeState, incrementLetterCount, resetLetterCount, sendLetter, resetLetter } from '../autumnTree/autumnTreeSlice';
+import { changeTreeState, incrementLetterCount, resetLetterCount, sendLetter, resetLetter } from '../../app/autumnTree/autumnTreeSlice';
 import { RootState } from '../../app/store';
 import Menu from '../../components/Menu';
 import Modal from '../../components/Modal';

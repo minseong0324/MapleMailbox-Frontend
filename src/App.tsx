@@ -1,18 +1,18 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './features/home/Home';
-import Login from './features/login/Login';
-import SignUp from './features/signup/SignUp';
-import HomeBeforeLogin from './features/home/HomeBeforeLogin/HomeBeforeLogin';
-import OwnerHome from './features/home/OwnerHome/OwnerHome';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import SignUp from './pages/signup/SignUp';
+import HomeBeforeLogin from './pages/home/HomeBeforeLogin/HomeBeforeLogin';
+import OwnerHome from './pages/home/OwnerHome/OwnerHome';
 import "./App.css"
 import LeafFalling from './assets/leafFalling/leafFalling'
-import SelectTreeCharacter from './features/select/selectTreeCharacter';
-import KakaoLogin from './features/login/kakaoLogin/KakaoLogin';
-import KakaoCallback from './features/login/kakaoLogin/KakaoCallback';
-import NaverLogin from './features/login/naverLogin/NaverLogin';
-import NaverCallback from './features/login/naverLogin/NaverCallback';
-import GoogleLoginButton from './features/login/googleLogin/GoogleLoginButton';
+import SelectTreeCharacter from './pages/select/selectTreeCharacter';
+import KakaoLogin from './pages/login/kakaoLogin/KakaoLogin';
+import KakaoCallback from './pages/login/kakaoLogin/KakaoCallback';
+import NaverLogin from './pages/login/naverLogin/NaverLogin';
+import NaverCallback from './pages/login/naverLogin/NaverCallback';
+import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
 function App() {
   return (
     <>

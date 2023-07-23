@@ -1,13 +1,13 @@
 //store.tsx
 import { configureStore } from '@reduxjs/toolkit';
 import { createStore, combineReducers } from 'redux';
-import autumnTreeReducer from '../features/autumnTree/autumnTreeSlice';
-import selectedTreeCharacterReducer from '../features/select/selectedTreeCharacterSlice';
-import lettersReducer from '../features/letters/LettersSlice'
+import autumnTreeReducer from './autumnTree/autumnTreeSlice';
+import selectedTreeCharacterReducer from '../pages/select/selectedTreeCharacterSlice';
+import lettersReducer from '../pages/letters/LettersSlice'
 
 type Action = {
   type: string;
-  payload?: any;
+  payload?: unknown;
 };
 
 // 나무의 상태를 관리하는 리듀서
