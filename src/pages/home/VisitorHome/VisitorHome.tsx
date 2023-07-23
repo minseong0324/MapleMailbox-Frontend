@@ -148,27 +148,37 @@ function VisitorHome() {
   };
 
   // 편지를 보내는 함수입니다.
-  const handleSendLetter = async (event: React.FormEvent) => {
-    event.preventDefault();
-    // 백엔드로 보낼 데이터를 정의합니다.
-    const letterData = {
-      senderName,
-      letterContent,
-    };
-    try {
-      // 백엔드로 편지 데이터를 보냅니다.
-      // 엔드포인트 맞춰야 함
-      await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData);
-       // 입력 필드를 초기화합니다.
-      setSenderName('');
-      setLetterContent('');
+const handleSendLetter = async (event: React.FormEvent) => {
+  event.preventDefault();
 
-      // 모달을 닫습니다.
-      setSendModalOpen(false);
-    } catch (error) {
-      console.error('네트워크 문제로 편지를 보내는 데에 실패했습니다.', error);
-    }
+  // 입력값을 검사합니다.
+  if (!senderName.trim() || !letterContent.trim()) {
+    // 이름이나 편지 내용이 비어있으면 경고 메시지를 표시하고 함수를 종료합니다.
+    alert('글귀를 적어주세요!');
+    return;
+  }
+
+  // 백엔드로 보낼 데이터를 정의합니다.
+  const letterData = {
+    senderName,
+    letterContent,
   };
+
+  try {
+    // 백엔드로 편지 데이터를 보냅니다.
+    // 엔드포인트 맞춰야 함
+    await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData);
+    // 입력 필드를 초기화합니다.
+    setSenderName('');
+    setLetterContent('');
+
+    // 모달을 닫습니다.
+    setSendModalOpen(false);
+  } catch (error) {
+    console.error('네트워크 문제로 편지를 보내는 데에 실패했습니다.', error);
+  }
+};
+
 
   // 이름을 작성하는 함수입니다.
   const writeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -234,7 +244,6 @@ function VisitorHome() {
           />
           <s.Button 
           type="submit"
-          onClick={() => setSendModalOpen(false)}
           >
             물들이기
           </s.Button>
