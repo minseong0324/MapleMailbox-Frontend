@@ -1,47 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
-import Modal from '../../components/Modal';
+import { RootState } from '../../../app/store';
+import Modal from '../../../components/Modal';
 import axios from 'axios';
-import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
-import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
-import styled from 'styled-components';
-import LettersRead from './LettersRead';
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
-display: flex;
-flex-direction: column;
-//align-items: center;
-//line-height: 0.2;  // 글자 간격
-font-size: 17px; 
-text-align: center;
-`;
-
-type LeafButtonProps = {
-  leafImage: string;
-};
-
-const LeafButton = styled.button<LeafButtonProps>`
-  font-family: 'EarlyFontDiary';
-  font-size: 3px;
-  color: rgb(0, 0, 0);
-  position: relative;
-  background: url(${props => props.leafImage}) no-repeat center;
-  border: none;
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
-  z-index: 2;
-  padding: 0px;
-  margin: 8px;
-`;
+import MapleLeaf from '../../../assets/leafImg/MapleLeaf.png';
+import GinkgoLeaf from '../../../assets/leafImg/GinkgoLeaf.png';
+import { s } from './style'
+import LettersRead from '../LettersRead/LettersRead';
 
 type Letter = {
   date: string;
@@ -50,8 +15,8 @@ type Letter = {
 };
 
 const LettersList: React.FC = () => {
-  const [, setSelectedDate] = useState<number | null>(null);
-  const [, setLetters] = useState<Letter[]>([]);
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const [letters, setLetters] = useState<Letter[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
 
@@ -85,21 +50,21 @@ const LettersList: React.FC = () => {
 
   return (
     <>
-      <TextsStyle>
+      <s.TextsStyle>
         매일매일 
-      </TextsStyle>
-      <TextsStyle>
+      </s.TextsStyle>
+      <s.TextsStyle>
         따뜻하게 물들어가는
-      </TextsStyle>
-      <TextsStyle>
+      </s.TextsStyle>
+      <s.TextsStyle>
         나의 마음
-      </TextsStyle>
+      </s.TextsStyle>
     
-      <ButtonWrapper>
+      <s.ButtonWrapper>
         {Array.from({ length: 30 }).map((_, index) => {
           const date = index + 1;
           return (
-            <LeafButton
+            <s.LeafButton
               key={index}
               onClick={() => {
                 handleOpenModal(date);
@@ -107,15 +72,15 @@ const LettersList: React.FC = () => {
               leafImage={selectedTree === 'Maple Tree' ? MapleLeaf : GinkgoLeaf}
             >
               {date}일
-            </LeafButton>
+            </s.LeafButton>
           );
         })}
-      </ButtonWrapper>
+      </s.ButtonWrapper>
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         {modalContent}
-        <TextsStyle>
+        <s.TextsStyle>
             도착한 편지
-        </TextsStyle>
+        </s.TextsStyle>
       </Modal>
     </>
   );

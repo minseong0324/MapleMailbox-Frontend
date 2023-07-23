@@ -5,76 +5,14 @@ import { RootState } from '../../app/store';
 import Menu from '../../components/Menu';
 import Modal from '../../components/Modal';
 import GinkgoTreeImage from '../../assets/treeImg/GinkgoMainTree.png'
-import styled from 'styled-components';
+import { s } from './style'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // axios를 import 합니다.
 import "./Home.css";
 import "../../static/font/font.css";
 import GinkgoCharImg from '../../assets/charImg/ginkgo-small-big2.png';
 
-// 함수 밖으로 스타일링을 빼주었습니다. (리렌더링 문제 해결)
-const CenteredWrapper = styled.div`
-position: relative; 
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh;
-`;
 
-const Button = styled.button`
-font-family: 'LeeSeoyun';
-width: 200px; // 버튼 너비를 조정
-height: 35px; // 버튼 높이를 조정
-padding: 10px; // 내부 패딩을 조정
-background:rgb(255, 178, 34);
-color: black;
-border-radius: 15px;
-font-size: 17px; 
-border: 1px transparent; // 테두리 색상을 투명
-position: relative;
-z-index: 2;
-&:active { // 버튼이 눌렸을 때의 스타일
-    background: rgb(255, 157, 0); // 눌렸을 때의 배경색을 변경
-}
-`;
-
-const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
-display: flex;
-flex-direction: column;
-align-items: center;
-line-height: 0.2;  // 글자 간격
-`;
-
-const GinkgoCharImage = styled.img`
-position: absolute;
-z-index: 2;
-top: 77%; // top offset from tree image
-right: 25%; // right offset from tree image
-`;
-
-const TreeImageWrapper = styled.div`
-position: relative;
-width: 300px;
-height: 300px;
-`;
-
-const NameInput = styled.input`
-font-family: "LeeSeoyun";
-width: 200px;
-height: 30px;
-margin-bottom: 20px;
-`;
-
-const LetterArea = styled.textarea`
-font-family: "LeeSeoyun";
-width: 200px;
-height: 200px;
-overflow: auto;
-margin-bottom: 20px;
-resize: none;
-`;
 
 
 function Home() {
@@ -167,56 +105,56 @@ function Home() {
   return (
     <>
     {isMenuOpen && <Menu onLogout={() => {}} onServiceDescription={handleServiceDescription} />}    
-    <CenteredWrapper>
-    <TextsStyle>
-      <h3>가을을 기다리며,</h3>
-      <h1>다른이의 단풍나무</h1>
+    <s.CenteredWrapper>
+    <s.TextsStyle>
+      <s.H3>가을을 기다리며,</s.H3>
+      <s.H1>다른이의 단풍나무</s.H1>
       <br/>
-      <p>당신의 따뜻한 마음으로 나무를 물들여봐요.</p>
-    </TextsStyle>
+      <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
+    </s.TextsStyle>
     
-    <TreeImageWrapper>
-      <img className= "treeimg" src={getTreeImage(treeState)} alt="Autumn Tree"/>
-      <GinkgoCharImage src={GinkgoCharImg} alt="Ginkgo Image" />
-    </TreeImageWrapper>
+    <s.TreeImageWrapper>
+      <s.TreeImg src={getTreeImage(treeState)} alt="Autumn Tree"/>
+      <s.GinkgoCharImage src={GinkgoCharImg} alt="Ginkgo Image" />
+    </s.TreeImageWrapper>
     
         <br/>
-        <Button onClick={() => setSendModalOpen(true)}>단풍잎 물들이기</Button>
+        <s.Button onClick={() => setSendModalOpen(true)}>단풍잎 물들이기</s.Button>
         <br/> 
-        <Button onClick={handleShareLink}>내 나무 보러가기</Button>
+        <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
 
         <Modal isOpen={isSendModalOpen} onClose={() => setSendModalOpen(false)}>
-          <h2>단풍잎 물들이기</h2>
-          <form onSubmit={handleSendLetter}>
-            <NameInput
+          <s.H2>단풍잎 물들이기</s.H2>
+          <s.Form onSubmit={handleSendLetter}>
+            <s.NameInput
               type="text"
               placeholder="이름을 입력하세요."
               value={senderName}
               onChange={writeName}
               //onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setSenderName(e.target.value)}
             />
-            <LetterArea
+            <s.LetterArea
               placeholder="전하고 싶은 말을 쓰세요."
               value={letterContent}
               onChange={writeLetter}
               //onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setLetterContent(e.target.value)}
             />
-            <Button 
+            <s.Button 
             type="submit"
-            >물들이기</Button>
-          </form>
+            >물들이기</s.Button>
+          </s.Form>
         </Modal>
 
 
         <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-          <h3>가을을 기다리며, 단풍우편함</h3>
-          <p>
+          <s.H3>가을을 기다리며, 단풍우편함</s.H3>
+          <s.P>
           하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
           <br/>
           어쩌구 저쩌구
-          </p>
+          </s.P>
         </Modal>
-      </CenteredWrapper>
+      </s.CenteredWrapper>
     </>
   );
 

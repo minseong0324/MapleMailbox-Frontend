@@ -1,5 +1,8 @@
 import React from "react";
 import KakaoLoginImage from "./KakaoLogin.png";
+import { s } from './style'
+
+
 
 const KakaoLogin: React.FC = () => {
     const CLIENT_ID = `${import.meta.env.VITE_APP_KAKAO_REST_API_KEY}`;
@@ -12,15 +15,11 @@ const KakaoLogin: React.FC = () => {
     }
 
     return(
-        <div style={{ position: "relative", zIndex: 2 }}>
-            <img
-                alt="카카오 로그인"
-                src={KakaoLoginImage}
-                width="160"
-                height="40"
-                onClick={handleClick}
-            />
-        </div>
+        <s.KakaoLoginButton
+        alt="카카오 로그인"
+        src={KakaoLoginImage}
+        onClick={handleClick}
+        />
     )
 }
 

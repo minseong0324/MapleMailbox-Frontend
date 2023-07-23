@@ -28,6 +28,7 @@ function SignUp() {
           email,
           password,
         });
+        console.log(username, email, password);
   
         if (response.data.success) {
           // 로그인 토큰을 로컬 스토리지에 저장
@@ -39,14 +40,14 @@ function SignUp() {
           alert(`회원가입에 실패했습니다: ${response.data.message}`);
         }
       } catch (error) {
-          alert(`회원가입에 실패했습니다`);
+          alert(`서버와 연결이 불안정합니다.`);
         
       }
     };
   
     return (
       <s.SignUpWrapper>
-        <h1>회원가입</h1>
+        <s.H1>회원가입</s.H1>
         <s.SignUpForm onSubmit={handleSignUp}>
           
             <s.SignUpInput

@@ -1,63 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { s } from './style'
 import { useNavigate } from 'react-router-dom';
 import KakaoLogin from './kakaoLogin/KakaoLogin';
 import NaverLogin from './naverLogin/NaverLogin';
 import GoogleLoginButton from './googleLogin/GoogleLoginButton';
 import axios from 'axios';
 
-const LoginWrapper = styled.div`
-  font-family: 'LeeSeoyun';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`;
 
-const LoginForm = styled.form`
-  font-family: 'LeeSeoyun';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 67px;
-`;
-
-const LoginInput = styled.input`
-  font-family: 'LeeSeoyun';
-  padding: 10px;
-  font-size: 16px;
-  width: 200px;
-`;
-
-const LoginButton = styled.button`
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: 'LeeSeoyun';
-  width: 200px; // 버튼 너비를 조정
-  height: 35px; // 버튼 높이를 조정
-  padding: 10px; // 내부 패딩을 조정
-  background:rgb(255, 178, 34);
-  color: black;
-  border-radius: 15px;
-  font-size: 17px; 
-  border: 1px transparent; // 테두리 색상을 투명
-  position: relative;
-  z-index: 2;
-  &:active { // 버튼이 눌렸을 때의 스타일
-    background: rgb(255, 157, 0); // 눌렸을 때의 배경색을 변경
-}
-`;
-
-const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 0.2;  // 글자 간격
-`;
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -99,32 +48,32 @@ function Login() {
 
   
     return (
-      <LoginWrapper>
-        <TextsStyle>
-            <h3>가을을 기다리며,</h3>
-            <h1>단풍 우편함</h1>
+      <s.LoginWrapper>
+        <s.TextsStyle>
+            <s.H3>가을을 기다리며,</s.H3>
+            <s.H1>단풍 우편함</s.H1>
             <br/>
-            <p>당신의 따뜻한 마음으로 나무를 물들여봐요.</p>
-        </TextsStyle>
-        <LoginForm onSubmit={handleLogin}>
-            <LoginInput
+            <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
+        </s.TextsStyle>
+        <s.LoginForm onSubmit={handleLogin}>
+            <s.LoginInput
                 type="text"
                 placeholder="이메일"
                 value={email}
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setEmail(e.target.value)}
             />
-            <LoginInput
+            <s.LoginInput
                 type="password"
                 placeholder="비밀번호"
                 value={password}
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
-          <LoginButton type="submit">로그인하기</LoginButton>
+          <s.LoginButton type="submit">로그인하기</s.LoginButton>
           <KakaoLogin/>
           <NaverLogin/>
           <GoogleLoginButton/>
-        </LoginForm>
-      </LoginWrapper>
+        </s.LoginForm>
+      </s.LoginWrapper>
     );
   }
   

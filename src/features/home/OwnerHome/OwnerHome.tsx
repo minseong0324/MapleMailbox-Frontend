@@ -7,7 +7,7 @@ import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
 import { formatDistance, subDays } from 'date-fns'; 
 import "../Home.css"
-import LettersList from '../../letters/LettersList';
+import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small-big2.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small-big2.png';
 
@@ -222,25 +222,20 @@ const handleReadLetters = () => {
         {isMenuOpen && <Menu onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
         <s.CenteredWrapper>
             <s.TextsStyle>
-            <h3>가을을 기다리며,</h3>
-            <h1>{userName}의 단풍나무</h1>
-            <br/>
-            <p>당신의 따뜻한 마음으로 나무를 물들여봐요.</p>
+              <s.StyledH3>가을을 기다리며,</s.StyledH3>
+              <s.StyledH1>{userName}의 단풍나무</s.StyledH1>
+              <s.StyledP>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.StyledP>
             </s.TextsStyle>
 
             <s.TreeImageWrapper>
-            <img className= "treeimg" src={initialTreeImage} alt="Initial Tree" width="300px" height="300px" />    
+            <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
             {treeFragmentImages.map((image, index) => (
-                <img
-                  key={index}
-                  className="treefragmentimg"
-                  src={image}
-                  //alt={`Tree at stage ${index + 1}`}
-                  style={{ position: 'absolute', top: 0, left: 0, zIndex: 4 }} // top과 left를 0으로 설정                  width="300px"
-                  height="300px"
-                  width="300px"
-                />
-              ))}        
+              <s.TreeFragmentImg
+                key={index}
+                src={image}
+                alt={`Tree at stage ${index + 1}`}
+              />
+            ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
             </s.TreeImageWrapper>
 
@@ -264,12 +259,12 @@ const handleReadLetters = () => {
             </Modal>
 
             <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-                <h3>가을을 기다리며, 단풍우편함</h3>
-                <p>
+                <s.StyledH3>가을을 기다리며, 단풍우편함</s.StyledH3>
+                <s.StyledP>
                 하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
                 <br/>
                 어쩌구 저쩌구
-                </p>
+                </s.StyledP>
             </Modal>
       </s.CenteredWrapper>
     </>

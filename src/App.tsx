@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './features/home/Home';
 import Login from './features/login/Login';
 import SignUp from './features/signup/SignUp';
-import HomeBeforeLogin from './features/home/HomeBeforeLogin';
+import HomeBeforeLogin from './features/home/HomeBeforeLogin/HomeBeforeLogin';
 import OwnerHome from './features/home/OwnerHome/OwnerHome';
 import "./App.css"
 import LeafFalling from './assets/leafFalling/leafFalling'

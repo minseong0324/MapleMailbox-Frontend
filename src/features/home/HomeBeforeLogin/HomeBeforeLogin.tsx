@@ -1,0 +1,57 @@
+import { useState } from 'react';
+import { useSelector} from 'react-redux';
+import { RootState } from '../../../app/store';
+import MenuBeforeLogin from '../../../components/MenuBeforeLogin';
+import Modal from '../../../components/Modal';
+import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
+import { s } from './style'
+import { useNavigate } from 'react-router-dom';  // useNavigate import
+import "../Home.css"
+import GinkgoCharImg from '../../../assets/charImg/ginkgo-small-big2.png';
+
+
+
+function HomeBeforeLogin() {
+  const treeState = useSelector((state: RootState) => state.autumnTree.treeState);
+  const [isMenuOpen, setMenuOpen] = useState(true); 
+  const [isServiceModalOpen, setServiceModalOpen] = useState(false);
+  const navigate = useNavigate(); // useNavigate hook 사용
+
+  const handleServiceDescription = () => {
+    setServiceModalOpen(true);
+  };
+
+return (
+  <>
+  {isMenuOpen && <MenuBeforeLogin onLogin={() => navigate('/login')} onServiceDescription={handleServiceDescription} />}
+   <s.CenteredWrapper>
+    <s.TextsStyle>
+      <s.H3>가을을 기다리며,</s.H3>
+      <s.H2>단풍 우편함</s.H2>
+      <br/>
+      <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
+    </s.TextsStyle>
+   
+    <s.TreeImageWrapper>
+      <s.TreeImg src={MapleTreeImage} alt="Autumn Tree"/>
+      <s.GinkgoCharImage src={GinkgoCharImg} alt="Ginkgo Image" />
+    </s.TreeImageWrapper>
+      <br/> 
+      <s.Button onClick={() => navigate('/login')}>로그인</s.Button>
+      <br/> 
+      <s.Button onClick={() => navigate('/signup')}>회원가입</s.Button>
+      <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
+        <s.H3>가을을 기다리며, 단풍우편함</s.H3>
+        <s.P>
+          하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
+          <br/>
+          어쩌구 저쩌구
+        </s.P>
+      </Modal>
+    </s.CenteredWrapper>
+  </>
+);
+
+}
+
+export default HomeBeforeLogin;

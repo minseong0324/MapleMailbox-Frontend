@@ -70,6 +70,44 @@ import styled from 'styled-components';
   height: 300px;
 `;
 
+// 기존의 HTML 태그를 styled-components로 변경합니다.
+const StyledImg = styled.img`
+  position: relative;
+  z-index: 2;
+  width: 160px;
+  height: 40px;
+`;
+
+const StyledH3 = styled.h3`
+  // 여기에 필요한 스타일을 추가하세요.
+`;
+
+const StyledH1 = styled.h1`
+  // 여기에 필요한 스타일을 추가하세요.
+`;
+
+const StyledP = styled.p`
+  // 여기에 필요한 스타일을 추가하세요.
+`;
+
+const StyledDiv = styled.div`
+  // 여기에 필요한 스타일을 추가하세요.
+`;
+
+const TreeImg = styled.img`
+  width: 300px;
+  height: 300px;
+`;
+
+const TreeFragmentImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 300px;
+  height: 300px;
+`;
+
 export const s = {
     Button,
     CenteredWrapper,
@@ -77,5 +115,12 @@ export const s = {
     ModalTextsStyle,
     ModalTextsWrapper,
     CharImage,
-    TreeImageWrapper
+    TreeImageWrapper,
+    StyledImg,
+    StyledH3,
+    StyledH1,
+    StyledP,
+    StyledDiv,
+    TreeImg,
+    TreeFragmentImg
 }

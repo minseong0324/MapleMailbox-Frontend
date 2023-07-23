@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { s } from './style'
 
 // 네이버 로그인 후 콜백을 처리하는 컴포넌트
 const NaverCallback: React.FC = () => {
@@ -21,7 +22,7 @@ const NaverCallback: React.FC = () => {
     }
 
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post('auth/login/naver', { code, state })
+    axios.post('http://localhost:8080/auth/login/naver', { code, state })
       .then((response) => {
         // 서버로부터 받은 사용자 정보와 토큰을 로컬 스토리지에 저장
         localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -37,9 +38,9 @@ const NaverCallback: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <s.NaverWrapper>
       로그인 중...
-    </div>
+    </s.NaverWrapper>
   );
 };
 

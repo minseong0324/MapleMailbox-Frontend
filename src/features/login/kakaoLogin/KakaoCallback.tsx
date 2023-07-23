@@ -2,9 +2,10 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { s } from './style'
 
 // 카카오 로그인 후 콜백을 처리하는 컴포넌트
-const KakaoCallback: React.FC = () => {
+function KakaoCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,10 +38,10 @@ const KakaoCallback: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <s.KakaoWrapper>
       로그인 중...
-    </div>
+    </s.KakaoWrapper>
   );
-};
+}
 
 export default KakaoCallback;

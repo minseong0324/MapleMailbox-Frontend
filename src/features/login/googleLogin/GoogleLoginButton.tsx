@@ -3,16 +3,11 @@ import axios from 'axios';
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-
+import { s } from './style'
 type MyCredentialResponse = {
   tokenId: string;
   // Add other properties here if needed
 };
-
-const ButtonWrapper = styled.div`
-  z-index: 2;
-`;
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
@@ -38,14 +33,14 @@ const GoogleLoginButton = () => {
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID || ''}>
-      <ButtonWrapper>
+      <s.ButtonWrapper>
         <GoogleLogin
           onSuccess={handleLogin}
           onError={() => {
             console.log('Login Failed');
           }}
         />
-      </ButtonWrapper>
+      </s.ButtonWrapper>
     </GoogleOAuthProvider>
   );
 };
