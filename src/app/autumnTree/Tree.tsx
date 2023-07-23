@@ -1,8 +1,8 @@
 // Tree.tsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store';  // RootState 타입을 import 합니다.
-import { changeTreeState } from '../autumnTree/autumnTreeSlice';  // changeTreeState 액션을 import 합니다.
+import { RootState } from '../store';  // RootState 타입을 import 합니다.
+import { changeTreeState } from './autumnTreeSlice';  // changeTreeState 액션을 import 합니다.
 
 function Tree() {
   const dispatch = useDispatch();

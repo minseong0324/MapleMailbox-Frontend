@@ -46,6 +46,8 @@ const TreeImageWrapper = styled.div`
 position: relative;
 width: 300px;
 height: 300px;
+z-index: 2;
+
 `;
 
 const NameInput = styled.input`

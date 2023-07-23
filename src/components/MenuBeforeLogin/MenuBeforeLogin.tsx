@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import sunImg from '../assets/sunImg/sun.png';
+import sunImg from '../../assets/sunImg/sun.png';
 import { Link } from 'react-router-dom';
 
 const fadeIn = keyframes`
@@ -27,13 +27,13 @@ const SunButton = styled.button`
   cursor: pointer;
   width: 85px;
   height: 85px;
-  z-index: 2;
+  z-index: 10;  // 햇빛보다 위에 위치하도록 수정 (버튼이 안 눌리는 현상 해결)
 `;
 
 const MenuWrapper = styled.div`
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 18px;
   z-index: 3;
   padding-top: 80px;
   font-size: 15px;
@@ -57,7 +57,7 @@ const MenuItem = styled.button`
   font-family: 'LeeSeoyun'; 
   background: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   opacity: 0;
   animation: ${fadeIn} 1s forwards;
@@ -78,51 +78,39 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   animation: ${fadeIn} 1s forwards;
   z-index: 9;
-
 `;
 
-
-
-
-interface MenuProps {
-  onLogout: () => void;
+interface MenuBeforeLoginProps {
+  onLogin: () => void;
   onServiceDescription: () => void;
 }
 
-const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => { 
-  const [isOpen, setIsOpen] = React.useState(false);
+const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription }) => {  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleMenuToggle = () => {
-    setIsOpen(prev => !prev);
-    console.log(isOpen); // 상태 업데이트 확인
-    
+    setIsOpen((prev) => !prev);
   };
-  useEffect(() => {
-    console.log(isOpen); // 상태 업데이트 확인
-  }, [isOpen]);
 
   return (
     <SunWrapper>
     <SunButton onClick={handleMenuToggle} />
-      {isOpen &&
-        Array.from({ length: 70 }, (_, i) => (
-          <SunRay
-            key={i}  // key prop 추가
-            style={{
-              transform: `rotate(${-5 + i}deg)`,
-              transformOrigin: 'top',              
-      }}
-    />
+    {isOpen &&
+      Array.from({ length: 70 }, (_, i) => (
+        <SunRay
+          key={i}  // key prop 추가
+          style={{
+            transform: `rotate(${-5 + i}deg)`,
+            transformOrigin: 'top',              
+          }}
+        />
     ))}
 
       {isOpen && (
         <>
         <MenuWrapper>
-          <StyledLink to="/">로그아웃</StyledLink>
+        <StyledLink to="/login">로그인</StyledLink>
           <br />
           <MenuItem onClick={onServiceDescription}>이용안내</MenuItem>
-          <br />
-          <StyledLink to="/select-character-tree">나무/캐릭터 변경</StyledLink>
         </MenuWrapper>
         </>
       )}
@@ -130,4 +118,4 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   );
 };
 
-export default Menu;
+export default MenuBeforeLogin;

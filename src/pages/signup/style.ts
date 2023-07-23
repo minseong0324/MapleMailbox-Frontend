@@ -40,9 +40,14 @@ border: 1px solid #DDDDDD;
   z-index: 2;
 `;
 
+const H1 = styled.h1`
+
+`;
+
 export const s = {
   SignUpWrapper,
   SignUpForm,
   SignUpInput,
-  SignUpButton
+  SignUpButton,
+  H1
 }

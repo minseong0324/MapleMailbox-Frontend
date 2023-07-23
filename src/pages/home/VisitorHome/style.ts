@@ -110,6 +110,50 @@ const TreeFragmentImg = styled.img`
   height: 300px;
 `;
 
+const GinkgoCharImage = styled.img`
+position: absolute;
+z-index: 2;
+top: 77%; // top offset from tree image
+right: 25%; // right offset from tree image
+`;
+
+
+const NameInput = styled.input`
+font-family: "LeeSeoyun";
+width: 200px;
+height: 30px;
+margin-bottom: 20px;
+`;
+
+const LetterArea = styled.textarea`
+font-family: "LeeSeoyun";
+width: 200px;
+height: 200px;
+overflow: auto;
+margin-bottom: 20px;
+resize: none;
+`;
+
+const H3 = styled.h3`
+
+`;
+
+const H2 = styled.h2`
+
+`;
+
+const H1 = styled.h1`
+
+`;
+
+const P = styled.p`
+
+`;
+
+const Form = styled.form`
+
+`;
+
 export const s = {
     Button,
     CenteredWrapper,
@@ -124,6 +168,13 @@ export const s = {
     StyledP,
     StyledDiv,
     TreeImg,
-    TreeFragmentImg
+    TreeFragmentImg,
+    GinkgoCharImage,
+    NameInput,
+    LetterArea,
+    H3,
+    H2,
+    H1,
+    P,
+    Form,
 }
-

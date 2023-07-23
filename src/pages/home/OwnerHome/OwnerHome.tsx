@@ -49,7 +49,7 @@ const getUserInfoFromServer = async (userId: string) => {
 const importImages = async (prefix: string, count: number) => {
   const images = [];
   for (let i = 1; i <= count; i++) {
-    const image = await import(`../../assets/${prefix}/${prefix}${i}.png`);
+    const image = await import(`../../../assets/${prefix}/${prefix}${i}.png`);
     images.push(image.default);
   }
   return images;

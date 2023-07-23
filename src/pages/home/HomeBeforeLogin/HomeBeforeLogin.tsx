@@ -27,7 +27,7 @@ return (
    <s.CenteredWrapper>
     <s.TextsStyle>
       <s.H3>가을을 기다리며,</s.H3>
-      <s.H2>단풍 우편함</s.H2>
+      <s.H1>단풍 우편함</s.H1>
       <br/>
       <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
     </s.TextsStyle>
