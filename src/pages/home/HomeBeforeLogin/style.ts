@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import '../../../static/font/font.css';   
 
 const Button = styled.button`
   font-family: 'LeeSeoyun';
@@ -28,7 +29,7 @@ const Button = styled.button`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
+  font-family: 'LeeSeoyun';
   display: flex;
   flex-direction: column;
   align-items: center;

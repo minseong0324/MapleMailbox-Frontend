@@ -38,10 +38,9 @@
 }
 
 
-
 @font-face {
     font-family: 'LeeSeoyun';
-    src: url('./LeeSeoyun.otf') format('otf');
+    src: url('./LeeSeoyun.otf') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
