@@ -35,7 +35,7 @@ const getUserInfoFromServer = async (userId: string) => {
     // 사용자의 나무와 캐릭터 정보를 반환합니다.
     return {
       treeType: userInfo.treeType, //사용자 나무 종류
-      characterType: userInfo.characterType,
+      characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
     };
   } catch (error) {
