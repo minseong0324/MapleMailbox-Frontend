@@ -180,8 +180,8 @@ function OwnerHome() {
 
   // 편지를 확인하는 함수
   const handleReadLetters = () => {
-    //if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것. 테스트용.
-    if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
+    if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것. 테스트용.
+    //if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
       setReadModalOpen(true);
     } else if (letters.length > 0) { // 편지가 1개 이상 있을 때만 첫 번째 편지의 날짜를 확인합니다.
       const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜

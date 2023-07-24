@@ -35,7 +35,24 @@ const LeafButton = styled.button<LeafButtonProps>`
   margin: 8px;
 `;
 
+const DisabledLeafButton = styled.div<LeafButtonProps>`
+  disabled='disabled';
+  font-family: 'EarlyFontDiary';
+  font-size: 3px;
+  color: rgb(0, 0, 0);
+  position: relative;
+  background: url(${props => props.leafImage}) no-repeat center;
+  border: none;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  z-index: 2;
+  padding: 0px;
+  margin: 8px;
+`;
+
 export const s = {
+    DisabledLeafButton,
     ButtonWrapper,
     TextsStyle,
     LeafButton
