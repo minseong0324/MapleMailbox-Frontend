@@ -208,9 +208,9 @@ const handleSendLetter = async (event: React.FormEvent) => {
     {isMenuOpen && <VisitorMenu onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
     <s.CenteredWrapper>
       <s.TextsStyle>
-        <s.StyledH3>가을을 기다리며,</s.StyledH3>
-        <s.StyledH1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.StyledH1>
-        <s.StyledP>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.StyledP>
+        <s.H3>가을을 기다리며,</s.H3>
+        <s.H1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.H1>
+        <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
       </s.TextsStyle>
       <s.TreeImageWrapper>
       <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
@@ -223,14 +223,15 @@ const handleSendLetter = async (event: React.FormEvent) => {
             ))} 
         <s.CharImage src={getCharacterImage(characterType)} alt="character" />
       </s.TreeImageWrapper>
-      <br/>
+      <s.Break/>
       <s.Button onClick={() => setSendModalOpen(true)}>단풍잎 물들이기</s.Button>
-      <br/> 
+      <s.Break/> 
       <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
 
       <Modal isOpen={isSendModalOpen} onClose={() => setSendModalOpen(false)}>
-        <s.H2>단풍잎 물들이기</s.H2>
+        <s.ModalCenterWrapper>
         <s.Form onSubmit={handleSendLetter}>
+        <s.H2>단풍잎 물들이기</s.H2>
           <s.NameInput
             type="text"
             placeholder="이름을 입력하세요."
@@ -242,21 +243,22 @@ const handleSendLetter = async (event: React.FormEvent) => {
             value={letterContent}
             onChange={writeLetter}
           />
-          <s.Button 
+          <s.SendButton 
           type="submit"
           >
             물들이기
-          </s.Button>
+          </s.SendButton>
         </s.Form>
+        </s.ModalCenterWrapper>
       </Modal>
       
       <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-                <s.StyledH3>가을을 기다리며, 단풍우편함</s.StyledH3>
-                <s.StyledP>
+                <s.H3>가을을 기다리며, 단풍우편함</s.H3>
+                <s.P>
                 하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-                <br/>
+                <s.Break/>
                 어쩌구 저쩌구
-                </s.StyledP>
+                </s.P>
             </Modal>
     </s.CenteredWrapper>
     </>

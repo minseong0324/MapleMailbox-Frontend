@@ -25,6 +25,7 @@ const Button = styled.button`
 `;
   
  const CenteredWrapper = styled.div`
+  font-family: 'LeeSeoyun';
   position: relative; 
   display: flex;
   flex-direction: column;
@@ -39,6 +40,7 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
+  padding-top: 30px;
 `;
 
  const ModalTextsStyle = styled.div`
@@ -87,21 +89,23 @@ const StyledImg = styled.img`
   height: 40px;
 `;
 
-const StyledH3 = styled.h3`
-  // 여기에 필요한 스타일을 추가하세요.
+const H3 = styled.h3`
+  margin-bottom: 5px;
+  font-size: 15px;
 `;
 
-const StyledH1 = styled.h1`
-  // 여기에 필요한 스타일을 추가하세요.
+const H1 = styled.h1`
+  //margin-top: 0px;
+  font-size: 28px;
 `;
 
-const StyledP = styled.p`
-  // 여기에 필요한 스타일을 추가하세요.
+const P = styled.p`
+  margin-top: 6px;
+  font-size: 14px;
+  padding-bottom: 30px;
 `;
 
-const StyledDiv = styled.div`
-  // 여기에 필요한 스타일을 추가하세요.
-`;
+const Break = styled.br``;
 
 const TreeImg = styled.img`
   width: 300px;
@@ -126,10 +130,10 @@ export const s = {
     CharImage,
     TreeImageWrapper,
     StyledImg,
-    StyledH3,
-    StyledH1,
-    StyledP,
-    StyledDiv,
+    H3,
+    H1,
+    P,
+    Break,
     TreeImg,
     TreeFragmentImg
 }

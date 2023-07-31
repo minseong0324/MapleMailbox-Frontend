@@ -221,9 +221,9 @@ function OwnerHome() {
         {isMenuOpen && <Menu onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
         <s.CenteredWrapper>
             <s.TextsStyle>
-              <s.StyledH3>가을을 기다리며,</s.StyledH3>
-              <s.StyledH1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.StyledH1>
-              <s.StyledP>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.StyledP>
+              <s.H3>가을을 기다리며,</s.H3>
+              <s.H1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.H1>
+              <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
             </s.TextsStyle>
 
             <s.TreeImageWrapper>
@@ -238,9 +238,9 @@ function OwnerHome() {
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
             </s.TreeImageWrapper>
 
-            <br/> 
+            <s.Break/> 
             <s.Button onClick={handleReadLetters}>편지 확인하기</s.Button>
-            <br/> 
+            <s.Break/> 
             <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
         
             {/* 편지 읽는 모달을 추가합니다 */}
@@ -258,12 +258,12 @@ function OwnerHome() {
             </Modal>
 
             <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-                <s.StyledH3>가을을 기다리며, 단풍우편함</s.StyledH3>
-                <s.StyledP>
+                <s.H3>가을을 기다리며, 단풍우편함</s.H3>
+                <s.P>
                 하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-                <br/>
+                <s.Break/>
                 어쩌구 저쩌구
-                </s.StyledP>
+                </s.P>
             </Modal>
       </s.CenteredWrapper>
     </>

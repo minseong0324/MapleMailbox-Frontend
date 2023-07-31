@@ -23,8 +23,28 @@ const Button = styled.button`
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
 `;
+
+const SendButton = styled.button`
+  font-family: 'LeeSeoyun';
+  width: 250px; // 버튼 너비를 조정
+  height: 40px; // 버튼 높이를 조정
+  padding: 10px; // 내부 패딩을 조정
+  background: url(${button4}) no-repeat center center; // 이미지를 배경으로 사용
+  background-size: cover; // 이미지가 버튼에 맞게 조절
+  color: black;
+  border-radius: 15px;
+  font-size: 17px; 
+  border: 0px transparent; // 테두리 색상을 투명
+  position: relative;
+  z-index: 2;
+  &:active { // 버튼이 눌렸을 때의 스타일
+    background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
+    background-size: cover; // 이미지가 버튼에 맞게 조절
+  }
+`;
   
  const CenteredWrapper = styled.div`
+  font-family: 'LeeSeoyun';
   position: relative; 
   display: flex;
   flex-direction: column;
@@ -39,29 +59,20 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
+  padding-top: 30px;
 `;
 
- const ModalTextsStyle = styled.div`
-  font-family: 'LeeSeoyun';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-  font-size: 15px;
-  height: 10%; 
-`;
 
- const ModalTextsWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const ModalCenterWrapper = styled.div`
+  position: relative; 
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  width: 100%;
+  height: 100%;  // 높이를 설정
 `;
+
 
 // 캐릭터 이미지 위치 스타일링 (위치 변경 시 이 부분을 수정)
  const CharImage = styled.img`
@@ -87,21 +98,26 @@ const StyledImg = styled.img`
   height: 40px;
 `;
 
-const StyledH3 = styled.h3`
-  // 여기에 필요한 스타일을 추가하세요.
+const H3 = styled.h3`
+  margin-bottom: 5px;
+  font-size: 15px;
 `;
 
-const StyledH1 = styled.h1`
-  // 여기에 필요한 스타일을 추가하세요.
+const H2 = styled.h2`
 `;
 
-const StyledP = styled.p`
-  // 여기에 필요한 스타일을 추가하세요.
+const H1 = styled.h1`
+  //margin-top: 0px;
+  font-size: 28px;
 `;
 
-const StyledDiv = styled.div`
-  // 여기에 필요한 스타일을 추가하세요.
+const P = styled.p`
+  margin-top: 6px;
+  font-size: 14px;
+  padding-bottom: 30px;
 `;
+
+const Break = styled.br``;
 
 const TreeImg = styled.img`
   width: 300px;
@@ -141,39 +157,25 @@ margin-bottom: 20px;
 resize: none;
 `;
 
-const H3 = styled.h3`
-
-`;
-
-const H2 = styled.h2`
-
-`;
-
-const H1 = styled.h1`
-
-`;
-
-const P = styled.p`
-
-`;
-
 const Form = styled.form`
-
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center; 
+  justify-content: center;
+  gap: 10px;
 `;
+
 
 export const s = {
     Button,
+    SendButton,
     CenteredWrapper,
     TextsStyle,
-    ModalTextsStyle,
-    ModalTextsWrapper,
+    ModalCenterWrapper,
     CharImage,
     TreeImageWrapper,
     StyledImg,
-    StyledH3,
-    StyledH1,
-    StyledP,
-    StyledDiv,
     TreeImg,
     TreeFragmentImg,
     GinkgoCharImage,
@@ -183,5 +185,6 @@ export const s = {
     H2,
     H1,
     P,
+    Break,
     Form,
 }

@@ -43,6 +43,7 @@ const TextsStyle = styled.div`
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
+  padding-top: 30px;
 `;
 
 const GinkgoCharImage = styled.img`
@@ -75,8 +76,10 @@ const H1 = styled.h1`
 const P = styled.p`
   margin-top: 6px;
   font-size: 14px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 `;
+
+const Break = styled.br``;
 
 const Form = styled.form`
 
@@ -97,5 +100,6 @@ export const s = {
     H1,
     P,
     Form,
-    TreeImg
+    TreeImg,
+    Break
 }
