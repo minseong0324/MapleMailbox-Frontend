@@ -6,7 +6,7 @@ import button4 from '../../../assets/button/button4.png';
 
 
 const Button = styled.button`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
@@ -25,7 +25,7 @@ const Button = styled.button`
 `;
 
 const SendButton = styled.button`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
@@ -44,7 +44,7 @@ const SendButton = styled.button`
 `;
   
  const CenteredWrapper = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   position: relative; 
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@ const SendButton = styled.button`
 `;
 
  const TextsStyle = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,14 +142,14 @@ right: 25%; // right offset from tree image
 
 
 const NameInput = styled.input`
-font-family: "LeeSeoyun";
+font-family: "DOSSaemmul";
 width: 200px;
 height: 30px;
 margin-bottom: 20px;
 `;
 
 const LetterArea = styled.textarea`
-font-family: "LeeSeoyun";
+font-family: "DOSSaemmul";
 width: 200px;
 height: 200px;
 overflow: auto;

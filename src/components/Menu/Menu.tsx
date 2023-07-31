@@ -24,21 +24,26 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
       {isOpen &&
         Array.from({ length: 70 }, (_, i) => (
           <s.SunRay
-            key={i}  // key prop 추가
-            style={{
-              transform: `rotate(${-5 + i}deg)`,
-              transformOrigin: 'top',              
-      }}
-    />
-    ))}
+              key={i}
+              style={{
+                  transform: `rotate(${-5 + i}deg)`,
+                  transformOrigin: 'top',
+              }}
+              isActive={isOpen}
+          />
+      ))
+      }
 
       {isOpen && (
         <s.MenuWrapper>
-          <s.StyledLink to="/">로그아웃</s.StyledLink>
-          <br />
-          <s.MenuItem onClick={onServiceDescription}>이용안내</s.MenuItem>
-          <br />
-          <s.StyledLink to="/select-character-tree">나무/캐릭터 변경</s.StyledLink>
+          <s.StyledLinkContainer isActive={isOpen}>
+            <s.StyledLink to="/">로그아웃</s.StyledLink>
+          </s.StyledLinkContainer>
+          <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
+          <s.StyledLinkContainer isActive={isOpen}>
+            <s.StyledLink to="/select-character-tree">나무/캐릭터 변경</s.StyledLink>
+          </s.StyledLinkContainer>
+
         </s.MenuWrapper>
       )}
     </s.SunWrapper>

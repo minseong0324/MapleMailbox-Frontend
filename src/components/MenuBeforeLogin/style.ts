@@ -2,18 +2,8 @@ import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import sunImg from '../../assets/sunImg/sun.png';
 
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
 const SunWrapper = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   position: absolute;
   top: 10px;
   right: 10px;
@@ -36,58 +26,93 @@ const MenuWrapper = styled.div`
   right: 20px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
 `;
 
+interface SunRayProps {
+  isActive: boolean;
+}
 
-const SunRay = styled.div`
-  background: linear-gradient(to bottom, rgb(255, 251, 132) -100%, transparent 100%);
-  height: 160px;
-  width: 20px;
+const SunRay = styled.div<SunRayProps>`
   position: absolute;
-  top: 42.5px;   // 수정된 부분
-  left: 42.5px;  // 수정된 부분
+  top: 42.5px;
+  left: 42.5px;
+  height: 150px;
+  width: 20px;
   opacity: 0;
-  animation: ${fadeIn} 1s forwards;
+  animation: ${props => props.isActive ? fadeIn : fadeOut} 2.5s forwards;
   z-index: 1;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(255, 251, 132) -100%, transparent 100%);
+  }
 `;
 
-const MenuItem = styled.button`
-  font-family: 'LeeSeoyun'; 
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0;
-  animation: ${fadeIn} 1s forwards;
-  &:nth-child(1) {
-    animation-delay: 2s;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
   }
-  &:nth-child(2) {
-    animation-delay: 3s;
+  to {
+    opacity: 1;
   }
+`;
+
+const fadeOut = keyframes` //안됨..
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+`;
+
+interface MenuItemProps {
+  isActive: boolean;
+}
+
+const MenuItem = styled.button<MenuItemProps>`
+margin-bottom: 5px;
+font-family: 'DOSSaemmul'; 
+background: transparent;
+border: none;
+font-size: 12px;
+cursor: pointer;
+opacity: 0;
+animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
+`;
+
+
+interface StyledLinkContainerProps {
+  isActive: boolean;
+}
+
+const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
+  z-index: 9;
+  margin-bottom: 5px;
+  animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
 `;
 
 const StyledLink = styled(Link)`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   background: transparent;
   border: none;
   text-decoration: none;  // 밑줄 제거
   color: black; 
   cursor: pointer;
-  animation: ${fadeIn} 1s forwards;
-  z-index: 9;
-
 `;
 
-
 export const s = {
-    fadeIn,
-    SunWrapper,
-    SunButton,
-    MenuWrapper,
-    SunRay,
-    MenuItem,
-    StyledLink
+  fadeIn,
+  fadeOut,
+  SunWrapper,
+  SunButton,
+  MenuWrapper,
+  SunRay,
+  MenuItem,
+  StyledLinkContainer,
+  StyledLink
 }

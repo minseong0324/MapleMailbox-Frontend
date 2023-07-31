@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // 뒤로가기 버튼을 스타일링합니다.
 const BackButton = styled.button`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   background-color: #FFE5CC;
   border:2px; 
   border-style:hidden;
@@ -17,7 +17,7 @@ const BackButton = styled.button`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
+font-family: 'DOSSaemmul';
 display: flex;
 flex-direction: column;
 //align-items: center;

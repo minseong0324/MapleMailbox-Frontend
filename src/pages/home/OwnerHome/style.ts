@@ -6,7 +6,7 @@ import button4 from '../../../assets/button/button4.png';
 
 
 const Button = styled.button`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
@@ -25,7 +25,7 @@ const Button = styled.button`
 `;
   
  const CenteredWrapper = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   position: relative; 
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@ const Button = styled.button`
 `;
 
  const TextsStyle = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ const Button = styled.button`
 `;
 
  const ModalTextsStyle = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;

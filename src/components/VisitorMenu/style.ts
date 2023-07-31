@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 `;
 
 const SunWrapper = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   position: absolute;
   top: 10px;
   right: 10px;
@@ -54,7 +54,7 @@ const SunRay = styled.div`
 `;
 
 const MenuItem = styled.button`
-  font-family: 'LeeSeoyun'; 
+  font-family: 'DOSSaemmul'; 
   background: transparent;
   border: none;
   font-size: 16px;
@@ -70,7 +70,7 @@ const MenuItem = styled.button`
 `;
 
 const StyledLink = styled(Link)`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   background: transparent;
   border: none;
   text-decoration: none;  // 밑줄 제거

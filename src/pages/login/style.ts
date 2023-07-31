@@ -6,7 +6,7 @@ import button4 from '../../assets/button/button4.png';
 
 
 const LoginButton = styled.button`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
@@ -25,7 +25,7 @@ const LoginButton = styled.button`
 `;
 
 const LoginWrapper = styled.div`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@ const LoginWrapper = styled.div`
 `;
 
 const LoginForm = styled.form`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,7 +43,7 @@ const LoginForm = styled.form`
 `;
 
 const LoginInput = styled.input`
-  font-family: 'LeeSeoyun';
+  font-family: 'DOSSaemmul';
   padding: 10px;
   font-size: 16px;
   width: 250px;
@@ -62,7 +62,7 @@ const LoginInput = styled.input`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
+font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;

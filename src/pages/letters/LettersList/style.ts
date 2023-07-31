@@ -7,7 +7,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'LeeSeoyun';
+font-family: 'DOSSaemmul';
 display: flex;
 flex-direction: column;
 //align-items: center;
@@ -21,7 +21,7 @@ type LeafButtonProps = {
 };
 
 const LeafButton = styled.button<LeafButtonProps>`
-  font-family: 'EarlyFontDiary';
+  font-family: 'DOSSaemmul';
   font-size: 3px;
   color: rgb(0, 0, 0);
   position: relative;
@@ -37,7 +37,7 @@ const LeafButton = styled.button<LeafButtonProps>`
 
 const DisabledLeafButton = styled.div<LeafButtonProps>`
   disabled : 'disabled';
-  font-family: 'EarlyFontDiary';
+  font-family: 'DOSSaemmul';
   font-size: 3px;
   color: rgb(0, 0, 0);
   position: relative;

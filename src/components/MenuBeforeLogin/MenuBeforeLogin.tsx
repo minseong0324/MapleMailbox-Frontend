@@ -18,19 +18,22 @@ const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription 
     {isOpen &&
       Array.from({ length: 70 }, (_, i) => (
         <s.SunRay
-          key={i}  // key prop 추가
-          style={{
-            transform: `rotate(${-5 + i}deg)`,
-            transformOrigin: 'top',              
-          }}
+            key={i}
+            style={{
+                transform: `rotate(${-5 + i}deg)`,
+                transformOrigin: 'top',
+            }}
+            isActive={isOpen}
         />
-    ))}
+    ))
+    }
 
       {isOpen && (
         <s.MenuWrapper>
-        <s.StyledLink to="/login">로그인</s.StyledLink>
-          <br />
-          <s.MenuItem onClick={onServiceDescription}>이용안내</s.MenuItem>
+          <s.StyledLinkContainer isActive={isOpen}>
+            <s.StyledLink to="/login">로그인</s.StyledLink>
+          </s.StyledLinkContainer>
+          <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
         </s.MenuWrapper>
       )}
     </s.SunWrapper>
