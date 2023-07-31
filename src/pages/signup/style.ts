@@ -41,14 +41,26 @@ const SignUpButton = styled.button`
   gap: 20px;
 `;
 
- const SignUpInput = styled.input`
-border-radius: 10px;
-border: 1px solid #DDDDDD;
+const SignUpInput = styled.input`
   font-family: 'LeeSeoyun';
   padding: 10px;
   font-size: 16px;
-  width: 200px;
+  width: 250px;
+  border: none; // 모든 테두리를 제거합니다.
+  border-bottom: 1px solid #777; // 아래쪽 테두리만 추가합니다.
+  background-color: transparent;
+  color: #222;
+
+  &::placeholder {
+    color: #777;
+  }
+
+  &:focus {
+    outline: none;
+  }
 `;
+
+
 
 const H1 = styled.h1`
   //margin-top: 0px;
