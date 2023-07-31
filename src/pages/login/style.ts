@@ -23,6 +23,7 @@ const LoginButton = styled.button`
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
 `;
+
 const LoginWrapper = styled.div`
   font-family: 'LeeSeoyun';
   display: flex;
@@ -57,15 +58,19 @@ font-family: 'LeeSeoyun';
 `;
 
 const H3 = styled.h3`
-
+  margin-bottom: 5px;
+  font-size: 15px;
 `;
 
 const H1 = styled.h1`
-
+  //margin-top: 0px;
+  font-size: 28px;
 `;
 
 const P = styled.p`
-
+  margin-top: 6px;
+  font-size: 14px;
+  padding-bottom: 30px;
 `;
 
 export const s = {

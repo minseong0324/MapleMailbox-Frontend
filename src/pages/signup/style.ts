@@ -23,6 +23,7 @@ const SignUpButton = styled.button`
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
 `;
+
  const SignUpWrapper = styled.div`
   font-family: 'LeeSeoyun';
   display: flex;
@@ -50,7 +51,8 @@ border: 1px solid #DDDDDD;
 `;
 
 const H1 = styled.h1`
-
+  //margin-top: 0px;
+  font-size: 28px;
 `;
 
 export const s = {
