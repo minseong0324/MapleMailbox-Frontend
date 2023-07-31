@@ -10,8 +10,8 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import MapleTreeImage from "../../assets/treeImg/MapleMainTree.png";
 import GinkgoTreeImage from "../../assets/treeImg/GinkgoMainTree.png";
-import MapleCharImg from "../../assets/charImg/maple-small-big2.png";
-import GinkgoCharImg from "../../assets/charImg/ginkgo-small-big2.png";
+import MapleCharImg from "../../assets/charImg/maple-small.png";
+import GinkgoCharImg from "../../assets/charImg/ginkgo-small.png";
 
 function SelectTreeCharacter() {
   const [selectedTree, setSelectedTree] = useState("");
