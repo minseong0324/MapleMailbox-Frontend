@@ -36,7 +36,7 @@ const LeafButton = styled.button<LeafButtonProps>`
 `;
 
 const DisabledLeafButton = styled.div<LeafButtonProps>`
-  disabled='disabled';
+  disabled : 'disabled';
   font-family: 'EarlyFontDiary';
   font-size: 3px;
   color: rgb(0, 0, 0);

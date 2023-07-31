@@ -18,8 +18,8 @@ const GoogleLoginButton = () => {
       const response = await axios.post('http://localhost:8080/auth/login/google', {
         token: tokenId, // Google에서 발급한 토큰을 서버에 전달
       });
-
-      if (response.data.success) {
+        //토큰을 백엔드한테 보내서 백엔드가 잘 처리해서 이메일을 프론트가 요청을 해서 이메일을 로컬스토리지에 저장
+      if (response.data.success) { 
         // 로그인에 성공했을 경우
         navigate('/OwnerHome');
       } else {

@@ -70,7 +70,7 @@ function SignUp() {
                 value={password}
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
-            <s.SignUpButton type="submit">회원가입하기</s.SignUpButton>
+            <s.SignUpButton type="submit">회원가입하기</s.SignUpButton> {/* onclick 이벤트로 회원가입하기를 누르면 로그인 페이지로 */}
             <KakaoLogin/>
             <NaverLogin/>
             <GoogleLoginButton/>
