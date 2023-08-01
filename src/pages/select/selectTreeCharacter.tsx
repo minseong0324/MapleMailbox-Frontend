@@ -57,12 +57,23 @@ function SelectTreeCharacter() {
     navigate('/Ownerhome');
   }
   
-
- 
-
   const handleServiceDescription = () => {
     setServiceModalOpen(true);
   };
+
+  const characterData = [
+    { name: "Maple Character", imgSrc: MapleCharImg },
+    { name: "Ginkgo Character", imgSrc: GinkgoCharImg },
+    { name: "Black Character", imgSrc: BlackCharImg },
+    { name: "Blue Character", imgSrc: BlueCharImg },
+    { name: "Brown Character", imgSrc: BrownCharImg },
+    { name: "Gray Character", imgSrc: GrayCharImg },
+    { name: "Purple Character", imgSrc: PurpleCharImg },
+    { name: "SkyBlue Character", imgSrc: SkyBlueCharImg },
+    { name: "Violet Character", imgSrc: VioletCharImg },
+    { name: "Yellow Character", imgSrc: YellowCharImg }
+    // 캐릭터 추가
+  ];  
 
   return (
     <>
@@ -88,16 +99,14 @@ function SelectTreeCharacter() {
 
         <s.SelectWrapper>
         <Carousel showThumbs={false} showStatus={false} className="carousel">
-          <s.SelectClickEvent onClick={() => setSelectedCharacter("Maple Character")}>
-            <s.ImageButton src={MapleCharImg} alt="Maple Character" selected={selectedCharacter === "Maple Character"} style={{width: "70px", height: "100px"}}/>
-          </s.SelectClickEvent>
-          <s.SelectClickEvent onClick={() => setSelectedCharacter("Ginkgo Character")}>
-            <s.ImageButton src={GinkgoCharImg} alt="Ginkgo Character" selected={selectedCharacter === "Ginkgo Character"} style={{width: "70px", height: "100px"}}/>
-          </s.SelectClickEvent>
-          {/* Add more characters as needed */}
+          {characterData.map((character) => (
+            <s.SelectClickEvent onClick={() => setSelectedCharacter(character.name)}>
+              <s.ImageButton src={character.imgSrc} alt={character.name} selected={selectedCharacter === character.name} style={{width: "70px", height: "100px"}}/>
+            </s.SelectClickEvent>
+          ))}
         </Carousel>
         </s.SelectWrapper>
-
+        
         <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
           <s.H2>이용안내</s.H2>
           <s.P>
