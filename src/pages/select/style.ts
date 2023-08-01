@@ -22,6 +22,7 @@ const Button = styled.button`
     background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
+  margin-top: 50px;
 `;
 
 const CenteredWrapper = styled.div`
@@ -30,7 +31,7 @@ const CenteredWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   z-index: 4;
 `;
 
@@ -45,7 +46,7 @@ const TextsStyle = styled.div`
 
 const ImageButton = styled.button<ImageButtonProps>`
 cursor: pointer;
-border: ${props => props.selected ? '2px solid rgba(255, 187, 0, 0.5)' : 'none'};
+border: ${props => props.selected ? '2px dotted rgba(255, 187, 0, 0.5)' : 'none'};
 border-radius: 15px; // 이 속성을 통해 모서리를 둥글게 만듭니다. 
 background-image: url(${props => props.src});
 background-size: cover;
@@ -58,10 +59,33 @@ type ImageButtonProps = {
     selected: boolean;
 };
 
+const SelectWrapper = styled.div`
+  width: 300px;
+`;
+
+const H2 = styled.h2`
+`;
+
+const P = styled.p`
+  margin-top: 6px;
+  font-size: 14px;
+  padding-bottom: 30px;
+`;
+
+const Break = styled.br``;
+
+const SelectClickEvent = styled.div`
+`;
+
 export const s = {
     CenteredWrapper,
     TextsStyle,
     Button,
-    ImageButton
+    ImageButton,
+    SelectWrapper,
+    H2,
+    P,
+    Break,
+    SelectClickEvent
 }
 

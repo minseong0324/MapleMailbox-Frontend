@@ -12,6 +12,15 @@ import MapleTreeImage from "../../assets/treeImg/MapleMainTree.png";
 import GinkgoTreeImage from "../../assets/treeImg/GinkgoMainTree.png";
 import MapleCharImg from "../../assets/charImg/maple-small.png";
 import GinkgoCharImg from "../../assets/charImg/ginkgo-small.png";
+import BlackCharImg from "../../assets/charImg/black-small.png";
+import BlueCharImg from "../../assets/charImg/blue-small.png";
+import BrownCharImg from "../../assets/charImg/brown-small.png";
+import GrayCharImg from "../../assets/charImg/gray-small.png";
+import PurpleCharImg from "../../assets/charImg/purple-small.png";
+import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
+import VioletCharImg from "../../assets/charImg/violet-small.png";
+import YellowCharImg from "../../assets/charImg/yellow-small.png";
+
 
 function SelectTreeCharacter() {
   const [selectedTree, setSelectedTree] = useState("");
@@ -63,39 +72,39 @@ function SelectTreeCharacter() {
 
         <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
 
-        <div style={{ width: '300px' }}>
+        <s.SelectWrapper>
         <Carousel showThumbs={false} showStatus={false}>
-          <div onClick={() => setSelectedTree("Maple Tree")}>
+          <s.SelectClickEvent onClick={() => setSelectedTree("Maple Tree")}>
             <s.ImageButton src={MapleTreeImage} alt="Maple Tree" selected={selectedTree === "Maple Tree"} style={{width: "200px", height: "200px"}}/>
-          </div>
-          <div onClick={() => setSelectedTree("Ginkgo Tree")}>
+          </s.SelectClickEvent>
+          <s.SelectClickEvent onClick={() => setSelectedTree("Ginkgo Tree")}>
             <s.ImageButton src={GinkgoTreeImage} alt="Ginkgo Tree" selected={selectedTree === "Ginkgo Tree"} style={{width: "200px", height: "200px"}}/>
-          </div>
+          </s.SelectClickEvent>
           {/* Add more trees as needed */}
         </Carousel>
-        </div>
+        </s.SelectWrapper>
 
         <s.TextsStyle>나를 닮은 캐릭터를 찾아봐요!</s.TextsStyle>
 
-        <div style={{ width: '300px' }}>
+        <s.SelectWrapper>
         <Carousel showThumbs={false} showStatus={false} className="carousel">
-          <div onClick={() => setSelectedCharacter("Maple Character")}>
+          <s.SelectClickEvent onClick={() => setSelectedCharacter("Maple Character")}>
             <s.ImageButton src={MapleCharImg} alt="Maple Character" selected={selectedCharacter === "Maple Character"} style={{width: "70px", height: "100px"}}/>
-          </div>
-          <div onClick={() => setSelectedCharacter("Ginkgo Character")}>
+          </s.SelectClickEvent>
+          <s.SelectClickEvent onClick={() => setSelectedCharacter("Ginkgo Character")}>
             <s.ImageButton src={GinkgoCharImg} alt="Ginkgo Character" selected={selectedCharacter === "Ginkgo Character"} style={{width: "70px", height: "100px"}}/>
-          </div>
+          </s.SelectClickEvent>
           {/* Add more characters as needed */}
         </Carousel>
-        </div>
+        </s.SelectWrapper>
 
         <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-          <h2>이용안내</h2>
-          <p>
+          <s.H2>이용안내</s.H2>
+          <s.P>
             하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-            <br/>
+            <s.Break/>
             어쩌구 저쩌구
-          </p>
+          </s.P>
         </Modal>
 
         <s.Button onClick={handleSubmit}>바꾸기</s.Button>
