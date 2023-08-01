@@ -8,6 +8,7 @@ import SignUp from './pages/signup/SignUp';
 import HomeBeforeLogin from './pages/home/HomeBeforeLogin/HomeBeforeLogin';
 import OwnerHome from './pages/home/OwnerHome/OwnerHome';
 import "./App.css"
+import useScroll from './hooks/useScroll/useScroll';
 import LeafFalling from './assets/leafFalling/leafFalling'
 import SelectTreeCharacter from './pages/select/selectTreeCharacter';
 import KakaoLogin from './pages/login/kakaoLogin/KakaoLogin';

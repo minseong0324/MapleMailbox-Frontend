@@ -237,12 +237,12 @@ function OwnerHome() {
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
             </s.TreeImageWrapper>
-
+            <s.ButtonWrapper>
             <s.Break/> 
             <s.Button onClick={handleReadLetters}>편지 확인하기</s.Button>
             <s.Break/> 
             <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
-        
+            </s.ButtonWrapper>
             {/* 편지 읽는 모달을 추가합니다 */}
             <Modal isOpen={isReadModalOpen} onClose={() => setReadModalOpen(false)}>
               <LettersList/>

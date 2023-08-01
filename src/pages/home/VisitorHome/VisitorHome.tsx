@@ -223,10 +223,12 @@ const handleSendLetter = async (event: React.FormEvent) => {
             ))} 
         <s.CharImage src={getCharacterImage(characterType)} alt="character" />
       </s.TreeImageWrapper>
+      <s.ButtonWrapper>
       <s.Break/>
       <s.Button onClick={() => setSendModalOpen(true)}>단풍잎 물들이기</s.Button>
       <s.Break/> 
       <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
+      </s.ButtonWrapper>
 
       <Modal isOpen={isSendModalOpen} onClose={() => setSendModalOpen(false)}>
         <s.ModalCenterWrapper>

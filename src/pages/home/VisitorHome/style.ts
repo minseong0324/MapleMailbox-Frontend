@@ -6,6 +6,7 @@ import button4 from '../../../assets/button/button4.png';
 
 
 const Button = styled.button`
+  margin-bottom: 15px;
   font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
@@ -22,6 +23,13 @@ const Button = styled.button`
     background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
+`;
+
+const ButtonWrapper = styled.div`
+  position: relative;
+  bottom: -30px;
+  font-family: 'DOSSaemmul';
+  z-index: 2;
 `;
 
 const SendButton = styled.button`
@@ -187,4 +195,5 @@ export const s = {
     P,
     Break,
     Form,
+    ButtonWrapper
 }

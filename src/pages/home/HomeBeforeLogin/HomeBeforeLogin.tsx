@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector} from 'react-redux';
+import useScroll from 'src/hooks/useScroll/useScroll';
 import { RootState } from '../../../app/store';
 import MenuBeforeLogin from '../../../components/MenuBeforeLogin/MenuBeforeLogin';
 import Modal from '../../../components/Modal/Modal';
@@ -35,10 +36,12 @@ return (
       <s.TreeImg src={MapleTreeImage} alt="Autumn Tree"/>
       <s.GinkgoCharImage src={GinkgoCharImg} alt="Ginkgo Image" />
     </s.TreeImageWrapper>
-      <s.Break/> 
+    <s.ButtonWrapper>
+      <s.Break/>
       <s.Button onClick={() => navigate('/login')}>로그인</s.Button>
       <s.Break/> 
       <s.Button onClick={() => navigate('/signup')}>회원가입</s.Button>
+    </s.ButtonWrapper>
       <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
         <s.H3>가을을 기다리며, 단풍우편함</s.H3>
         <s.P>

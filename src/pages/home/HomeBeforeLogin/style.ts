@@ -7,6 +7,7 @@ import button4 from '../../../assets/button/button4.png';
 
 
 const Button = styled.button`
+  margin-bottom: 15px;
   font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
@@ -25,6 +26,12 @@ const Button = styled.button`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  position: relative;
+  bottom: -30px;
+  font-family: 'DOSSaemmul';
+  z-index: 2;
+`;
 
 
   const CenteredWrapper = styled.div`
@@ -101,5 +108,6 @@ export const s = {
     P,
     Form,
     TreeImg,
-    Break
+    Break,
+    ButtonWrapper
 }
