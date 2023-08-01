@@ -22,9 +22,7 @@ const Wrapper = styled.div`
 
 
 const SunButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: relative;
   background: url(${sunImg}) no-repeat center;
   border: none;
   cursor: pointer;
