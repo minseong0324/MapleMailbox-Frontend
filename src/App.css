@@ -28,7 +28,7 @@ body {
   padding: 0;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(to bottom, rgb(0, 149, 241) 0%, rgb(70, 206, 255) 10%, rgb(250, 250, 129) 80%);
+  background: url('./assets/sky/sky4.png');
 }
 
 body::after {
@@ -38,7 +38,7 @@ body::after {
   left: 0px;
   height: 100%;
   width: 100%;
-  background: url('./assets/background/background6.png');
+  background: url('./assets/background/background9.png');
   background-size: cover;
 }
 
