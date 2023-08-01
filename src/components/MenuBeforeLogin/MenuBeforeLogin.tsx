@@ -13,6 +13,7 @@ const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription 
   };
 
   return (
+    <s.Wrapper>
     <s.SunWrapper>
     <s.SunButton onClick={handleMenuToggle} />
     {isOpen &&
@@ -37,6 +38,7 @@ const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription 
         </s.MenuWrapper>
       )}
     </s.SunWrapper>
+    </s.Wrapper>
   );
 };
 

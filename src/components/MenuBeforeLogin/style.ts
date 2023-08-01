@@ -4,14 +4,27 @@ import sunImg from '../../assets/sunImg/sun.png';
 
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   z-index: 1;
+
+  @media (min-width: 769px) {
+    right: calc(50% - 384px + 10px);
+  }
 `;
 
+
+const Wrapper = styled.div`
+  max-width: 768px;
+  margin: auto;
+`;
+
+
 const SunButton = styled.button`
-  position: relative;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background: url(${sunImg}) no-repeat center;
   border: none;
   cursor: pointer;
@@ -19,6 +32,7 @@ const SunButton = styled.button`
   height: 85px;
   z-index: 2;
 `;
+
 
 const MenuWrapper = styled.div`
   position: absolute;
@@ -114,5 +128,6 @@ export const s = {
   SunRay,
   MenuItem,
   StyledLinkContainer,
-  StyledLink
+  StyledLink,
+  Wrapper
 }
