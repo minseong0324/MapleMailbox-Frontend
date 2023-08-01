@@ -19,6 +19,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   }, [isOpen]);
 
   return (
+    <s.Wrapper>
     <s.SunWrapper>
     <s.SunButton onClick={handleMenuToggle} />
       {isOpen &&
@@ -47,6 +48,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
         </s.MenuWrapper>
       )}
     </s.SunWrapper>
+    </s.Wrapper>
   );
 };
 

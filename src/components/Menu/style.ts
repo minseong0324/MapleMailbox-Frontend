@@ -4,10 +4,20 @@ import sunImg from '../../assets/sunImg/sun.png';
 
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   z-index: 1;
+
+  @media (min-width: 769px) {
+    right: calc(50% - 384px + 10px);
+  }
+`;
+
+
+const Wrapper = styled.div`
+  max-width: 768px;
+  margin: auto;
 `;
 
 const SunButton = styled.button`
@@ -119,5 +129,6 @@ export const s = {
     SunRay,
     MenuItem,
     StyledLinkContainer,
-    StyledLink
+    StyledLink,
+    Wrapper
 }
