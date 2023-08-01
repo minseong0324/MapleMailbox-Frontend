@@ -28,7 +28,7 @@ body {
   padding: 0;
   height: 100vh;
   overflow: hidden;
-  background: url('./assets/sky/sky5-3.png');
+  background: url('./assets/sky/sky6.png');
   background-size: auto;
   background-position: center center;
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@ body::after {
   left: 0px;
   height: 100%;
   width: 100%;
-  background: url('./assets/background/background15.png');
+  background: url('./assets/background/background16.png');
   background-size: auto;
   background-position: center center;
   background-repeat: no-repeat;
