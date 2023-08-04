@@ -1,28 +1,29 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-const leafFall = keyframes`
+// 나뭇잎 떨어지는 애니메이션
+const leafFall = (rotateEnd: number) => keyframes`
   0% {
-     opacity: 0.5;
-      top: -10%;
-      left: var(--start-left);  
-      transform: rotate(0deg);
+    opacity: 0.5;
+    top: -10%;
+    left: var(--start-left);  
+    transform: rotate(0deg);
   }
   100% {
-      opacity: 0;
-      top: 70%;
-      left: var(--end-left); 
-      transform: rotate(90deg);
+    opacity: 0;
+    top: 70%;
+    left: var(--end-left); 
+    transform: rotate(${rotateEnd}deg);
   }
 `;
 
-const Leaf = styled.div`
+const Leaf = styled.div<{ rotateEnd: number }>`
   position: absolute;
   top: 0;
   width: 20px;
   height: 20px;
   background-size: cover;
   
-  animation: ${leafFall} 5s linear infinite;
+  animation: ${(props) => css`${leafFall(props.rotateEnd)} 5s linear infinite`};
 `;
 
 const LeafDiv = styled.div`

@@ -20,20 +20,22 @@ const LeafFalling: React.FC = () => {
     for (let i = 0; i < numLeaves; i++) {
       const leafType = Math.random() > 0.5 ? GinkgoLeaf : MapleLeaf;
       const delay = Math.random() * 5;
-      const startLeft = `${Math.random() * 90}%`;  
-      const endLeft = `${Math.random() * 90}%`;   
+      const startLeft = `${Math.random() * 190 - 50}%`;  
+      const endLeft = `${Math.random() * 190 - 50}%`;   
+      const rotateEnd = Math.floor(Math.random() * 360);  // 0~359 사이의 랜덤 정수
 
       newLeaves.push(
         <s.LeafDiv>
-        <s.Leaf
-          key={i}
-          style={{
-            backgroundImage: `url(${leafType})`,
-            animationDelay: `${delay}s`,
-            "--start-left": startLeft,
-            "--end-left": endLeft
-          } as CSSPropertiesWithCustomVars}
-        />
+          <s.Leaf
+            key={i}
+            rotateEnd={rotateEnd}
+            style={{
+              backgroundImage: `url(${leafType})`,
+              animationDelay: `${delay}s`,
+              "--start-left": startLeft,
+              "--end-left": endLeft
+            } as CSSPropertiesWithCustomVars}
+          />
         </s.LeafDiv>
       );
     }
@@ -45,3 +47,8 @@ const LeafFalling: React.FC = () => {
 };
 
 export default LeafFalling;
+
+
+
+
+
