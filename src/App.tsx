@@ -23,8 +23,6 @@ function App() {
     <>
      <GlobalStyle /> {/* 이 줄 추가 */}
     <UserProvider>
-    
-
       <LeafFalling />
       <Clouds />
       <Router>
