@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import cloudImage from '../../assets/cloud/cloud5.png';
+import cloudImageSmall from '../../assets/cloud/cloud5.png';
+import cloudImageBig from '../../assets/cloud/cloud-big.png';
 
 const moveCloud = keyframes`
   0% {
@@ -14,11 +15,14 @@ const CloudsDiv = styled.div`
   position: absolute;
   width: 200%; 
   height: 100vh;
-  background: url(${cloudImage}) repeat-x;
-
+  background: url(${cloudImageSmall}) repeat-x;
   animation: ${moveCloud} 50s linear infinite;
-  
   z-index: 0;
+
+  @media screen and (min-width: 560px) {
+    background: url(${cloudImageBig}) repeat-x;
+    bottom: 100px
+  }
 `;
 
 const WrapperDiv = styled.div`
