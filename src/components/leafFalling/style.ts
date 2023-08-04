@@ -1,29 +1,37 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { CSSProperties } from 'react';
 
-// 나뭇잎 떨어지는 애니메이션
-const leafFall = (rotateEnd: number) => keyframes`
+// Leaf 컴포넌트에서 사용할 속성의 타입을 정의
+interface LeafProps extends CSSProperties {
+  '--start-left'?: string;
+  '--end-left'?: string;
+  '--rotation-start'?: string;
+  '--rotation-end'?: string;
+}
+
+const leafFall = keyframes`
   0% {
-    opacity: 0.5;
-    top: -10%;
-    left: var(--start-left);  
-    transform: rotate(0deg);
+     opacity: 0.5;
+      top: -10%;
+      left: var(--start-left);  
+      transform: rotate(var(--rotation-start));
   }
   100% {
-    opacity: 0;
-    top: 70%;
-    left: var(--end-left); 
-    transform: rotate(${rotateEnd}deg);
+      opacity: 0;
+      top: 70%;
+      left: var(--end-left); 
+      transform: rotate(var(--rotation-end));
   }
 `;
 
-const Leaf = styled.div<{ rotateEnd: number }>`
+const Leaf = styled.div<LeafProps>`
   position: absolute;
   top: 0;
   width: 20px;
   height: 20px;
   background-size: cover;
   
-  animation: ${(props) => css`${leafFall(props.rotateEnd)} 5s linear infinite`};
+  animation: ${leafFall} 5s linear infinite;
 `;
 
 const LeafDiv = styled.div`
@@ -37,6 +45,8 @@ const LeafDiv = styled.div`
   overflow: hidden;
   z-index: 1;
 `;
+
+
 
 export const s = {
   Leaf,
