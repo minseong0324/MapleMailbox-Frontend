@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import './leafFalling.css';
-import GinkgoLeaf from '../leafImg/GinkgoLeaf.png';
-import MapleLeaf from '../leafImg/MapleLeaf.png';
+import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
+import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
 
 // 화면에 표시될 나뭇잎의 수를 정의합니다.
 const numLeaves = 30;

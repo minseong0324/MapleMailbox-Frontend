@@ -4,8 +4,8 @@
   width: 20px;
   height: 20px;
   background-size: cover;
-  z-index: -100;
-  animation: leaf-fall 5s linear infinite;
+  z-index: 0;
+  animation: leaf-fall 6.5s linear infinite;
   --start-left: 100; 
   --end-left: 100;   
 }

@@ -7,20 +7,26 @@ import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
 import HomeBeforeLogin from './pages/home/HomeBeforeLogin/HomeBeforeLogin';
 import OwnerHome from './pages/home/OwnerHome/OwnerHome';
-import "./App.css"
 import useScroll from './hooks/useScroll/useScroll';
-import LeafFalling from './assets/leafFalling/leafFalling'
+import LeafFalling from './components/leafFalling/leafFalling'
+import Clouds from './components/Clouds/Clouds';
 import SelectTreeCharacter from './pages/select/selectTreeCharacter';
 import KakaoLogin from './pages/login/kakaoLogin/KakaoLogin';
 import KakaoCallback from './pages/login/kakaoLogin/KakaoCallback';
 import NaverLogin from './pages/login/naverLogin/NaverLogin';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
 import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
+import {GlobalStyle} from './style'
 
 function App() {
   return (
+    <>
+     <GlobalStyle /> {/* 이 줄 추가 */}
     <UserProvider>
+    
+
       <LeafFalling />
+      <Clouds />
       <Router>
         <Routes>
           <Route path="/" element={<HomeBeforeLogin />} />
@@ -38,6 +44,8 @@ function App() {
         </Routes>
       </Router>
     </UserProvider>
+    </>
+    
   );
 }
 
