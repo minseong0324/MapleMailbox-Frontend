@@ -8,9 +8,16 @@
 
 /*
 예시 이미지 5개 제작 예정
-- maple (완
+- maple (완 : 수정예정)
 - ginkgo (미완
-- pumpkin (완
-- sky (미완
+- pumpkin (완)
+- sky (완)
 - squirrel (미완
 */
+
+/*
+네모 버전과 동그라미 버전이 있습니다.
+(원, 직사각형, 정사각형)
+(각각 _cir _rec _squ 파일 참고)
+*/
+
