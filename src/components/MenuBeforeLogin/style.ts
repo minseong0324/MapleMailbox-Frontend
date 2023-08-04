@@ -9,14 +9,14 @@ const SunWrapper = styled.div`
   right: 10px;
   z-index: 1;
 
-  @media (min-width: 769px) {
-    right: calc(50% - 384px + 10px);
+  @media (min-width: 821px) {
+    right: calc(50% - 410px + 10px);
   }
 `;
 
 
 const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: 820px;
   margin: auto;
 `;
 
