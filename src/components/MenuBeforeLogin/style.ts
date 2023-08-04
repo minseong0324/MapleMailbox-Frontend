@@ -7,7 +7,7 @@ const SunWrapper = styled.div`
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1;
+  z-index: 5;
 
   @media (min-width: 821px) {
     right: calc(50% - 410px + 10px);
