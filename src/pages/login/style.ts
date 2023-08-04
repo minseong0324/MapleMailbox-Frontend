@@ -51,7 +51,8 @@ const LoginInput = styled.input`
   border-bottom: 1px solid #777; // 아래쪽 테두리만 추가합니다.
   background-color: transparent;
   color: #111;
-
+  z-index: 0;
+  
   &::placeholder {
     color: #777;
   }
@@ -67,6 +68,7 @@ font-family: 'DOSSaemmul';
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
+  z-index: 0;
 `;
 
 const H3 = styled.h3`
@@ -77,6 +79,7 @@ const H3 = styled.h3`
 const H1 = styled.h1`
   //margin-top: 0px;
   font-size: 28px;
+  font-family: 'DOSGothic';
 `;
 
 const P = styled.p`

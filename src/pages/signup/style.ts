@@ -50,6 +50,7 @@ const SignUpInput = styled.input`
   border-bottom: 1px solid #777; // 아래쪽 테두리만 추가합니다.
   background-color: transparent;
   color: #222;
+  z-index: 0;
 
   &::placeholder {
     color: #777;
@@ -65,6 +66,7 @@ const SignUpInput = styled.input`
 const H1 = styled.h1`
   //margin-top: 0px;
   font-size: 28px;
+  z-index: 0;
 `;
 
 export const s = {
