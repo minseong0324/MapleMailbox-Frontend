@@ -12,7 +12,7 @@
 - ginkgo (미완
 - pumpkin (완)
 - sky (완)
-- squirrel (미완
+- squirrel (완)
 */
 
 /*
