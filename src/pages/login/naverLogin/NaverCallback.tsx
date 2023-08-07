@@ -4,44 +4,45 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style'
 
-// 네이버 로그인 후 콜백을 처리하는 컴포넌트
-const NaverCallback: React.FC = () => {
+function NaverCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const authenticate = async () => {
-      // 현재 URL에서 인증 코드와 상태 값을 추출
-      const url = new URL(window.location.href);
-      const code = url.searchParams.get('code');
-      const state = url.searchParams.get('state');
+    const url = new URL(window.location.href);
+    const code = url.searchParams.get('code');
+    const state = url.searchParams.get('state');
 
-      // 인증 코드 또는 상태 값이 없으면 로그인 페이지로 리다이렉트
-      if (!code || !state) {
-        alert('인증 코드 또는 상태 값이 없습니다.');
-        navigate('/login');
-        return;
-      }
-      //console.log(window.location.href)
-      // URL에서 인증 코드 제거
-      url.searchParams.delete('code');
-      window.history.replaceState(null, '', url.toString());
-      //console.log(window.location.href)
-      // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-      try {
-        const response = await axios.post('http://localhost:8080/auth/login/naver', { code, state });
-        // 서버로부터 받은 사용자 정보와 토큰을 로컬 스토리지에 저장
-        localStorage.setItem('email', JSON.stringify(response.data.email));
-        localStorage.setItem('token', response.data.token);
-        // 로그인이 성공하면 사용자를 OwnerHome 페이지로 리다이렉트
-        navigate(`/OwnerHome/${response.data.user.id}`);
-      } catch (error) {
-        // 로그인이 실패하면 에러를 출력하고 로그인 페이지로 리다이렉트
-        console.error('로그인 실패', error);
-        navigate('/login');
-      }
+    if (!code || !state) {
+      alert('인증 코드 또는 상태 값이 없습니다.');
+      navigate('/login');
+      return;
     }
 
-    authenticate();
+    axios.post('http://localhost:8080/api/auth/login/naver', { code, state })
+      .then(async (response) => {
+        if (response.status === 200) {
+          const userResponse = await axios.get('http://localhost:8080/api/users', {
+            headers: {
+              Authorization: `Bearer ${response.data.token}`
+            }
+          });
+
+          localStorage.setItem('email', userResponse.data.email);
+          localStorage.setItem('name', userResponse.data.userName);
+          localStorage.setItem('access_token', userResponse.headers.accessToken);
+          localStorage.setItem('refresh_token', userResponse.headers.refreshToken);
+
+          // Remove the code from the URL and redirect to the OwnerHome
+          navigate(`/OwnerHome/${userResponse.data.email}`, { replace: true });
+        } else {
+          console.error('Login failed with status:', response.status);
+          navigate('/login');
+        }
+      })
+      .catch((error) => {
+        console.error('로그인 실패', error);
+        navigate('/login');
+      });
   }, [navigate]);
 
   return (
@@ -49,6 +50,6 @@ const NaverCallback: React.FC = () => {
       로그인 중...
     </s.NaverWrapper>
   );
-};
+}
 
 export default NaverCallback;

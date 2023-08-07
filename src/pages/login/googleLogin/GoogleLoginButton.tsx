@@ -3,10 +3,10 @@ import axios from 'axios';
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import { s } from './style'
+import { s } from './style';
+
 type MyCredentialResponse = {
   tokenId: string;
-  // Add other properties here if needed
 };
 
 const GoogleLoginButton = () => {
@@ -15,15 +15,30 @@ const GoogleLoginButton = () => {
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
     try {
       const tokenId = 'tokenId' in credentialResponse ? credentialResponse.tokenId : credentialResponse;
-      const response = await axios.post('http://localhost:8080/auth/login/google', {
-        token: tokenId, // Google에서 발급한 토큰을 서버에 전달
+      const response = await axios.post('http://localhost:8080/api/auth/login/google', {
+        token: tokenId,
       });
-        //토큰을 백엔드한테 보내서 백엔드가 잘 처리해서 이메일을 프론트가 요청을 해서 이메일을 로컬스토리지에 저장
-      if (response.data.success) { 
-        // 로그인에 성공했을 경우
-        navigate('/OwnerHome');
+
+      if (response.status === 200) {
+        const userResponse = await axios.get('http://localhost:8080/api/users', {
+          headers: {
+            'Authorization': `Bearer ${response.data.accessToken}` // 토큰을 헤더에 포함
+          }
+        });
+
+        if (userResponse.status === 200) {
+          localStorage.setItem('email', userResponse.data.email);
+          localStorage.setItem('name', userResponse.data.userName);
+          localStorage.setItem('access_token', userResponse.headers.accessToken);
+          localStorage.setItem('refresh_token', userResponse.headers.refreshToken);
+
+          navigate(`/OwnerHome/${userResponse.data.email}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+        } else {
+          console.error('Failed to fetch user data.');
+          navigate('/login');
+        }
       } else {
-        // 로그인에 실패했을 경우
+        console.error('Login failed with status:', response.status);
         navigate('/login');
       }
     } catch (error) {

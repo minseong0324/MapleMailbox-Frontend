@@ -1,10 +1,8 @@
-// NaverCallback.tsx
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style'
 
-// 카카오 로그인 후 콜백을 처리하는 컴포넌트
 function KakaoCallback() {
   const navigate = useNavigate();
 
@@ -14,7 +12,6 @@ function KakaoCallback() {
     const code = url.searchParams.get('code');
     const state = url.searchParams.get('state');
 
-    // 인증 코드 또는 상태 값이 없으면 로그인 페이지로 리다이렉트
     if (!code || !state) {
       alert('인증 코드 또는 상태 값이 없습니다.');
       navigate('/login');
@@ -22,16 +19,26 @@ function KakaoCallback() {
     }
 
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post('http://localhost:8080/auth/login/kakao', { code, state })
-      .then((response) => {
-        // 서버로부터 받은 사용자 정보와 토큰을 로컬 스토리지에 저장
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
-        // 로그인이 성공하면 사용자를 OwnerHome 페이지로 리다이렉트
-        navigate('/OwnerHome');
+    axios.post('http://localhost:8080/api/auth/login/kakao', { code, state })
+      .then(async (response) => {
+        if (response.status === 200) {
+          const userResponse = await axios.get('http://localhost:8080/api/users', {
+            headers: {
+              Authorization: `Bearer ${response.data.token}`
+            }
+          });
+          
+          localStorage.setItem('email', userResponse.data.email);
+          localStorage.setItem('name', userResponse.data.userName);
+          localStorage.setItem('access_token', userResponse.headers.accessToken);
+          localStorage.setItem('refresh_token', userResponse.headers.refreshToken);
+          navigate(`/OwnerHome/${userResponse.data.email}`, { replace: true });
+        } else {
+          console.error('Login failed with status:', response.status);
+          navigate('/login');
+        }
       })
       .catch((error) => {
-        // 로그인이 실패하면 에러를 출력하고 로그인 페이지로 리다이렉트
         console.error('로그인 실패', error);
         navigate('/login');
       });
