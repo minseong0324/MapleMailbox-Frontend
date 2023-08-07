@@ -17,10 +17,15 @@ import NaverLogin from './pages/login/naverLogin/NaverLogin';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
 import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
 import {GlobalStyle} from './style'
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+const loginId = localStorage.getItem("loginId");
 
 function App() {
   return (
     <>
+    <QueryClientProvider client={queryClient}>
      <GlobalStyle /> {/* 이 줄 추가 */}
     <UserProvider>
       <LeafFalling />
@@ -42,6 +47,8 @@ function App() {
         </Routes>
       </Router>
     </UserProvider>
+    </QueryClientProvider>
+
     </>
     
   );

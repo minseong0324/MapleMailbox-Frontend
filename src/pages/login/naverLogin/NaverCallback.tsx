@@ -9,32 +9,39 @@ const NaverCallback: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 현재 URL에서 인증 코드와 상태 값을 추출
-    const url = new URL(window.location.href);
-    const code = url.searchParams.get('code');
-    const state = url.searchParams.get('state');
+    const authenticate = async () => {
+      // 현재 URL에서 인증 코드와 상태 값을 추출
+      const url = new URL(window.location.href);
+      const code = url.searchParams.get('code');
+      const state = url.searchParams.get('state');
 
-    // 인증 코드 또는 상태 값이 없으면 로그인 페이지로 리다이렉트
-    if (!code || !state) {
-      alert('인증 코드 또는 상태 값이 없습니다.');
-      navigate('/login');
-      return;
-    }
-
-    // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post('http://localhost:8080/auth/login/naver', { code, state })
-      .then((response) => {
+      // 인증 코드 또는 상태 값이 없으면 로그인 페이지로 리다이렉트
+      if (!code || !state) {
+        alert('인증 코드 또는 상태 값이 없습니다.');
+        navigate('/login');
+        return;
+      }
+      //console.log(window.location.href)
+      // URL에서 인증 코드 제거
+      url.searchParams.delete('code');
+      window.history.replaceState(null, '', url.toString());
+      //console.log(window.location.href)
+      // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
+      try {
+        const response = await axios.post('http://localhost:8080/auth/login/naver', { code, state });
         // 서버로부터 받은 사용자 정보와 토큰을 로컬 스토리지에 저장
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('email', JSON.stringify(response.data.email));
         localStorage.setItem('token', response.data.token);
         // 로그인이 성공하면 사용자를 OwnerHome 페이지로 리다이렉트
-        navigate('/OwnerHome');
-      })
-      .catch((error) => {
+        navigate(`/OwnerHome/${response.data.user.id}`);
+      } catch (error) {
         // 로그인이 실패하면 에러를 출력하고 로그인 페이지로 리다이렉트
         console.error('로그인 실패', error);
         navigate('/login');
-      });
+      }
+    }
+
+    authenticate();
   }, [navigate]);
 
   return (

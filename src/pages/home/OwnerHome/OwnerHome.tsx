@@ -37,6 +37,8 @@ const getUserInfoFromServer = async (userId: string) => {
       treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
+      letters: userInfo.letters, //사용자의 편지 목록
+      personalUrl: userInfo.personalUrl //
     };
   } catch (error) {
     // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
