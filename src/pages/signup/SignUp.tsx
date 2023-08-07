@@ -30,20 +30,37 @@ function SignUp() {
         });
         console.log(username, email, password);
   
-        if (response.data.success) {
-          // 로그인 토큰을 로컬 스토리지에 저장
-          localStorage.setItem('token', response.data.token);
-          // 회원가입 성공 시 OwnerHome 페이지로 이동
-          navigate(`/OwnerHome/${response.data.userId}`);
-        } else {
-          // 회원가입 실패 시 서버에서 받은 메시지 출력
-          alert(`회원가입에 실패했습니다: ${response.data.message}`);
+        // 회원가입 성공, status 200일 때
+        if (response.status === 200) {
+          alert("회원가입에 성공하였습니다!")
+          navigate("/login"); 
+        } else if (response.status === 400) {
+          // 회원가입 실패, status 400일 때
+          switch(response.data.code) { //예시로 한 것.
+            case 'ID AND NICKNAME DUPLICATION':
+              alert('닉네임과 이메일이 중복되었습니다.');
+              break;
+            case 'ID DUPLICATION':
+              alert('이메일이 중복되었습니다.');
+              break;
+            case 'NICKNAME DUPLICATION':
+              alert('닉네임이 중복되었습니다.');
+              break;
+            case 'NULL POINT EXCEPTION':
+              alert('입력하지 않은 란이 있습니다.');
+              break;
+            default:
+              alert(`회원가입에 실패했습니다: ${response.data.message}`);
+              break;
+          }
         }
       } catch (error) {
-          alert(`서버와 연결이 불안정합니다.`);
-        
+        if (axios.isAxiosError(error) && error.response) {
+          alert("회원가입 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+          navigate("/signup");
+        }
       }
-    };
+    }
   
     return (
       <s.SignUpWrapper>
