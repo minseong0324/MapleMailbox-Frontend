@@ -34,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeBeforeLogin />} />
           <Route path="/home/:userId" element={<Home />} />
+          <Route path="/ownerhome" element={<OwnerHome />} /> {/* 이건 출시 이전에 뺄 것입니다. 개발을 위해 라우트 해두었습니다. */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree" element={<SelectTreeCharacter />} />
