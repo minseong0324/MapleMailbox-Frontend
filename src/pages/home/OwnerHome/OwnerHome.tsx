@@ -90,8 +90,9 @@ function OwnerHome() {
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
-        const userInfo = await getUserInfoFromServer(userId);
+      const storedUserId = localStorage.getItem('user_id'); // 로컬 스토리지에서 user_id를 가져옵니다.
+      if (storedUserId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
+        const userInfo = await getUserInfoFromServer(storedUserId);
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
@@ -99,7 +100,7 @@ function OwnerHome() {
     };
   
     fetchUserInfo();
-  }, [userId]);
+  }, []);
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.

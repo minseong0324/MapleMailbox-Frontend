@@ -27,12 +27,12 @@ const GoogleLoginButton = () => {
         });
 
         if (userResponse.status === 200) {
-          localStorage.setItem('email', userResponse.data.email);
+          localStorage.setItem("user_id", userResponse.data.id);
+          //localStorage.setItem('email', userResponse.data.email);
           localStorage.setItem('name', userResponse.data.userName);
           localStorage.setItem('access_token', userResponse.headers.accessToken);
           localStorage.setItem('refresh_token', userResponse.headers.refreshToken);
-
-          navigate(`/OwnerHome/${userResponse.data.email}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+          navigate(`/OwnerHome/${userResponse.data.id}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
         } else {
           console.error('Failed to fetch user data.');
           navigate('/login');

@@ -71,7 +71,9 @@ function VisitorHome() {
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
-  const { userId } = useParams<{ userId: string }>();
+
+
+  const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {

@@ -33,9 +33,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomeBeforeLogin />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/VisitorHome" element={<VisitorHome />} />
-          <Route path="/OwnerHome" element={<OwnerHome />} />
+          <Route path="/home/:userId" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree" element={<SelectTreeCharacter />} />

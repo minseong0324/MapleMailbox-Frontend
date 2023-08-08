@@ -27,13 +27,12 @@ function NaverCallback() {
             }
           });
 
-          localStorage.setItem('email', userResponse.data.email);
+          localStorage.setItem("user_id", userResponse.data.id);
+          //localStorage.setItem('email', userResponse.data.email);
           localStorage.setItem('name', userResponse.data.userName);
           localStorage.setItem('access_token', userResponse.headers.accessToken);
           localStorage.setItem('refresh_token', userResponse.headers.refreshToken);
-
-          // Remove the code from the URL and redirect to the OwnerHome
-          navigate(`/OwnerHome/${userResponse.data.email}`, { replace: true });
+          navigate(`/OwnerHome/${userResponse.data.id}`, { replace: true });
         } else {
           console.error('Login failed with status:', response.status);
           navigate('/login');

@@ -48,7 +48,7 @@ function Login() {
           if (userResponse.status === 200) {
             //const { email, userName } = userResponse.data;
             const { id, userName } = userResponse.data;
-            localStorage.setItem("endpoint_id", id);
+            localStorage.setItem("user_id", id);
             //const endpointId = response.data('id');
             //localStorage.setItem("endpoint_id", endpointId);
             //localStorage.setItem("user_email", email);
