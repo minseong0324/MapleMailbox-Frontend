@@ -20,7 +20,6 @@ import {GlobalStyle} from './style'
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
-const loginId = localStorage.getItem("loginId");
 
 function App() {
   return (
