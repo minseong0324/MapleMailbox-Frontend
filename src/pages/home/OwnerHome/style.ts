@@ -43,7 +43,7 @@ const ButtonWrapper = styled.div`
 `;
 
  const TextsStyle = styled.div`
-  font-family: 'DOSGothic';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +104,7 @@ const H3 = styled.h3`
 
 const H1 = styled.h1`
   //margin-top: 0px;
+  font-family: 'DOSGothic';
   font-size: 28px;
 `;
 

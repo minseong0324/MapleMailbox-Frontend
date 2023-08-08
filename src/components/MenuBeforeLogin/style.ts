@@ -38,7 +38,7 @@ const MenuWrapper = styled.div`
   right: 20px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 `;
 
@@ -87,11 +87,10 @@ interface MenuItemProps {
 }
 
 const MenuItem = styled.button<MenuItemProps>`
-margin-bottom: 5px;
 font-family: 'DOSSaemmul'; 
 background: transparent;
 border: none;
-font-size: 12px;
+font-size: 13px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
@@ -104,7 +103,6 @@ interface StyledLinkContainerProps {
 
 const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
   z-index: 9;
-  margin-bottom: 5px;
   animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
 `;
 
@@ -115,6 +113,11 @@ const StyledLink = styled(Link)`
   text-decoration: none;  // 밑줄 제거
   color: black; 
   cursor: pointer;
+  
+`;
+
+
+const Break = styled.br`
 `;
 
 export const s = {
@@ -127,5 +130,6 @@ export const s = {
   MenuItem,
   StyledLinkContainer,
   StyledLink,
-  Wrapper
+  Wrapper,
+  Break
 }

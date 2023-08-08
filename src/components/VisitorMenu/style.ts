@@ -36,7 +36,7 @@ const MenuWrapper = styled.div`
   right: 20px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
 `;
 
@@ -57,7 +57,7 @@ const MenuItem = styled.button`
   font-family: 'DOSSaemmul'; 
   background: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
   opacity: 0;
   animation: ${fadeIn} 1s forwards;
@@ -67,6 +67,7 @@ const MenuItem = styled.button`
   &:nth-child(2) {
     animation-delay: 3s;
   }
+  
 `;
 
 const StyledLink = styled(Link)`
@@ -78,7 +79,10 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   animation: ${fadeIn} 1s forwards;
   z-index: 9;
+  
+`;
 
+const Break = styled.br`
 `;
 
 
@@ -89,5 +93,6 @@ export const s = {
     MenuWrapper,
     SunRay,
     MenuItem,
-    StyledLink
+    StyledLink,
+    Break
 }

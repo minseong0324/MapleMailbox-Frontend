@@ -36,9 +36,9 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
         <>
         <s.MenuWrapper>
           <s.StyledLink to="/">로그아웃</s.StyledLink>
-          <br />
+          <s.Break />
+          <s.Break />
           <s.MenuItem onClick={onServiceDescription}>이용안내</s.MenuItem>
-          <br />
         </s.MenuWrapper>
         </>
       )}

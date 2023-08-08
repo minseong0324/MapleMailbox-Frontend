@@ -76,8 +76,8 @@ const H2 = styled.h2`
 `;
 
 const H1 = styled.h1`
-font-family: 'DOSGothic';
   //margin-top: 0px;
+  font-family: 'DOSGothic';
   font-size: 28px;
 `;
 

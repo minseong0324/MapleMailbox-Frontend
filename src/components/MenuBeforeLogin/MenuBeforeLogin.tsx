@@ -34,6 +34,7 @@ const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription 
           <s.StyledLinkContainer isActive={isOpen}>
             <s.StyledLink to="/login">로그인</s.StyledLink>
           </s.StyledLinkContainer>
+          <s.Break />
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
         </s.MenuWrapper>
       )}

@@ -62,7 +62,7 @@ const SendButton = styled.button`
 `;
 
  const TextsStyle = styled.div`
-  font-family: 'DOSGothic';
+  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,6 +116,7 @@ const H2 = styled.h2`
 
 const H1 = styled.h1`
   //margin-top: 0px;
+  font-family: 'DOSGothic';
   font-size: 28px;
 `;
 

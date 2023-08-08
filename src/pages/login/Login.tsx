@@ -30,9 +30,11 @@ function Login() {
       console.log(response.headers); 
       // your token processing code here
       const accessToken = response.headers['Authorization']; 
-      const refreshToken = response.headers['Reauthorization']; 
+      const refreshToken = response.headers['Reauthorization'];
+      
       localStorage.setItem("access_token", accessToken);
       localStorage.setItem("refresh_token", refreshToken);
+      
 
       if (response.status === 200) {
         // 로그인 성공 시 GET 요청을 수행
@@ -44,11 +46,15 @@ function Login() {
           });
           
           if (userResponse.status === 200) {
-            const { email, userName } = userResponse.data;
-            localStorage.setItem("user_email", email);
+            //const { email, userName } = userResponse.data;
+            const { id, userName } = userResponse.data;
+            localStorage.setItem("endpoint_id", id);
+            //const endpointId = response.data('id');
+            //localStorage.setItem("endpoint_id", endpointId);
+            //localStorage.setItem("user_email", email);
             localStorage.setItem("user_name", userName);
             alert("로그인에 성공했습니다!");
-            navigate("/");
+            navigate(`/OwnerHome/${userResponse.data.id}`, { replace: true });
           }
         } catch (error) {
           console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);

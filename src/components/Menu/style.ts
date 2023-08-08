@@ -36,7 +36,7 @@ const MenuWrapper = styled.div`
   right: 20px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 `;
 
@@ -92,7 +92,7 @@ margin-bottom: 5px;
 font-family: 'DOSSaemmul'; 
 background: transparent;
 border: none;
-font-size: 12px;
+font-size: 13px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
