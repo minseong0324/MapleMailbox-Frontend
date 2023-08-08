@@ -34,7 +34,7 @@ const LettersList: React.FC = () => {
 
   const fetchLetters = async () => {
     try {
-      const response = await axios.get('/api/letters');
+      const response = await axios.get('http://localhost:8080/api/users/{email}');
       setLetters(response.data);
     } catch (error) {
       console.error(error);
