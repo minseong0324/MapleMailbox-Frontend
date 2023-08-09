@@ -85,6 +85,9 @@ function OwnerHome() {
 
   // 링크가 복사되었는지 여부를 저장하는 상태입니다.
   const [isLinkCopied, setIsLinkCopied] = useState(false);
+
+  // D-day를 계산하는 상태 변수입니다.
+  const [dday, setDday] = useState<number | null>(null);
   
   const { userId } = useParams<{ userId: string }>();
 
@@ -129,6 +132,26 @@ function OwnerHome() {
     fetchLetters();
   }, []);
 
+  useEffect(() => {
+        // 편지가 있다면 첫 번째 편지의 날짜를 기준으로 D-day를 계산합니다.
+    if (letters.length > 0) {
+      try {
+        const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜
+        const endDate = new Date(); // 현재 날짜
+  
+        const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+        const ddayValue = 30 - diffDays; // 30일 기준에서 D-day를 계산합니다.
+  
+        setDday(ddayValue);
+      } catch (error) {
+        console.error('D-day 계산 중 에러:', error);
+      }
+    }else {
+      setDday(30); // 편지가 없을 때의 기본값 설정, 나중에 테스트 하고 디데이가 정확히 랜더링 된다면 지울 예정.
+    }
+  }, [letters]);
   
   
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
@@ -199,6 +222,9 @@ function OwnerHome() {
       alert('편지가 없습니다.');
     }
   };
+
+ 
+  
   
 
   // 링크 공유 함수
@@ -243,7 +269,7 @@ function OwnerHome() {
             <s.ButtonWrapper>
             <s.Break/> 
             <s.LetterOpenButton onClick={handleReadLetters}>편지 확인하기</s.LetterOpenButton>
-            <s.DdayCount>D-</s.DdayCount>
+            <s.DdayCount>D-{dday}</s.DdayCount>
             <s.Break/> 
             <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
             </s.ButtonWrapper>
