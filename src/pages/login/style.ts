@@ -13,7 +13,7 @@ const LoginButton = styled.button`
   background: url(${button4}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
   color: black;
-  border-radius: 15px;
+  border-radius: 30px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;

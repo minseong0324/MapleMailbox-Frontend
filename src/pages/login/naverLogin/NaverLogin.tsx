@@ -1,10 +1,13 @@
 // NaverLogin.tsx
 import React from 'react';
-import NaverLoginImage from "./NaverLogin.png";
 import { s } from './style'
 
+interface NaverProps {
+    imageUrl: string;
+  }
+
 // 네이버 로그인 컴포넌트
-const NaverLogin: React.FC = () => {
+const NaverLogin: React.FC<NaverProps> = ({ imageUrl }) => {
     // 네이버 클라이언트 ID
     const CLIENT_ID = `${import.meta.env.VITE_APP_NAVER_CLIENT_ID}`;
     // 네이버 리다이렉트 URI
@@ -20,7 +23,7 @@ const NaverLogin: React.FC = () => {
     return(
         <s.NaverLoginButton
             alt="네이버 로그인"
-            src={NaverLoginImage}
+            src={imageUrl}
             onClick={handleClick}
         />
     )

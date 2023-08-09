@@ -6,6 +6,10 @@ import NaverLogin from './naverLogin/NaverLogin';
 import GoogleLoginButton from './googleLogin/GoogleLoginButton';
 import axios from 'axios';
 import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
+import NaverLoginImage from "../../assets/socialLoginButton/NaverLogin.svg";
+import KakaoLoginImage from "../../assets/socialLoginButton/KakaoLogin.svg";
+import GoogleLoginImage from '../../assets/socialLoginButton/GoogleLogin.svg'
+
 
 // 로그인에 필요한 사용자의 정보를 나타내는 타입을 정의합니다.
 type LoginCredentials = {
@@ -65,7 +69,7 @@ function Login() {
             alert(`로그인에 실패했습니다: ${response.data.message}`);
             break;
           default:
-            alert("로그인 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            alert("로그인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
             break;
 
             
@@ -73,9 +77,11 @@ function Login() {
       }
     },
   
-    onError: () => {
+    onError: (error) => {
+      console.error("Login error:", error);
       alert("로그인 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
     }
+    
   });
 
   // 폼 제출 시 로그인 뮤테이션을 실행합니다.
@@ -137,9 +143,9 @@ function Login() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
           <s.LoginButton type="submit">로그인하기</s.LoginButton>
-          <KakaoLogin/>
-          <NaverLogin/>
-          <GoogleLoginButton/>
+          <KakaoLogin imageUrl={KakaoLoginImage}/>
+          <NaverLogin imageUrl={NaverLoginImage}/>
+          <GoogleLoginButton buttonImage={GoogleLoginImage} />
         </s.LoginForm>
       </s.LoginWrapper>
 

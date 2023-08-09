@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import axios from 'axios';
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -9,7 +9,11 @@ type MyCredentialResponse = {
   tokenId: string;
 };
 
-const GoogleLoginButton = () => {
+type GoogleLoginButtonProps = {
+  buttonImage: string; // Declare the prop type as string (assuming the image is a string path)
+}
+
+const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
   const navigate = useNavigate();
 
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
@@ -49,15 +53,19 @@ const GoogleLoginButton = () => {
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID || ''}>
       <s.ButtonWrapper>
-        <GoogleLogin
-          onSuccess={handleLogin}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
+      <s.CustomButton buttonImage={buttonImage}>
+          <s.HiddenDiv>
+            <GoogleLogin
+                onSuccess={handleLogin}
+                onError={() => {
+                    console.log('Login Failed');
+                }}
+            />
+          </s.HiddenDiv>
+        </s.CustomButton>
       </s.ButtonWrapper>
     </GoogleOAuthProvider>
   );
-};
+}
 
 export default GoogleLoginButton;

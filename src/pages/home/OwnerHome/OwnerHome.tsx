@@ -242,7 +242,8 @@ function OwnerHome() {
             </s.TreeImageWrapper>
             <s.ButtonWrapper>
             <s.Break/> 
-            <s.Button onClick={handleReadLetters}>편지 확인하기</s.Button>
+            <s.LetterOpenButton onClick={handleReadLetters}>편지 확인하기</s.LetterOpenButton>
+            <s.DdayCount>D-</s.DdayCount>
             <s.Break/> 
             <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
             </s.ButtonWrapper>

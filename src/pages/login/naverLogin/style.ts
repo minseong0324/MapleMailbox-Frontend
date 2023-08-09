@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const NaverLoginButton = styled.img`
   position: relative;
   z-index: 2;
-  width: 160px;
+  width: 250px;
   height: 40px;
 `;
 

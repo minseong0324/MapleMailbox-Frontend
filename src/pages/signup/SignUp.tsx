@@ -5,6 +5,9 @@ import NaverLogin from '../login/naverLogin/NaverLogin';
 import GoogleLoginButton from '../login/googleLogin/GoogleLoginButton';
 import axios from 'axios';
 import { s } from './style';
+import NaverSignUpImage from "../../assets/socialLoginButton/NaverSignUp.svg";
+import KakaoSignUpImage from "../../assets/socialLoginButton/KakaoSignUp.svg";
+import GoogleSignUpImage from "../../assets/socialLoginButton/GoogleSignUp.svg";
 
 function SignUp() {
     const [userName, setUserName] = useState('');
@@ -88,9 +91,9 @@ function SignUp() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
             <s.SignUpButton type="submit">회원가입하기</s.SignUpButton> {/* onclick 이벤트로 회원가입하기를 누르면 로그인 페이지로 */}
-            <KakaoLogin/>
-            <NaverLogin/>
-            <GoogleLoginButton/>
+            <KakaoLogin imageUrl={KakaoSignUpImage}/>
+            <NaverLogin imageUrl={NaverSignUpImage}/>
+            <GoogleLoginButton buttonImage={GoogleSignUpImage} />
         </s.SignUpForm>
       </s.SignUpWrapper>
     );
