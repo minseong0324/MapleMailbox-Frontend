@@ -297,9 +297,12 @@ function OwnerHome() {
             </Modal>
 
             <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)}>
-              {/* 이곳에 스탬프 컬렉션 내용을 렌더링하는 컴포넌트를 넣어주세요 */}
+              <s.TextsStyle>
+                <s.H3>{userName}의</s.H3>
+                <s.H1>우표 컬렉션</s.H1>
+              </s.TextsStyle>
             </Modal>
-            
+
       </s.CenteredWrapper>
     </>
   );
