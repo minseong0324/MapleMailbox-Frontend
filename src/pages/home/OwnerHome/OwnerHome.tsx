@@ -265,6 +265,7 @@ function OwnerHome() {
               />
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
+            <s.StampCollectionButton />
             </s.TreeImageWrapper>
             <s.ButtonWrapper>
             <s.Break/> 

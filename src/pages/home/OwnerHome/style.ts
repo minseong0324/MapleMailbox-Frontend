@@ -4,6 +4,7 @@ import button4 from '../../../assets/button/button4.png';
 import buttonMidium1 from '../../../assets/button/button-midium-1.png'; 
 import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
 import buttonSmall4 from '../../../assets/button/button-small-4.png'; 
+import SquirrelButton from '../../../assets/animal/squirrel.png'
 
 
 const Button = styled.button`
@@ -174,6 +175,17 @@ const TreeFragmentImg = styled.img`
   height: 300px;
 `;
 
+const StampCollectionButton = styled.button`
+  position: absolute;
+  background: url(${SquirrelButton});
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  top: 80%; // top offset from tree image
+  right: 76%; // right offset from tree image
+  border: transparent;
+`;
+
 export const s = {
     Button,
     CenteredWrapper,
@@ -192,6 +204,7 @@ export const s = {
     TreeFragmentImg,
     ButtonWrapper,
     LetterOpenButton,
-    DdayCount
+    DdayCount,
+    StampCollectionButton
 }
 
