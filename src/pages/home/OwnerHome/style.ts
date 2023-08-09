@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import button1 from '../../../assets/button/button1.png'; 
 import button4 from '../../../assets/button/button4.png'; 
 import buttonMidium1 from '../../../assets/button/button-midium-1.png'; 
 import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
 import buttonSmall4 from '../../../assets/button/button-small-4.png'; 
 import SquirrelButton from '../../../assets/animal/squirrel.png'
+import SpeechBubbleGif from '../../../assets/speechBubble/speechBubble1.gif'
 
 
 const Button = styled.button`
@@ -186,6 +187,18 @@ const StampCollectionButton = styled.button`
   border: transparent;
 `;
 
+
+const SpeechBubble = styled.button`
+  position: absolute;
+  background: url(${SpeechBubbleGif});
+  width: 80px;
+  height: 60px;
+  z-index: 2;
+  top: 75%; // top offset from tree image
+  right: 63%; // right offset from tree image
+  border: transparent;
+`;
+
 export const s = {
     Button,
     CenteredWrapper,
@@ -205,6 +218,8 @@ export const s = {
     ButtonWrapper,
     LetterOpenButton,
     DdayCount,
-    StampCollectionButton
+    StampCollectionButton,
+    SpeechBubble,
+    Text
 }
 

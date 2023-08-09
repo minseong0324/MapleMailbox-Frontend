@@ -267,6 +267,7 @@ function OwnerHome() {
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
             <s.StampCollectionButton onClick={() => setStampModalOpen(true)} />
+            <s.SpeechBubble />
             </s.TreeImageWrapper>
             <s.ButtonWrapper>
             <s.Break/> 
