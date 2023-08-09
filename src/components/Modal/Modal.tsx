@@ -12,7 +12,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <s.ModalWrapper show={isOpen} onClick={onClose}>
       <s.ModalContent onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+        <s.ModalInnerContent>
         {children}
+        </s.ModalInnerContent>
       </s.ModalContent>
     </s.ModalWrapper>
   );

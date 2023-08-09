@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import modalBackground from '../../assets/modal/modal1.png';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -33,21 +34,29 @@ const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 244, 220, 0.99);
-  padding: 1em 1.5em;
-  width: 200px;
-  height : 500px;
-  border-radius: 10px;
-  border: 8px outset rgba(255, 142, 90, 0.8);
-  //border: 8px dashed rgba(255, 155, 101, 0.8);
-  color: rgb(0, 0, 0); // 폰트 색상을 흰색으로 변경
-  font-size: 16px; // 폰트 크기를 16px로 설정
-  overflow: auto; // 스크롤 기능 추가
+  background-image: url(${modalBackground}); // 여기에서 이미지 변수를 사용합니다
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box; // 이 부분을 추가
+  padding: 40px;
+  width: 300px;
+  height: 600px;
+  color: rgb(0, 0, 0); 
+  font-size: 16px;
+  overflow: auto; 
+`;
+
+const ModalInnerContent = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;  // 스크롤 기능은 여기에 추가합니다.
 `;
 
 export const s = {
     fadeIn,
     fadeOut,
     ModalWrapper,
-    ModalContent
+    ModalContent,
+    ModalInnerContent
 }
