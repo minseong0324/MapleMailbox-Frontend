@@ -61,7 +61,7 @@ function VisitorHome() {
   const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
   const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태
   const [letterContent, setLetterContent] = useState('');  // 편지 내용을 관리하는 상태
-  const [userName, setUserName] = useState(null); //사용자의 이름을 저장하는 상태변수입니다.
+  const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);

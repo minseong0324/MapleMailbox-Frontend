@@ -65,7 +65,7 @@ function OwnerHome() {
   const [isStampModalOpen, setStampModalOpen] = useState(false); // 스탬프 모달 상태 변수 추가
 
   //사용자의 이름을 저장하는 상태변수입니다.
-  const [userName, setUserName] = useState(null);
+  const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
 
   //사용자의 나무, 캐릭터 종류를 저장하는 상태변수입니다.
   const [treeType, setTreeType] = useState(null);
@@ -99,7 +99,7 @@ function OwnerHome() {
         const userInfo = await getUserInfoFromServer(storedUserId);
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
-        setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
+        setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
       }
     };
   
