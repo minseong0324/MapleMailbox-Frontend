@@ -48,7 +48,7 @@ const LettersRead: React.FC<Props> = ({ date, onClose }) => {
   }, [fetchLetters]);
 
   //if(letters.length >= 0) { // 테스트용
-  if(letters.length > 5) {
+  if(letters.length >= 5) {
     return (
       <s.LetterWrapper>
         {letters.map((letter, index) => (

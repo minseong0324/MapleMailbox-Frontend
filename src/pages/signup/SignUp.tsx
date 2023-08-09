@@ -7,7 +7,7 @@ import axios from 'axios';
 import { s } from './style';
 
 function SignUp() {
-    const [username, setUsername] = useState('');
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // useNavigate hook 사용
@@ -19,16 +19,16 @@ function SignUp() {
       // 여기에 회원가입 로직 추가
       // API 요청 등
       // 이부분은 백엔드 API가 준비되면 주석 해제하고 사용
-      console.log(`Signing up as: ${username}, ${email}, ${password}`);
+      console.log(`Signing up as: ${userName}, ${email}, ${password}`);
 
       // 회원가입 API 요청
       try {
         const response = await axios.post("http://localhost:8080/auth/signup/self", {
-          username,
+          userName,
           email,
           password,
         });
-        console.log(username, email, password);
+        console.log(userName, email, password);
   
         // 회원가입 성공, status 200일 때
         if (response.status === 200) {
@@ -70,12 +70,12 @@ function SignUp() {
             <s.SignUpInput
                 type="text"
                 placeholder="이름"
-                value={username}
-                onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setUsername(e.target.value)}
+                value={userName}
+                onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setUserName(e.target.value)}
             />
 
             <s.SignUpInput
-                type="text"
+                type="email"
                 placeholder="이메일"
                 value={email}
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setEmail(e.target.value)}

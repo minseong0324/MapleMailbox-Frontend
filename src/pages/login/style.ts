@@ -51,7 +51,7 @@ const LoginInput = styled.input`
   border-bottom: 1px solid #777; // 아래쪽 테두리만 추가합니다.
   background-color: transparent;
   color: #111;
-  z-index: 0;
+  z-index: 5;
   
   &::placeholder {
     color: #777;
