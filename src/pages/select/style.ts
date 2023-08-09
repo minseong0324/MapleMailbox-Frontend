@@ -33,7 +33,14 @@ const CenteredWrapper = styled.div`
   justify-content: center;
   height: 90vh;
   z-index: 4;
+
+  @media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+  }
 `;
+
 
 const TextsStyle = styled.div`
   font-family: 'DOSSaemmul';
