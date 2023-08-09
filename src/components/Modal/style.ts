@@ -39,7 +39,7 @@ const ModalContent = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box; // 이 부분을 추가
-  padding: 40px;
+  padding: 50px;
   width: 300px;
   height: 600px;
   color: rgb(0, 0, 0); 

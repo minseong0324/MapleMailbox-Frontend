@@ -34,14 +34,14 @@ const ButtonWrapper = styled.div`
 
 const SendButton = styled.button`
   font-family: 'DOSSaemmul';
-  width: 250px; // 버튼 너비를 조정
-  height: 40px; // 버튼 높이를 조정
+  width: 190px; // 버튼 너비를 조정
+  height: 30px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
   background: url(${button4}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
   color: black;
   border-radius: 15px;
-  font-size: 17px; 
+  font-size: 13px; 
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;
   z-index: 2;
@@ -49,6 +49,7 @@ const SendButton = styled.button`
     background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
+  
 `;
   
  const CenteredWrapper = styled.div`
@@ -112,6 +113,8 @@ const H3 = styled.h3`
 `;
 
 const H2 = styled.h2`
+  margin-top: 0px;
+  font-size: 20px;
 `;
 
 const H1 = styled.h1`
@@ -152,18 +155,24 @@ right: 25%; // right offset from tree image
 
 const NameInput = styled.input`
 font-family: "DOSSaemmul";
-width: 200px;
+width: 190px;
 height: 30px;
+border: none; // 모든 테두리를 제거합니다.
+color: #222;
 margin-bottom: 20px;
+background-color: #fff8f0;
 `;
 
 const LetterArea = styled.textarea`
 font-family: "DOSSaemmul";
-width: 200px;
-height: 200px;
+width: 190px;
+height: 250px;
+border: none; // 모든 테두리를 제거합니다.
+color: #222;
 overflow: auto;
-margin-bottom: 20px;
+margin-bottom: 40px;
 resize: none;
+background-color: #fff8f0;
 `;
 
 const Form = styled.form`

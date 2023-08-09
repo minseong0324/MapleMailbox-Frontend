@@ -169,8 +169,8 @@ const handleSendLetter = async (event: React.FormEvent) => {
   try {
     // 백엔드로 편지 데이터를 보냅니다.
     // 엔드포인트 맞춰야 함
-    //await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData);
-    await axios.post(`http://localhost:8080/board/writepro`, letterData);
+    await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData);
+    //await axios.post(`http://localhost:8080/board/writepro`, letterData);
     // 입력 필드를 초기화합니다.
     setSenderName('');
     setLetterContent('');

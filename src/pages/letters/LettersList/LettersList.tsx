@@ -68,16 +68,18 @@ const LettersList: React.FC = () => {
 
 
   return (
-    <>
-      <s.TextsStyle>
-        매일매일 
-      </s.TextsStyle>
-      <s.TextsStyle>
-        따뜻하게 물들어가는
-      </s.TextsStyle>
-      <s.TextsStyle>
-        나의 마음
-      </s.TextsStyle>
+    <s.Container>
+      <s.TextWrapper>
+        <s.TextsStyle>
+          매일매일 
+        </s.TextsStyle>
+        <s.TextsStyle>
+          따뜻하게 물들어가는
+        </s.TextsStyle>
+        <s.TextsStyle>
+          나의 마음
+        </s.TextsStyle>
+      </s.TextWrapper>
     
       <s.ButtonWrapper>
         {Array.from({ length: 30 }).map((_, index) => {
@@ -102,7 +104,7 @@ const LettersList: React.FC = () => {
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         {modalContent}
       </Modal>
-    </>
+    </s.Container>
   );
 };
 

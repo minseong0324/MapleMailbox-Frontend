@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
+const Container = styled.div`
+
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 `;
+
+const TextWrapper = styled.div`
+padding-top: 20px;
+padding-bottom: 10px;
+`;
+
 
 const TextsStyle = styled.div`
 font-family: 'DOSSaemmul';
@@ -55,5 +65,7 @@ export const s = {
     DisabledLeafButton,
     ButtonWrapper,
     TextsStyle,
-    LeafButton
+    LeafButton,
+    TextWrapper,
+    Container
 }
