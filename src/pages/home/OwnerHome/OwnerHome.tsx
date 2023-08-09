@@ -253,9 +253,8 @@ function OwnerHome() {
 
             <Modal isOpen={isShareModalOpen} onClose={() => setShareModalOpen(false)}>
               <s.ModalTextsWrapper>
-              <s.ModalTextsStyle>주변 사람에게 나무의 위치를 알려주세요!</s.ModalTextsStyle>
-              <s.ModalTextsStyle>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.ModalTextsStyle>
-              <s.ModalTextsStyle>{window.location.href}</s.ModalTextsStyle> {/*나중에 지울거임 백엔드와 연결할 때 테스트용 */}
+                <s.ModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.ModalTextsStyle1>
+                <s.ModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.ModalTextsStyle2>
               </s.ModalTextsWrapper>
               
             </Modal>

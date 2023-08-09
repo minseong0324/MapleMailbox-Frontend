@@ -51,26 +51,32 @@ const ButtonWrapper = styled.div`
   padding-top: 30px;
 `;
 
- const ModalTextsStyle = styled.div`
+const ModalTextsStyle1 = styled.div`
+font-family: 'DOSSaemmul';
+font-size: 20px;
+height: 10%; 
+padding-bottom: 130px;
+margin: 0 -30px;
+text-align: center;
+`;
+
+ const ModalTextsStyle2 = styled.div`
   font-family: 'DOSSaemmul';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
   font-size: 15px;
   height: 10%; 
+  margin: 0 -10px;
+  text-align: center;
 `;
+
 
  const ModalTextsWrapper = styled.div`
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 // 캐릭터 이미지 위치 스타일링 (위치 변경 시 이 부분을 수정)
@@ -134,7 +140,8 @@ export const s = {
     Button,
     CenteredWrapper,
     TextsStyle,
-    ModalTextsStyle,
+    ModalTextsStyle1,
+    ModalTextsStyle2,
     ModalTextsWrapper,
     CharImage,
     TreeImageWrapper,
