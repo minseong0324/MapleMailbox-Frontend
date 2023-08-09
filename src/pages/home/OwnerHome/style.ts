@@ -181,7 +181,7 @@ const StampCollectionButton = styled.button`
   width: 80px;
   height: 80px;
   z-index: 2;
-  top: 80%; // top offset from tree image
+  top: 89%; // top offset from tree image
   right: 76%; // right offset from tree image
   border: transparent;
 `;

@@ -62,6 +62,7 @@ function OwnerHome() {
   const [isShareModalOpen, setShareModalOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(true); 
   const [isServiceModalOpen, setServiceModalOpen] = useState(false);
+  const [isStampModalOpen, setStampModalOpen] = useState(false); // 스탬프 모달 상태 변수 추가
 
   //사용자의 이름을 저장하는 상태변수입니다.
   const [userName, setUserName] = useState(null);
@@ -265,7 +266,7 @@ function OwnerHome() {
               />
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
-            <s.StampCollectionButton />
+            <s.StampCollectionButton onClick={() => setStampModalOpen(true)} />
             </s.TreeImageWrapper>
             <s.ButtonWrapper>
             <s.Break/> 
@@ -284,7 +285,6 @@ function OwnerHome() {
                 <s.ModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.ModalTextsStyle1>
                 <s.ModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.ModalTextsStyle2>
               </s.ModalTextsWrapper>
-              
             </Modal>
 
             <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
@@ -295,6 +295,11 @@ function OwnerHome() {
                 어쩌구 저쩌구
                 </s.P>
             </Modal>
+
+            <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)}>
+              {/* 이곳에 스탬프 컬렉션 내용을 렌더링하는 컴포넌트를 넣어주세요 */}
+            </Modal>
+            
       </s.CenteredWrapper>
     </>
   );
