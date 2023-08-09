@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import button1 from '../../../assets/button/button1.png'; 
 import button4 from '../../../assets/button/button4.png'; 
 import buttonMidium1 from '../../../assets/button/button-midium-1.png'; 
+import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
 import buttonSmall4 from '../../../assets/button/button-small-4.png'; 
-import buttonSmall3 from '../../../assets/button/button-small-3.png'; 
 
 
 const Button = styled.button`
@@ -41,7 +41,7 @@ const LetterOpenButton = styled.button`
   position: relative;
   z-index: 2;
   &:active { // 버튼이 눌렸을 때의 스타일
-    background: url(${buttonMidium1}) no-repeat center center; // 눌렸을 때의 배경 이미지
+    background: url(${buttonMidium2}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
 `;
