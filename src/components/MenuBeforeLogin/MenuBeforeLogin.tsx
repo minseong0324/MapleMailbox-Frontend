@@ -6,7 +6,8 @@ interface MenuBeforeLoginProps {
   onServiceDescription: () => void;
 }
 
-const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription }) => {  const [isOpen, setIsOpen] = React.useState(false);
+const MenuBeforeLogin: React.FC<MenuBeforeLoginProps> = ({ onServiceDescription }) => {  
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleMenuToggle = () => {
     setIsOpen((prev) => !prev);
