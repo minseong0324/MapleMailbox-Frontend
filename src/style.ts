@@ -1,7 +1,7 @@
 // styles.ts
 import { createGlobalStyle } from 'styled-components';
 import bodyBackground from './assets/sky/sky7.png';
-import bodyAfterBackground from './assets/background/background19.png';
+import bodyAfterBackground from './assets/background/background.png';
 
 export const GlobalStyle = createGlobalStyle`
     html, body {
