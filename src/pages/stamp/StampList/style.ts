@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import Stamp1 from '../../../assets/stamp/ginkgo-squ.png';
+import Stamp2 from '../../../assets/stamp/maple_squ.png';
+import Stamp3 from '../../../assets/stamp/pumkin_squ.png';
+import Stamp4 from '../../../assets/stamp/sky_squ.png';
+import Stamp5 from '../../../assets/stamp/squirrel_squ.png';
+
+const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5]
 
 const Container = styled.div`
 
@@ -26,29 +33,27 @@ font-size: 17px;
 text-align: center;
 `;
 
-type LeafButtonProps = {
-    leafImage: string;
+type StampButtonProps = {
+    stampImage: string;
 };
 
-const LeafButton = styled.button<LeafButtonProps>`
-  font-family: 'DOSSaemmul';
-  font-size: 3px;
-  color: rgb(0, 0, 0);
+const StampButton = styled.button<StampButtonProps>`
   position: relative;
-  background: url(${props => props.leafImage}) no-repeat center;
+  background: url(${props => props.stampImage}) no-repeat center;
   border: none;
   cursor: pointer;
-  width: 45px;
-  height: 45px;
+  width: 90px;
+  height: 90px;
   z-index: 2;
   padding: 0px;
-  margin: 8px;
+  margin: 4px;
 `;
 
 export const s = {
     ButtonWrapper,
     TextsStyle,
-    LeafButton,
+    StampButton,
     TextWrapper,
-    Container
+    Container,
+    stampImages
 }

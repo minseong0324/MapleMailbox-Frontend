@@ -9,6 +9,7 @@ import { formatDistance, subDays } from 'date-fns';
 import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
+import StampList from 'src/pages/stamp/StampList/StampList';
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
@@ -298,10 +299,7 @@ function OwnerHome() {
             </Modal>
 
             <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)}>
-              <s.TextsStyle>
-                <s.H3>{userName}의</s.H3>
-                <s.H1>우표 컬렉션</s.H1>
-              </s.TextsStyle>
+              <StampList/>
             </Modal>
 
       </s.CenteredWrapper>
