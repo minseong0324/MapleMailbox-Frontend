@@ -18,6 +18,7 @@ type Letter = {
   letterContent: string;
 };
 
+
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   if (!userId) {
@@ -26,9 +27,20 @@ const getUserInfoFromServer = async (userId: string) => {
     console.error('userId is undefined');
     return null;
   }
+
+  const accessToken = localStorage.getItem('accessToken');
+  if (!accessToken) {
+    console.error('accessToken is not available');
+    return null;
+  }
+
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`);
+    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
 
     // 응답에서 사용자 정보를 추출합니다.
     const userInfo = response.data;
@@ -38,8 +50,8 @@ const getUserInfoFromServer = async (userId: string) => {
       treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
-      letters: userInfo.letters, //사용자의 편지 목록
-      personalUrl: userInfo.personalUrl //
+      startDate: userInfo.startDate // startDate 값을 추가했습니다.
+
     };
   } catch (error) {
     // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
@@ -92,12 +104,12 @@ function OwnerHome() {
   const [dday, setDday] = useState<number | null>(null);
   
   const { userId } = useParams<{ userId: string }>();
+  
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const storedUserId = localStorage.getItem('user_id'); // 로컬 스토리지에서 user_id를 가져옵니다.
-      if (storedUserId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
-        const userInfo = await getUserInfoFromServer(storedUserId);
+      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
+        const userInfo = await getUserInfoFromServer(userId);
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
