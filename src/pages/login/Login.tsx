@@ -51,14 +51,14 @@ function Login() {
           
           if (userResponse.status === 200) {
             //const { email, userName } = userResponse.data;
-            const { id, userName } = userResponse.data;
-            localStorage.setItem("userId", id);
+            const { userId, userName } = userResponse.data;
+            localStorage.setItem("userId", userId);
             //const endpointId = response.data('id');
             //localStorage.setItem("endpoint_id", endpointId);
             //localStorage.setItem("user_email", email);
             localStorage.setItem("userName", userName);
             alert("로그인에 성공했습니다!");
-            navigate(`/OwnerHome/${userResponse.data.id}`, { replace: true });
+            navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
           }
         } catch (error) {
           console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);

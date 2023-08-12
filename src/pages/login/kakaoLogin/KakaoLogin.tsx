@@ -6,7 +6,7 @@ interface KakaoProps {
   }
 
 const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
-    const CLIENT_ID = `${import.meta.env.VITE_APP_KAKAO_REST_API_KEY}`;
+    const CLIENT_ID = `${import.meta.env.VITE_APP_KAKAO_CLIENT_ID}`;
     const REDIRECT_URI = `${import.meta.env.VITE_APP_KAKAO_REDIRECT_URL}`;
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
