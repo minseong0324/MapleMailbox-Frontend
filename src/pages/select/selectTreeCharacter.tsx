@@ -22,7 +22,7 @@ import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
 
 
-const userId = localStorage.getItem('userId');
+const userId = localStorage.getItem('user_id');
 const refreshToken = localStorage.getItem('refresh_token');
 const accessToken = localStorage.getItem('access_token');
 
