@@ -36,8 +36,8 @@ function Login() {
       const accessToken = response.headers['Authorization']; 
       const refreshToken = response.headers['Reauthorization'];
       
-      localStorage.setItem("access_token", accessToken);
-      localStorage.setItem("refresh_token", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
       
 
       if (response.status === 200) {
@@ -52,11 +52,11 @@ function Login() {
           if (userResponse.status === 200) {
             //const { email, userName } = userResponse.data;
             const { id, userName } = userResponse.data;
-            localStorage.setItem("user_id", id);
+            localStorage.setItem("userId", id);
             //const endpointId = response.data('id');
             //localStorage.setItem("endpoint_id", endpointId);
             //localStorage.setItem("user_email", email);
-            localStorage.setItem("user_name", userName);
+            localStorage.setItem("userName", userName);
             alert("로그인에 성공했습니다!");
             navigate(`/OwnerHome/${userResponse.data.id}`, { replace: true });
           }
@@ -97,7 +97,7 @@ function Login() {
     // 30분마다 토큰을 새로 발급받는 요청을 보냅니다.
     const interval = setInterval(async () => {
       // 여기서는 refresh-token을 사용해 access-token을 새로 발급받습니다.
-      const refreshToken = localStorage.getItem('refresh_token');
+      const refreshToken = localStorage.getItem('refreshToken');
       if (refreshToken) {
         const response = await axios.post('http://localhost:8080/auth/refresh', {
           refreshToken: refreshToken,
@@ -105,7 +105,7 @@ function Login() {
 
         if (response.status === 200) {
           const accessToken = response.headers['Authorization'];
-          localStorage.setItem('access_token', accessToken);
+          localStorage.setItem('accessToken', accessToken);
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
           localStorage.clear();
