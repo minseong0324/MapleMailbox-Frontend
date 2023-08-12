@@ -60,13 +60,13 @@ const StampList: React.FC = () => {
         <s.StampButton 
           key={index} 
           onClick={() => {
-            //stamp ? handleOpenModal(index) : alert("획득하지 않은 우표입니다.")     // 테스트용
-            stamp ? alert("획득하지 않은 우표입니다.") : handleOpenModal(index)
+            stamp ? handleOpenModal(index) : alert("획득하지 않은 우표입니다.")     // 테스트용
+            //stamp ? alert("획득하지 않은 우표입니다.") : handleOpenModal(index)
             //stamp[index].disabled ? alert("획득하지 않은 우표입니다.") : handleOpenModal(index)
           }}
           stampImage= { 
-            //stamp ? image : disabledStamp       // 테스트용
-            stamp ? disabledStamp : image 
+            stamp ? image : disabledStamp       // 테스트용
+            //stamp ? disabledStamp : image 
             //stamp[index].disabled ? disabledStamp : image
           }
           >
