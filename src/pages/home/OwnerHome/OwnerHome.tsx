@@ -104,6 +104,9 @@ function OwnerHome() {
   const [dday, setDday] = useState<number | null>(null);
   
   const { userId } = useParams<{ userId: string }>();
+
+  // D-day를 계산하기 위해 필요한 상태 변수입니다.
+  const [startDate, setStartDate] = useState<number | null>(null);
   
 
   useEffect(() => {
@@ -113,6 +116,7 @@ function OwnerHome() {
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
+        setStartDate(userInfo?.startDate);
       }
     };
   
@@ -149,16 +153,11 @@ function OwnerHome() {
   useEffect(() => {
         // 편지가 있다면 첫 번째 편지의 날짜를 기준으로 D-day를 계산합니다.
     if (letters.length > 0) {
-      try {
-        const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜
-        const endDate = new Date(); // 현재 날짜
-  
-        const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
-        const ddayValue = 30 - diffDays; // 30일 기준에서 D-day를 계산합니다.
-  
-        setDday(ddayValue);
+      try {  
+        if (typeof startDate === 'number') {
+          const ddayValue = 30 - startDate; // 30일 기준에서 D-day를 계산합니다.
+          setDday(ddayValue);
+        }
       } catch (error) {
         console.error('D-day 계산 중 에러:', error);
       }
