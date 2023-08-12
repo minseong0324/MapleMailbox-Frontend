@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
-import {s} from './style'
+import {s} from './style';
 import { formatDistance, subDays } from 'date-fns'; 
 import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
+import { el } from 'date-fns/locale';
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
@@ -121,7 +122,7 @@ function OwnerHome() {
     };
   
     fetchUserInfo();
-  }, []);
+  }, [userId]);
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
@@ -135,36 +136,19 @@ function OwnerHome() {
     fetchImages();
   }, []);
 
-
   useEffect(() => {
-    // 컴포넌트가 마운트될 때 편지 데이터를 가져옵니다.
-    const fetchLetters = async () => {
-      try {
-        const response = await axios.get('https://localhost:8080/api/users/${userId}/letters');
-        setLetters(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchLetters();
-  }, []);
-
-  useEffect(() => {
-        // 편지가 있다면 첫 번째 편지의 날짜를 기준으로 D-day를 계산합니다.
-    if (letters.length > 0) {
       try {  
         if (typeof startDate === 'number') {
           const ddayValue = 30 - startDate; // 30일 기준에서 D-day를 계산합니다.
           setDday(ddayValue);
+        } else {
+          setDday(30);
         }
       } catch (error) {
         console.error('D-day 계산 중 에러:', error);
       }
-    }else {
-      setDday(30); // 편지가 없을 때의 기본값 설정, 나중에 테스트 하고 디데이가 정확히 랜더링 된다면 지울 예정.
-    }
-  }, [letters]);
+
+  }, [startDate]);
   
   
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
@@ -217,7 +201,7 @@ function OwnerHome() {
     }
   };
 
-  // 편지를 확인하는 함수
+  // 편지를 확인하는 함수 //LetterList.tsx로 옮겨야할 듯
   const handleReadLetters = () => {
     if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것. 테스트용.
     //if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
