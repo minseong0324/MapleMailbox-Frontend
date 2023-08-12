@@ -12,14 +12,6 @@ import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
 import { el } from 'date-fns/locale';
 
-// 편지 정보를 저장할 타입을 정의합니다.
-type Letter = {
-  date: string;
-  senderName: string;
-  letterContent: string;
-};
-
-
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   if (!userId) {
@@ -51,8 +43,8 @@ const getUserInfoFromServer = async (userId: string) => {
       treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
-      startDate: userInfo.startDate // startDate 값을 추가했습니다.
-
+      startDate: userInfo.startDate, // startDate 값을 추가했습니다.
+      lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
     };
   } catch (error) {
     // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
@@ -93,7 +85,7 @@ function OwnerHome() {
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
 
    // 사용자가 받은 편지 목록을 저장하는 상태 변수입니다.
-   const [letters, setLetters] = useState<Letter[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
 
   // 나무의 성장 단계를 저장하는 상태 변수입니다.
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
@@ -104,10 +96,13 @@ function OwnerHome() {
   // D-day를 계산하는 상태 변수입니다.
   const [dday, setDday] = useState<number | null>(null);
   
-  const { userId } = useParams<{ userId: string }>();
+  
 
-  // D-day를 계산하기 위해 필요한 상태 변수입니다.
+  // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
   const [startDate, setStartDate] = useState<number | null>(null);
+
+
+  const { userId } = useParams<{ userId: string }>();
   
 
   useEffect(() => {
@@ -118,6 +113,7 @@ function OwnerHome() {
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
         setStartDate(userInfo?.startDate);
+        setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
   
@@ -170,8 +166,9 @@ function OwnerHome() {
   }, [mapleTreeImages, ginkgoTreeImages]);
 
   useEffect(() => {
+    if (startDate !== null) {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (letters.length % 5 === 0) {
+    if (lettersOverFive[startDate] === true) {
       setTreeGrowthStage(prevStage => {
         const newStage = prevStage + 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -182,9 +179,9 @@ function OwnerHome() {
         return newStage;
       });
     }
-  }, [letters, treeType, getTreeImageByGrowthStage]);
+  }
+  }, [treeType, getTreeImageByGrowthStage, startDate, lettersOverFive]);
   
-
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
     if (!characterType) {
@@ -203,26 +200,8 @@ function OwnerHome() {
 
   // 편지를 확인하는 함수 //LetterList.tsx로 옮겨야할 듯
   const handleReadLetters = () => {
-    if (letters.length >= 0) { //작동하는지 확인할려고 0으로 임시로 지정한 것. 테스트용.
-    //if (letters.length >= 5) { // 편지가 5개 이상일 때만 편지 확인 모달을 엽니다.
       setReadModalOpen(true);
-    } else if (letters.length > 0) { // 편지가 1개 이상 있을 때만 첫 번째 편지의 날짜를 확인합니다.
-      const startDate = new Date(letters[0].date); // 첫 번째 편지를 받은 날짜
-      const endDate = new Date(); // 현재 날짜
-  
-      if (startDate <= subDays(endDate, 30)) { // 첫 번째 편지를 받은 날짜가 30일 이전인지 확인합니다.
-        setReadModalOpen(true);
-      } else {
-        alert(`편지는 ${formatDistance(startDate, endDate)} 후에 열람 가능합니다.`);
-      }
-    } else { // 편지가 없을 때는 경고 메시지를 표시합니다.
-      alert('편지가 없습니다.');
-    }
   };
-
- 
-  
-  
 
   // 링크 공유 함수
   const handleShareLink = () => {
@@ -240,7 +219,6 @@ function OwnerHome() {
   const handleServiceDescription = () => {
     setServiceModalOpen(true);
   };
-
 
   return (
     <>

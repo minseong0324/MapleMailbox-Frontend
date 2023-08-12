@@ -10,6 +10,15 @@ import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png'
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 
+/*
+// 편지 정보를 저장할 타입을 정의합니다.
+type Letter = {
+  date: string;
+  senderName: string;
+  letterContent: string;
+};
+*/
+
 type Letter = {
   date: string;
   content: string;
