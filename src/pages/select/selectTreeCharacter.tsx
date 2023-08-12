@@ -42,11 +42,11 @@ function SelectTreeCharacter() {
     console.log(selectedData);
   
     // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-    fetch(`http://localhost:8080/api/users/${userId}`, { // {userId}를 실제 사용자의 ID로 대체하세요.
+    fetch(`http://localhost:8080/api/users/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + accessToken  // accessToken을 헤더에 추가
+        'Authorization': `Bearer ${accessToken}` // accessToken을 헤더에 추가
       },
       body: JSON.stringify(selectedData)
     })
