@@ -4,57 +4,43 @@ import { s } from './style'
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
-  date: string;
   senderName: string;
   letterContent: string;
 };
 
 type Props = {
-  date: number; // 선택된 날짜를 props로 받습니다.
+  selectedDate: number; // 선택된 날짜를 props로 받습니다.
   onClose: () => void; // 뒤로가기 버튼을 클릭했을 때 호출될 함수를 props로 받습니다.
 };
 
-const LettersRead: React.FC<Props> = ({ date, onClose }) => {
+const userId = localStorage.getItem("userId");
+
+const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   const [letters, setLetters] = useState<Letter[]>([]); // 선택된 날짜의 편지들을 저장할 상태입니다.
 
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
     try {
-      const response = await axios.get(`/api/letters/${date}`); // 서버에서 편지 정보를 가져옵니다.
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`); // 서버에서 편지 정보를 가져옵니다.
       setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
     } catch (error) {
       console.error(error); // 에러가 발생하면 콘솔에 에러를 출력합니다.
     }
-  }, [date]);
+  }, [selectedDate]);
 
-  // 위로의 편지를 가져오는 함수입니다.
-  const fetchEncourageLetters = useCallback(async () => {
-    try {
-      const randNum = Math.floor(Math.random() * 11); // 0부터 10 사이의 랜덤한 숫자를 생성합니다. 
-      const response = await axios.get(`/api/encourageLetters/${randNum}`); // 서버에서 랜덤한 위로 편지를 가져옵니다.
-      setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
-    } catch (error) {
-      console.error(error); // 에러가 발생하면 콘솔에 에러를 출력합니다.
-    }
-  }, [date]);
-
-  // 컴포넌트가 마운트되거나 date가 변경될 때 서버에서 편지 정보를 가져옵니다.
   useEffect(() => {
     fetchLetters();
-    // 편지가 5개 미만이라면, 랜덤한 위로의 편지 하나를 가져옵니다.
-    if(letters.length < 5) {
-      fetchEncourageLetters();
-    }
   }, [fetchLetters]);
-
+  
+  
   //if(letters.length >= 0) { // 테스트용
-  if(letters.length >= 5) {
+  //if(letters.length >= 5) { // 테스트용
     return (
       <s.LetterWrapper>
         {letters.map((letter, index) => (
           <s.LetterContent key={index}>
             <s.TextsStyle>
-              <s.H2>보낸이 {index + 1}: {letter.senderName}</s.H2>
+              <s.H2>보낸이: {letter.senderName}</s.H2>
               <s.P>편지내용: {letter.letterContent}</s.P>
             </s.TextsStyle>
           </s.LetterContent>
@@ -64,7 +50,9 @@ const LettersRead: React.FC<Props> = ({ date, onClose }) => {
 
       </s.LetterWrapper>
     );
-  } else {
+  //} 
+  /*
+  else { //편지 5개 이상 못받은 경우이긴 한데, 서버에서 전부 처리해서 알아서 랜덤 편지를 보내줄 거기 때문에 필요 x, 테스트용 o
     return (
       <s.LetterWrapper>
 
@@ -94,6 +82,8 @@ const LettersRead: React.FC<Props> = ({ date, onClose }) => {
       </s.LetterWrapper>
     )
   }
+  */
 };
+
 
 export default LettersRead;

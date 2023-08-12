@@ -46,9 +46,9 @@ const LettersList: React.FC = () => {
     fetchUserData();
   }, []);
 
-  const handleOpenModal = (date: number) => {
-    setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
-    setModalContent(<LettersRead date={date} onClose={handleCloseModal} />); // 모달의 내용을 설정합니다.
+  const handleOpenModal = (selectedDate: number) => {
+    setSelectedDate(selectedDate); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
+    setModalContent(<LettersRead selectedDate={selectedDate} onClose={handleCloseModal} />); // 모달의 내용을 설정합니다.
     setIsOpen(true); // 그리고 모달을 엽니다.
   };
 
