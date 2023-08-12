@@ -4,8 +4,10 @@ import Stamp2 from '../../../assets/stamp/maple_squ.png';
 import Stamp3 from '../../../assets/stamp/pumkin_squ.png';
 import Stamp4 from '../../../assets/stamp/sky_squ.png';
 import Stamp5 from '../../../assets/stamp/squirrel_squ.png';
+import Stamp6 from '../../../assets/stamp/teddybear_squ.png';
 
-const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5]
+
+const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6]
 
 const Container = styled.div`
 
