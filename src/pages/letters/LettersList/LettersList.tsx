@@ -11,6 +11,7 @@ import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 
 const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem("accessToken");
 
 const LettersList: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
@@ -32,7 +33,11 @@ const LettersList: React.FC = () => {
     // 사용자 데이터를 가져옵니다.
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`);
+        const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
         const { treeType, nowDate, lettersOverFive } = response.data;
         setNowDate(nowDate);
         setLettersOverFive(lettersOverFive);

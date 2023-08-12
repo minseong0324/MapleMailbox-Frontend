@@ -14,6 +14,7 @@ type Props = {
 };
 
 const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem("accessToken");
 
 const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   const [letters, setLetters] = useState<Letter[]>([]); // 선택된 날짜의 편지들을 저장할 상태입니다.
@@ -21,7 +22,11 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`); // 서버에서 편지 정보를 가져옵니다.
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      }); // 서버에서 편지 정보를 가져옵니다.
       setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
     } catch (error) {
       console.error(error); // 에러가 발생하면 콘솔에 에러를 출력합니다.
