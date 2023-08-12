@@ -23,7 +23,7 @@
 - 푸른 하늘
 
 - squirrel (완)
-- 곰
+- teddybear (완)
 
 - 허수아비
 - 벼

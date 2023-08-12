@@ -10,6 +10,8 @@ type Stamp = {
   disabled: boolean;    // 우표 활성화, 비활성화
 };
 
+const userId = localStorage.getItem("userId")
+
 const StampList: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [stamp, setStamp] = useState<Stamp[]>([]);
@@ -18,7 +20,7 @@ const StampList: React.FC = () => {
 
   const fetchStamp = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/users/{email}/stamp');    // API 임의로 작성해두었습니다.
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/stamp`);    // API 임의로 작성해두었습니다.
       setStamp(response.data);
     } catch (error) {
       console.error(error);

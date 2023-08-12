@@ -4,8 +4,10 @@ import Stamp2 from '../../../assets/stamp/maple_squ-big.png';
 import Stamp3 from '../../../assets/stamp/pumkin_squ-big.png';
 import Stamp4 from '../../../assets/stamp/sky_squ-big.png';
 import Stamp5 from '../../../assets/stamp/squirrel_squ-big.png';
+import Stamp6 from '../../../assets/stamp/teddybear_squ-big.png';
 
-const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5]
+
+const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6]
 
 // 뒤로가기 버튼을 스타일링합니다.
 const BackButton = styled.button`

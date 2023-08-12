@@ -19,10 +19,10 @@ function NaverCallback() {
     }
 
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post('http://localhost:8080/api/auth/login/naver', { authorizationCode, state })
+    axios.post(`http://localhost:8080/api/auth/login/naver`, { authorizationCode, state })
       .then(async (response) => {
         if (response.status === 200) {
-          const userResponse = await axios.get('http://localhost:8080/api/users');
+          const userResponse = await axios.get(`http://localhost:8080/api/users`);
           if (userResponse.status === 200) {
             localStorage.setItem("userId", userResponse.data.userId);
             //localStorage.setItem('email', userResponse.data.email);

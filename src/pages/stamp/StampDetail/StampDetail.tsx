@@ -12,13 +12,15 @@ type Props = {
   onClose: () => void; // 뒤로가기 버튼
 };
 
+const userId = localStorage.getItem("userId")
+
 const StampDetail: React.FC<Props> = ({ index, onClose }) => {
   const [Stamp, setStamp] = useState<Stamp[]>([]); 
 
 
   const fetchStamp = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/users/{email}/stamp');    // API 임의로 작성해두었습니다.
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/stamp`);    // API 임의로 작성해두었습니다.
       setStamp(response.data);
     } catch (error) {
       console.error(error);

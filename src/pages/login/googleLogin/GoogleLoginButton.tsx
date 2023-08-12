@@ -19,12 +19,12 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
     try {
       const authorizationCode = 'authorizationCode' in credentialResponse ? credentialResponse.authorizationCode : credentialResponse;
-      const response = await axios.post('http://localhost:8080/api/auth/login/google', {
+      const response = await axios.post(`http://localhost:8080/api/auth/login/google`, {
         authorizationCode: authorizationCode,
       });
 
       if (response.status === 200) {
-        const userResponse = await axios.get('http://localhost:8080/api/users');
+        const userResponse = await axios.get(`http://localhost:8080/api/users`);
         if (userResponse.status === 200) {
           localStorage.setItem("userId", userResponse.data.userId);
           //localStorage.setItem('email', userResponse.data.email);

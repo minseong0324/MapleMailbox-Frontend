@@ -27,7 +27,7 @@ function Login() {
   // 요청이 성공하면 성공 메시지를 보여주고, 실패하면 오류 메시지를 보여줍니다.
   // 요청이 성공하면 토큰을 로컬 스토리지에 저장합니다.
   const loginMutation = useMutation(async (credentials: LoginCredentials) => {
-    const response = await axios.post("http://localhost:8080/auth/login/self", credentials);
+    const response = await axios.post(`http://localhost:8080/auth/login/self`, credentials);
     return response; // return whole response object, not just data
   }, {
     onSuccess: async (response) => {
@@ -43,7 +43,7 @@ function Login() {
       if (response.status === 200) {
         // 로그인 성공 시 GET 요청을 수행
         try {
-          const userResponse = await axios.get("http://localhost:8080/api/users", {
+          const userResponse = await axios.get(`http://localhost:8080/api/users`, {
             headers: {
               'Authorization': `Bearer ${response.headers['Authorization']}`  // 토큰을 헤더에 포함시키기 위함
             }
@@ -99,7 +99,7 @@ function Login() {
       // 여기서는 refresh-token을 사용해 access-token을 새로 발급받습니다.
       const refreshToken = localStorage.getItem('refreshToken');
       if (refreshToken) {
-        const response = await axios.post('http://localhost:8080/auth/refresh', {
+        const response = await axios.post(`http://localhost:8080/auth/refresh`, {
           refreshToken: refreshToken,
         });
 
