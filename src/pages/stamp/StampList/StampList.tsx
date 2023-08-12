@@ -73,7 +73,7 @@ const StampList: React.FC = () => {
           }
           >
         </s.StampButton>
-      ))};
+      ))}
       </s.ButtonWrapper>
 
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
