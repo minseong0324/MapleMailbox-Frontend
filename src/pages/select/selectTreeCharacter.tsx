@@ -22,6 +22,11 @@ import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
 
 
+const userId = localStorage.getItem('userId');
+const refreshToken = localStorage.getItem('refresh_token');
+const accessToken = localStorage.getItem('access_token');
+
+
 function SelectTreeCharacter() {
   const [selectedTree, setSelectedTree] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
@@ -31,16 +36,17 @@ function SelectTreeCharacter() {
 
   const handleSubmit = () => {
     const selectedData = {
-      treeType: selectedTree, //string
-      characterType: selectedCharacter //string
+      treeType: selectedTree, 
+      characterType: selectedCharacter 
     };
     console.log(selectedData);
   
     // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-    fetch('https://localhost:8080', { // 엔드포인트 맞춰야함
-      method: 'POST',
+    fetch(`http://localhost:8080/api/users/${userId}`, { // {userId}를 실제 사용자의 ID로 대체하세요.
+      method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken  // accessToken을 헤더에 추가
       },
       body: JSON.stringify(selectedData)
     })
@@ -55,7 +61,8 @@ function SelectTreeCharacter() {
   
     // 홈으로 이동
     navigate('/Ownerhome');
-  }
+}
+
   
   const handleServiceDescription = () => {
     setServiceModalOpen(true);

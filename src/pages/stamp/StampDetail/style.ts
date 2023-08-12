@@ -57,7 +57,7 @@ height: 160px;
 z-index: 2;
 padding: 0px;
 margin: 20px;
-top: 25%
+top: 25%;
 `;
 
 const H2 = styled.h2`
