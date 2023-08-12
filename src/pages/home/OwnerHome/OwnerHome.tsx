@@ -43,7 +43,7 @@ const getUserInfoFromServer = async (userId: string) => {
       treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
-      startDate: userInfo.startDate, // startDate 값을 추가했습니다.
+      nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
       lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
     };
   } catch (error) {
@@ -99,7 +99,7 @@ function OwnerHome() {
   
 
   // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
-  const [startDate, setStartDate] = useState<number | null>(null);
+  const [nowDate, setNowDate] = useState<number | null>(null);
 
 
   const { userId } = useParams<{ userId: string }>();
@@ -112,7 +112,7 @@ function OwnerHome() {
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
-        setStartDate(userInfo?.startDate);
+        setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
@@ -134,8 +134,8 @@ function OwnerHome() {
 
   useEffect(() => {
       try {  
-        if (typeof startDate === 'number') {
-          const ddayValue = 30 - startDate; // 30일 기준에서 D-day를 계산합니다.
+        if (typeof nowDate === 'number') {
+          const ddayValue = 30 - nowDate; // 30일 기준에서 D-day를 계산합니다.
           setDday(ddayValue);
         } else {
           setDday(30);
@@ -144,7 +144,7 @@ function OwnerHome() {
         console.error('D-day 계산 중 에러:', error);
       }
 
-  }, [startDate]);
+  }, [nowDate]);
   
   
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
@@ -166,9 +166,9 @@ function OwnerHome() {
   }, [mapleTreeImages, ginkgoTreeImages]);
 
   useEffect(() => {
-    if (startDate !== null) {
+    if (nowDate !== null) {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (lettersOverFive[startDate] === true) {
+    if (lettersOverFive[nowDate] === true) {
       setTreeGrowthStage(prevStage => {
         const newStage = prevStage + 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -180,7 +180,7 @@ function OwnerHome() {
       });
     }
   }
-  }, [treeType, getTreeImageByGrowthStage, startDate, lettersOverFive]);
+  }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
   
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {

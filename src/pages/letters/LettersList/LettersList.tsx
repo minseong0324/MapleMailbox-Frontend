@@ -10,56 +10,53 @@ import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png'
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 
-/*
-// 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
   date: string;
-  senderName: string;
-  letterContent: string;
-};
-*/
-
-type Letter = {
-  date: string;
-  content: string;
   tree: 'Maple Tree' | 'Ginkgo Tree';
 };
 
-type Date = {
-  startDate: number;  // 편지를 처음 받은 날짜
-  endDate: number;  // 편지를 마지막으로 받을 날짜
-  nowDate: number;  // 오늘이 몇일째인지
-};
+
+const userId = localStorage.getItem("userId");
 
 const LettersList: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [letters, setLetters] = useState<Letter[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
-  const [date, setDate] = useState<Date[]>([]); // 날짜들을 저장할 상태입니다.
+  const [nowDate, setNowDate] = useState<number | null>(null); //회원가입 한지 며칠이 되었는가.
 
   const selectedTreeCharacter = useSelector((state: RootState) => state.selectedTreeCharacter);
   const selectedTree = selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree';
 
   const fetchLetters = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/users/${email}');
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
       setLetters(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const fetchDate = useCallback(async () => {
+  const fetchNowDate = async () => {
     try {
-      const response = await axios.get(`/api/date`); // 서버에서 날짜 정보를 가져옵니다.
-      setDate(response.data); // 가져온 날짜 정보를 상태에 저장합니다.
+      // 서버에서 nowDate를 얻어오는 API 호출 로직
+      // 예: const response = await axios.get('URL_TO_GET_NOWDATE');
+      // setNowDate(response.data.nowDate);
+      // 아래는 임시로 nowDate 값을 설정하는 예시 코드입니다.
+      const responseNowDate = null; // 이 부분을 실제 API 응답 값으로 교체해야 합니다.
+      if (responseNowDate !== null) {
+        setNowDate(responseNowDate);
+      } else {
+        setNowDate(1);
+      }
     } catch (error) {
-      console.error(error); // 에러가 발생하면 콘솔에 에러를 출력합니다.
+      console.error(error);
+      setNowDate(1);
     }
-  }, [date]);
+  };
 
   useEffect(() => {
+    fetchNowDate();
     fetchLetters();
   }, []);
 
@@ -74,7 +71,6 @@ const LettersList: React.FC = () => {
     setSelectedDate(null); // 모달을 닫을 때 선택을 해제합니다.
     setModalContent(null); // 모달의 내용을 초기화합니다.
   };
-
 
   return (
     <s.Container>
@@ -93,7 +89,6 @@ const LettersList: React.FC = () => {
       <s.ButtonWrapper>
         {Array.from({ length: 30 }).map((_, index) => {
           const date = index + 1;
-          const nowDate = 1;  // 임시로 현재 1일차라고 해두었습니다. (날짜 관련 서버에서 데이터 받아와야함)
           return (
             <s.LeafButton
               key={index}
