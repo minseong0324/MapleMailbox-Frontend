@@ -10,54 +10,40 @@ import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png'
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 
-type Letter = {
-  date: string;
-  tree: 'Maple Tree' | 'Ginkgo Tree';
-};
-
-
 const userId = localStorage.getItem("userId");
 
 const LettersList: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
-  const [letters, setLetters] = useState<Letter[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
-  const [nowDate, setNowDate] = useState<number | null>(null); //회원가입 한지 며칠이 되었는가.
+  // 테스트용 코드
+  // 출시할 때는 아래 주석 처리된 코드를 사용해야 합니다.
+  const [nowDate, setNowDate] = useState<number | null>(2); // 테스트용 2일차 설정
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
 
+  // 출시할 때 사용하는 코드 (주석 처리)
+  /*
+  const [nowDate, setNowDate] = useState<number | null>(null);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  */
   const selectedTreeCharacter = useSelector((state: RootState) => state.selectedTreeCharacter);
-  const selectedTree = selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree';
+  const [treeType, setTreeType] = useState(selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree');
 
-  const fetchLetters = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
-      setLetters(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchNowDate = async () => {
-    try {
-      // 서버에서 nowDate를 얻어오는 API 호출 로직
-      // 예: const response = await axios.get('URL_TO_GET_NOWDATE');
-      // setNowDate(response.data.nowDate);
-      // 아래는 임시로 nowDate 값을 설정하는 예시 코드입니다.
-      const responseNowDate = null; // 이 부분을 실제 API 응답 값으로 교체해야 합니다.
-      if (responseNowDate !== null) {
-        setNowDate(responseNowDate);
-      } else {
-        setNowDate(1);
+    // 사용자 데이터를 가져옵니다.
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`);
+        const { treeType, nowDate, lettersOverFive } = response.data;
+        setNowDate(nowDate);
+        setLettersOverFive(lettersOverFive);
+        setTreeType(treeType);
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-      setNowDate(1);
-    }
-  };
+    };
 
   useEffect(() => {
-    fetchNowDate();
-    fetchLetters();
+    fetchUserData();
   }, []);
 
   const handleOpenModal = (date: number) => {
@@ -89,15 +75,34 @@ const LettersList: React.FC = () => {
       <s.ButtonWrapper>
         {Array.from({ length: 30 }).map((_, index) => {
           const date = index + 1;
+          let isButtonActive = false;
+          if (nowDate !== null && date < nowDate) {
+            isButtonActive = true;
+          } else if (nowDate !== null && date === nowDate && lettersOverFive[nowDate] === true) {
+            isButtonActive = true;
+          }
+
           return (
             <s.LeafButton
               key={index}
               onClick={() => {
-                date > nowDate ? alert(date-Number(nowDate)+"일 뒤에 열람할 수 있습니다.") : handleOpenModal(date);
+                if (nowDate === null) {
+                  alert("날짜 정보를 가져올 수 없습니다.");
+                  return;
+                }
+                if (!isButtonActive) {
+                  if (date === nowDate) {
+                    alert("아직 오늘 받은 편지 수가 5개 미만입니다!");
+                  } else {
+                    alert(date-Number(nowDate)+"일 뒤에 열람할 수 있습니다.");
+                  }
+                } else {
+                  handleOpenModal(date);
+                }
               }}
-              leafImage={selectedTree === 'Maple Tree' ? 
-              (date > nowDate ? MapleLeafDisabled : MapleLeaf ) :
-              (date > nowDate ? GinkgoLeafDisabled : GinkgoLeaf ) }
+              leafImage={treeType === 'Maple Tree' ? 
+              (!isButtonActive ? MapleLeafDisabled : MapleLeaf ) :
+              (!isButtonActive ? GinkgoLeafDisabled : GinkgoLeaf ) }
             >
               {date}일
             </s.LeafButton>
