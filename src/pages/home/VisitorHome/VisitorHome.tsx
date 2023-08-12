@@ -6,29 +6,32 @@ import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
 import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
-import { formatDistance, subDays } from 'date-fns'; 
-import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 
-// 편지 정보를 저장할 타입을 정의합니다.
-type Letter = {
-  date: string;
-  senderName: string;
-  letterContent: string;
-};
+const accessToken = localStorage.getItem('accessToken');
 
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   if (!userId) {
-     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
+    // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
-    console.error('userId is undefined');
+    console.log('userId is undefined');
     return null;
   }
+
+  if (!accessToken) {
+    console.log('accessToken is not available');
+    return null;
+  }
+
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`);
+    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
 
     // 응답에서 사용자 정보를 추출합니다.
     const userInfo = response.data;
@@ -38,6 +41,8 @@ const getUserInfoFromServer = async (userId: string) => {
       treeType: userInfo.treeType, //사용자 나무 종류
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
+      nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
+      lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
     };
   } catch (error) {
     // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
@@ -61,17 +66,17 @@ function VisitorHome() {
   const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
   const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태
   const [letterContent, setLetterContent] = useState('');  // 편지 내용을 관리하는 상태
-  const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
+  const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
-  const [letters, setLetters] = useState<Letter[]>([]);
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
-
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
@@ -83,6 +88,8 @@ function VisitorHome() {
         setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
         setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
+        setNowDate(userInfo?.nowDate);
+        setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
     fetchUserInfo();
@@ -117,21 +124,23 @@ function VisitorHome() {
     }
   }, [mapleTreeImages, ginkgoTreeImages]);
 
-  // 편지가 추가될 때마다 나무의 성장 단계를 업데이트합니다.
-  useEffect(() => {
+ // 편지가 추가될 때마다 나무의 성장 단계를 업데이트합니다.
+ useEffect(() => {
+  if (nowDate !== null && typeof nowDate === 'number') { 
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (letters.length % 5 === 0) {
-      setTreeGrowthStage(prevStage => {
-        const newStage = prevStage + 1;
-        getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
-          if (newImage) { // newImage가 null이 아닐 때만 이미지를 추가합니다.
-            setTreeFragmentImages(prevImages => [...prevImages, newImage]);
-          }
-        });
-        return newStage;
+  if (lettersOverFive[nowDate] === true) {
+    setTreeGrowthStage(prevStage => {
+      const newStage = prevStage + 1;
+      getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
+        if (newImage) { // newImage가 null이 아닐 때만 이미지를 추가합니다.
+          setTreeFragmentImages(prevImages => [...prevImages, newImage]);
+        }
       });
-    }
-  }, [letters, treeType, getTreeImageByGrowthStage]);
+      return newStage;
+    });
+  }
+}
+}, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
 
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -169,8 +178,11 @@ const handleSendLetter = async (event: React.FormEvent) => {
   try {
     // 백엔드로 편지 데이터를 보냅니다.
     // 엔드포인트 맞춰야 함
-    await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData);
-    //await axios.post(`http://localhost:8080/board/writepro`, letterData);
+    await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
     // 입력 필드를 초기화합니다.
     setSenderName('');
     setLetterContent('');
@@ -224,7 +236,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
                 alt={`Tree at stage ${index + 1}`}
               />
             ))} 
-        <s.CharImage src={getCharacterImage(characterType)} alt="character" />
+        <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
       </s.TreeImageWrapper>
       <s.ButtonWrapper>
       <s.Break/>

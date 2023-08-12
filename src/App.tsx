@@ -36,11 +36,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree" element={<SelectTreeCharacter />} />
-          <Route path="/kakao-login" element={<KakaoLogin />} /> 
+        
           <Route path="/kakao/callback" element={<KakaoCallback />} />
-          <Route path="/naver-login" element={<NaverLogin />} /> 
+        
           <Route path="/naver/callback" element={<NaverCallback />} />
-          <Route path="/google-login" element={<GoogleLoginButton />} /> 
+     
         </Routes>
       </Router>
     </UserProvider>

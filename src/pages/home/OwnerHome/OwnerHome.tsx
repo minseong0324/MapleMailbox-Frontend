@@ -5,12 +5,12 @@ import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style';
-import { formatDistance, subDays } from 'date-fns'; 
 import LettersList from '../../letters/LettersList/LettersList';
 import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
-import { el } from 'date-fns/locale';
+
+const accessToken = localStorage.getItem('accessToken');
 
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
@@ -21,7 +21,6 @@ const getUserInfoFromServer = async (userId: string) => {
     return null;
   }
 
-  const accessToken = localStorage.getItem('accessToken');
   if (!accessToken) {
     console.error('accessToken is not available');
     return null;
@@ -84,7 +83,6 @@ function OwnerHome() {
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
 
-   // 사용자가 받은 편지 목록을 저장하는 상태 변수입니다.
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
 
   // 나무의 성장 단계를 저장하는 상태 변수입니다.
@@ -198,7 +196,7 @@ function OwnerHome() {
     }
   };
 
-  // 편지를 확인하는 함수 //LetterList.tsx로 옮겨야할 듯
+  // 편지를 확인하는 함수 
   const handleReadLetters = () => {
       setReadModalOpen(true);
   };
