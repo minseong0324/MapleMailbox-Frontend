@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setTree, setCharacter } from './selectedTreeCharacterSlice';
 import Modal from '../../components/Modal/Modal';
+import BackButton from "src/components/BackButton/BackButton";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import MapleTreeImage from "../../assets/treeImg/MapleMainTree.png";
@@ -61,17 +62,6 @@ function SelectTreeCharacter() {
     navigate('/Ownerhome');
 }
 
-  
-  const handleServiceDescription = () => {
-    setServiceModalOpen(true);
-  };
-
-   // 뒤로가기 버튼의 이벤트 핸들러 함수
-   const handleBack = () => {
-    navigate(`/mypage/${userId}`);
-
-  };
-
   const characterData = [
     { name: "Maple Character", imgSrc: MapleCharImg },
     { name: "Ginkgo Character", imgSrc: GinkgoCharImg },
@@ -88,7 +78,7 @@ function SelectTreeCharacter() {
 
   return (
     <s.Wrapper>
-      <s.BackButton onClick={handleBack}>←</s.BackButton>
+      <BackButton/>
       <s.CenteredWrapper>
         <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
         <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>

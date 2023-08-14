@@ -27,21 +27,6 @@ const Button = styled.button`
   margin-top: 50px;
 `;
 
-const BackButton = styled.button`
-  position: relative;
-  font-family: 'DOSSaemmul';
-  width: 60px; // 버튼 너비를 조정
-  height: 60px; // 버튼 높이를 조정
-  border: 0px transparent; // 테두리 색상을 투명
-  background: transparent;
-  z-index: 6;
-  margin-top: 10%;
-  margin-left: 4%;
-  margin-bottom: -10%;
-  font-size: 30px; 
-
-`;
-
 const CenteredWrapper = styled.div`
   position: relative; 
   display: flex;
@@ -121,7 +106,6 @@ export const s = {
     P,
     Break,
     SelectClickEvent,
-    BackButton,
     TitleTextStyle,
     Wrapper
 }
