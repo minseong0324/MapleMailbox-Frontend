@@ -78,7 +78,7 @@ function SelectTreeCharacter() {
 
   return (
     <s.Wrapper>
-      <BackButton/>
+    <BackButton to={`/mypage/${userId}`} />
       <s.CenteredWrapper>
         <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
         <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
