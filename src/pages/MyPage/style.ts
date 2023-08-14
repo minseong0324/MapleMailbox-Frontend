@@ -104,6 +104,16 @@ const P = styled.p`
 
 const Break = styled.br``;
 
+const WordInput = styled.input`
+font-family: "DOSSaemmul";
+width: 190px;
+height: 30px;
+border: none; // 모든 테두리를 제거합니다.
+color: #222;
+margin-bottom: 20px;
+background-color: #fff8f0;
+`;
+
 export const s = {
     CenteredWrapper,
     TitleTextStyle,
@@ -113,6 +123,7 @@ export const s = {
     Break,
     ButtonWrapper,
     ModalButton,
-    Wrapper
+    Wrapper,
+    WordInput
 }
 
