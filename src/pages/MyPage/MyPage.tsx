@@ -36,13 +36,16 @@ function MyPage() {
             </s.ButtonWrapper>
            
             <Modal isOpen={isLeaveModalOpen} onClose={() => setLeaveModalOpen(false)}>
-                <s.H2>정말 탈퇴하시겠습니까?</s.H2>
-                <s.P>
-                    삭제된 정보는 복구할 수 없습니다. 신중하게 생각하시고 결정해주시기 바랍니다.
-                <s.Break/>
-                </s.P>
-                <s.Button onClick={handleSubmitLeave}>탈퇴하기</s.Button>
-                <s.Button onClick={handleSubmitCancel}>취소</s.Button>
+                <s.CenteredWrapper>
+                    <s.H2>정말 탈퇴하시겠습니까?</s.H2>
+                    <s.P>
+                        삭제된 정보는 복구할 수 없습니다. 신중하게 생각하시고 결정해주시기 바랍니다.
+                    <s.Break/>
+                    </s.P>
+                    <s.ModalButton onClick={handleSubmitLeave}>탈퇴하기</s.ModalButton>
+                    <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
+                </s.CenteredWrapper>
+                
             </Modal>
     
             
