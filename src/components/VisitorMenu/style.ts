@@ -26,7 +26,7 @@ const SunButton = styled.button`
   cursor: pointer;
   width: 85px;
   height: 85px;
-  z-index: 2;
+  z-index: 5;
 `;
 
 const MenuWrapper = styled.div`
@@ -84,6 +84,7 @@ interface MenuItemProps {
 }
 
 const MenuItem = styled.button<MenuItemProps>`
+margin-bottom: 5px;
 font-family: 'DOSSaemmul'; 
 background: transparent;
 border: none;
@@ -99,6 +100,7 @@ interface StyledLinkContainerProps {
 
 const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
   z-index: 9;
+  margin-bottom: 10px;
   animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
 `;
 
@@ -112,10 +114,6 @@ const StyledLink = styled(Link)`
   
 `;
 
-const Break = styled.br`
-`;
-
-
 export const s = {
     fadeIn,
     SunWrapper,
@@ -124,7 +122,6 @@ export const s = {
     SunRay,
     MenuItem,
     StyledLink,
-    Break,
     StyledLinkContainer,
     Wrapper
 }

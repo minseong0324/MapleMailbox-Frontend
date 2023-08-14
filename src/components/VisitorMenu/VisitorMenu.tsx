@@ -36,7 +36,6 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
         <s.StyledLinkContainer isActive={isOpen}>
           <s.StyledLink to="/">로그아웃</s.StyledLink>
           </s.StyledLinkContainer>
-          <s.Break />
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
         </s.MenuWrapper>
         </>
