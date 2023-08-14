@@ -68,6 +68,12 @@ function SelectTreeCharacter() {
     setServiceModalOpen(true);
   };
 
+   // 뒤로가기 버튼의 이벤트 핸들러 함수
+   const handleBack = () => {
+    navigate(`/mypage/${userId}`);
+
+  };
+
   const characterData = [
     { name: "Maple Character", imgSrc: MapleCharImg },
     { name: "Ginkgo Character", imgSrc: GinkgoCharImg },
@@ -83,11 +89,10 @@ function SelectTreeCharacter() {
   ];  
 
   return (
-    <>
-      
+    <s.Wrapper>
+      <s.BackButton onClick={handleBack}>←</s.BackButton>
       <s.CenteredWrapper>
-        {isMenuOpen && <Menu onLogout={() => {}} onServiceDescription={handleServiceDescription} />} 
-
+        <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
         <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
 
         <s.SelectWrapper>
@@ -125,7 +130,7 @@ function SelectTreeCharacter() {
 
         <s.Button onClick={handleSubmit}>바꾸기</s.Button>
       </s.CenteredWrapper>
-    </>
+    </s.Wrapper>
   );
 }
 

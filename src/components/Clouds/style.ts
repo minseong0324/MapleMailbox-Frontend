@@ -34,6 +34,7 @@ const WrapperDiv = styled.div`
   right: 50%;
   transform: translateX(-50%);
   overflow: hidden;
+  z-index: 0;
 `;
 
 export const s = {

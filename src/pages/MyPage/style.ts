@@ -3,10 +3,6 @@ import button1 from '../../assets/button/button1.png';
 import button4 from '../../assets/button/button4.png'; 
 
 
-const Wrapper = styled.div`
-z-index: 5;
-`;
-
 const Button = styled.button`
   font-family: 'DOSSaemmul';
   width: 250px; // 버튼 너비를 조정
@@ -19,27 +15,12 @@ const Button = styled.button`
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;
-  z-index: 5;
+  z-index: 2;
   &:active { // 버튼이 눌렸을 때의 스타일
     background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
   margin-top: 50px;
-`;
-
-const BackButton = styled.button`
-  position: relative;
-  font-family: 'DOSSaemmul';
-  width: 60px; // 버튼 너비를 조정
-  height: 60px; // 버튼 높이를 조정
-  border: 0px transparent; // 테두리 색상을 투명
-  background: transparent;
-  z-index: 6;
-  margin-top: 10%;
-  margin-left: 4%;
-  margin-bottom: -10%;
-  font-size: 30px; 
-
 `;
 
 const CenteredWrapper = styled.div`
@@ -48,24 +29,14 @@ const CenteredWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 90vh;
   z-index: 4;
 
   @media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     align-items: center;
     justify-content: center;
-
+    height: 75vh;
   }
-`;
-
-const TitleTextStyle = styled.div`
-  position: relative; 
-font-family: 'DOSGothic';
-display: flex;
-flex-direction: column;
-align-items: center;
-line-height: 5;
-font-size: 25px;
-margin-top: -10%;
 `;
 
 
@@ -75,7 +46,7 @@ const TextsStyle = styled.div`
   flex-direction: column;
   align-items: center;
   line-height: 5;
-  font-size: 15px;
+  font-size: 30px;
 `;
 
 const ImageButton = styled.button<ImageButtonProps>`
@@ -120,9 +91,6 @@ export const s = {
     H2,
     P,
     Break,
-    SelectClickEvent,
-    BackButton,
-    TitleTextStyle,
-    Wrapper
+    SelectClickEvent
 }
 

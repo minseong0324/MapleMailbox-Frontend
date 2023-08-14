@@ -42,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
           </s.StyledLinkContainer>
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
           <s.StyledLinkContainer isActive={isOpen}>
-            <s.StyledLink to="/select-character-tree">나무/캐릭터 변경</s.StyledLink>
+            <s.StyledLink to="/mypage/:userId">마이페이지</s.StyledLink>
           </s.StyledLinkContainer>
 
         </s.MenuWrapper>

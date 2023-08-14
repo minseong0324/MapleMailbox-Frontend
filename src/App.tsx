@@ -15,6 +15,7 @@ import KakaoCallback from './pages/login/kakaoLogin/KakaoCallback';
 import NaverLogin from './pages/login/naverLogin/NaverLogin';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
 import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
+import MyPage from './pages/MyPage/MyPage';
 import {GlobalStyle} from './style'
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -40,7 +41,8 @@ function App() {
           <Route path="/kakao/callback" element={<KakaoCallback />} />
         
           <Route path="/naver/callback" element={<NaverCallback />} />
-     
+          
+          <Route path="/mypage/:userId" element={<MyPage />} />
         </Routes>
       </Router>
     </UserProvider>
