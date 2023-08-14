@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import cloudImageSmall from '../../assets/cloud/cloud5.png';
-import cloudImageBig from '../../assets/cloud/cloud-big.png';
+import cloudImageSmall from '../../assets/cloud/clouds-small.png';
+import cloudImageBig from '../../assets/cloud/clouds-big.png';
 
 const moveCloud = keyframes`
   0% {
