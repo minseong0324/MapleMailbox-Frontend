@@ -29,9 +29,12 @@ function MyPage() {
         <>
         <BackButton/>
             <s.CenteredWrapper>
-            <s.TextsStyle>{userName}의 마이페이지</s.TextsStyle>
-            <s.Button onClick={handleNavigateSelectCharacterTree}>내 나무/캐릭터 변경하기</s.Button>
-            <s.Button >내 나무 없애기</s.Button>       
+            <s.TitleTextStyle>{userName}의 마이페이지</s.TitleTextStyle>
+            <s.ButtonWrapper>
+                <s.Button onClick={handleNavigateSelectCharacterTree}>내 나무/캐릭터 변경하기</s.Button>
+                <s.Button >내 나무 없애기</s.Button>       
+            </s.ButtonWrapper>
+           
             <Modal isOpen={isLeaveModalOpen} onClose={() => setLeaveModalOpen(false)}>
                 <s.H2>정말 탈퇴하시겠습니까?</s.H2>
                 <s.P>

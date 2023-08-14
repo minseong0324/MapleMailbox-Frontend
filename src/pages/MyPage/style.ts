@@ -15,7 +15,7 @@ const Button = styled.button`
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;
-  z-index: 2;
+  z-index: 5;
   &:active { // 버튼이 눌렸을 때의 스타일
     background: url(${button1}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
@@ -29,43 +29,39 @@ const CenteredWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
   z-index: 4;
 
   @media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     align-items: center;
     justify-content: center;
-    height: 75vh;
   }
 `;
 
+const ButtonWrapper = styled.div`
+margin-top: 70px;
+position: relative; 
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 4;
 
-const TextsStyle = styled.div`
-  font-family: 'DOSSaemmul';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 5;
-  font-size: 30px;
+@media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+}
 `;
 
-const ImageButton = styled.button<ImageButtonProps>`
-cursor: pointer;
-border: ${props => props.selected ? '2px dotted rgba(255, 187, 0, 0.5)' : 'none'};
-border-radius: 15px; // 이 속성을 통해 모서리를 둥글게 만듭니다. 
-background-image: url(${props => props.src});
-background-size: cover;
-background-color: transparent;
-`;
-
-type ImageButtonProps = {
-    src: string;
-    alt: string;
-    selected: boolean;
-};
-
-const SelectWrapper = styled.div`
-  width: 300px;
+const TitleTextStyle = styled.div`
+  position: relative; 
+font-family: 'DOSGothic';
+display: flex;
+flex-direction: column;
+align-items: center;
+line-height: 5;
+font-size: 25px;
+margin-top: -10%;
 `;
 
 const H2 = styled.h2`
@@ -79,18 +75,13 @@ const P = styled.p`
 
 const Break = styled.br``;
 
-const SelectClickEvent = styled.div`
-`;
-
 export const s = {
     CenteredWrapper,
-    TextsStyle,
+    TitleTextStyle,
     Button,
-    ImageButton,
-    SelectWrapper,
     H2,
     P,
     Break,
-    SelectClickEvent
+    ButtonWrapper
 }
 
