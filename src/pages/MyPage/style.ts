@@ -4,6 +4,9 @@ import modalButtonAfterClick from '../../assets/button/button-midium-2.png';
 import button1 from '../../assets/button/button1.png'; 
 import button4 from '../../assets/button/button4.png'; 
 
+const Wrapper = styled.div`
+z-index: 5;
+`;
 
 const Button = styled.button`
   font-family: 'DOSSaemmul';
@@ -109,6 +112,7 @@ export const s = {
     P,
     Break,
     ButtonWrapper,
-    ModalButton
+    ModalButton,
+    Wrapper
 }
 

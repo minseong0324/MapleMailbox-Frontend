@@ -58,7 +58,7 @@ function MyPage() {
     }
 
     return (
-        <>
+        <s.Wrapper>
             {/*<BackButton to={`/home/${userId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
             <BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
             <s.CenteredWrapper>
@@ -84,7 +84,7 @@ function MyPage() {
             
 
             </s.CenteredWrapper>
-        </>
+        </s.Wrapper>
     );
 }
 
