@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
         background-size: auto;
         background-position: center center;
         background-repeat: no-repeat;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
         
     }
 
@@ -28,6 +30,8 @@ export const GlobalStyle = createGlobalStyle`
         background-position: center center;
         background-repeat: no-repeat;
         z-index: 1;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
     }
 
     #content {
