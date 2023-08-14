@@ -3,8 +3,6 @@ import { s } from './style';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setTree, setCharacter } from './selectedTreeCharacterSlice';
-import styled from 'styled-components';
-import Menu from '../../components/Menu/Menu';
 import Modal from '../../components/Modal/Modal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
