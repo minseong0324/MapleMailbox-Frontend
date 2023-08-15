@@ -28,8 +28,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [isMissionModalOpen, setMissionModalOpen] = useState(false);
   const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false); //미션에 성공해서 미션완료하기 버튼을 눌렀을 때 모달창을 띄우기 위한 상태
-  //const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
-  const [missionComplete, setMissionComplete] = useState<boolean | null>(true); //테스트용
+  const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
+  //const [missionComplete, setMissionComplete] = useState<boolean | null>(true); //테스트용
 
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
@@ -108,9 +108,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 미션 완료하기 버튼 누르면 작동되는 함수
   const handleMissionComplete = async () => {
-    setMissionCompleteModalOpen(true)//테스트용
-    setMissionComplete(true);//테스트용
-    handleOpenMissionCompleteModal(); //테스트용
+    //setMissionCompleteModalOpen(true)//테스트용
+    //setMissionComplete(true);//테스트용
+    //handleOpenMissionCompleteModal(); //테스트용
     try {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
       const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
@@ -133,7 +133,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
             setStampsStatus(getResponse.data.stampsStatus);
             setMissionModalOpen(false);
             setMissionCompleteModalOpen(true)
-            setMissionComplete(true);
+            setMissionComplete(false); // 미션을 완료했으므로 미션 완료하기 버튼을 비활성화합니다.
             handleOpenMissionCompleteModal(); // 함수 호출을 추가
           }
         } catch (error: unknown) { //에러 일 경우
@@ -244,7 +244,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           disabled={!missionComplete}
           isActive={!!missionComplete}
         >
-          미션 완료하기!
+          {missionComplete ? "완료했습니다!" : "미션 완료하기!"}
         </s.MissionCompletedButton>
       </s.CenteredWrapper>
     </Modal>

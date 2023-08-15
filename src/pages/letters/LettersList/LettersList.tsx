@@ -18,15 +18,13 @@ function LettersList() {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
   // 테스트용 코드
-  // 출시할 때는 아래 주석 처리된 코드를 사용해야 합니다.
-  const [nowDate, setNowDate] = useState<number | null>(2); // 테스트용 2일차 설정
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
+  //const [nowDate, setNowDate] = useState<number | null>(2); // 테스트용 2일차 설정
+  //const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
 
-  // 출시할 때 사용하는 코드 (주석 처리)
-  /*
+  // 출시할 때 사용하는 코드
   const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
-  */
+  
   const selectedTreeCharacter = useSelector((state: RootState) => state.selectedTreeCharacter);
   const [treeType, setTreeType] = useState(selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree');
 
