@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import sunImg from '../../assets/sunImg/sun.png';
+import modalButton from '../../assets/button/button-midium-1.png'; 
+import modalButtonAfterClick from '../../assets/button/button-midium-2.png'; 
 
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
@@ -105,7 +107,7 @@ interface StyledLinkContainerProps {
 
 const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
   z-index: 9;
-  margin-bottom: 5px;
+  margin-top: 3px;
   animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
 `;
 
@@ -116,6 +118,46 @@ const StyledLink = styled(Link)`
   text-decoration: none;  // 밑줄 제거
   color: black; 
   cursor: pointer;
+`;
+
+const CenteredWrapper = styled.div`
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+
+  @media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const H2 = styled.h2`
+margin-top: 60px;
+  font-size: 18px;
+
+`;
+
+const ModalButton = styled.button`
+  font-family: 'DOSSaemmul';
+  width: 170px; // 버튼 너비를 조정
+  height: 40px; // 버튼 높이를 조정
+  padding: 10px; // 내부 패딩을 조정
+  background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
+  background-size: cover; // 이미지가 버튼에 맞게 조절
+  color: black;
+  border-radius: 15px;
+  font-size: 17px; 
+  border: 0px transparent; // 테두리 색상을 투명
+  position: relative;
+  z-index: 5;
+  &:active { // 버튼이 눌렸을 때의 스타일
+    background: url(${modalButtonAfterClick}) no-repeat center center; // 눌렸을 때의 배경 이미지
+    background-size: cover; // 이미지가 버튼에 맞게 조절
+  }
+  margin-top: 50px;
 `;
 
 
@@ -130,5 +172,8 @@ export const s = {
     MenuItem,
     StyledLinkContainer,
     StyledLink,
-    Wrapper
+    Wrapper,
+    CenteredWrapper,
+    H2,
+    ModalButton
 }
