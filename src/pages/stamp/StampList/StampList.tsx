@@ -128,10 +128,10 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     if (nowDate !== null && nowDate >= 0 && nowDate < s.stampImages.length) {
       const selectedImage = s.stampImages[nowDate];
       setModalContent(
-        <s.Container>
+        <s.ShowStampWrapper>
           <s.ShowStampEffect/>
           <s.ShowStamp src={selectedImage} alt="Selected Stamp" />
-        </s.Container>
+        </s.ShowStampWrapper>
       );
       setMissionCompleteModalOpen(true);
     } else {

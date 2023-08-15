@@ -179,15 +179,27 @@ const BackButton = styled.button`
   float: right;
 `;
 
-const ShowStamp = styled.img`
+const ShowStampWrapper = styled.div`
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  margin-top: 50px;
+`;
 
+const ShowStamp = styled.img`
   width: 90px;
   height: 90px; 
 `;
 
-const ShowStampEffect = styled.img`
+const ShowStampEffect = styled.div`
+  position: absolute;
+  top: 50%;  // 상위 요소 중앙에 배치
+  left: 50%;  // 상위 요소 중앙에 배치
+  transform: translate(-50%, -50%); // 요소 자체의 중앙을 기준으로 배치
   background: url(${SparkleEffect}) no-repeat center center; // 이미지를 배경으로 사용
-
   width: 120px;
   height: 120px;
 `;
@@ -207,5 +219,6 @@ export const s = {
     MissionText,
     MissionCompletedButton,
     ShowStamp,
-    ShowStampEffect
+    ShowStampEffect,
+    ShowStampWrapper
 }
