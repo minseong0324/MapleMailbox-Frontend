@@ -26,7 +26,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [isMissionModalOpen, setMissionModalOpen] = useState(false);
   const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false);
-  const [missionComplete, setMissionComplete] = useState<boolean | null>(null);
+  const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
 
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
@@ -69,12 +69,25 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     setMissionModalOpen(false);
   };
 
-  // 미션 완료하기 버튼 누르고 나서 api 호출 함수
-  const handleMissionComplete = () => {
-    setMissionModalOpen(false);
-    setMissionComplete(true);  // 버튼을 클릭한 후 미션을 완료로 가정합니다.
+  // 미션 완료하기 버튼 누르면 작동되는 함수
+  const handleMissionComplete = async () => {
+      // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
+      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`, {
+        missionCompleteButtonClick: true
+      });
+      // PUT 요청이 성공적으로 완료되었는지 확인
+      if (putResponse.status === 200) {
+        // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
+        const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`);
+        setStampsStatus(getResponse.data.stampsStatus);
+  
+        setMissionModalOpen(false);
+        setMissionComplete(true);
+      } else { //에러일 경우 
+        console.error("Failed to update mission complete status.");
+      }
   };
-
+  
 
   // 모달을 닫는 함수입니다.
   const handleCloseModal = () => {
