@@ -43,7 +43,7 @@ const MissionText: React.FC<MissionTextProps> = ({ nowDate }) => {
       return <s.MissionText>질문이 없습니다.</s.MissionText>;
     }
   
-    return <s.MissionText>{QUESTIONS[nowDate % 30]}</s.MissionText>;
+    return <s.MissionText>{QUESTIONS[nowDate % 30 - 1]}</s.MissionText>;
   }
   
 
