@@ -1,6 +1,6 @@
 // 필요한 모듈들을 import 합니다.
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
 import Modal from '../../../components/Modal/Modal';
@@ -189,19 +189,32 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `${accessToken}`
         }
       });
-      // 입력 필드를 초기화합니다.
-      setSenderName('');
-      setLetterContent('');
+      if(response.status===200) {
+        // 입력 필드를 초기화합니다.
+        setSenderName('');
+        setLetterContent('');
 
-      // 모달을 닫습니다.
-      setSendModalOpen(false);
-    } catch (error) {
-      console.error('네트워크 문제로 편지를 보내는 데에 실패했습니다.', error);
+        // 모달을 닫습니다.
+        setSendModalOpen(false);
+      }
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      return null;
     }
   } else { //로그인 상태가 아닐 때
     setShowLoginAlertModal(true);

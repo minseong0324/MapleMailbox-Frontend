@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Modal from '../../../components/Modal/Modal';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import StampDetail from '../StampDetail/StampDetail';
 import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
@@ -34,17 +34,30 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
-    const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
-    if (response.status === 200) {
-      if (nowDate !== null) {
-        setStampsStatus(response.data.stampsStatus);
-      }
-    } else { //에러일 경우 
-      console.error("Failed to update mission complete status.");
+    try {
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
+        headers: {
+          'Authorization': `${accessToken}`
+        }
+      });
+      if (response.status === 200) {
+        if (nowDate !== null) {
+          setStampsStatus(response.data.stampsStatus);
+        }
+      } 
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      return null;
     }
   }, [nowDate]);
 
@@ -63,15 +76,28 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     // 미션 모달을 열 때, 미션의 완료 여부를 가져옵니다.
   const handleOpenMissionModal = async () => {
     setMissionModalOpen(true);
-    const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
+    try {
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`, {
+        headers: {
+          'Authorization': `${accessToken}`
+        }
+      });
+      if (response.status === 200) {
+        setMissionComplete(response.data.missionComplete);
       }
-    });
-    if (response.status === 200) {
-      setMissionComplete(response.data.missionComplete);
-    } else { //에러일 경우 
-        console.error("Failed to update mission complete status.");
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      return null;
     }
   };
 
@@ -82,35 +108,63 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 미션 완료하기 버튼 누르면 작동되는 함수
   const handleMissionComplete = async () => {
-        setMissionCompleteModalOpen(true)//테스트용
-        setMissionComplete(true);//테스트용
-        handleOpenMissionCompleteModal(); //테스트용
+    setMissionCompleteModalOpen(true)//테스트용
+    setMissionComplete(true);//테스트용
+    handleOpenMissionCompleteModal(); //테스트용
+    try {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
       const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
         missionCompleteButtonClick: true
       }, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `${accessToken}`
         }
       });
       // PUT 요청이 성공적으로 완료되었는지 확인
       if (putResponse.status === 200) {
-        // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
-        const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
+        try {
+          // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
+          const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
+            headers: {
+              'Authorization': `${accessToken}`
+            }
+          });
+          if(getResponse.status===200) {
+            setStampsStatus(getResponse.data.stampsStatus);
+            setMissionModalOpen(false);
+            setMissionCompleteModalOpen(true)
+            setMissionComplete(true);
+            handleOpenMissionCompleteModal(); // 함수 호출을 추가
           }
-        });
-        setStampsStatus(getResponse.data.stampsStatus);
-  
-        setMissionModalOpen(false);
-        setMissionCompleteModalOpen(true)
-        setMissionComplete(true);
-        handleOpenMissionCompleteModal(); // 함수 호출을 추가
-
-      } else { //에러일 경우 
-        console.error("Failed to update mission complete status.");
-      }
+        } catch (error: unknown) { //에러 일 경우
+          if (error instanceof AxiosError) {
+            const status = error?.response?.status;
+            console.error('Failed to fetch user info:', error);
+            if (status === 404) {
+              // 리소스를 찾을 수 없음
+            } else if (status === 500) {
+                // 서버 내부 오류
+            } else {
+                // 기타 상태 코드 처리
+            }
+          } 
+          return null;
+        }
+      } 
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      return null;
+    }
   };
   
 

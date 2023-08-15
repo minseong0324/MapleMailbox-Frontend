@@ -30,17 +30,18 @@ function KakaoCallback() {
             localStorage.setItem('accessToken', userResponse.headers.accessToken);
             localStorage.setItem('refreshToken', userResponse.headers.refreshToken);
             navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
-          } else {
-            console.error('Failed to fetch user data.');
-            navigate('/login');
-          }
-        } else {
-          console.error('Login failed with status:', response.status);
-          navigate('/login');
-        }
+          } 
+        } 
       })
       .catch((error) => {
-        console.error('로그인 실패', error);
+        const status = error.response.status;
+        if (status === 404) {
+              // 리소스를 찾을 수 없음
+            } else if (status === 500) {
+                // 서버 내부 오류
+            } else {
+                // 기타 상태 코드 처리
+            }
         navigate('/login');
       });
   }, [navigate]);

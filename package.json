@@ -32,6 +32,7 @@
   "dependencies": {
     "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/axios": "^0.14.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "react-native": "^0.72.3",

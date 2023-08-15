@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import KakaoLogin from './kakaoLogin/KakaoLogin';
 import NaverLogin from './naverLogin/NaverLogin';
 import GoogleLoginButton from './googleLogin/GoogleLoginButton';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
 import NaverLoginImage from "../../assets/socialLoginButton/NaverLogin.svg";
 import KakaoLoginImage from "../../assets/socialLoginButton/KakaoLogin.svg";
@@ -38,46 +38,72 @@ function Login() {
       
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      
-
-      if (response.status === 200) {
-        // 로그인 성공 시 GET 요청을 수행
-        try {
-          const userResponse = await axios.get(`http://localhost:8080/api/users`, {
-            headers: {
-              'Authorization': `Bearer ${response.headers['Authorization']}`  // 토큰을 헤더에 포함시키기 위함
-            }
-          });
-          
-          if (userResponse.status === 200) {
-            //const { email, userName } = userResponse.data;
-            const { userId, userName } = userResponse.data;
-            localStorage.setItem("userId", userId);
-            //const endpointId = response.data('id');
-            //localStorage.setItem("endpoint_id", endpointId);
-            //localStorage.setItem("user_email", email);
-            localStorage.setItem("userName", userName);
-            alert("로그인에 성공했습니다!");
-            navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
-          }
-        } catch (error) {
-          console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);
-        }
-      } else {
-        switch(response.status) {
-          case 401:
-            alert(`로그인에 실패했습니다: ${response.data.message}`);
-            break;
-          default:
-            alert("로그인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-            break;
-
+      try{
+        if (response.status === 200) {
+          // 로그인 성공 시 GET 요청을 수행
+          try {
+            const userResponse = await axios.get(`http://localhost:8080/api/users`, {
+              headers: {
+                'Authorization': `Bearer ${response.headers['Authorization']}`  // 토큰을 헤더에 포함시키기 위함
+              }
+            });
             
-        }
+            if (userResponse.status === 200) {
+              //const { email, userName } = userResponse.data;
+              const { userId, userName } = userResponse.data;
+              localStorage.setItem("userId", userId);
+              //const endpointId = response.data('id');
+              //localStorage.setItem("endpoint_id", endpointId);
+              //localStorage.setItem("user_email", email);
+              localStorage.setItem("userName", userName);
+              alert("로그인에 성공했습니다!");
+              navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
+            }
+          } catch (error: unknown) { //에러 일 경우
+            console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);
+            if (error instanceof AxiosError) {
+              const status = error?.response?.status;
+              console.error('Failed to fetch user info:', error);
+              if (status === 404) {
+                // 리소스를 찾을 수 없음
+              } else if (status === 500) {
+                  // 서버 내부 오류
+              } else {
+                  // 기타 상태 코드 처리
+              }
+            } 
+            return null;
+          }
+        } 
+      } catch (error: unknown) { //에러 일 경우
+        if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          if (status === 404) {
+            // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+        } 
+        return null;
       }
+      
     },
-  
+
     onError: (error) => {
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
       console.error("Login error:", error);
       alert("로그인 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
     }
@@ -110,6 +136,7 @@ function Login() {
           localStorage.setItem('refreshToken', refreshToken);
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
+          alert('세션이 만료되었습니다! 로그아웃 처리 됩니다.')
           localStorage.clear();
           navigate('/login');
         }
@@ -120,9 +147,6 @@ function Login() {
     return () => clearInterval(interval);
 }, [navigate]);
 
-
-
-  
     return (
       <s.LoginWrapper>
         <s.TextsStyle>

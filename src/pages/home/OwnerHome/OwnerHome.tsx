@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useParams } from 'react-router-dom';
 import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
@@ -30,24 +30,34 @@ const getUserInfoFromServer = async (userId: string) => {
     // 백엔드 서버에 GET 요청을 보냅니다.
     const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        'Authorization': `${accessToken}`
       }
     });
+    if(response.status===200) {
+      // 응답에서 사용자 정보를 추출합니다.
+      const userInfo = response.data;
 
-    // 응답에서 사용자 정보를 추출합니다.
-    const userInfo = response.data;
-
-    // 사용자의 나무와 캐릭터 정보를 반환합니다.
-    return {
-      treeType: userInfo.treeType, //사용자 나무 종류
-      characterType: userInfo.characterType, // 사용자 캐릭터 종류
-      userName: userInfo.userName, // 사용자 이름을 추가합니다.
-      nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
-      lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
-    };
-  } catch (error) {
-    // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
-    console.error('Failed to fetch user info:', error);
+      // 사용자의 나무와 캐릭터 정보를 반환합니다.
+      return {
+        treeType: userInfo.treeType, //사용자 나무 종류
+        characterType: userInfo.characterType, // 사용자 캐릭터 종류
+        userName: userInfo.userName, // 사용자 이름을 추가합니다.
+        nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
+        lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
+      };
+    }
+  } catch (error: unknown) { //에러 일 경우
+    if (error instanceof AxiosError) {
+      const status = error?.response?.status;
+      console.error('Failed to fetch user info:', error);
+      if (status === 404) {
+        // 리소스를 찾을 수 없음
+      } else if (status === 500) {
+          // 서버 내부 오류
+      } else {
+          // 기타 상태 코드 처리
+      }
+    } 
     return null;
   }
 };

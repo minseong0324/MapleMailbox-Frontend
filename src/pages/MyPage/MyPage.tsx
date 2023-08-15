@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { s } from './style';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
 
@@ -43,42 +43,50 @@ function MyPage() {
     }
 
     //탈퇴하기 버튼 함수
-const handleSubmitLeave = () => { 
-    // 입력된 word가 'MapleMailbox'인지 확인
-    if (word !== 'MapleMailbox') {
-        alert("입력값이 일치하지 않습니다!");
-        setCheckModalOpen(false);
-        setLeaveModalOpen(false);
-        setWord(''); // input의 값 초기화
-        return; // 함수 종료
+    const handleSubmitLeave = async () => { 
+        // 입력된 word가 'MapleMailbox'인지 확인
+        if (word !== 'MapleMailbox') {
+            alert("입력값이 일치하지 않습니다!");
+            setCheckModalOpen(false);
+            setLeaveModalOpen(false);
+            setWord(''); // input의 값 초기화
+            return; // 함수 종료
+        }
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/auth/leave/${userId}`, {
+                headers: {
+                    'Authorization': `${accessToken}`
+                }
+        });
+            // 추가: response가 정의되어 있고 data가 있는지 확인
+            if(response.status === 200) {
+                // User has been deactivated, handle this (e.g. log out)
+                setLeaveModalOpen(false);
+                setCheckModalOpen(false); // 입력값 확인 모달 닫기
+                localStorage.removeItem("userId");
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                window.location.reload(); // 페이지 새로고침
+            } 
+            
+        
+        } catch (error: unknown) { //에러 일 경우
+            if (error instanceof AxiosError) {
+                const status = error?.response?.status;
+                console.error('Failed to fetch user info:', error);
+                if (status === 404) {
+                    // 리소스를 찾을 수 없음
+                } else if (status === 500) {
+                    // 서버 내부 오류
+                } else {
+                // 기타 상태 코드 처리
+                } 
+            }
+            alert("계정을 탈퇴하는 데에 실패했습니다.");
+        } 
+        return null;
     }
 
-    axios.put(
-        `http://localhost:8080/auth/leave`,
-        userId,
-        {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-        }
-    )
-    .then((response) => {
-        // 추가: response가 정의되어 있고 data가 있는지 확인
-        if(response.status === 200) {
-            // User has been deactivated, handle this (e.g. log out)
-            setLeaveModalOpen(false);
-            setCheckModalOpen(false); // 입력값 확인 모달 닫기
-            localStorage.removeItem("userId");
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
-            window.location.reload(); // 페이지 새로고침
-        } else { // 에러 로직 추가해야함.
-            if (response.data.code === 'LEAVE MAPLEMAILBOX FAILED') {
-                alert("계정을 탈퇴하는 데에 실패했습니다.");
-            }
-        }
-    })
-}
 
     return (
         <s.Wrapper>

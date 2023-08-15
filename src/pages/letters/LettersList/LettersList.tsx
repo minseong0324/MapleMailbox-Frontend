@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 import Modal from '../../../components/Modal/Modal';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import MapleLeaf from '../../../assets/leafImg/MapleLeaf.png';
 import GinkgoLeaf from '../../../assets/leafImg/GinkgoLeaf.png';
 import MapleLeafDisabled from '../../../assets/leafImg/MapleLeaf-disabled.png';
@@ -35,15 +35,28 @@ const LettersList: React.FC = () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
           headers: {
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `${accessToken}`
           }
         });
-        const { treeType, nowDate, lettersOverFive } = response.data;
-        setNowDate(nowDate);
-        setLettersOverFive(lettersOverFive);
-        setTreeType(treeType);
-      } catch (error) {
-        console.error(error);
+        if(response.status===200) {
+          const { treeType, nowDate, lettersOverFive } = response.data;
+          setNowDate(nowDate);
+          setLettersOverFive(lettersOverFive);
+          setTreeType(treeType);
+        }
+      } catch (error: unknown) { //에러 일 경우
+        if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          if (status === 404) {
+            // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+        } 
+        return null;
       }
     };
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import KakaoLogin from '../login/kakaoLogin/KakaoLogin';
 import NaverLogin from '../login/naverLogin/NaverLogin';
 import GoogleLoginButton from '../login/googleLogin/GoogleLoginButton';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { s } from './style';
 import NaverSignUpImage from "../../assets/socialLoginButton/NaverSignUp.svg";
 import KakaoSignUpImage from "../../assets/socialLoginButton/KakaoSignUp.svg";
@@ -37,31 +37,20 @@ function SignUp() {
         if (response.status === 200) {
           alert("회원가입에 성공하였습니다!")
           navigate("/login"); 
-        } else if (response.status === 400) {
-          // 회원가입 실패, status 400일 때
-          switch(response.data.code) { //예시로 한 것.
-            case 'ID AND NICKNAME DUPLICATION':
-              alert('닉네임과 이메일이 중복되었습니다.');
-              break;
-            case 'ID DUPLICATION':
-              alert('이메일이 중복되었습니다.');
-              break;
-            case 'NICKNAME DUPLICATION':
-              alert('닉네임이 중복되었습니다.');
-              break;
-            case 'NULL POINT EXCEPTION':
-              alert('입력하지 않은 란이 있습니다.');
-              break;
-            default:
-              alert(`회원가입에 실패했습니다: ${response.data.message}`);
-              break;
-          }
-        }
-      } catch (error) {
-        if (axios.isAxiosError(error) && error.response) {
-          alert("회원가입 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-          navigate("/signup");
-        }
+        } 
+      } catch (error: unknown) { //에러 일 경우
+          if (error instanceof AxiosError) {
+            const status = error?.response?.status;
+            console.error('Failed to fetch user info:', error);
+            if (status === 404) {
+              // 리소스를 찾을 수 없음
+            } else if (status === 500) {
+                // 서버 내부 오류
+            } else {
+                // 기타 상태 코드 처리
+            }
+          } 
+          return null;
       }
     }
   

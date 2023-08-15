@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { s } from './style'
 
 // 편지 정보를 저장할 타입을 정의합니다.
@@ -24,12 +24,25 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `${accessToken}`
         }
       }); // 서버에서 편지 정보를 가져옵니다.
-      setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
-    } catch (error) {
-      console.error(error); // 에러가 발생하면 콘솔에 에러를 출력합니다.
+      if(response.status===200) {
+        setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
+      }
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      return null;
     }
   }, [selectedDate]);
 

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
@@ -32,17 +32,24 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
           localStorage.setItem('accessToken', userResponse.headers.accessToken);
           localStorage.setItem('refreshToken', userResponse.headers.refreshToken);
           navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
-        } else {
-          console.error('Failed to fetch user data.');
-          navigate('/login');
-        }
-      } else {
-        console.error('Login failed with status:', response.status);
-        navigate('/login');
+        } 
       }
-    } catch (error) {
-      console.error('로그인 실패', error);
-        navigate('/login');
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        if (status === 404) {
+          // 리소스를 찾을 수 없음
+          navigate('/login');
+        } else if (status === 500) {
+            // 서버 내부 오류
+            navigate('/login');
+        } else {
+            // 기타 상태 코드 처리
+            navigate('/login');
+        }
+      } 
+      return null;
     }
   };
 
