@@ -27,8 +27,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [isMissionModalOpen, setMissionModalOpen] = useState(false);
-  const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false);
-  const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
+  const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false); //미션에 성공해서 미션완료하기 버튼을 눌렀을 때 모달창을 띄우기 위한 상태
+  //const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
+  const [missionComplete, setMissionComplete] = useState<boolean | null>(true); //테스트용
 
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
@@ -81,6 +82,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 미션 완료하기 버튼 누르면 작동되는 함수
   const handleMissionComplete = async () => {
+        setMissionCompleteModalOpen(true)//테스트용
+        setMissionComplete(true);//테스트용
+        handleOpenMissionCompleteModal(); //테스트용
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
       const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
         missionCompleteButtonClick: true
@@ -100,7 +104,10 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         setStampsStatus(getResponse.data.stampsStatus);
   
         setMissionModalOpen(false);
+        setMissionCompleteModalOpen(true)
         setMissionComplete(true);
+        handleOpenMissionCompleteModal(); // 함수 호출을 추가
+
       } else { //에러일 경우 
         console.error("Failed to update mission complete status.");
       }
@@ -110,9 +117,28 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   // 모달을 닫는 함수입니다.
   const handleCloseModal = () => {
     setIsOpen(false);
+    setMissionModalOpen(false);
+    setMissionCompleteModalOpen(false);
     setSelectedIndex(null);
     setModalContent(null);
   };
+
+  // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
+  const handleOpenMissionCompleteModal = () => {
+    if (nowDate !== null && nowDate >= 0 && nowDate < s.stampImages.length) {
+      const selectedImage = s.stampImages[nowDate];
+      setModalContent(
+        <s.Container>
+          <s.ShowStampEffect/>
+          <s.ShowStamp src={selectedImage} alt="Selected Stamp" />
+        </s.Container>
+      );
+      setMissionCompleteModalOpen(true);
+    } else {
+      console.error("Invalid date for stamp");
+    }
+  };
+  
 
   return (
     <s.Container>
@@ -168,6 +194,18 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         </s.MissionCompletedButton>
       </s.CenteredWrapper>
     </Modal>
+
+       {/* 미션 완료하기 버튼을 누르고 나서 뜨는 모달창 */}
+      <Modal isOpen={isMissionCompleteModalOpen} onClose={() => setMissionCompleteModalOpen(false)}>
+        <s.CenteredWrapper>
+          <s.TextsStyle>오늘의 우표를 획득했어요!</s.TextsStyle>
+          {modalContent} {/* 여기에 이미지를 표시 */}
+          <s.ModalButton onClick={handleCloseModal}>
+            확인
+          </s.ModalButton>
+        </s.CenteredWrapper>
+      </Modal>
+
     </s.Container>
   );
 };

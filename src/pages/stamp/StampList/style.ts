@@ -35,6 +35,7 @@ import modalButton from '../../../assets/button/button-midium-1.png';
 import modalButtonAfterClick from '../../../assets/button/button-midium-2.png'; 
 import MissionButtonImage from '../../../assets/button/missionButton2.png';
 import MissionCompletedButtonDisabledImage from '../../../assets/button/button-midium-disabled.png';
+import SparkleEffect from '../../../assets/sparkle/sparkleEffect.gif';
 
 const stampImages = [
   Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
@@ -178,6 +179,19 @@ const BackButton = styled.button`
   float: right;
 `;
 
+const ShowStamp = styled.img`
+
+  width: 90px;
+  height: 90px; 
+`;
+
+const ShowStampEffect = styled.img`
+  background: url(${SparkleEffect}) no-repeat center center; // 이미지를 배경으로 사용
+
+  width: 120px;
+  height: 120px;
+`;
+
 export const s = {
     ButtonWrapper,
     TextsStyle,
@@ -191,5 +205,7 @@ export const s = {
     ModalButton,
     BackButton,
     MissionText,
-    MissionCompletedButton
+    MissionCompletedButton,
+    ShowStamp,
+    ShowStampEffect
 }
