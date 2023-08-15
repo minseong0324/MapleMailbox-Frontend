@@ -13,7 +13,7 @@ import LettersRead from '../LettersRead/LettersRead';
 const userId = localStorage.getItem("userId");
 const accessToken = localStorage.getItem("accessToken");
 
-const LettersList: React.FC = () => {
+function LettersList() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
@@ -133,6 +133,6 @@ const LettersList: React.FC = () => {
       </Modal>
     </s.Container>
   );
-};
+}
 
 export default LettersList;

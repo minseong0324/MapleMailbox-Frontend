@@ -77,7 +77,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const handleOpenMissionModal = async () => {
     setMissionModalOpen(true);
     try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`, {
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/todayMission`, {
         headers: {
           'Authorization': `${accessToken}`
         }
