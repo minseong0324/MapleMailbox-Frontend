@@ -88,7 +88,7 @@ function VisitorHome() {
         setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
         setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
-        setNowDate(userInfo?.nowDate);
+        setNowDate(userInfo?.nowDate); 
         setLettersOverFive(userInfo?.lettersOverFive);
       }
     };

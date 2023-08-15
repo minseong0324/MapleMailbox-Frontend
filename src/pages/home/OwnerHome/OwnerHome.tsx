@@ -269,8 +269,8 @@ function OwnerHome() {
                 </s.P>
             </Modal>
 
-            <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)}>
-              <StampList/>
+            <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)} >
+              <StampList nowDate={nowDate} />
             </Modal>
 
       </s.CenteredWrapper>
