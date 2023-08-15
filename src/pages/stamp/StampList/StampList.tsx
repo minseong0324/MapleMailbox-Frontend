@@ -159,12 +159,13 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           <MissionText nowDate={nowDate} />
         </s.MissionText>
         {/* 미션이 완료되지 않았다면 버튼을 비활성화합니다. */}
-        <s.ModalButton 
+        <s.MissionCompletedButton 
           onClick={missionComplete ? handleMissionComplete : undefined}
           disabled={!missionComplete}
+          isActive={!!missionComplete}
         >
           미션 완료하기!
-        </s.ModalButton>
+        </s.MissionCompletedButton>
       </s.CenteredWrapper>
     </Modal>
     </s.Container>

@@ -33,7 +33,8 @@ import Stamp30 from '../../../assets/stamp/mail_squ.png';
 
 import modalButton from '../../../assets/button/button-midium-1.png'; 
 import modalButtonAfterClick from '../../../assets/button/button-midium-2.png'; 
-import MissionButtonImage from '../../../assets/button/missionButton2.png'
+import MissionButtonImage from '../../../assets/button/missionButton2.png';
+import MissionCompletedButtonDisabledImage from '../../../assets/button/button-midium-disabled.png';
 
 const stampImages = [
   Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
@@ -121,6 +122,26 @@ const CenteredWrapper = styled.div`
   margin-top: 50px;
 `;
 
+interface MissionCompletedButtonProps {
+  isActive: boolean;
+}
+
+const MissionCompletedButton = styled.button<MissionCompletedButtonProps>`
+  font-family: 'DOSSaemmul';
+  width: 170px; // 버튼 너비를 조정
+  height: 40px; // 버튼 높이를 조정
+  padding: 10px; // 내부 패딩을 조정
+  background: url(${props => props.isActive ? modalButton : MissionCompletedButtonDisabledImage}) no-repeat center center;
+  background-size: cover; // 이미지가 버튼에 맞게 조절
+  color: black;
+  border-radius: 15px;
+  font-size: 17px; 
+  border: 0px transparent; // 테두리 색상을 투명
+  position: relative;
+  z-index: 5;
+  margin-top: 50px;
+`;
+
 const ModalButton = styled.button`
   font-family: 'DOSSaemmul';
   width: 170px; // 버튼 너비를 조정
@@ -169,5 +190,6 @@ export const s = {
     CenteredWrapper,
     ModalButton,
     BackButton,
-    MissionText
+    MissionText,
+    MissionCompletedButton
 }
