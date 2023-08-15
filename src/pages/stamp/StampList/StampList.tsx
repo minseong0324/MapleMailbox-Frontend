@@ -4,6 +4,7 @@ import axios from 'axios';
 import StampDetail from '../StampDetail/StampDetail';
 import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
+import MissionText from '../../../components/MissionText/MissionText';
 
 
 // 우표의 활성화 상태를 정의하는 타입입니다.
@@ -154,7 +155,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       <s.BackButton onClick={handleCloseMissionModal}>닫기</s.BackButton>
       <s.CenteredWrapper>
         <s.TextsStyle>오늘의 미션!</s.TextsStyle>
-        <s.TextsStyle>어쩌고</s.TextsStyle>
+        <s.MissionText>
+          <MissionText nowDate={nowDate} />
+        </s.MissionText>
         {/* 미션이 완료되지 않았다면 버튼을 비활성화합니다. */}
         <s.ModalButton 
           onClick={missionComplete ? handleMissionComplete : undefined}
