@@ -5,6 +5,7 @@ import StampDetail from '../StampDetail/StampDetail';
 import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
 
+
 // 우표의 활성화 상태를 정의하는 타입입니다.
 type StampStatus = {
   status: boolean; // 우표 활성화, 비활성화
@@ -120,7 +121,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           <s.TextsStyle>모으는</s.TextsStyle>
           <s.TextsStyle>우표 컬렉션</s.TextsStyle>
         </s.TextWrapper>
-        <s.MissionButton onClick={handleOpenMissionModal}>미션</s.MissionButton>
+        <s.MissionButton onClick={handleOpenMissionModal}/>
       </s.ButtonTextWrapper>
       
       <s.ButtonWrapper>

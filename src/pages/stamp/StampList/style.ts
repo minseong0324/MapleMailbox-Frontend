@@ -33,6 +33,7 @@ import Stamp30 from '../../../assets/stamp/mail_squ.png';
 
 import modalButton from '../../../assets/button/button-midium-1.png'; 
 import modalButtonAfterClick from '../../../assets/button/button-midium-2.png'; 
+import MissionButtonImage from '../../../assets/button/missionButton2.png'
 
 const stampImages = [
   Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
@@ -58,6 +59,7 @@ const MissionButton = styled.button`
   height: 40px;
   cursor: pointer;
   font-size: 12px;
+  background: url(${MissionButtonImage}) no-repeat center center; // 이미지를 배경으로 사용
 `;
 
 const ButtonTextWrapper = styled.div`
