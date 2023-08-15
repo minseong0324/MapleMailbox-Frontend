@@ -230,7 +230,7 @@ function OwnerHome() {
 
   return (
     <>
-        {isMenuOpen && <Menu nowDate={1} onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
+        {isMenuOpen && <Menu nowDate={nowDate} onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
         <s.CenteredWrapper>
             <s.TextsStyle>
               <s.H3>가을을 기다리며,</s.H3>
