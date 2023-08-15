@@ -7,10 +7,37 @@ import Stamp5 from '../../../assets/stamp/squirrel_squ-big.png';
 import Stamp6 from '../../../assets/stamp/teddybear_squ-big.png';
 import Stamp7 from '../../../assets/stamp/mailbox_squ-big.png';
 import Stamp8 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp9 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp10 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp11 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp12 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp13 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp14 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp15 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp16 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp17 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp18 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp19 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp20 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp21 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp22 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp23 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp24 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp25 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp26 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp27 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp28 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp29 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp30 from '../../../assets/stamp/mail_squ-big.png';
+//일단 테스트 해야해서 mail_squ-big으로 통일시켜둠. 우표 이미지 만들 때마다 수정해야함.
 
 
-
-const stampImages = [Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8]
+const stampImages = [
+  Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
+  Stamp9, Stamp10, Stamp11, Stamp12, Stamp13, Stamp14, Stamp15,
+  Stamp16, Stamp17, Stamp18, Stamp19, Stamp20, Stamp21, Stamp22,
+  Stamp23, Stamp24, Stamp25, Stamp26, Stamp27, Stamp28, Stamp29, Stamp30
+];
 
 // 뒤로가기 버튼을 스타일링합니다.
 const BackButton = styled.button`
@@ -19,7 +46,7 @@ const BackButton = styled.button`
   border:2px; 
   border-style:hidden;
   border-radius: 30%;
-  font-size: 15px; 
+  font-size: 15px;
   width: 45px;
   height: 25px;
   color: black;
