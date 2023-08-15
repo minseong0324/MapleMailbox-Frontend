@@ -26,7 +26,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => {
     console.log(isOpen); // 상태 업데이트 확인
   }, [isOpen]);
 
-  //탈퇴하기 버튼 함수
+  //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
         const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {
