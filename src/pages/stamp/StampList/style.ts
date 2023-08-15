@@ -54,7 +54,8 @@ const ButtonWrapper = styled.div`
 const MissionButton = styled.button`
   margin-left: 10px;  // 버튼과 텍스트 사이의 간격을 조절
   border: none;
-  padding: 5px 10px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   font-size: 12px;
 `;
@@ -72,6 +73,17 @@ padding-bottom: 10px;
 `;
 
 
+const MissionText = styled.div`
+font-family: 'DOSSaemmul';
+display: flex;
+flex-direction: column;
+//align-items: center;
+//line-height: 0.2;  // 글자 간격
+font-size: 17px; 
+text-align: center;
+margin-top: 100px;
+`;
+
 const TextsStyle = styled.div`
 font-family: 'DOSSaemmul';
 display: flex;
@@ -81,7 +93,6 @@ flex-direction: column;
 font-size: 17px; 
 text-align: center;
 `;
-
 type StampButtonProps = {
     stampImage: string;
 };
@@ -135,7 +146,7 @@ const BackButton = styled.button`
   border:2px; 
   border-style:hidden;
   border-radius: 30%;
-  font-size: 15px; 
+  font-size: 15px;
   width: 45px;
   height: 25px;
   color: black;
@@ -155,5 +166,6 @@ export const s = {
     ButtonTextWrapper,
     CenteredWrapper,
     ModalButton,
-    BackButton
+    BackButton,
+    MissionText
 }

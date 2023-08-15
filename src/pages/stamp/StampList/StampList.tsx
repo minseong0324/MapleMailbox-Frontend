@@ -25,7 +25,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [isMissionModalOpen, setMissionModalOpen] = useState(false);
-  const [isMissionSuccessModalOpen, setMissionSuccessModalOpen] = useState(false);
+  const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false);
+  const [missionComplete, setMissionComplete] = useState<boolean | null>(null);
+
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
@@ -51,9 +53,15 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     setIsOpen(true);
   };
 
-  // 미션 모달창 여는 함수
-  const handleOpenMissionModal = () => {
+    // 미션 모달을 열 때, 미션의 완료 여부를 가져옵니다.
+  const handleOpenMissionModal = async () => {
     setMissionModalOpen(true);
+    try {
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`);
+      setMissionComplete(response.data.missionComplete);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
    // 미션 모달창 닫는 함수
@@ -64,6 +72,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   // 미션 완료하기 버튼 누르고 나서 api 호출 함수
   const handleMissionComplete = () => {
     setMissionModalOpen(false);
+    setMissionComplete(true);  // 버튼을 클릭한 후 미션을 완료로 가정합니다.
   };
 
 
@@ -110,15 +119,21 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         {modalContent}
       </Modal>
 
-      {/* 오늘의 미션을 보여주는 모달입니다. */}
-      <Modal isOpen={isMissionModalOpen} onClose={() => setMissionModalOpen(false)}>
-        <s.BackButton onClick={handleCloseMissionModal}>닫기</s.BackButton>
-        <s.CenteredWrapper>
-            <s.TextsStyle>오늘의 미션!</s.TextsStyle>
-            <s.TextsStyle>어쩌고</s.TextsStyle>
-            <s.ModalButton onClick={handleMissionComplete}>미션 완료하기!</s.ModalButton>
-          </s.CenteredWrapper>
-      </Modal>
+       {/* 오늘의 미션을 보여주는 모달 */}
+    <Modal isOpen={isMissionModalOpen} onClose={() => setMissionModalOpen(false)}>
+      <s.BackButton onClick={handleCloseMissionModal}>닫기</s.BackButton>
+      <s.CenteredWrapper>
+        <s.TextsStyle>오늘의 미션!</s.TextsStyle>
+        <s.TextsStyle>어쩌고</s.TextsStyle>
+        {/* 미션이 완료되지 않았다면 버튼을 비활성화합니다. */}
+        <s.ModalButton 
+          onClick={missionComplete ? handleMissionComplete : undefined}
+          disabled={!missionComplete}
+        >
+          미션 완료하기!
+        </s.ModalButton>
+      </s.CenteredWrapper>
+    </Modal>
     </s.Container>
   );
 };
