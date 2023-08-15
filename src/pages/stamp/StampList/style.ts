@@ -31,6 +31,8 @@ import Stamp29 from '../../../assets/stamp/mail_squ.png';
 import Stamp30 from '../../../assets/stamp/mail_squ.png';
 //일단 테스트 해야해서 mail_squ로 통일시켜둠. 우표 이미지 만들 때마다 수정해야함.
 
+import modalButton from '../../../assets/button/button-midium-1.png'; 
+import modalButtonAfterClick from '../../../assets/button/button-midium-2.png'; 
 
 const stampImages = [
   Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
@@ -47,6 +49,21 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+`;
+
+const MissionButton = styled.button`
+  margin-left: 10px;  // 버튼과 텍스트 사이의 간격을 조절
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+`;
+
+const ButtonTextWrapper = styled.div`
+  display: flex;  
+  align-items: center;  
+  justify-content: center;
+  margin-left: 50px;
 `;
 
 const TextWrapper = styled.div`
@@ -81,11 +98,62 @@ const StampButton = styled.button<StampButtonProps>`
   margin: 4px;
 `;
 
+const CenteredWrapper = styled.div`
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  margin-top: 50px;
+`;
+
+const ModalButton = styled.button`
+  font-family: 'DOSSaemmul';
+  width: 170px; // 버튼 너비를 조정
+  height: 40px; // 버튼 높이를 조정
+  padding: 10px; // 내부 패딩을 조정
+  background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
+  background-size: cover; // 이미지가 버튼에 맞게 조절
+  color: black;
+  border-radius: 15px;
+  font-size: 17px; 
+  border: 0px transparent; // 테두리 색상을 투명
+  position: relative;
+  z-index: 5;
+  &:active { // 버튼이 눌렸을 때의 스타일
+    background: url(${modalButtonAfterClick}) no-repeat center center; // 눌렸을 때의 배경 이미지
+    background-size: cover; // 이미지가 버튼에 맞게 조절
+  }
+  margin-top: 50px;
+`;
+
+// 뒤로가기 버튼을 스타일링합니다.
+const BackButton = styled.button`
+  font-family: 'DOSSaemmul';
+  background-color: #FFE5CC;
+  border:2px; 
+  border-style:hidden;
+  border-radius: 30%;
+  font-size: 15px; 
+  width: 45px;
+  height: 25px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+`;
+
 export const s = {
     ButtonWrapper,
     TextsStyle,
     StampButton,
     TextWrapper,
     Container,
-    stampImages
+    stampImages,
+    MissionButton,
+    ButtonTextWrapper,
+    CenteredWrapper,
+    ModalButton,
+    BackButton
 }

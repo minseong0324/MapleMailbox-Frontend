@@ -24,6 +24,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [stampsStatus, setStampsStatus] = useState<StampStatus[]>(initialStampsStatus);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+  const [isMissionModalOpen, setMissionModalOpen] = useState(false);
+  const [isMissionSuccessModalOpen, setMissionSuccessModalOpen] = useState(false);
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
@@ -49,6 +51,22 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     setIsOpen(true);
   };
 
+  // 미션 모달창 여는 함수
+  const handleOpenMissionModal = () => {
+    setMissionModalOpen(true);
+  };
+
+   // 미션 모달창 닫는 함수
+   const handleCloseMissionModal = () => {
+    setMissionModalOpen(false);
+  };
+
+  // 미션 완료하기 버튼 누르고 나서 api 호출 함수
+  const handleMissionComplete = () => {
+    setMissionModalOpen(false);
+  };
+
+
   // 모달을 닫는 함수입니다.
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -58,12 +76,15 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   return (
     <s.Container>
-      <s.TextWrapper>
-        <s.TextsStyle>매일 하나씩</s.TextsStyle>
-        <s.TextsStyle>모으는</s.TextsStyle>
-        <s.TextsStyle>우표 컬렉션</s.TextsStyle>
-      </s.TextWrapper>
-    
+      <s.ButtonTextWrapper>
+        <s.TextWrapper>
+          <s.TextsStyle>매일 하나씩</s.TextsStyle>
+          <s.TextsStyle>모으는</s.TextsStyle>
+          <s.TextsStyle>우표 컬렉션</s.TextsStyle>
+        </s.TextWrapper>
+        <s.MissionButton onClick={handleOpenMissionModal}>미션</s.MissionButton>
+      </s.ButtonTextWrapper>
+      
       <s.ButtonWrapper>
         {/* 각 우표 이미지를 매핑하여 버튼으로 표시합니다. */}
         {s.stampImages.map((image, index) => (
@@ -87,6 +108,16 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       {/* 우표 상세 정보를 보여주는 모달입니다. */}
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         {modalContent}
+      </Modal>
+
+      {/* 오늘의 미션을 보여주는 모달입니다. */}
+      <Modal isOpen={isMissionModalOpen} onClose={() => setMissionModalOpen(false)}>
+        <s.BackButton onClick={handleCloseMissionModal}>닫기</s.BackButton>
+        <s.CenteredWrapper>
+            <s.TextsStyle>오늘의 미션!</s.TextsStyle>
+            <s.TextsStyle>어쩌고</s.TextsStyle>
+            <s.ModalButton onClick={handleMissionComplete}>미션 완료하기!</s.ModalButton>
+          </s.CenteredWrapper>
       </Modal>
     </s.Container>
   );
