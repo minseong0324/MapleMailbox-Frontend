@@ -80,6 +80,10 @@ function VisitorHome() {
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
+  const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
+
+
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -106,6 +110,11 @@ function VisitorHome() {
     fetchImages();
   }, []);
 
+  //로그인 상태 확인을 위함.
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    setIsLoggedIn(accessToken !== null);  // accessToken의 값에 따라 로그인 상태를 설정
+  }, []);  // 컴포넌트가 마운트될 때만 실행
 
   // 나무의 성장 단계에 따라 이미지를 가져오는 함수입니다.
   const getTreeImageByGrowthStage = useCallback(async (treeType: string | null, stage: number) => {
@@ -160,37 +169,42 @@ function VisitorHome() {
 
   // 편지를 보내는 함수입니다.
 const handleSendLetter = async (event: React.FormEvent) => {
-  event.preventDefault();
+  if (isLoggedIn === true) {
+    setSendModalOpen(true)
+    event.preventDefault();
 
-  // 입력값을 검사합니다.
-  if (!senderName.trim() || !letterContent.trim()) {
-    // 이름이나 편지 내용이 비어있으면 경고 메시지를 표시하고 함수를 종료합니다.
-    alert('글귀를 적어주세요!');
-    return;
-  }
+    // 입력값을 검사합니다.
+    if (!senderName.trim() || !letterContent.trim()) {
+      // 이름이나 편지 내용이 비어있으면 경고 메시지를 표시하고 함수를 종료합니다.
+      alert('글귀를 적어주세요!');
+      return;
+    }
 
-  // 백엔드로 보낼 데이터를 정의합니다.
-  const letterData = {
-    senderName,
-    letterContent,
-  };
+    // 백엔드로 보낼 데이터를 정의합니다.
+    const letterData = {
+      senderName,
+      letterContent,
+    };
 
-  try {
-    // 백엔드로 편지 데이터를 보냅니다.
-    // 엔드포인트 맞춰야 함
-    await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
-    // 입력 필드를 초기화합니다.
-    setSenderName('');
-    setLetterContent('');
+    try {
+      // 백엔드로 편지 데이터를 보냅니다.
+      // 엔드포인트 맞춰야 함
+      await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      // 입력 필드를 초기화합니다.
+      setSenderName('');
+      setLetterContent('');
 
-    // 모달을 닫습니다.
-    setSendModalOpen(false);
-  } catch (error) {
-    console.error('네트워크 문제로 편지를 보내는 데에 실패했습니다.', error);
+      // 모달을 닫습니다.
+      setSendModalOpen(false);
+    } catch (error) {
+      console.error('네트워크 문제로 편지를 보내는 데에 실패했습니다.', error);
+    }
+  } else { //로그인 상태가 아닐 때
+    setShowLoginAlertModal(true);
   }
 };
 
@@ -215,8 +229,17 @@ const handleSendLetter = async (event: React.FormEvent) => {
 
   // 내 나무 보러가기 버튼 클릭 후 자신의 홈으로 이동하기 위한 함수
   const handleShareLink = () => {
-    navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+    if (isLoggedIn === true) {
+      navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+    } else {
+      setShowLoginAlertModal(true);
+    }
   };
+
+  const handleCloseAlertModal = () => {
+    setShowLoginAlertModal(false);
+    navigate('/');
+};
 
   return (
     <>
@@ -240,7 +263,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
       </s.TreeImageWrapper>
       <s.ButtonWrapper>
       <s.Break/>
-      <s.Button onClick={() => setSendModalOpen(true)}>단풍잎 물들이기</s.Button>
+      <s.Button onClick={handleSendLetter}>단풍잎 물들이기</s.Button>
       <s.Break/> 
       <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
       </s.ButtonWrapper>
@@ -270,13 +293,22 @@ const handleSendLetter = async (event: React.FormEvent) => {
       </Modal>
       
       <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-                <s.H3>가을을 기다리며, 단풍우편함</s.H3>
-                <s.P>
-                하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-                <s.Break/>
-                어쩌구 저쩌구
-                </s.P>
-            </Modal>
+        <s.H3>가을을 기다리며, 단풍우편함</s.H3>
+        <s.P>
+          하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
+          <s.Break/>
+          어쩌구 저쩌구
+        </s.P>
+      </Modal>
+
+      <Modal isOpen={showLoginAlertModal} onClose={() => setShowLoginAlertModal(false)}>
+        <s.ModalCenterWrapper>
+          <s.TextsStyle>로그인을 하셔야 </s.TextsStyle>
+          <s.TextsStyle>이용가능해요!</s.TextsStyle>
+          <s.ModalButton onClick={handleCloseAlertModal}>확인</s.ModalButton>
+        </s.ModalCenterWrapper>
+        
+      </Modal>
     </s.CenteredWrapper>
     </>
   );

@@ -198,7 +198,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
        {/* 미션 완료하기 버튼을 누르고 나서 뜨는 모달창 */}
       <Modal isOpen={isMissionCompleteModalOpen} onClose={() => setMissionCompleteModalOpen(false)}>
         <s.CenteredWrapper>
-          <s.TextsStyle>오늘의 우표를 획득했어요!</s.TextsStyle>
+          <s.TextsStyle>오늘의 우표를</s.TextsStyle>
+          <s.TextsStyle>획득했어요!</s.TextsStyle>
           {modalContent} {/* 여기에 이미지를 표시 */}
           <s.ModalButton onClick={handleCloseModal}>
             확인
