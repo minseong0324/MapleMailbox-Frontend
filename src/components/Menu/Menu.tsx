@@ -7,24 +7,63 @@ import Modal from '../../components/Modal/Modal';
 interface MenuProps {
   onLogout: () => void;
   onServiceDescription: () => void;
+  nowDate: number | null;
+
 }
 
 const accessToken = localStorage.getItem("accessToken");
 const userId = localStorage.getItem("userId");
 
-const Menu: React.FC<MenuProps> = ({ onServiceDescription }) => { 
+const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => { 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [menuButtonClickedCount, setMenuButtonClickedCount] = useState(0);
   const navigate = useNavigate(); // useNavigate hook 사용
 
-  const handleMenuToggle = () => {
+
+  const handleMenuToggle = async () => {
     setIsOpen(prev => !prev);
-    console.log(isOpen); // 상태 업데이트 확인
-    
+    if (nowDate === 1 && menuButtonClickedCount === 0) {
+      setMenuButtonClickedCount(prevCount => prevCount + 1);
+    }
   };
+  
   useEffect(() => {
-    console.log(isOpen); // 상태 업데이트 확인
-  }, [isOpen]);
+    console.log(menuButtonClickedCount);
+    (async () => { // 즉시 실행 함수 표현식
+        if (nowDate === 1 && menuButtonClickedCount === 1) {
+            // 조건에 맞을 때 서버에 PUT 요청 보내기
+            try {
+                const response = await axios.put(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`, {
+                    menuButtonClicked: true
+                }, {
+                    headers: {
+                        'Authorization': `${accessToken}`
+                    }
+                });
+                if (response.status === 200) {
+                    alert("메뉴버튼 클릭 미션 성공. 이는 테스트용이므로 지울 것임.")
+                }
+            } catch (error: unknown) { //에러 일 경우
+              if (error instanceof AxiosError) {
+                const status = error?.response?.status;
+                console.error('Failed to fetch user info:', error);
+                if (status === 404) {
+                  // 리소스를 찾을 수 없음
+                } else if (status === 500) {
+                    // 서버 내부 오류
+                } else {
+                    // 기타 상태 코드 처리
+                }
+              } 
+              return null;
+            }
+        }
+    })(); // 마지막의 괄호 ()는 즉시 실행을 의미합니다.
+}, [menuButtonClickedCount, nowDate]); // 의존성 배열에 nowDate를 추가했습니다.
+
+
+  
 
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
