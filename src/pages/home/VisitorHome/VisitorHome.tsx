@@ -224,12 +224,22 @@ const handleSendLetter = async (event: React.FormEvent) => {
 
   // 이름을 작성하는 함수입니다.
   const writeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSenderName(e.target.value)
+    const value = e.target.value;
+
+    // senderName의 길이가 10자를 넘지 않는 경우에만 상태 업데이트
+    if (value.length <= 10) {
+      setSenderName(value);
+    }
   }
 
   // 편지를 작성하는 함수입니다.
   const writeLetter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setLetterContent(e.target.value)
+    const value = e.target.value;
+
+    // letterContent의 길이가 200자를 넘지 않는 경우에만 상태 업데이트
+    if (value.length <= 200) {
+      setLetterContent(value);
+    }
   }
 
   // 페이지 이동을 위한 함수입니다.
@@ -291,11 +301,13 @@ const handleSendLetter = async (event: React.FormEvent) => {
             value={senderName}
             onChange={writeName}
           />
+          <s.CheckTextLength>{senderName.length}/10</s.CheckTextLength>
           <s.LetterArea
             placeholder="전하고 싶은 말을 쓰세요."
             value={letterContent}
             onChange={writeLetter}
           />
+          <s.CheckTextLength>{letterContent.length}/200</s.CheckTextLength>
           <s.SendButton 
           type="submit"
           >

@@ -91,6 +91,16 @@ const SendButton = styled.button`
   padding-top: 30px;
 `;
 
+const CheckTextLength = styled.div`
+margin-top: -20px;
+font-family: 'DOSSaemmul';
+display: flex;
+flex-direction: column;
+color: #666 !important;
+align-self: flex-end;   // 이 부분을 추가
+line-height: 0.2;  // 글자 간격
+`;
+
 
 const ModalCenterWrapper = styled.div`
   position: relative; 
@@ -190,7 +200,7 @@ height: 250px;
 border: none; // 모든 테두리를 제거합니다.
 color: #222;
 overflow: auto;
-margin-bottom: 40px;
+margin-bottom: 20px;
 resize: none;
 background-color: #fff8f0;
 `;
@@ -226,5 +236,6 @@ export const s = {
     Break,
     Form,
     ButtonWrapper,
-    ModalButton
+    ModalButton,
+    CheckTextLength
 }
