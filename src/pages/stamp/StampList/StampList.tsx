@@ -15,8 +15,8 @@ interface NowDateProps {
   nowDate: number | null;
 }
 
-// 사용자의 ID를 로컬 스토리지에서 가져옵니다.
-const userId = localStorage.getItem("userId")
+const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem("accessToken");
 
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -31,13 +31,17 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`);
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
+    if (response.status === 200) {
       if (nowDate !== null) {
         setStampsStatus(response.data.stampsStatus);
       }
-    } catch (error) {
-      console.error(error);
+    } else { //에러일 경우 
+      console.error("Failed to update mission complete status.");
     }
   }, [nowDate]);
 
@@ -56,11 +60,15 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     // 미션 모달을 열 때, 미션의 완료 여부를 가져옵니다.
   const handleOpenMissionModal = async () => {
     setMissionModalOpen(true);
-    try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`);
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/${nowDate}`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
+    if (response.status === 200) {
       setMissionComplete(response.data.missionComplete);
-    } catch (error) {
-      console.error(error);
+    } else { //에러일 경우 
+        console.error("Failed to update mission complete status.");
     }
   };
 
@@ -72,13 +80,21 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   // 미션 완료하기 버튼 누르면 작동되는 함수
   const handleMissionComplete = async () => {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
-      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`, {
+      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
         missionCompleteButtonClick: true
+      }, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
       });
       // PUT 요청이 성공적으로 완료되었는지 확인
       if (putResponse.status === 200) {
         // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
-        const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`);
+        const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
         setStampsStatus(getResponse.data.stampsStatus);
   
         setMissionModalOpen(false);
