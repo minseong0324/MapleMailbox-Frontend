@@ -13,6 +13,7 @@ const accessToken = localStorage.getItem('accessToken');
 const OwnerUserId = localStorage.getItem('userId');
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   if (!userId) {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
