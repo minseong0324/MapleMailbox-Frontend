@@ -78,6 +78,7 @@ function VisitorHome() {
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
+  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 5개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
@@ -99,7 +100,7 @@ function VisitorHome() {
       }
     };
     fetchUserInfo();
-  }, [userId]);
+  }, [userId, lettersOverFive, reloadUserInfo]);
 
   // 컴포넌트가 마운트될 때 이미지를 가져옵니다.
   useEffect(() => {
@@ -219,12 +220,13 @@ const handleSendLetter = async (event: React.FormEvent) => {
         // 입력 필드를 초기화합니다.
         setSenderName('');
         setLetterContent('');
-        if (userId !== undefined) {
-          getUserInfoFromServer(userId);
-      }
+
+        setReloadUserInfo(prevState => !prevState);  // 상태를 반대로 토글합니다.
+
         // 모달을 닫습니다.
         setSendModalOpen(false);
       }
+      
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;

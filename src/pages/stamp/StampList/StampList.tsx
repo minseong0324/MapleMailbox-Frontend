@@ -16,9 +16,8 @@ type StampStatus = {
 interface NowDateProps {
   nowDate: number | null;
 }
-
 const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -34,6 +33,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
+
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
         headers: {
@@ -41,9 +43,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         }
       });
       if (response.status === 200) {
-        if (nowDate !== null) {
+
           setStampsStatus(response.data.stampsStatus);
-        }
+        
       } 
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
@@ -59,12 +61,12 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       } 
       return null;
     }
-  }, [nowDate]);
+  }, []);
 
   // 컴포넌트가 마운트될 때 우표 상태를 가져옵니다.
   useEffect(() => {
       fetchStampStatus();
-    }, [fetchStampStatus]);
+    }, []);
 
   // 모달을 열고 해당 우표의 상세 정보를 보여주는 함수입니다.
   const handleOpenModal = (index: number) => {

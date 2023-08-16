@@ -123,22 +123,22 @@ const accessToken = localStorage.getItem('accessToken');
 
   
   useEffect(() => {
-   
-  const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
+    
     const fetchUserInfo = async () => {
-      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다. //로그인 안하고 테스트할 땐 주석 처리하고 해야함
+      if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
         //const userInfo = testUserInfo; // 테스트용 데이터 사용
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
-        setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
+        setUserName(userInfo?.userName);
         setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
   
     fetchUserInfo();
-  }, [userId]);
+  }, [userId, lettersOverFive]);
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.

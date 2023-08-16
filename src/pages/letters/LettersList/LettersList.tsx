@@ -13,7 +13,7 @@ const userId = localStorage.getItem("userId");
 const accessToken = localStorage.getItem("accessToken");
 
 function LettersList() {
-  const [selectedDate, setSelectedDate] = useState<number | null>(0);
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
   // 테스트용 코드
@@ -21,13 +21,15 @@ function LettersList() {
   //const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
 
   // 출시할 때 사용하는 코드
-  const [nowDate, setNowDate] = useState<number | null>(0);
+  const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   
   const [treeType, setTreeType] = useState<string>('Maple Tree');
 
     // 사용자 데이터를 가져옵니다.
     const fetchUserData = async () => {
+      const userId = localStorage.getItem("userId");
+      const accessToken = localStorage.getItem("accessToken");
       try {
         const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
           headers: {
@@ -58,16 +60,8 @@ function LettersList() {
 
   useEffect(() => {
     fetchUserData();
+    console.log("fetchUserData load")
   }, []);
-
-  // 새로고침 안하고 바로 실시간 반영을 위한 useEffect
-  // 모달이 닫힐 때 사용자 데이터를 다시 가져옵니다.
-  // 이렇게 하면 사용자가 편지를 5개 이상 받았을 때 실시간으로 데이터를 업데이트할 수 있습니다.
-  useEffect(() => {
-    if (!isOpen) {
-      fetchUserData();
-    }
-  }, [isOpen]); // isOpen 의존성을 추가합니다.
 
   const handleOpenModal = (selectedDate: number) => {
     setSelectedDate(selectedDate); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
@@ -101,7 +95,7 @@ function LettersList() {
           let isButtonActive = false;
           if (nowDate !== null && date < nowDate) {
             isButtonActive = true;
-          } else if (nowDate !== null && date === nowDate && lettersOverFive[nowDate] === true) {
+          } else if (nowDate !== null && date === nowDate && lettersOverFive[nowDate-1] === true) {
             isButtonActive = true;
           }
 
