@@ -60,6 +60,15 @@ function LettersList() {
     fetchUserData();
   }, []);
 
+  // 새로고침 안하고 바로 실시간 반영을 위한 useEffect
+  // 모달이 닫힐 때 사용자 데이터를 다시 가져옵니다.
+  // 이렇게 하면 사용자가 편지를 5개 이상 받았을 때 실시간으로 데이터를 업데이트할 수 있습니다.
+  useEffect(() => {
+    if (!isOpen) {
+      fetchUserData();
+    }
+  }, [isOpen]); // isOpen 의존성을 추가합니다.
+
   const handleOpenModal = (selectedDate: number) => {
     setSelectedDate(selectedDate); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
     setModalContent(<LettersRead selectedDate={selectedDate} onClose={handleCloseModal} />); // 모달의 내용을 설정합니다.

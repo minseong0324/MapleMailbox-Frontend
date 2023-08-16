@@ -30,19 +30,18 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-        const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {
-            headers: {
-                'Authorization': `${accessToken}`
-            }
-    });
+      const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {}, {
+          headers: {
+              'authorization': `${accessToken}`
+          }
+      });
         // 추가: response가 정의되어 있고 data가 있는지 확인
         if(response.status === 200) {
             // User has been deactivated, handle this (e.g. log out)
             setLogoutModalOpen(false);
             localStorage.clear();
-            window.location.reload(); // 페이지 새로고침
-            navigate('/')
         } 
+        navigate('/')
         
     
     } catch (error: unknown) { //에러 일 경우
@@ -61,7 +60,7 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
     } 
     return null;
   }
-
+  
   //로그아웃 하기 모달창 열기 함수
   const handleSubmitLeaveModalOpen = () => { 
     setLogoutModalOpen(true);

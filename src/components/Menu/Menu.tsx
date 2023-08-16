@@ -11,25 +11,34 @@ interface MenuProps {
 
 }
 
-const accessToken = localStorage.getItem("accessToken");
-const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem('accessToken');
+const userId = localStorage.getItem('userId');
 
 const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => { 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
-  const [menuButtonClickedCount, setMenuButtonClickedCount] = useState(0);
+  const initialCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
+  const [menuButtonClickedCount, setMenuButtonClickedCount] = useState(
+    initialCount ? parseInt(initialCount) : 0
+  );
   const navigate = useNavigate(); // useNavigate hook 사용
 
+  console.log(menuButtonClickedCount);
+  console.log(nowDate);
 
   const handleMenuToggle = async () => {
     setIsOpen(prev => !prev);
-    if (nowDate === 1 && menuButtonClickedCount === 0) {
-      setMenuButtonClickedCount(prevCount => prevCount + 1);
+    if (nowDate === 1 ) {
+      if(menuButtonClickedCount === 0 || menuButtonClickedCount === 1) {
+        setMenuButtonClickedCount(prevCount => prevCount + 1);
+      }
     }
   };
   
   useEffect(() => {
     console.log(menuButtonClickedCount);
+    localStorage.setItem(`menuButtonClickedCount_${userId}`, menuButtonClickedCount.toString());
+
     (async () => { // 즉시 실행 함수 표현식
         if (nowDate === 1 && menuButtonClickedCount === 1) {
             // 조건에 맞을 때 서버에 PUT 요청 보내기
@@ -38,7 +47,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
                     menuButtonClicked: true
                 }, {
                     headers: {
-                        'Authorization': `${accessToken}`
+                        'authorization': `${accessToken}`
                     }
                 });
                 if (response.status === 200) {
@@ -62,25 +71,21 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
     })(); // 마지막의 괄호 ()는 즉시 실행을 의미합니다.
 }, [menuButtonClickedCount, nowDate]); // 의존성 배열에 nowDate를 추가했습니다.
 
-
-  
-
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-        const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {
-            headers: {
-                'Authorization': `${accessToken}`
-            }
-    });
+      const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {}, {
+          headers: {
+              'authorization': `${accessToken}`
+          }
+      });
         // 추가: response가 정의되어 있고 data가 있는지 확인
         if(response.status === 200) {
             // User has been deactivated, handle this (e.g. log out)
             setLogoutModalOpen(false);
             localStorage.clear();
-            window.location.reload(); // 페이지 새로고침
-            navigate('/')
         } 
+        navigate('/')
         
     
     } catch (error: unknown) { //에러 일 경우

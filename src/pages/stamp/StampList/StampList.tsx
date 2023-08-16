@@ -113,7 +113,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     //handleOpenMissionCompleteModal(); //테스트용
     try {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
-      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
+      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions/todayMission`,{
         missionCompleteButtonClick: true
       }, {
         headers: {
@@ -180,7 +180,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
   const handleOpenMissionCompleteModal = () => {
     if (nowDate !== null && nowDate >= 0 && nowDate < s.stampImages.length) {
-      const selectedImage = s.stampImages[nowDate];
+      const selectedImage = s.stampImages[nowDate-1];
       setModalContent(
         <s.ShowStampWrapper>
           <s.ShowStampEffect/>

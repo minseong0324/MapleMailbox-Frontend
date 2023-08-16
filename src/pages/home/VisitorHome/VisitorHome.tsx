@@ -83,6 +83,7 @@ function VisitorHome() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
   const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
 
+  
 
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {
@@ -137,7 +138,7 @@ function VisitorHome() {
  useEffect(() => {
   if (nowDate !== null && typeof nowDate === 'number') { 
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-  if (lettersOverFive[nowDate] === true) {
+  if (lettersOverFive[nowDate-1] === true) {
     setTreeGrowthStage(prevStage => {
       const newStage = prevStage + 1;
       getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -150,6 +151,25 @@ function VisitorHome() {
   }
 }
 }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
+
+// useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
+useEffect(() => {
+  const loadInitialImages = async () => {
+    const imagePromises: Promise<string | null>[] = [];
+    
+    for (let i = 0; i < treeGrowthStage; i++) {
+      imagePromises.push(getTreeImageByGrowthStage(treeType, i));
+    }
+
+    // Promise.all을 사용하여 모든 프로미스를 해결합니다.
+    const resolvedImages = await Promise.all(imagePromises);
+
+    // null 값들을 필터링하고 상태를 설정합니다.
+    setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
+  };
+
+  loadInitialImages();
+}, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
 
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -189,7 +209,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`http://localhost:8080/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`http://localhost:8080/api/users/${userId}/letters`, letterData, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -198,7 +218,9 @@ const handleSendLetter = async (event: React.FormEvent) => {
         // 입력 필드를 초기화합니다.
         setSenderName('');
         setLetterContent('');
-
+        if (userId !== undefined) {
+          getUserInfoFromServer(userId);
+      }
         // 모달을 닫습니다.
         setSendModalOpen(false);
       }

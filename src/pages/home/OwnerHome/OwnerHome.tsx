@@ -119,6 +119,8 @@ function OwnerHome() {
     lettersOverFive: [false, false, true, true, false, true] // 3일, 4일, 6일에 5개 이상의 편지가 옴
   };
   */
+
+  
   useEffect(() => {
     const fetchUserInfo = async () => {
       if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다. //로그인 안하고 테스트할 땐 주석 처리하고 해야함
@@ -181,7 +183,7 @@ function OwnerHome() {
   useEffect(() => {
     if (nowDate !== null) {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (lettersOverFive[nowDate] === true) {
+    if (lettersOverFive[nowDate-1] === true) {
       setTreeGrowthStage(prevStage => {
         const newStage = prevStage + 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -194,6 +196,27 @@ function OwnerHome() {
     }
   }
   }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
+
+  // useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
+  useEffect(() => {
+    const loadInitialImages = async () => {
+      const imagePromises: Promise<string | null>[] = [];
+      
+      for (let i = 0; i < treeGrowthStage; i++) {
+        imagePromises.push(getTreeImageByGrowthStage(treeType, i));
+      }
+  
+      // Promise.all을 사용하여 모든 프로미스를 해결합니다.
+      const resolvedImages = await Promise.all(imagePromises);
+  
+      // null 값들을 필터링하고 상태를 설정합니다.
+      setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
+    };
+  
+    loadInitialImages();
+  }, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
+  
+  
   
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -249,7 +272,7 @@ function OwnerHome() {
               <s.TreeFragmentImg
                 key={index}
                 src={image}
-                alt={`Tree at stage ${index + 1}`}
+                alt={`Tree at stage ${index}`}
               />
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
