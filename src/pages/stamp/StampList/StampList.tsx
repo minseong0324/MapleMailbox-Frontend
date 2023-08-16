@@ -16,9 +16,8 @@ type StampStatus = {
 interface NowDateProps {
   nowDate: number | null;
 }
-
 const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -34,16 +33,19 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
+
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if (response.status === 200) {
-        if (nowDate !== null) {
+
           setStampsStatus(response.data.stampsStatus);
-        }
+        
       } 
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
@@ -59,12 +61,12 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       } 
       return null;
     }
-  }, [nowDate]);
+  }, []);
 
   // 컴포넌트가 마운트될 때 우표 상태를 가져옵니다.
   useEffect(() => {
       fetchStampStatus();
-    }, [fetchStampStatus]);
+    }, []);
 
   // 모달을 열고 해당 우표의 상세 정보를 보여주는 함수입니다.
   const handleOpenModal = (index: number) => {
@@ -79,7 +81,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/todayMission`, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if (response.status === 200) {
@@ -113,11 +115,11 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     //handleOpenMissionCompleteModal(); //테스트용
     try {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
-      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions`,{
+      const putResponse = await axios.put(`http://localhost:8080/api/users/${userId}/missions/todayMission`,{
         missionCompleteButtonClick: true
       }, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       // PUT 요청이 성공적으로 완료되었는지 확인
@@ -126,7 +128,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
           const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
             headers: {
-              'Authorization': `${accessToken}`
+              'authorization': `${accessToken}`
             }
           });
           if(getResponse.status===200) {
@@ -180,7 +182,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
   const handleOpenMissionCompleteModal = () => {
     if (nowDate !== null && nowDate >= 0 && nowDate < s.stampImages.length) {
-      const selectedImage = s.stampImages[nowDate];
+      const selectedImage = s.stampImages[nowDate-1];
       setModalContent(
         <s.ShowStampWrapper>
           <s.ShowStampEffect/>
@@ -207,7 +209,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       
       <s.ButtonWrapper>
         {/* 각 우표 이미지를 매핑하여 버튼으로 표시합니다. */}
-        {s.stampImages.map((image, index) => (
+        {(s.stampImages || []).map((image, index) => (
           <s.StampButton 
             key={index} 
             onClick={() => {

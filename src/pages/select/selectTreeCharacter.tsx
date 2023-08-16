@@ -3,7 +3,6 @@ import { s } from './style';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios, {AxiosError} from 'axios'; // axios 라이브러리를 가져옵니다.
-import { setTree, setCharacter } from './selectedTreeCharacterSlice';
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
 import { Carousel } from 'react-responsive-carousel';
@@ -45,12 +44,13 @@ function SelectTreeCharacter() {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
       const response = await axios.put(`http://localhost:8080/api/users/${userId}`, selectedData, {
         headers: {
-          'Authorization': `${accessToken}` // accessToken을 헤더에 추가
+          'authorization': `${accessToken}` // accessToken을 헤더에 추가
         }
       });
       if(response.status===200) {
         console.log('Success:', response.data);
-        navigate('/Ownerhome');
+        // navigate('/Ownerhome'); //프론트 자체 테스트용
+        navigate(`/home/${userId}`, { replace: true });
         //어차피 자신의 홈으로 이동되면서 다시 유저의 정보들이 요청될 것이므로 따로 받아와야하는 값은 없다.
       }
     }catch (error: unknown) { //에러 일 경우
@@ -68,7 +68,7 @@ function SelectTreeCharacter() {
       return null;
     }
     // 홈으로 이동
-    navigate('/Ownerhome'); //에러처리 다 하면 이건 지워도 될 듯
+    //navigate(`/home/${userId}`, { replace: true }); //에러처리 다 하면 이건 지워도 될 듯
 }
 
   const characterData = [

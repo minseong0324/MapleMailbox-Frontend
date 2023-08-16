@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector} from 'react-redux';
 import useScroll from 'src/hooks/useScroll/useScroll';
-import { RootState } from '../../../app/store';
 import MenuBeforeLogin from '../../../components/MenuBeforeLogin/MenuBeforeLogin';
 import Modal from '../../../components/Modal/Modal';
 import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
@@ -12,7 +11,6 @@ import GinkgoCharImg from '../../../assets/charImg/ginkgo-small.png';
 
 
 function HomeBeforeLogin() {
-  const treeState = useSelector((state: RootState) => state.autumnTree.treeState);
   const [isMenuOpen, setMenuOpen] = useState(true); 
   const [isServiceModalOpen, setServiceModalOpen] = useState(false);
   const navigate = useNavigate(); // useNavigate hook 사용

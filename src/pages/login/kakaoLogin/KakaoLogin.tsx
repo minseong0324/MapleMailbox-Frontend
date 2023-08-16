@@ -7,8 +7,8 @@ interface KakaoProps {
 
 const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
     const CLIENT_ID = `${import.meta.env.VITE_APP_KAKAO_CLIENT_ID}`;
-    const REDIRECT_URI = `${import.meta.env.VITE_APP_KAKAO_REDIRECT_URL}`;
-    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
+    const REDIRECT_URL = `${import.meta.env.VITE_APP_KAKAO_REDIRECT_URL}`;
+    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`
 
     // 이미지 클릭 시 카카오 로그인 페이지로 이동
     const handleClick = () => {

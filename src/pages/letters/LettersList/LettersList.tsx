@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../app/store';
 import Modal from '../../../components/Modal/Modal';
 import axios, {AxiosError} from 'axios';
 import MapleLeaf from '../../../assets/leafImg/MapleLeaf.png';
@@ -23,17 +22,18 @@ function LettersList() {
 
   // 출시할 때 사용하는 코드
   const [nowDate, setNowDate] = useState<number | null>(null);
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   
-  const selectedTreeCharacter = useSelector((state: RootState) => state.selectedTreeCharacter);
-  const [treeType, setTreeType] = useState(selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree');
+  const [treeType, setTreeType] = useState<string>('Maple Tree');
 
     // 사용자 데이터를 가져옵니다.
     const fetchUserData = async () => {
+      const userId = localStorage.getItem("userId");
+      const accessToken = localStorage.getItem("accessToken");
       try {
         const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
           headers: {
-            'Authorization': `${accessToken}`
+            'authorization': `${accessToken}`
           }
         });
         if(response.status===200) {
@@ -60,6 +60,7 @@ function LettersList() {
 
   useEffect(() => {
     fetchUserData();
+    console.log("fetchUserData load")
   }, []);
 
   const handleOpenModal = (selectedDate: number) => {
@@ -94,7 +95,7 @@ function LettersList() {
           let isButtonActive = false;
           if (nowDate !== null && date < nowDate) {
             isButtonActive = true;
-          } else if (nowDate !== null && date === nowDate && lettersOverFive[nowDate] === true) {
+          } else if (nowDate !== null && date === nowDate && lettersOverFive[nowDate-1] === true) {
             isButtonActive = true;
           }
 

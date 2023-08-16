@@ -24,7 +24,7 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       }); // 서버에서 편지 정보를 가져옵니다.
       if(response.status===200) {

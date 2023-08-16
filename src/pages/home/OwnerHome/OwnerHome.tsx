@@ -10,10 +10,9 @@ import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
 
-const accessToken = localStorage.getItem('accessToken');
-
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   if (!userId) {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
@@ -28,9 +27,9 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
       headers: {
-        'Authorization': `${accessToken}`
+        'authorization': `${accessToken}`
       }
     });
     if(response.status===200) {
@@ -80,11 +79,11 @@ function OwnerHome() {
   const [isStampModalOpen, setStampModalOpen] = useState(false); // 스탬프 모달 상태 변수 추가
 
   //사용자의 이름을 저장하는 상태변수입니다.
-  const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
+  const [userName, setUserName] = useState<string>('김단풍'); // 기본 이름 설정
 
   //사용자의 나무, 캐릭터 종류를 저장하는 상태변수입니다.
-  const [treeType, setTreeType] = useState(null);
-  const [characterType, setCharacterType] = useState(null);
+  const [treeType, setTreeType] = useState<string | null>(null);
+  const [characterType, setCharacterType] = useState<string | null>(null);
 
   // 나무가 물들어가는 이미지를 저장하는 상태변수입니다.
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
@@ -93,10 +92,10 @@ function OwnerHome() {
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
 
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 
   // 나무의 성장 단계를 저장하는 상태 변수입니다.
-  const [treeGrowthStage, setTreeGrowthStage] = useState(0);
+  const [treeGrowthStage, setTreeGrowthStage] = useState<number>(0);
 
   // 링크가 복사되었는지 여부를 저장하는 상태입니다.
   const [isLinkCopied, setIsLinkCopied] = useState(false);
@@ -104,29 +103,42 @@ function OwnerHome() {
   // D-day를 계산하는 상태 변수입니다.
   const [dday, setDday] = useState<number | null>(null);
   
-  
-
   // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
-  const [nowDate, setNowDate] = useState<number | null>(null);
+  const [nowDate, setNowDate] = useState<number | null>(0);
 
+  //const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
 
-  const { userId } = useParams<{ userId: string }>();
+const accessToken = localStorage.getItem('accessToken');
+  const userId = localStorage.getItem("userId");
+
+  /* //테스트용 데이터
+  const testUserInfo = {
+    treeType: 'Maple Tree',
+    characterType: 'Maple Character',
+    userName: '테스트 단풍',
+    nowDate: 5, 
+    lettersOverFive: [false, false, true, true, false, true] // 3일, 4일, 6일에 5개 이상의 편지가 옴
+  };
+  */
+
   
-
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    
     const fetchUserInfo = async () => {
-      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
+      if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
+        //const userInfo = testUserInfo; // 테스트용 데이터 사용
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
-        setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
+        setUserName(userInfo?.userName);
         setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
   
     fetchUserInfo();
-  }, [userId]);
+  }, [userId, lettersOverFive]);
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
@@ -154,13 +166,11 @@ function OwnerHome() {
 
   }, [nowDate]);
   
-  
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
   const getTreeImageByGrowthStage = useCallback(async (treeType: string | null, stage: number) => {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       if (!treeType) {
         return null; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
-      // return mapleTreeImages[22]; // 테스트용입니다. initial tree위에 잘 얹어지는거 확인.
       }
       switch (treeType) {
         case 'Maple Tree':
@@ -176,7 +186,7 @@ function OwnerHome() {
   useEffect(() => {
     if (nowDate !== null) {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (lettersOverFive[nowDate] === true) {
+    if (lettersOverFive[nowDate-1] === true) {
       setTreeGrowthStage(prevStage => {
         const newStage = prevStage + 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -189,6 +199,27 @@ function OwnerHome() {
     }
   }
   }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
+
+  // useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
+  useEffect(() => {
+    const loadInitialImages = async () => {
+      const imagePromises: Promise<string | null>[] = [];
+      
+      for (let i = 0; i < treeGrowthStage; i++) {
+        imagePromises.push(getTreeImageByGrowthStage(treeType, i));
+      }
+  
+      // Promise.all을 사용하여 모든 프로미스를 해결합니다.
+      const resolvedImages = await Promise.all(imagePromises);
+  
+      // null 값들을 필터링하고 상태를 설정합니다.
+      setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
+    };
+  
+    loadInitialImages();
+  }, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
+  
+  
   
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -244,7 +275,7 @@ function OwnerHome() {
               <s.TreeFragmentImg
                 key={index}
                 src={image}
-                alt={`Tree at stage ${index + 1}`}
+                alt={`Tree at stage ${index}`}
               />
             ))} 
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>

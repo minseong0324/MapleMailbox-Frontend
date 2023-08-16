@@ -26,7 +26,7 @@ function SignUp() {
 
       // 회원가입 API 요청
       try {
-        const response = await axios.post(`http://localhost:8080/auth/signup/self`, {
+        const response = await axios.post(`http://localhost:8080/api/auth/signup/self`, {
           userName,
           email,
           password,

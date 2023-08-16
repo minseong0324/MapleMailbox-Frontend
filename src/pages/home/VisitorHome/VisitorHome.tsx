@@ -10,9 +10,10 @@ import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 
 const accessToken = localStorage.getItem('accessToken');
-
+const OwnerUserId = localStorage.getItem('userId');
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   if (!userId) {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
@@ -27,9 +28,9 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        'authorization': `${accessToken}`
       }
     });
 
@@ -75,14 +76,16 @@ function VisitorHome() {
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
+  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 5개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
   const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
 
+  
 
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {
@@ -97,7 +100,7 @@ function VisitorHome() {
       }
     };
     fetchUserInfo();
-  }, [userId]);
+  }, [userId, lettersOverFive, reloadUserInfo]);
 
   // 컴포넌트가 마운트될 때 이미지를 가져옵니다.
   useEffect(() => {
@@ -137,7 +140,7 @@ function VisitorHome() {
  useEffect(() => {
   if (nowDate !== null && typeof nowDate === 'number') { 
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-  if (lettersOverFive[nowDate] === true) {
+  if (lettersOverFive[nowDate-1] === true) {
     setTreeGrowthStage(prevStage => {
       const newStage = prevStage + 1;
       getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -150,6 +153,25 @@ function VisitorHome() {
   }
 }
 }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
+
+// useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
+useEffect(() => {
+  const loadInitialImages = async () => {
+    const imagePromises: Promise<string | null>[] = [];
+    
+    for (let i = 0; i < treeGrowthStage; i++) {
+      imagePromises.push(getTreeImageByGrowthStage(treeType, i));
+    }
+
+    // Promise.all을 사용하여 모든 프로미스를 해결합니다.
+    const resolvedImages = await Promise.all(imagePromises);
+
+    // null 값들을 필터링하고 상태를 설정합니다.
+    setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
+  };
+
+  loadInitialImages();
+}, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
 
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -189,9 +211,9 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`http://localhost:8080/api/users/${userId}/letters`, letterData, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if(response.status===200) {
@@ -199,9 +221,13 @@ const handleSendLetter = async (event: React.FormEvent) => {
         setSenderName('');
         setLetterContent('');
 
+
         // 모달을 닫습니다.
         setSendModalOpen(false);
       }
+      setReloadUserInfo(prevState => !prevState);  // 상태를 반대로 토글합니다.
+
+      
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
@@ -253,7 +279,8 @@ const handleSendLetter = async (event: React.FormEvent) => {
   // 내 나무 보러가기 버튼 클릭 후 자신의 홈으로 이동하기 위한 함수
   const handleShareLink = () => {
     if (isLoggedIn === true) {
-      navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+      //navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+      navigate(`/home/${OwnerUserId}`, { replace: true });
     } else {
       setShowLoginAlertModal(true);
     }
