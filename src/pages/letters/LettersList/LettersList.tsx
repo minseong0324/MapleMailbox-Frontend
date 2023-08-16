@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../app/store';
 import Modal from '../../../components/Modal/Modal';
 import axios, {AxiosError} from 'axios';
 import MapleLeaf from '../../../assets/leafImg/MapleLeaf.png';
@@ -25,8 +24,7 @@ function LettersList() {
   const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
   
-  const selectedTreeCharacter = useSelector((state: RootState) => state.selectedTreeCharacter);
-  const [treeType, setTreeType] = useState(selectedTreeCharacter ? selectedTreeCharacter.tree : 'Maple Tree');
+  const [treeType, setTreeType] = useState<string>('Maple Tree');
 
     // 사용자 데이터를 가져옵니다.
     const fetchUserData = async () => {
