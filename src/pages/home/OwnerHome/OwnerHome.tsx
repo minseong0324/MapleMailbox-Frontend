@@ -10,10 +10,9 @@ import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
 
-const accessToken = localStorage.getItem('accessToken');
-
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   if (!userId) {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
@@ -108,6 +107,8 @@ function OwnerHome() {
   const [nowDate, setNowDate] = useState<number | null>(0);
 
   //const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
+
+const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem("userId");
 
   /* //테스트용 데이터
@@ -122,6 +123,8 @@ function OwnerHome() {
 
   
   useEffect(() => {
+   
+  const userId = localStorage.getItem("userId");
     const fetchUserInfo = async () => {
       if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다. //로그인 안하고 테스트할 땐 주석 처리하고 해야함
         const userInfo = await getUserInfoFromServer(userId);
