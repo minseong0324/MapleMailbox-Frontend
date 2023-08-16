@@ -49,7 +49,6 @@ function NaverCallback() {
               // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
               navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
             }
-
           }
       )
       .catch((error) => {
