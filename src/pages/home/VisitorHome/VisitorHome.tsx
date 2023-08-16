@@ -221,11 +221,12 @@ const handleSendLetter = async (event: React.FormEvent) => {
         setSenderName('');
         setLetterContent('');
 
-        setReloadUserInfo(prevState => !prevState);  // 상태를 반대로 토글합니다.
 
         // 모달을 닫습니다.
         setSendModalOpen(false);
       }
+      setReloadUserInfo(prevState => !prevState);  // 상태를 반대로 토글합니다.
+
       
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
