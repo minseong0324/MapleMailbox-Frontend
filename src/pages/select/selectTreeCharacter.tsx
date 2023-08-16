@@ -3,7 +3,6 @@ import { s } from './style';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios, {AxiosError} from 'axios'; // axios 라이브러리를 가져옵니다.
-import { setTree, setCharacter } from './selectedTreeCharacterSlice';
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
 import { Carousel } from 'react-responsive-carousel';

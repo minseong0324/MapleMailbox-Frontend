@@ -83,8 +83,8 @@ function OwnerHome() {
   const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
 
   //사용자의 나무, 캐릭터 종류를 저장하는 상태변수입니다.
-  const [treeType, setTreeType] = useState(null);
-  const [characterType, setCharacterType] = useState(null);
+  const [treeType, setTreeType] = useState<string | null>(null);
+  const [characterType, setCharacterType] = useState<string | null>(null);
 
   // 나무가 물들어가는 이미지를 저장하는 상태변수입니다.
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
@@ -104,19 +104,25 @@ function OwnerHome() {
   // D-day를 계산하는 상태 변수입니다.
   const [dday, setDday] = useState<number | null>(null);
   
-  
-
   // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
   const [nowDate, setNowDate] = useState<number | null>(null);
 
-
   const { userId } = useParams<{ userId: string }>();
-  
 
+  /* //테스트용 데이터
+  const testUserInfo = {
+    treeType: 'Maple Tree',
+    characterType: 'Maple Character',
+    userName: '테스트 단풍',
+    nowDate: 5, 
+    lettersOverFive: [false, false, true, true, false, true] // 3일, 4일, 6일에 5개 이상의 편지가 옴
+  };
+  */
   useEffect(() => {
     const fetchUserInfo = async () => {
-      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다.
+      if (userId) { // userId가 undefined가 아닐 때만 API 호출을 실행합니다. //로그인 안하고 테스트할 땐 주석 처리하고 해야함
         const userInfo = await getUserInfoFromServer(userId);
+        //const userInfo = testUserInfo; // 테스트용 데이터 사용
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
         setUserName(userInfo?.userName); // Use userInfo?.userName or set default '김단풍'
@@ -154,13 +160,11 @@ function OwnerHome() {
 
   }, [nowDate]);
   
-  
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
   const getTreeImageByGrowthStage = useCallback(async (treeType: string | null, stage: number) => {
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       if (!treeType) {
         return null; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
-      // return mapleTreeImages[22]; // 테스트용입니다. initial tree위에 잘 얹어지는거 확인.
       }
       switch (treeType) {
         case 'Maple Tree':
