@@ -138,7 +138,7 @@ const accessToken = localStorage.getItem('accessToken');
     };
   
     fetchUserInfo();
-  }, [userId, lettersOverFive]);
+  }, [userId]);
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
