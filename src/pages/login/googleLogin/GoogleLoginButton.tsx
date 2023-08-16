@@ -36,23 +36,38 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
         if (userResponse.status === 200) {
           localStorage.setItem("userId", userResponse.data.userId);
           //localStorage.setItem('email', userResponse.data.email);
-          localStorage.setItem('name', userResponse.data.userName);
-          
-          navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+          localStorage.setItem('userName', userResponse.data.userName);
+
+         // navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
         } 
-      }
-    } catch (error: unknown) { //에러 일 경우
+        const userId = localStorage.getItem('userId')
+        const returnUrl = localStorage.getItem('returnUrl');
+
+        if (returnUrl) {
+          // 저장된 URL로 리다이렉트합니다.
+          navigate(returnUrl);
+          localStorage.removeItem('returnUrl'); // 사용 후 저장된 URL을 삭제합니다.
+        } else {
+          // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
+          navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+        }
+        
+      } 
+    }catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
         if (status === 404) {
           // 리소스를 찾을 수 없음
+          alert('에러')
           navigate('/login');
         } else if (status === 500) {
             // 서버 내부 오류
+            alert('에러')
             navigate('/login');
         } else {
             // 기타 상태 코드 처리
+            alert('에러')
             navigate('/login');
         }
       } 

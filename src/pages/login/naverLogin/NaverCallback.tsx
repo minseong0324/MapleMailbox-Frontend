@@ -38,7 +38,20 @@ function NaverCallback() {
             navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
           } 
         } 
-      })
+        const userId = localStorage.getItem('userId')
+            const returnUrl = localStorage.getItem('returnUrl');
+
+            if (returnUrl) {
+              // 저장된 URL로 리다이렉트합니다.
+              navigate(returnUrl);
+              localStorage.removeItem('returnUrl'); // 사용 후 저장된 URL을 삭제합니다.
+            } else {
+              // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
+              navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+            }
+
+          }
+      )
       .catch((error) => {
         const status = error.response.status;
         if (status === 404) {
