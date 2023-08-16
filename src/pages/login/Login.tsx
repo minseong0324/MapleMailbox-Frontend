@@ -27,24 +27,28 @@ function Login() {
   // 요청이 성공하면 성공 메시지를 보여주고, 실패하면 오류 메시지를 보여줍니다.
   // 요청이 성공하면 토큰을 로컬 스토리지에 저장합니다.
   const loginMutation = useMutation(async (credentials: LoginCredentials) => {
-    const response = await axios.post(`http://localhost:8080/auth/login/self`, credentials);
+    const response = await axios.post(`http://localhost:8080/api/auth/login/self`, credentials);
     return response; // return whole response object, not just data
   }, {
     onSuccess: async (response) => {
       console.log(response.headers); 
       // your token processing code here
-      const accessToken = response.headers['Authorization']; 
-      const refreshToken = response.headers['Reauthorization'];
+      const accessToken = response.headers['authorization']; 
+      const refreshToken = response.headers['reauthorization'];
       
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
+
+      console.log(accessToken);
+      console.log(refreshToken);
+
       try{
         if (response.status === 200) {
           // 로그인 성공 시 GET 요청을 수행
           try {
             const userResponse = await axios.get(`http://localhost:8080/api/users`, {
               headers: {
-                'Authorization': `Bearer ${response.headers['Authorization']}`  // 토큰을 헤더에 포함시키기 위함
+                'authorization': `${accessToken}` 
               }
             });
             
@@ -57,7 +61,8 @@ function Login() {
               //localStorage.setItem("user_email", email);
               localStorage.setItem("userName", userName);
               alert("로그인에 성공했습니다!");
-              navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
+              //navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
+              navigate(`/home/${userId}`, { replace: true });
             }
           } catch (error: unknown) { //에러 일 경우
             console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);
@@ -130,9 +135,9 @@ function Login() {
         });
 
         if (response.status === 200) {
-          const accessToken = response.headers['Authorization'];
+          const accessToken = response.headers['authorization'];
           localStorage.setItem('accessToken', accessToken);
-          const refreshToken = response.headers['Reauthorization'];
+          const refreshToken = response.headers['reauthorization'];
           localStorage.setItem('refreshToken', refreshToken);
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.

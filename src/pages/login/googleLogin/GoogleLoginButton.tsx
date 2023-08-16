@@ -24,13 +24,20 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
       });
 
       if (response.status === 200) {
-        const userResponse = await axios.get(`http://localhost:8080/api/users`);
+          localStorage.setItem('accessToken', response.headers.accessToken);
+          localStorage.setItem('refreshToken', response.headers.refreshToken);
+          const accessToken = localStorage.getItem('accessToken');
+          
+        const userResponse = await axios.get(`http://localhost:8080/api/users`, {
+          headers: {
+            'authorization': `${accessToken}` 
+          }
+        });
         if (userResponse.status === 200) {
           localStorage.setItem("userId", userResponse.data.userId);
           //localStorage.setItem('email', userResponse.data.email);
           localStorage.setItem('name', userResponse.data.userName);
-          localStorage.setItem('accessToken', userResponse.headers.accessToken);
-          localStorage.setItem('refreshToken', userResponse.headers.refreshToken);
+          
           navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
         } 
       }

@@ -13,7 +13,7 @@ const userId = localStorage.getItem("userId");
 const accessToken = localStorage.getItem("accessToken");
 
 function LettersList() {
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const [selectedDate, setSelectedDate] = useState<number | null>(0);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
   // 테스트용 코드
@@ -21,8 +21,8 @@ function LettersList() {
   //const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
 
   // 출시할 때 사용하는 코드
-  const [nowDate, setNowDate] = useState<number | null>(null);
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [nowDate, setNowDate] = useState<number | null>(0);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   
   const [treeType, setTreeType] = useState<string>('Maple Tree');
 
@@ -31,7 +31,7 @@ function LettersList() {
       try {
         const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
           headers: {
-            'Authorization': `${accessToken}`
+            'authorization': `${accessToken}`
           }
         });
         if(response.status===200) {

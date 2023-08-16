@@ -55,7 +55,7 @@ function MyPage() {
         try {
             const response = await axios.delete(`http://localhost:8080/api/auth/leave/${userId}`, {
                 headers: {
-                    'Authorization': `${accessToken}`
+                    'authorization': `${accessToken}`
                 }
         });
             // 추가: response가 정의되어 있고 data가 있는지 확인
@@ -86,12 +86,12 @@ function MyPage() {
         } 
         return null;
     }
-
+    
 
     return (
         <s.Wrapper>
-            {/*<BackButton to={`/home/${userId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
-            <BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
+            <BackButton to={`/home/${userId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
+            {/*<BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
             <s.CenteredWrapper>
             <s.TitleTextStyle>{userName}의 마이페이지</s.TitleTextStyle>
             <s.ButtonWrapper>

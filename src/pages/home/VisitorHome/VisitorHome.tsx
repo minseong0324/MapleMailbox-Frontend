@@ -10,7 +10,7 @@ import MapleCharacter from '../../../assets/charImg/maple-small.png';
 import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 
 const accessToken = localStorage.getItem('accessToken');
-
+const OwnerUserId = localStorage.getItem('userId');
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   if (!userId) {
@@ -27,9 +27,9 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        'authorization': `${accessToken}`
       }
     });
 
@@ -75,7 +75,7 @@ function VisitorHome() {
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
@@ -189,9 +189,9 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`https://localhost:8080/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`http://localhost:8080/users/${userId}/letters`, letterData, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if(response.status===200) {
@@ -253,7 +253,8 @@ const handleSendLetter = async (event: React.FormEvent) => {
   // 내 나무 보러가기 버튼 클릭 후 자신의 홈으로 이동하기 위한 함수
   const handleShareLink = () => {
     if (isLoggedIn === true) {
-      navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+      //navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
+      navigate(`/home/${OwnerUserId}`, { replace: true });
     } else {
       setShowLoginAlertModal(true);
     }

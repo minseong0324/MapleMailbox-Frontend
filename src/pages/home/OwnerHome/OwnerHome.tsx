@@ -28,9 +28,9 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://localhost:8080/api/users/${userId}`, {
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
       headers: {
-        'Authorization': `${accessToken}`
+        'authorization': `${accessToken}`
       }
     });
     if(response.status===200) {
@@ -80,7 +80,7 @@ function OwnerHome() {
   const [isStampModalOpen, setStampModalOpen] = useState(false); // 스탬프 모달 상태 변수 추가
 
   //사용자의 이름을 저장하는 상태변수입니다.
-  const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
+  const [userName, setUserName] = useState<string>('김단풍'); // 기본 이름 설정
 
   //사용자의 나무, 캐릭터 종류를 저장하는 상태변수입니다.
   const [treeType, setTreeType] = useState<string | null>(null);
@@ -93,10 +93,10 @@ function OwnerHome() {
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
 
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([]);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 
   // 나무의 성장 단계를 저장하는 상태 변수입니다.
-  const [treeGrowthStage, setTreeGrowthStage] = useState(0);
+  const [treeGrowthStage, setTreeGrowthStage] = useState<number>(0);
 
   // 링크가 복사되었는지 여부를 저장하는 상태입니다.
   const [isLinkCopied, setIsLinkCopied] = useState(false);
@@ -105,9 +105,10 @@ function OwnerHome() {
   const [dday, setDday] = useState<number | null>(null);
   
   // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
-  const [nowDate, setNowDate] = useState<number | null>(null);
+  const [nowDate, setNowDate] = useState<number | null>(0);
 
-  const { userId } = useParams<{ userId: string }>();
+  //const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
+  const userId = localStorage.getItem("userId");
 
   /* //테스트용 데이터
   const testUserInfo = {

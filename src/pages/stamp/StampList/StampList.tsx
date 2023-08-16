@@ -37,7 +37,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if (response.status === 200) {
@@ -79,7 +79,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/todayMission`, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       if (response.status === 200) {
@@ -117,7 +117,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         missionCompleteButtonClick: true
       }, {
         headers: {
-          'Authorization': `${accessToken}`
+          'authorization': `${accessToken}`
         }
       });
       // PUT 요청이 성공적으로 완료되었는지 확인
@@ -126,7 +126,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
           const getResponse = await axios.get(`http://localhost:8080/api/users/${userId}/missions`, {
             headers: {
-              'Authorization': `${accessToken}`
+              'authorization': `${accessToken}`
             }
           });
           if(getResponse.status===200) {
@@ -207,7 +207,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       
       <s.ButtonWrapper>
         {/* 각 우표 이미지를 매핑하여 버튼으로 표시합니다. */}
-        {s.stampImages.map((image, index) => (
+        {(s.stampImages || []).map((image, index) => (
           <s.StampButton 
             key={index} 
             onClick={() => {
