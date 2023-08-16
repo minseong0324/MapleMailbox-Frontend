@@ -64,7 +64,16 @@ function Login() {
               //navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
             }
             const userId = localStorage.getItem('userId')
-            navigate(`/home/${userId}`, { replace: true });
+            const returnUrl = localStorage.getItem('returnUrl');
+
+            if (returnUrl) {
+              // 저장된 URL로 리다이렉트합니다.
+              navigate(returnUrl);
+              localStorage.removeItem('returnUrl'); // 사용 후 저장된 URL을 삭제합니다.
+            } else {
+              // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
+              navigate(`/home/${userId}`);
+            }
 
           } catch (error: unknown) { //에러 일 경우
             console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);

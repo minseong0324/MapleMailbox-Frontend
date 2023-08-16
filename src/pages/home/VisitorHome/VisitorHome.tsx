@@ -288,6 +288,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
 
   const handleCloseAlertModal = () => {
     setShowLoginAlertModal(false);
+    localStorage.setItem('returnUrl', window.location.pathname); //다른 사람의 홈에 방문했지만 로그인이 안된 사람들을 위해서 로컬스토리지에 저장
     navigate('/');
 };
 
