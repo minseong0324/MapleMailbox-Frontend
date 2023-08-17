@@ -13,10 +13,11 @@ type Props = {
   onClose: () => void; // 뒤로가기 버튼을 클릭했을 때 호출될 함수를 props로 받습니다.
 };
 
-const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
+
 
 const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
+  const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem("accessToken");
   const [letters, setLetters] = useState<Letter[]>([]); // 선택된 날짜의 편지들을 저장할 상태입니다.
 
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
@@ -29,6 +30,10 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
       }); // 서버에서 편지 정보를 가져옵니다.
       if(response.status===200) {
         setLetters(response.data); // 가져온 편지 정보를 상태에 저장합니다.
+        console.log("lettersRead에서 편지 목록")
+        console.log(response.data)
+        console.log("lettersRead에서 편지 목록--")
+
       }
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {

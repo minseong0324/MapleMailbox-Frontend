@@ -17,8 +17,7 @@ import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 
-const accessToken = localStorage.getItem('accessToken');
-const OwnerUserId = localStorage.getItem('userId');
+
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -72,6 +71,8 @@ const importImages = async (prefix: string, count: number) => {
 };
 
 function VisitorHome() {
+  const accessToken = localStorage.getItem('accessToken');
+const OwnerUserId = localStorage.getItem('userId');
   // 상태를 관리하는 useState 훅을 사용합니다.
   const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
   const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태

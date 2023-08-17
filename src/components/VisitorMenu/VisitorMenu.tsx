@@ -9,10 +9,11 @@ interface MenuProps {
   onServiceDescription: () => void;
 }
 
-const accessToken = localStorage.getItem("accessToken");
-const userId = localStorage.getItem("userId");
+
 
 const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => { 
+  const accessToken = localStorage.getItem("accessToken");
+const userId = localStorage.getItem("userId");
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);  // 로그인 상태를 저장하는 state 추가
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);

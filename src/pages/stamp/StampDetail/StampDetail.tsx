@@ -11,7 +11,7 @@ const StampDetail: React.FC<Props> = ({ index, onClose }) => {
       <s.StampWrapper>
             <s.BackButton onClick={onClose}>닫기</s.BackButton>
             <s.StampImage
-                stampImage={s.stampImages[29-index]}>
+                stampImage={s.stampImages[index]}>
             </s.StampImage>
       </s.StampWrapper>
     )

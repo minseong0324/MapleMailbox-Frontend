@@ -66,7 +66,7 @@ const TextsStyle = styled.div`
 const ImageButton = styled.button<ImageButtonProps>`
 cursor: pointer;
 border: ${props => props.selected ? '2px dotted rgba(255, 187, 0, 0.5)' : 'none'};
-border-radius: 15px; // 이 속성을 통해 모서리를 둥글게 만듭니다. 
+border-radius: 50px; // 이 속성을 통해 모서리를 둥글게 만듭니다. 
 background-image: url(${props => props.src});
 background-size: cover;
 background-color: transparent;

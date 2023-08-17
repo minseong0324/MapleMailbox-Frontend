@@ -9,10 +9,11 @@ import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png'
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 
-const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
+
 
 function LettersList() {
+  const userId = localStorage.getItem("userId");
+const accessToken = localStorage.getItem("accessToken");
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
