@@ -6,8 +6,16 @@ import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
 import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
-import MapleCharacter from '../../../assets/charImg/maple-small.png';
-import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
+import MapleCharImg from "../../../assets/charImg/maple-small.png";
+import GinkgoCharImg from "../../../assets/charImg/ginkgo-small.png";
+import BlackCharImg from "../../../assets/charImg/black-small.png";
+import BlueCharImg from "../../../assets/charImg/blue-small.png";
+import BrownCharImg from "../../../assets/charImg/brown-small.png";
+import GrayCharImg from "../../../assets/charImg/gray-small.png";
+import PurpleCharImg from "../../../assets/charImg/purple-small.png";
+import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
+import VioletCharImg from "../../../assets/charImg/violet-small.png";
+import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 
 const accessToken = localStorage.getItem('accessToken');
 const OwnerUserId = localStorage.getItem('userId');
@@ -160,16 +168,32 @@ function VisitorHome() {
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
     if (!characterType) {
-      return MapleCharacter; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
+      return MapleCharImg; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
     }
 
     switch (characterType) {
     case 'Maple Character':
-        return MapleCharacter; // 캐릭터1 이미지
+        return MapleCharImg;
     case 'Ginkgo Character':
-        return GinkgoCharacter; // 캐릭터2 이미지
+        return GinkgoCharImg;
+    case 'Black Character':
+        return BlackCharImg;
+    case 'Blue Character':
+        return BlueCharImg;  
+    case 'Brown Character':
+        return BrownCharImg;  
+    case 'Gray Character':
+        return GrayCharImg;
+    case 'Purple Character':
+        return PurpleCharImg;
+    case 'SkyBlue Character':
+        return SkyBlueCharImg;
+    case 'Violet Character':
+        return VioletCharImg;  
+    case 'Yellow Character':
+        return YellowCharImg;       
     default:
-        return GinkgoCharacter; // 기본 캐릭터 이미지
+        return MapleCharImg; // 기본 캐릭터 이미지
     }
   };
 

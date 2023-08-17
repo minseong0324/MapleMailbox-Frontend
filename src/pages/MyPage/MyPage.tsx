@@ -5,17 +5,14 @@ import axios, {AxiosError} from "axios";
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
 
-const userId = localStorage.getItem("userId")
-const accessToken = localStorage.getItem("accessToken")
-
-
 function MyPage() {
     const [isLeaveModalOpen, setLeaveModalOpen] = useState(false);
     const [isCheckModalOpen, setCheckModalOpen] = useState(false);
     const [word, setWord] = useState('');  // 보내는 사람 이름을 관리하는 상태
     const navigate = useNavigate(); // useNavigate hook 사용
     const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
-
+    const userId = localStorage.getItem("userId")
+    const accessToken = localStorage.getItem("accessToken")
 
     const handleNavigateSelectCharacterTree = () => { 
         navigate(`/select-character-tree/${userId}`);
@@ -63,10 +60,8 @@ function MyPage() {
                 // User has been deactivated, handle this (e.g. log out)
                 setLeaveModalOpen(false);
                 setCheckModalOpen(false); // 입력값 확인 모달 닫기
-                localStorage.removeItem("userId");
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("refreshToken");
-                window.location.reload(); // 페이지 새로고침
+                localStorage.clear();
+                navigate('/');
             } 
             
         

@@ -41,7 +41,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       if (response.status === 200) {
 
           setStampsStatus(response.data.stampsStatus);
-        
+          console.log("Stamplist")
+          console.log(response.data.stampsStatus)
+          console.log("Stamplist--")
       } 
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
@@ -82,6 +84,10 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       });
       if (response.status === 200) {
         setMissionComplete(response.data.missionComplete);
+
+        console.log("missionComplete")
+          console.log(response.data.missionComplete)
+          console.log("missionComplete--")
       }
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
@@ -133,7 +139,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
             setMissionCompleteModalOpen(true)
             setMissionComplete(false); // 미션을 완료했으므로 미션 완료하기 버튼을 비활성화합니다.
             handleOpenMissionCompleteModal(); // 함수 호출을 추가
-            console.log(stampsStatus);
+            console.log("getResponseStamplist")
+            console.log(getResponse.data.stampsStatus)
+            console.log("getResponseStamplist--")
 
           }
         } catch (error: unknown) { //에러 일 경우

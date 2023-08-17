@@ -116,10 +116,10 @@ function OwnerHome() {
   // D-day를 계산하기 위해 필요한 상태 변수입니다. 회원가입 한지 며칠이 되었는가.
   const [nowDate, setNowDate] = useState<number | null>(0);
 
-  //const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
+  const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
 
 const accessToken = localStorage.getItem('accessToken');
-  const userId = localStorage.getItem("userId");
+  //const userId = localStorage.getItem("userId");
 
   /* //테스트용 데이터
   const testUserInfo = {
@@ -147,9 +147,6 @@ const accessToken = localStorage.getItem('accessToken');
         setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
-      console.log("nowDate")
-    console.log(nowDate)
-    console.log("nowDate__")
     };
 
     
@@ -225,9 +222,25 @@ const accessToken = localStorage.getItem('accessToken');
 
     switch (characterType) {
     case 'Maple Character':
-        return MapleCharImg; // 캐릭터1 이미지
+        return MapleCharImg;
     case 'Ginkgo Character':
-        return GinkgoCharImg; // 캐릭터2 이미지
+        return GinkgoCharImg;
+    case 'Black Character':
+        return BlackCharImg;
+    case 'Blue Character':
+        return BlueCharImg;  
+    case 'Brown Character':
+        return BrownCharImg;  
+    case 'Gray Character':
+        return GrayCharImg;
+    case 'Purple Character':
+        return PurpleCharImg;
+    case 'SkyBlue Character':
+        return SkyBlueCharImg;
+    case 'Violet Character':
+        return VioletCharImg;  
+    case 'Yellow Character':
+        return YellowCharImg;       
     default:
         return MapleCharImg; // 기본 캐릭터 이미지
     }

@@ -10,10 +10,10 @@ interface MenuProps {
   nowDate: number | null;
 }
 
-const accessToken = localStorage.getItem('accessToken');
-const userId = localStorage.getItem('userId');
 
 const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => { 
+  const accessToken = localStorage.getItem('accessToken');
+  const userId = localStorage.getItem('userId');  
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const initialCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
@@ -21,8 +21,11 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
     initialCount ? parseInt(initialCount) : 0
   );
   const navigate = useNavigate(); // useNavigate hook 사용
+  console.log("menuButtonClickedCount");
 
   console.log(menuButtonClickedCount);
+  console.log("menuButtonClickedCount--");
+
   console.log(nowDate);
 
   const handleMenuToggle = async () => {
@@ -36,6 +39,9 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   
   useEffect(() => {
     const userId = localStorage.getItem('userId');
+    console.log("useEffect 안1");
+        console.log(userId);
+        console.log("useEffect 안1--");
     console.log(menuButtonClickedCount);
     localStorage.setItem(`menuButtonClickedCount_${userId}`, menuButtonClickedCount.toString());
 
@@ -83,17 +89,17 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         if(response.status === 200) {
             // User has been deactivated, handle this (e.g. log out)
             setLogoutModalOpen(false);
-            // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
-            const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
+            
+        } 
+       // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
+        const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
             const getUserId = localStorage.getItem('userId');
             // 모든 항목을 삭제합니다.
             localStorage.clear();
-
             // "keepThisKey"의 값을 다시 저장합니다.
             if (menuButtonClickedCount !== null) {
                 localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
             }
-        } 
         navigate('/')
         
     
@@ -123,6 +129,14 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
     setLogoutModalOpen(false);
 } 
 
+const onClickHandler = () => {
+  console.log("useEffect 안1");
+  console.log(userId);
+  console.log("useEffect 안1--");
+  // 아래 코드는 실제로 페이지 이동을 막기 위한 것입니다.
+  // e.preventDefault();
+};
+
   return (
     <s.Wrapper>
     <s.SunWrapper>
@@ -141,11 +155,12 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
       }
 
       {isOpen && (
+        
         <s.MenuWrapper>
           <s.MenuItem onClick={handleSubmitLeaveModalOpen} isActive={isOpen}>로그아웃</s.MenuItem>
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
           <s.StyledLinkContainer isActive={isOpen}>
-            <s.StyledLink to={`/mypage/${userId}`}>마이페이지</s.StyledLink>
+          <s.StyledLink to={`/mypage/${userId}`} onClick={onClickHandler}>마이페이지</s.StyledLink>
           </s.StyledLinkContainer>
 
         </s.MenuWrapper>

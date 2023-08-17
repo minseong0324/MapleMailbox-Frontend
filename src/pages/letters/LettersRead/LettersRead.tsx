@@ -22,7 +22,6 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
     try {
-      console.log(selectedDate)
       const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters/${selectedDate}`, {
         headers: {
           'authorization': `${accessToken}`

@@ -20,13 +20,10 @@ import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
 
-
-const userId = localStorage.getItem('userId');
+function SelectTreeCharacter() {
+  const userId = localStorage.getItem('userId');
 const refreshToken = localStorage.getItem('refreshToken');
 const accessToken = localStorage.getItem('accessToken');
-
-
-function SelectTreeCharacter() {
   const [selectedTree, setSelectedTree] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(true);

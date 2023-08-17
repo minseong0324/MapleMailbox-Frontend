@@ -39,17 +39,18 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
         if(response.status === 200) {
             // User has been deactivated, handle this (e.g. log out)
             setLogoutModalOpen(false);
-            // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
-            const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
-            const getUserId = localStorage.getItem('userId');
-            // 모든 항목을 삭제합니다.
-            localStorage.clear();
-
-            // "keepThisKey"의 값을 다시 저장합니다.
-            if (menuButtonClickedCount !== null) {
-                localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
-            }
+            
         } 
+        // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
+        const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
+        const getUserId = localStorage.getItem('userId');
+        // 모든 항목을 삭제합니다.
+        localStorage.clear();
+
+        // "keepThisKey"의 값을 다시 저장합니다.
+        if (menuButtonClickedCount !== null) {
+            localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
+        }
         navigate('/')
         
     
