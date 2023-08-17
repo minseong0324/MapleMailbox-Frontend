@@ -36,6 +36,16 @@ function Login() {
       const accessToken = response.headers['authorization']; 
       const refreshToken = response.headers['reauthorization'];
       
+      localStorage.removeItem("email");
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('nowDate');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('treeType');
+      localStorage.removeItem('characterType');
+      localStorage.removeItem('lettersOverFive');
+
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
@@ -157,7 +167,15 @@ function Login() {
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
           alert('세션이 만료되었습니다! 로그아웃 처리 됩니다.')
-          localStorage.clear();
+          localStorage.removeItem("email");
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem('nowDate');
+          localStorage.removeItem('userName');
+          localStorage.removeItem('treeType');
+          localStorage.removeItem('characterType');
+          localStorage.removeItem('lettersOverFive');
           navigate('/login');
         }
       }

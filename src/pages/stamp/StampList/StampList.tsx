@@ -6,12 +6,9 @@ import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
 import MissionText from '../../../components/MissionText/MissionText';
 
-
-// 우표의 활성화 상태를 정의하는 타입입니다.
-type StampStatus = {
-  status: boolean; // 우표 활성화, 비활성화
-};
-
+interface StampStatus {
+  status: boolean;
+}
 // 현재 날짜의 속성을 정의하는 인터페이스입니다.
 interface NowDateProps {
   nowDate: number | null;
@@ -21,8 +18,7 @@ const userId = localStorage.getItem("userId");
 
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const initialStampsStatus: StampStatus[] = Array(30).fill({ status: false });
-  const [stampsStatus, setStampsStatus] = useState<StampStatus[]>(initialStampsStatus);
+  const [stampsStatus, setStampsStatus] = useState<StampStatus[]>(Array(30).fill({ status: false }));
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [isMissionModalOpen, setMissionModalOpen] = useState(false);
@@ -137,6 +133,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
             setMissionCompleteModalOpen(true)
             setMissionComplete(false); // 미션을 완료했으므로 미션 완료하기 버튼을 비활성화합니다.
             handleOpenMissionCompleteModal(); // 함수 호출을 추가
+            console.log(stampsStatus);
+
           }
         } catch (error: unknown) { //에러 일 경우
           if (error instanceof AxiosError) {
@@ -194,6 +192,31 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       console.error("Invalid date for stamp");
     }
   };
+
+  const renderStamps = () => {
+    const stamps = [];
+    for (let i = 0; i < 30; i++) {
+      const currentStatus = stampsStatus[29 - i];
+      
+      stamps.push(
+        <s.StampButton 
+          key={i}
+          onClick={() => {
+            console.log(currentStatus.status)
+            currentStatus && currentStatus.status 
+              ? handleOpenModal(29 - i) 
+              : alert("획득하지 않은 우표입니다.");
+          }}
+          stampImage={
+            currentStatus.status === true
+              ? s.stampImages[i]
+              : disabledStamp
+          }
+        ></s.StampButton>
+      );
+    }
+    return stamps;
+  }
   
 
   return (
@@ -208,23 +231,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       </s.ButtonTextWrapper>
       
       <s.ButtonWrapper>
-        {/* 각 우표 이미지를 매핑하여 버튼으로 표시합니다. */}
-        {(s.stampImages || []).map((image, index) => (
-          <s.StampButton 
-            key={index} 
-            onClick={() => {
-              const currentStatus = stampsStatus[index];
-              currentStatus && currentStatus.status 
-                ? handleOpenModal(index) 
-                : alert("획득하지 않은 우표입니다.");
-            }}
-            stampImage={
-              stampsStatus.length > 0 && !stampsStatus[index].status 
-                ? disabledStamp 
-                : image
-            }
-          ></s.StampButton>
-        ))}
+        {renderStamps()}
       </s.ButtonWrapper>
 
       {/* 우표 상세 정보를 보여주는 모달입니다. */}

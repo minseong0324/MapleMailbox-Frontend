@@ -23,7 +23,7 @@ function LettersList() {
   // 출시할 때 사용하는 코드
   const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
-  
+ 
   const [treeType, setTreeType] = useState<string>('Maple Tree');
 
     // 사용자 데이터를 가져옵니다.
@@ -91,6 +91,7 @@ function LettersList() {
     
       <s.ButtonWrapper>
         {Array.from({ length: 30 }).map((_, index) => {
+           console.log(lettersOverFive);
           const date = index + 1;
           let isButtonActive = false;
           if (nowDate !== null && date < nowDate) {

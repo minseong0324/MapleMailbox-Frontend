@@ -6,9 +6,19 @@ import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style';
 import LettersList from '../../letters/LettersList/LettersList';
-import MapleCharacter from '../../../assets/charImg/maple-small.png';
-import GinkgoCharacter from '../../../assets/charImg/ginkgo-small.png';
 import StampList from 'src/pages/stamp/StampList/StampList';
+import MapleTreeImage from "../../../assets/treeImg/MapleMainTree.png";
+import GinkgoTreeImage from "../../../assets/treeImg/GinkgoMainTree.png";
+import MapleCharImg from "../../../assets/charImg/maple-small.png";
+import GinkgoCharImg from "../../../assets/charImg/ginkgo-small.png";
+import BlackCharImg from "../../../assets/charImg/black-small.png";
+import BlueCharImg from "../../../assets/charImg/blue-small.png";
+import BrownCharImg from "../../../assets/charImg/brown-small.png";
+import GrayCharImg from "../../../assets/charImg/gray-small.png";
+import PurpleCharImg from "../../../assets/charImg/purple-small.png";
+import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
+import VioletCharImg from "../../../assets/charImg/violet-small.png";
+import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
@@ -86,7 +96,7 @@ function OwnerHome() {
   const [characterType, setCharacterType] = useState<string | null>(null);
 
   // 나무가 물들어가는 이미지를 저장하는 상태변수입니다.
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
 
   // 단풍나무 이미지와 은행나무 이미지를 저장하는 상태 변수입니다.
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
@@ -121,13 +131,15 @@ const accessToken = localStorage.getItem('accessToken');
   };
   */
 
-  
+
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
+        setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
+
         //const userInfo = testUserInfo; // 테스트용 데이터 사용
         setTreeType(userInfo?.treeType);
         setCharacterType(userInfo?.characterType);
@@ -135,7 +147,12 @@ const accessToken = localStorage.getItem('accessToken');
         setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
+      console.log("nowDate")
+    console.log(nowDate)
+    console.log("nowDate__")
     };
+
+    
   
     fetchUserInfo();
   }, [userId]);
@@ -184,56 +201,35 @@ const accessToken = localStorage.getItem('accessToken');
   }, [mapleTreeImages, ginkgoTreeImages]);
 
   useEffect(() => {
-    if (nowDate !== null) {
-    // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-    if (lettersOverFive[nowDate-1] === true) {
+    if (nowDate !== null && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
+      // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       setTreeGrowthStage(prevStage => {
-        const newStage = prevStage + 1;
+        const newStage = nowDate - 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
           if (newImage) { // newImage가 null이 아닐 때만 이미지를 추가합니다.
-            setTreeFragmentImages(prevImages => [...prevImages, newImage]);
+            setTreeFragmentImages(prevImages => [...(prevImages || []), newImage]);
           }
         });
         return newStage;
       });
-    }
+    
   }
-  }, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
-
-  // useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
-  useEffect(() => {
-    const loadInitialImages = async () => {
-      const imagePromises: Promise<string | null>[] = [];
-      
-      for (let i = 0; i < treeGrowthStage; i++) {
-        imagePromises.push(getTreeImageByGrowthStage(treeType, i));
-      }
-  
-      // Promise.all을 사용하여 모든 프로미스를 해결합니다.
-      const resolvedImages = await Promise.all(imagePromises);
-  
-      // null 값들을 필터링하고 상태를 설정합니다.
-      setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
-    };
-  
-    loadInitialImages();
-  }, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
-  
+  }, [nowDate, lettersOverFive, getTreeImageByGrowthStage, treeType]);
   
   
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
     if (!characterType) {
-      return MapleCharacter; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
+      return MapleCharImg; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
     }
 
     switch (characterType) {
     case 'Maple Character':
-        return MapleCharacter; // 캐릭터1 이미지
+        return MapleCharImg; // 캐릭터1 이미지
     case 'Ginkgo Character':
-        return GinkgoCharacter; // 캐릭터2 이미지
+        return GinkgoCharImg; // 캐릭터2 이미지
     default:
-        return MapleCharacter; // 기본 캐릭터 이미지
+        return MapleCharImg; // 기본 캐릭터 이미지
     }
   };
 
@@ -271,13 +267,13 @@ const accessToken = localStorage.getItem('accessToken');
 
             <s.TreeImageWrapper>
             <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
-            {treeFragmentImages.map((image, index) => (
+            {treeFragmentImages && treeFragmentImages.map((image, index) => (
               <s.TreeFragmentImg
                 key={index}
                 src={image}
-                alt={`Tree at stage ${index}`}
+                alt={`Tree at stage ${index + 1}`}
               />
-            ))} 
+            ))}
             <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
             <s.StampCollectionButton onClick={() => setStampModalOpen(true)} />
             <s.SpeechBubble />
@@ -311,7 +307,7 @@ const accessToken = localStorage.getItem('accessToken');
             </Modal>
 
             <Modal isOpen={isStampModalOpen} onClose={() => setStampModalOpen(false)} >
-              <StampList nowDate={nowDate} />
+              <StampList nowDate={nowDate}/>
               {/*<StampList nowDate={2} /> {/* 테스트용 */}
             </Modal>
 

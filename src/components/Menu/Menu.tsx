@@ -8,7 +8,6 @@ interface MenuProps {
   onLogout: () => void;
   onServiceDescription: () => void;
   nowDate: number | null;
-
 }
 
 const accessToken = localStorage.getItem('accessToken');
@@ -36,6 +35,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   };
   
   useEffect(() => {
+    const userId = localStorage.getItem('userId');
     console.log(menuButtonClickedCount);
     localStorage.setItem(`menuButtonClickedCount_${userId}`, menuButtonClickedCount.toString());
 
@@ -145,7 +145,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
           <s.MenuItem onClick={handleSubmitLeaveModalOpen} isActive={isOpen}>로그아웃</s.MenuItem>
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
           <s.StyledLinkContainer isActive={isOpen}>
-            <s.StyledLink to="/mypage/:userId">마이페이지</s.StyledLink>
+            <s.StyledLink to={`/mypage/${userId}`}>마이페이지</s.StyledLink>
           </s.StyledLinkContainer>
 
         </s.MenuWrapper>

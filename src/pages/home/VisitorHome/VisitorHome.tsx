@@ -45,6 +45,7 @@ const getUserInfoFromServer = async (userId: string) => {
       nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
       lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
     };
+    
   } catch (error) {
     // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
     console.error('Failed to fetch user info:', error);
@@ -70,7 +71,7 @@ function VisitorHome() {
   const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>([]);
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
   const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
@@ -92,15 +93,18 @@ function VisitorHome() {
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
+        setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
+
         setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
         setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
         setNowDate(userInfo?.nowDate); 
         setLettersOverFive(userInfo?.lettersOverFive);
+        console.log(userInfo?.nowDate)
       }
     };
     fetchUserInfo();
-  }, [userId, lettersOverFive, reloadUserInfo]);
+  }, [userId, reloadUserInfo]);
 
   // 컴포넌트가 마운트될 때 이미지를 가져옵니다.
   useEffect(() => {
@@ -138,40 +142,20 @@ function VisitorHome() {
 
  // 편지가 추가될 때마다 나무의 성장 단계를 업데이트합니다.
  useEffect(() => {
-  if (nowDate !== null && typeof nowDate === 'number') { 
+  if (nowDate !== null && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
-  if (lettersOverFive[nowDate-1] === true) {
     setTreeGrowthStage(prevStage => {
-      const newStage = prevStage + 1;
+      const newStage = nowDate - 1;
       getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
         if (newImage) { // newImage가 null이 아닐 때만 이미지를 추가합니다.
-          setTreeFragmentImages(prevImages => [...prevImages, newImage]);
+          setTreeFragmentImages(prevImages => [...(prevImages || []), newImage]);
         }
       });
       return newStage;
     });
-  }
+  
 }
-}, [treeType, getTreeImageByGrowthStage, nowDate, lettersOverFive]);
-
-// useState는 리프레쉬 하면 초기화됨. 이걸 방지하기 위한 useEffect
-useEffect(() => {
-  const loadInitialImages = async () => {
-    const imagePromises: Promise<string | null>[] = [];
-    
-    for (let i = 0; i < treeGrowthStage; i++) {
-      imagePromises.push(getTreeImageByGrowthStage(treeType, i));
-    }
-
-    // Promise.all을 사용하여 모든 프로미스를 해결합니다.
-    const resolvedImages = await Promise.all(imagePromises);
-
-    // null 값들을 필터링하고 상태를 설정합니다.
-    setTreeFragmentImages(resolvedImages.filter(img => img !== null) as string[]);
-  };
-
-  loadInitialImages();
-}, [treeGrowthStage, treeType, getTreeImageByGrowthStage]);
+}, [nowDate, lettersOverFive, getTreeImageByGrowthStage, treeType]);
 
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -303,13 +287,13 @@ const handleSendLetter = async (event: React.FormEvent) => {
       </s.TextsStyle>
       <s.TreeImageWrapper>
       <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
-            {treeFragmentImages.map((image, index) => (
-              <s.TreeFragmentImg
-                key={index}
-                src={image}
-                alt={`Tree at stage ${index + 1}`}
-              />
-            ))} 
+        {treeFragmentImages && treeFragmentImages.map((image, index) => (
+          <s.TreeFragmentImg
+            key={index}
+            src={image}
+            alt={`Tree at stage ${index + 1}`}
+          />
+        ))}
         <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
       </s.TreeImageWrapper>
       <s.ButtonWrapper>

@@ -18,7 +18,7 @@ function MyPage() {
 
 
     const handleNavigateSelectCharacterTree = () => { 
-        navigate('/select-character-tree');
+        navigate(`/select-character-tree/${userId}`);
     }
 
     //탈퇴하기 모달창 열기 함수
