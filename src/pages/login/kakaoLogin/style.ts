@@ -13,7 +13,25 @@ const KakaoWrapper = styled.div`
 
 `;
 
+const ModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 18px;
+
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+`;
+
 export const s = {
     KakaoLoginButton,
-    KakaoWrapper
+    KakaoWrapper,
+    ModalTextsWrapper,
+    ModalWrapper
 }

@@ -88,6 +88,22 @@ const P = styled.p`
   padding-bottom: 30px;
 `;
 
+const ModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 18px;
+
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+`;
+
 export const s = {
     LoginWrapper,
     LoginForm,
@@ -96,5 +112,7 @@ export const s = {
     TextsStyle,
     H3,
     H1,
-    P
+    P,
+    ModalTextsWrapper,
+    ModalWrapper
 }

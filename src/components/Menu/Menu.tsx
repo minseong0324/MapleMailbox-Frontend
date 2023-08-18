@@ -57,7 +57,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
                     }
                 });
                 if (response.status === 200) {
-                    alert("메뉴버튼 클릭 미션 성공. 이는 테스트용이므로 지울 것임.")
+                    //alert("메뉴버튼 클릭 미션 성공. 이는 테스트용이므로 지울 것임.")
                 }
             } catch (error: unknown) { //에러 일 경우
               if (error instanceof AxiosError) {

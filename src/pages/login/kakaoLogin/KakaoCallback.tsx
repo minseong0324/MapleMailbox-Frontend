@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style'
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 function KakaoCallback() {
   const navigate = useNavigate();
-
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+  
   useEffect(() => {
     // 현재 URL에서 인증 코드와 상태 값을 추출
-    /*
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('authorizationCode');
     const state = url.searchParams.get('state');
@@ -18,9 +20,9 @@ function KakaoCallback() {
       navigate('/login');
       return;
     }
-  */
+
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.get(`http://localhost:8080/oauth2/authorization/kakao`)
+    axios.post(`http://localhost:8080/api/auth/login/kakao`, { authorizationCode, state })
       .then(async (response) => {
         if (response.status === 200) {
           localStorage.setItem('accessToken', response.headers.accessToken);
@@ -54,6 +56,12 @@ function KakaoCallback() {
       )
       .catch((error) => {
         const status = error.response.status;
+        setModalErrorContent(
+          <s.ModalWrapper>
+            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+          </s.ModalWrapper>
+        );
         if (status === 404) {
               // 리소스를 찾을 수 없음
             } else if (status === 500) {
@@ -61,17 +69,18 @@ function KakaoCallback() {
             } else {
                 // 기타 상태 코드 처리
             }
-            
         navigate('/login');
+        setErrorModalOpen(true);
       });
-      
-  }, [navigate]);
+    }, [navigate]);
 
   return (
     <s.KakaoWrapper>
       로그인 중...
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+          {modalErrorContent}
+      </ErrorModal>
     </s.KakaoWrapper>
-
   );
 }
 

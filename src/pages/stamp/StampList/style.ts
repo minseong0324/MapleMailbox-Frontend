@@ -88,6 +88,9 @@ text-align: center;
 margin-top: 100px;
 `;
 
+const Break = styled.br`
+`;
+
 const TextsStyle = styled.div`
 font-family: 'DOSSaemmul';
 display: flex;
@@ -220,5 +223,6 @@ export const s = {
     MissionCompletedButton,
     ShowStamp,
     ShowStampEffect,
-    ShowStampWrapper
+    ShowStampWrapper,
+    Break
 }

@@ -1,11 +1,14 @@
 // NaverCallback.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style'
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 function NaverCallback() {
   const navigate = useNavigate();
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -53,6 +56,12 @@ function NaverCallback() {
       )
       .catch((error) => {
         const status = error.response.status;
+        setModalErrorContent(
+          <s.ModalWrapper>
+            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+          </s.ModalWrapper>
+        );
         if (status === 404) {
               // 리소스를 찾을 수 없음
             } else if (status === 500) {
@@ -61,12 +70,16 @@ function NaverCallback() {
                 // 기타 상태 코드 처리
             }
         navigate('/login');
+        setErrorModalOpen(true);
       });
   }, [navigate]);
 
   return (
     <s.NaverWrapper>
       로그인 중...
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+          {modalErrorContent}
+      </ErrorModal>
     </s.NaverWrapper>
   );
 }

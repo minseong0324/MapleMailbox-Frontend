@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import axios, {AxiosError} from 'axios';
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style';
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 type MyCredentialResponse = {
   authorizationCode: string;
@@ -15,7 +16,8 @@ type GoogleLoginButtonProps = {
 
 const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
   const navigate = useNavigate();
-
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
     try {
       const authorizationCode = 'authorizationCode' in credentialResponse ? credentialResponse.authorizationCode : credentialResponse;
@@ -27,36 +29,68 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
           localStorage.setItem('accessToken', response.headers.accessToken);
           localStorage.setItem('refreshToken', response.headers.refreshToken);
           const accessToken = localStorage.getItem('accessToken');
-          
-        const userResponse = await axios.get(`http://localhost:8080/api/users`, {
-          headers: {
-            'authorization': `${accessToken}` 
+        try {   
+          const userResponse = await axios.get(`http://localhost:8080/api/users`, {
+            headers: {
+              'authorization': `${accessToken}` 
+            }
+          });
+          if (userResponse.status === 200) {
+            localStorage.setItem("userId", userResponse.data.userId);
+            //localStorage.setItem('email', userResponse.data.email);
+            localStorage.setItem('userName', userResponse.data.userName);
+
+          // navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+          } 
+          const userId = localStorage.getItem('userId')
+          const returnUrl = localStorage.getItem('returnUrl');
+
+          if (returnUrl) {
+            // 저장된 URL로 리다이렉트합니다.
+            navigate(returnUrl);
+            localStorage.removeItem('returnUrl'); // 사용 후 저장된 URL을 삭제합니다.
+          } else {
+            // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
+            navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
           }
-        });
-        if (userResponse.status === 200) {
-          localStorage.setItem("userId", userResponse.data.userId);
-          //localStorage.setItem('email', userResponse.data.email);
-          localStorage.setItem('userName', userResponse.data.userName);
-
-         // navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
-        } 
-        const userId = localStorage.getItem('userId')
-        const returnUrl = localStorage.getItem('returnUrl');
-
-        if (returnUrl) {
-          // 저장된 URL로 리다이렉트합니다.
-          navigate(returnUrl);
-          localStorage.removeItem('returnUrl'); // 사용 후 저장된 URL을 삭제합니다.
-        } else {
-          // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
-          navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+        } catch (error: unknown) { //에러 일 경우
+          if (error instanceof AxiosError) {
+            const status = error?.response?.status;
+            console.error('Failed to fetch user info:', error);
+            setModalErrorContent(
+              <s.ModalWrapper>
+                <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
+                <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+              </s.ModalWrapper>
+            );
+            if (status === 404) {
+              // 리소스를 찾을 수 없음
+              alert('에러')
+              navigate('/login');
+            } else if (status === 500) {
+                // 서버 내부 오류
+                alert('에러')
+                navigate('/login');
+            } else {
+                // 기타 상태 코드 처리
+                alert('에러')
+                navigate('/login');
+            }
+          } 
+          setErrorModalOpen(true);
+          return null;
         }
-        
       } 
     }catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
+        setModalErrorContent(
+          <s.ModalWrapper>
+            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+          </s.ModalWrapper>
+        );
         if (status === 404) {
           // 리소스를 찾을 수 없음
           alert('에러')
@@ -71,25 +105,32 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
             navigate('/login');
         }
       } 
+      setErrorModalOpen(true);
       return null;
     }
   };
 
   return (
+    <s.Wrapper>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID || ''}>
-      <s.ButtonWrapper>
-      <s.CustomButton buttonImage={buttonImage}>
-          <s.HiddenDiv>
-            <GoogleLogin
-                onSuccess={handleLogin}
-                onError={() => {
-                  console.error('로그인 실패');
-                }}
-            />
-          </s.HiddenDiv>
-        </s.CustomButton>
-      </s.ButtonWrapper>
-    </GoogleOAuthProvider>
+          <s.ButtonWrapper>
+          <s.CustomButton buttonImage={buttonImage}>
+              <s.HiddenDiv>
+                <GoogleLogin
+                    onSuccess={handleLogin}
+                    onError={() => {
+                      console.error('로그인 실패');
+                    }}
+                />
+              </s.HiddenDiv>
+            </s.CustomButton>
+          </s.ButtonWrapper>
+        </GoogleOAuthProvider>
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+          {modalErrorContent}
+      </ErrorModal>
+    </s.Wrapper>
+   
   );
 }
 

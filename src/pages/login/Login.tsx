@@ -9,6 +9,7 @@ import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
 import NaverLoginImage from "../../assets/socialLoginButton/NaverLogin.svg";
 import KakaoLoginImage from "../../assets/socialLoginButton/KakaoLogin.svg";
 import GoogleLoginImage from '../../assets/socialLoginButton/GoogleLogin.svg'
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 
 // 로그인에 필요한 사용자의 정보를 나타내는 타입을 정의합니다.
@@ -21,7 +22,13 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // useNavigate hook 사용
+    const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+    const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
+      // 서비스 설명 함수
+  const handleServiceDescription = () => {
+    setErrorModalOpen(true);
+  };
     // 로그인 처리 함수
    // useMutation을 사용해 로그인 요청을 관리합니다.
   // 요청이 성공하면 성공 메시지를 보여주고, 실패하면 오류 메시지를 보여줍니다.
@@ -66,12 +73,9 @@ function Login() {
               //const { email, userName } = userResponse.data;
               const { userId, userName } = userResponse.data;
               localStorage.setItem("userId", userId);
-              //const endpointId = response.data('id');
-              //localStorage.setItem("endpoint_id", endpointId);
-              //localStorage.setItem("user_email", email);
+
               localStorage.setItem("userName", userName);
-              alert("로그인에 성공했습니다!");
-              //navigate(`/OwnerHome/${userResponse.data.userId}`, { replace: true });
+              //alert("로그인에 성공했습니다!");
             }
             const userId = localStorage.getItem('userId')
             const returnUrl = localStorage.getItem('returnUrl');
@@ -90,6 +94,12 @@ function Login() {
             if (error instanceof AxiosError) {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
+              setModalErrorContent(
+                <s.ModalWrapper>
+                  <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+                  <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
+                </s.ModalWrapper>
+              );
               if (status === 404) {
                 // 리소스를 찾을 수 없음
               } else if (status === 500) {
@@ -98,6 +108,7 @@ function Login() {
                   // 기타 상태 코드 처리
               }
             } 
+            setErrorModalOpen(true);
             return null;
           }
         } 
@@ -105,6 +116,12 @@ function Login() {
         if (error instanceof AxiosError) {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+            <s.ModalWrapper>
+              <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+              <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
+            </s.ModalWrapper>
+          );
           if (status === 404) {
             // 리소스를 찾을 수 없음
           } else if (status === 500) {
@@ -113,6 +130,7 @@ function Login() {
               // 기타 상태 코드 처리
           }
         } 
+        setErrorModalOpen(true);
         return null;
       }
       
@@ -122,6 +140,12 @@ function Login() {
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
+        setModalErrorContent(
+          <s.ModalWrapper>
+            <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
+          </s.ModalWrapper>
+        );
         if (status === 404) {
           // 리소스를 찾을 수 없음
         } else if (status === 500) {
@@ -131,7 +155,7 @@ function Login() {
         }
       } 
       console.error("Login error:", error);
-      alert("로그인 도중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setErrorModalOpen(true);
     }
     
   });
@@ -166,7 +190,12 @@ function Login() {
           localStorage.setItem('refreshToken', refreshToken);
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
-          alert('세션이 만료되었습니다! 로그아웃 처리 됩니다.')
+          setModalErrorContent(
+            <s.ModalWrapper>
+              <s.ModalTextsWrapper>세션이 만료되었어요!</s.ModalTextsWrapper>
+              <s.ModalTextsWrapper>로그아웃 처리 됩니다!</s.ModalTextsWrapper>
+            </s.ModalWrapper>
+          );
           localStorage.removeItem("email");
           localStorage.removeItem('accessToken');
           localStorage.removeItem('userId');
@@ -186,6 +215,7 @@ function Login() {
 }, [navigate]);
 
     return (
+      <>
       <s.LoginWrapper>
         <s.TextsStyle>
             <s.H3>가을을 기다리며,</s.H3>
@@ -213,6 +243,10 @@ function Login() {
         </s.LoginForm>
       </s.LoginWrapper>
 
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+          {modalErrorContent}
+      </ErrorModal>
+      </>
     );
   }
   

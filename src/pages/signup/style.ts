@@ -69,10 +69,22 @@ const H1 = styled.h1`
   z-index: 0;
 `;
 
+
+const ModalTextsWrapper = styled.div`
+position: absolute;
+top: 40%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: flex;
+flex-direction: column;
+justify-content: center;
+`;
+
 export const s = {
   SignUpWrapper,
   SignUpForm,
   SignUpInput,
   SignUpButton,
-  H1
+  H1,
+  ModalTextsWrapper
 }

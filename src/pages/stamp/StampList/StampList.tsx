@@ -113,14 +113,22 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const handleOpenTodayMissionCompleteModal = () => {
     setTodayMissionCompleteModalOpen(true);
       setModalContent(
-        <s.CenteredWrapper>
+        <s.TextWrapper>
           <s.MissionText>
-            오늘의 미션을 완료했어요!
+            오늘의 미션을
           </s.MissionText>
-          <s.MissionText>
-            내일의 미션을 기대해주세요!
-          </s.MissionText>
-        </s.CenteredWrapper>
+          <s.TextsStyle>
+            완료했어요!
+          </s.TextsStyle>
+          <s.Break/>
+          <s.TextsStyle>
+            내일의 미션을 
+          </s.TextsStyle>
+          <s.TextsStyle>
+            기대해주세요! 
+          </s.TextsStyle>
+
+        </s.TextWrapper>
       );
   };
 

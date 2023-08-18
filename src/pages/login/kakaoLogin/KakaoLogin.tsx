@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { s } from './style'
 import KakaoCallback from './KakaoCallback'
 
@@ -12,22 +12,16 @@ const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`
 
     // 이미지 클릭 시 카카오 로그인 페이지로 이동
-
-    const [showCallback, setShowCallback] = useState(false);
-
     const handleClick = () => {
-        setShowCallback(true);
+        window.location.href = KAKAO_AUTH_URL;
     }
 
-    return (
-        <>
-            <s.KakaoLoginButton
-                alt="카카오 로그인"
-                src={imageUrl}
-                onClick={handleClick}
-            />
-            {showCallback && <KakaoCallback />}
-        </>
+    return(
+        <s.KakaoLoginButton
+        alt="카카오 로그인"
+        src={imageUrl}
+        onClick={handleClick}
+        />
     )
 }
 
