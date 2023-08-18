@@ -8,6 +8,7 @@ function KakaoCallback() {
 
   useEffect(() => {
     // 현재 URL에서 인증 코드와 상태 값을 추출
+    /*
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('authorizationCode');
     const state = url.searchParams.get('state');
@@ -17,9 +18,9 @@ function KakaoCallback() {
       navigate('/login');
       return;
     }
-
+  */
     // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post(`http://localhost:8080/api/auth/login/kakao`, { authorizationCode, state })
+    axios.get(`http://localhost:8080/oauth2/authorization/kakao`)
       .then(async (response) => {
         if (response.status === 200) {
           localStorage.setItem('accessToken', response.headers.accessToken);
@@ -60,14 +61,17 @@ function KakaoCallback() {
             } else {
                 // 기타 상태 코드 처리
             }
+            
         navigate('/login');
       });
+      
   }, [navigate]);
 
   return (
     <s.KakaoWrapper>
       로그인 중...
     </s.KakaoWrapper>
+
   );
 }
 

@@ -24,7 +24,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [isMissionCompleteModalOpen, setMissionCompleteModalOpen] = useState(false); //미션에 성공해서 미션완료하기 버튼을 눌렀을 때 모달창을 띄우기 위한 상태
   const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
   //const [missionComplete, setMissionComplete] = useState<boolean | null>(true); //테스트용
-
+  const [todayMissionCompleteModalOpen, setTodayMissionCompleteModalOpen] = useState(false); //우표를 수령했으면 그 이후로 '오늘의 미션을 완료했어요!' 라고 띄워주는 모달창
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
@@ -74,34 +74,54 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
 
     // 미션 모달을 열 때, 미션의 완료 여부를 가져옵니다.
   const handleOpenMissionModal = async () => {
-    setMissionModalOpen(true);
-    try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/todayMission`, {
-        headers: {
-          'authorization': `${accessToken}`
+    if(nowDate !== null) {
+      if(stampsStatus[nowDate-1] === false) {
+        setMissionModalOpen(true);
+        try {
+          const response = await axios.get(`http://localhost:8080/api/users/${userId}/missions/todayMission`, {
+            headers: {
+              'authorization': `${accessToken}`
+            }
+          });
+          if (response.status === 200) {
+            setMissionComplete(response.data.missionComplete);
+  
+            console.log("missionComplete")
+              console.log(response.data.missionComplete)
+              console.log("missionComplete--")
+          }
+        } catch (error: unknown) { //에러 일 경우
+          if (error instanceof AxiosError) {
+            const status = error?.response?.status;
+            console.error('Failed to fetch user info:', error);
+            if (status === 404) {
+              // 리소스를 찾을 수 없음
+            } else if (status === 500) {
+                // 서버 내부 오류
+            } else {
+                // 기타 상태 코드 처리
+            }
+          } 
+          return null;
         }
-      });
-      if (response.status === 200) {
-        setMissionComplete(response.data.missionComplete);
-
-        console.log("missionComplete")
-          console.log(response.data.missionComplete)
-          console.log("missionComplete--")
+      } else {
+        handleOpenTodayMissionCompleteModal();
       }
-    } catch (error: unknown) { //에러 일 경우
-      if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        if (status === 404) {
-          // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
-        }
-      } 
-      return null;
     }
+  };
+  // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
+  const handleOpenTodayMissionCompleteModal = () => {
+    setTodayMissionCompleteModalOpen(true);
+      setModalContent(
+        <s.CenteredWrapper>
+          <s.MissionText>
+            오늘의 미션을 완료했어요!
+          </s.MissionText>
+          <s.MissionText>
+            내일의 미션을 기대해주세요!
+          </s.MissionText>
+        </s.CenteredWrapper>
+      );
   };
 
    // 미션 모달창 닫는 함수
@@ -180,6 +200,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     setIsOpen(false);
     setMissionModalOpen(false);
     setMissionCompleteModalOpen(false);
+    setTodayMissionCompleteModalOpen(false);
     setSelectedIndex(null);
     setModalContent(null);
   };
@@ -272,6 +293,16 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         <s.CenteredWrapper>
           <s.TextsStyle>오늘의 우표를</s.TextsStyle>
           <s.TextsStyle>획득했어요!</s.TextsStyle>
+          {modalContent} {/* 여기에 이미지를 표시 */}
+          <s.ModalButton onClick={handleCloseModal}>
+            확인
+          </s.ModalButton>
+        </s.CenteredWrapper>
+      </Modal>
+
+      {/* 미션 완료하기 버튼을 누르고 나서 뜨는 모달창 */}
+      <Modal isOpen={todayMissionCompleteModalOpen} onClose={() => setTodayMissionCompleteModalOpen(false)}>
+        <s.CenteredWrapper>
           {modalContent} {/* 여기에 이미지를 표시 */}
           <s.ModalButton onClick={handleCloseModal}>
             확인
