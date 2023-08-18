@@ -96,7 +96,7 @@ function Login() {
               console.error('Failed to fetch user info:', error);
               setModalErrorContent(
                 <s.ModalWrapper>
-                  <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+                  <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
                   <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
                 </s.ModalWrapper>
               );
@@ -118,7 +118,7 @@ function Login() {
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
             <s.ModalWrapper>
-              <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+              <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
               <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
             </s.ModalWrapper>
           );
@@ -142,7 +142,7 @@ function Login() {
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ModalWrapper>
-            <s.ModalTextsWrapper>아이디 혹은 비밀번호를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
             <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
           </s.ModalWrapper>
         );

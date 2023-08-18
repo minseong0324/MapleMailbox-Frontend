@@ -8,12 +8,15 @@ import { s } from './style';
 import NaverSignUpImage from "../../assets/socialLoginButton/NaverSignUp.svg";
 import KakaoSignUpImage from "../../assets/socialLoginButton/KakaoSignUp.svg";
 import GoogleSignUpImage from "../../assets/socialLoginButton/GoogleSignUp.svg";
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 function SignUp() {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // useNavigate hook 사용
+    const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+    const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   
     // 회원가입 처리 함수
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,18 +42,24 @@ function SignUp() {
           navigate("/login"); 
         } 
       } catch (error: unknown) { //에러 일 경우
-          if (error instanceof AxiosError) {
-            const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
-            if (status === 404) {
-              // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-                // 기타 상태 코드 처리
-            }
-          } 
-          return null;
+        if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+            <s.ModalWrapper>
+              <s.ErrorModalTextsWrapper>이메일이 존재해요!</s.ErrorModalTextsWrapper>
+            </s.ModalWrapper>
+          );
+          if (status === 404) {
+            // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+        } 
+        setErrorModalOpen(true);
+        return null;
       }
     }
   
@@ -84,6 +93,10 @@ function SignUp() {
             <NaverLogin imageUrl={NaverSignUpImage}/>
             <GoogleLoginButton buttonImage={GoogleSignUpImage} />
         </s.SignUpForm>
+
+        <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+          {modalErrorContent}
+      </ErrorModal>
       </s.SignUpWrapper>
     );
   }
