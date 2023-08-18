@@ -175,6 +175,7 @@ function Login() {
       // 여기서는 refresh-token을 사용해 access-token을 새로 발급받습니다.
       const refreshToken = localStorage.getItem('refreshToken');
       const accessToken = localStorage.getItem('accessToken');
+      
       if (refreshToken) {
         const response = await axios.post(`http://localhost:8080/api/auth/refresh`, {
           headers: {
@@ -191,7 +192,7 @@ function Login() {
         } else {
           // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
           setModalErrorContent(
-            <s.ModalWrapper>
+            <s.ModalWrapper>s
               <s.ModalTextsWrapper>세션이 만료되었어요!</s.ModalTextsWrapper>
               <s.ModalTextsWrapper>로그아웃 처리 됩니다!</s.ModalTextsWrapper>
             </s.ModalWrapper>

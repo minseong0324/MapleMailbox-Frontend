@@ -59,21 +59,18 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
             console.error('Failed to fetch user info:', error);
             setModalErrorContent(
               <s.ModalWrapper>
-                <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
-                <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+                <s.ModalTextsWrapper>유저의 정보를</s.ModalTextsWrapper>
+                <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
               </s.ModalWrapper>
             );
             if (status === 404) {
               // 리소스를 찾을 수 없음
-              alert('에러')
               navigate('/login');
             } else if (status === 500) {
                 // 서버 내부 오류
-                alert('에러')
                 navigate('/login');
             } else {
                 // 기타 상태 코드 처리
-                alert('에러')
                 navigate('/login');
             }
           } 
@@ -87,21 +84,18 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ModalWrapper>
-            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
-            <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>구글에서 정보를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
           </s.ModalWrapper>
         );
         if (status === 404) {
           // 리소스를 찾을 수 없음
-          alert('에러')
           navigate('/login');
         } else if (status === 500) {
             // 서버 내부 오류
-            alert('에러')
             navigate('/login');
         } else {
             // 기타 상태 코드 처리
-            alert('에러')
             navigate('/login');
         }
       } 
@@ -111,7 +105,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
   };
 
   return (
-    <s.Wrapper>
+
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID || ''}>
           <s.ButtonWrapper>
           <s.CustomButton buttonImage={buttonImage}>
@@ -125,11 +119,13 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
               </s.HiddenDiv>
             </s.CustomButton>
           </s.ButtonWrapper>
-        </GoogleOAuthProvider>
-      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+
+          <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}
       </ErrorModal>
-    </s.Wrapper>
+        </GoogleOAuthProvider>
+      
+
    
   );
 }

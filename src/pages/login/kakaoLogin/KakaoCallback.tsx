@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios,{AxiosError} from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { s } from './style'
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
@@ -28,22 +28,22 @@ function KakaoCallback() {
           localStorage.setItem('accessToken', response.headers.accessToken);
           localStorage.setItem('refreshToken', response.headers.refreshToken);
           const accessToken = localStorage.getItem('accessToken');
-          const userResponse = await axios.get(`http://localhost:8080/api/users`, {
-            headers: {
-              'authorization': `${accessToken}` 
-            }
-          });
-          if (userResponse.status === 200) {
-            localStorage.setItem("userId", userResponse.data.userId);
-            //localStorage.setItem('email', userResponse.data.email);
-            localStorage.setItem('name', userResponse.data.userName);
-            
-            navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
-          } 
-        } 
-        const userId = localStorage.getItem('userId')
+          try {   
+            const userResponse = await axios.get(`http://localhost:8080/api/users`, {
+              headers: {
+                'authorization': `${accessToken}` 
+              }
+            });
+            if (userResponse.status === 200) {
+              localStorage.setItem("userId", userResponse.data.userId);
+              //localStorage.setItem('email', userResponse.data.email);
+              localStorage.setItem('userName', userResponse.data.userName);
+  
+            // navigate(`/home/${userResponse.data.userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
+            } 
+            const userId = localStorage.getItem('userId')
             const returnUrl = localStorage.getItem('returnUrl');
-
+  
             if (returnUrl) {
               // 저장된 URL로 리다이렉트합니다.
               navigate(returnUrl);
@@ -52,13 +52,38 @@ function KakaoCallback() {
               // 저장된 URL이 없으면 기본 페이지(예: 사용자 홈)로 리다이렉트합니다.
               navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
             }
+          }catch (error: unknown) { //에러 일 경우
+            if (error instanceof AxiosError) {
+              const status = error?.response?.status;
+              console.error('Failed to fetch user info:', error);
+              setModalErrorContent(
+                <s.ModalWrapper>
+                  <s.ModalTextsWrapper>유저의 정보를</s.ModalTextsWrapper>
+                  <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
+                </s.ModalWrapper>
+              );
+              if (status === 404) {
+                // 리소스를 찾을 수 없음
+                navigate('/login');
+              } else if (status === 500) {
+                  // 서버 내부 오류
+                  navigate('/login');
+              } else {
+                  // 기타 상태 코드 처리
+                  navigate('/login');
+              }
+            } 
+            setErrorModalOpen(true);
+            return null;
           }
+        }
+      }
       )
       .catch((error) => {
         const status = error.response.status;
         setModalErrorContent(
           <s.ModalWrapper>
-            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
+            <s.ModalTextsWrapper>카카오에서 정보를</s.ModalTextsWrapper>
             <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
           </s.ModalWrapper>
         );
