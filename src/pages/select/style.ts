@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import button1 from '../../assets/button/button1.png'; 
 import button4 from '../../assets/button/button4.png'; 
-
+import CheckImage from '../../assets/check/check-big1.png';
 
 const Wrapper = styled.div`
 z-index: 5;
@@ -70,6 +70,7 @@ border-radius: 50px; // 이 속성을 통해 모서리를 둥글게 만듭니다
 background-image: url(${props => props.src});
 background-size: cover;
 background-color: transparent;
+z-index: 5;
 `;
 
 type ImageButtonProps = {
@@ -93,8 +94,21 @@ const P = styled.p`
 
 const Break = styled.br``;
 
-const SelectClickEvent = styled.div`
+const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
+    position: relative; 
+
+    &::after {
+        content: ${props => props.isSelected ? `url(${CheckImage})` : 'none'};
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;  // 높은 z-index를 주어 상단에 나타나게 합니다.
+    }
 `;
+
+
+
 
 export const s = {
     CenteredWrapper,
@@ -107,6 +121,6 @@ export const s = {
     Break,
     SelectClickEvent,
     TitleTextStyle,
-    Wrapper
+    Wrapper,
 }
 

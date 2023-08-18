@@ -20,6 +20,7 @@ import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
 
+
 function SelectTreeCharacter() {
   const userId = localStorage.getItem('userId');
 const refreshToken = localStorage.getItem('refreshToken');
@@ -91,12 +92,28 @@ const accessToken = localStorage.getItem('accessToken');
 
         <s.SelectWrapper>
         <Carousel showThumbs={false} showStatus={false}>
-          <s.SelectClickEvent onClick={() => setSelectedTree("Maple Tree")}>
-            <s.ImageButton src={MapleTreeImage} alt="Maple Tree" selected={selectedTree === "Maple Tree"} style={{width: "200px", height: "200px"}}/>
-          </s.SelectClickEvent>
-          <s.SelectClickEvent onClick={() => setSelectedTree("Ginkgo Tree")}>
-            <s.ImageButton src={GinkgoTreeImage} alt="Ginkgo Tree" selected={selectedTree === "Ginkgo Tree"} style={{width: "200px", height: "200px"}}/>
-          </s.SelectClickEvent>
+        <s.SelectClickEvent 
+            onClick={() => setSelectedTree("Maple Tree")}
+            isSelected={selectedTree === "Maple Tree"}
+          >
+          <s.ImageButton 
+            src={MapleTreeImage} 
+            alt="Maple Tree" 
+            selected={selectedTree === "Maple Tree"} 
+            style={{width: "200px", height: "200px"}}
+          />
+        </s.SelectClickEvent>
+          <s.SelectClickEvent 
+            onClick={() => setSelectedTree("Ginkgo Tree")}
+            isSelected={selectedTree === "Ginkgo Tree"}
+          >
+          <s.ImageButton 
+            src={GinkgoTreeImage}
+            alt="Ginkgo Tree"
+            selected={selectedTree === "Ginkgo Tree"} 
+            style={{width: "200px", height: "200px"}}
+          />
+        </s.SelectClickEvent>
           {/* Add more trees as needed */}
         </Carousel>
         </s.SelectWrapper>
@@ -106,8 +123,16 @@ const accessToken = localStorage.getItem('accessToken');
         <s.SelectWrapper>
         <Carousel showThumbs={false} showStatus={false} className="carousel">
           {characterData.map((character) => (
-            <s.SelectClickEvent onClick={() => setSelectedCharacter(character.name)}>
-              <s.ImageButton src={character.imgSrc} alt={character.name} selected={selectedCharacter === character.name} style={{width: "70px", height: "100px"}}/>
+            <s.SelectClickEvent 
+            onClick={() => setSelectedCharacter(character.name)}
+            isSelected={selectedCharacter === character.name}
+            >
+              <s.ImageButton 
+                src={character.imgSrc} 
+                alt={character.name} 
+                selected={selectedCharacter === character.name} 
+                style={{width: "70px", height: "100px"}}
+              />
             </s.SelectClickEvent>
           ))}
         </Carousel>
