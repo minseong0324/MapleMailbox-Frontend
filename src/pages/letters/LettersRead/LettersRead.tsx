@@ -14,8 +14,6 @@ type Props = {
   onClose: () => void; // 뒤로가기 버튼을 클릭했을 때 호출될 함수를 props로 받습니다.
 };
 
-
-
 const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   const userId = localStorage.getItem("userId");
 const accessToken = localStorage.getItem("accessToken");
@@ -65,9 +63,6 @@ const accessToken = localStorage.getItem("accessToken");
     fetchLetters();
   }, [fetchLetters]);
   
-  
-  //if(letters.length >= 0) { // 테스트용
-  //if(letters.length >= 5) { // 테스트용
     return (
       <s.LetterWrapper>
         {letters.map((letter, index) => (
@@ -80,45 +75,12 @@ const accessToken = localStorage.getItem("accessToken");
         ))}
 
         <s.BackButton onClick={onClose}>닫기</s.BackButton>
-        
+
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
-        {modalErrorContent}
-      </ErrorModal>
+          {modalErrorContent}
+        </ErrorModal>
       </s.LetterWrapper>
     );
-  //} 
-  /*
-  else { //편지 5개 이상 못받은 경우이긴 한데, 서버에서 전부 처리해서 알아서 랜덤 편지를 보내줄 거기 때문에 필요 x, 테스트용 o
-    return (
-      <s.LetterWrapper>
-
-            <s.TextsStyle>
-              <s.H3>보낸이 : 은행이</s.H3>
-              <s.P>편지 내용: 안녕! 나 은행이. 
-                지금쯤 편지를 많이 모았을까?
-                나도 네게 보탬이 되고 싶어 한장 써서 보내.
-                편지 많이 못받았다고 우울해하지마!
-                때론 5명의 친구보다 1명의 친구가 더 소중하게 느껴지기도 해.
-              </s.P>
-            </s.TextsStyle>
-
-            <s.TextsStyle>
-              <s.H3>
-              받은 편지의 수가 5개 미만이에요. </s.H3>
-              <s.P>
-              편지가 5개 이상 모여야 오늘의 편지를 열람할 수 있어요. </s.P>
-              <s.tips> 
-              Q. 편지를 5개 모으는 방법 외에는 편지를 열람할 수 있는 방법이 없나요? </s.tips>
-              <s.tips> 
-              A. 마지막 날이 되면 받은 편지를 모두 열람할 수 있어요. </s.tips>
-            </s.TextsStyle>
-
-            <s.BackButton onClick={onClose}>닫기</s.BackButton>
-
-      </s.LetterWrapper>
-    )
-  }
-  */
 };
 
 

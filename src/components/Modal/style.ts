@@ -53,10 +53,27 @@ const ModalInnerContent = styled.div`
   overflow: auto;  // 스크롤 기능은 여기에 추가합니다.
 `;
 
+const ErrorCenterModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 65px;
+`;
+
+const ErrorModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 16px;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
 export const s = {
     fadeIn,
     fadeOut,
     ModalWrapper,
     ModalContent,
-    ModalInnerContent
+    ModalInnerContent,
+    ErrorCenterModalWrapper,
+    ErrorModalTextsWrapper
 }

@@ -66,7 +66,6 @@ const ErrorCenterModalWrapper = styled.div`
   justify-content: center;
   text-align: center;
   margin-top: 65px;
-
 `;
 
 const ErrorModalTextsWrapper = styled.div`

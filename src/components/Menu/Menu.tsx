@@ -3,6 +3,8 @@ import axios, {AxiosError} from 'axios';
 import {s} from "./style";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
+
 
 interface MenuProps {
   onLogout: () => void;
@@ -20,13 +22,13 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   const [menuButtonClickedCount, setMenuButtonClickedCount] = useState(
     initialCount ? parseInt(initialCount) : 0
   );
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+  
   const navigate = useNavigate(); // useNavigate hook 사용
   console.log("menuButtonClickedCount");
-
   console.log(menuButtonClickedCount);
   console.log("menuButtonClickedCount--");
-
-  console.log(nowDate);
 
   const handleMenuToggle = async () => {
     setIsOpen(prev => !prev);
@@ -61,16 +63,23 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
                 }
             } catch (error: unknown) { //에러 일 경우
               if (error instanceof AxiosError) {
-                const status = error?.response?.status;
-                console.error('Failed to fetch user info:', error);
-                if (status === 404) {
-                  // 리소스를 찾을 수 없음
-                } else if (status === 500) {
-                    // 서버 내부 오류
-                } else {
-                    // 기타 상태 코드 처리
-                }
+                  const status = error?.response?.status;
+                  console.error('Failed to fetch user info:', error);
+                  setModalErrorContent(
+                      <s.ErrorCenterModalWrapper>
+                          <s.ErrorModalTextsWrapper>메뉴 버튼 클릭 </s.ErrorModalTextsWrapper>
+                          <s.ErrorModalTextsWrapper>요청에 실패했어요.</s.ErrorModalTextsWrapper>
+                      </s.ErrorCenterModalWrapper>
+                  );
+                  if (status === 404) {
+                      // 리소스를 찾을 수 없음
+                  } else if (status === 500) {
+                      // 서버 내부 오류
+                  } else {
+                      // 기타 상태 코드 처리
+                  }
               } 
+              setErrorModalOpen(true);
               return null;
             }
         }
@@ -87,9 +96,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
       });
         // 추가: response가 정의되어 있고 data가 있는지 확인
         if(response.status === 200) {
-            // User has been deactivated, handle this (e.g. log out)
             setLogoutModalOpen(false);
-            
         } 
        // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
         const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
@@ -104,20 +111,25 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         
     
     } catch (error: unknown) { //에러 일 경우
-        if (error instanceof AxiosError) {
-            const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
-            if (status === 404) {
-                // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-            // 기타 상태 코드 처리
-            } 
-        }
-        alert("로그아웃 하는 데에 실패했습니다.");
-    } 
-    return null;
+      if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>로그아웃에 실패했어요.</s.ErrorModalTextsWrapper>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+      } 
+      setErrorModalOpen(true);
+      return null;
+    }
   }
 
   //로그아웃 하기 모달창 열기 함수
@@ -174,6 +186,9 @@ const onClickHandler = () => {
         <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
       </s.CenteredWrapper>
     </Modal>
+    <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+      {modalErrorContent}
+    </ErrorModal>
     </s.Wrapper>
   );
 };

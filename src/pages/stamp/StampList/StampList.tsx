@@ -12,7 +12,6 @@ interface NowDateProps {
   nowDate: number | null;
 }
 
-
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const userId = localStorage.getItem("userId");
     const accessToken = localStorage.getItem("accessToken");
@@ -347,7 +346,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           </s.ModalButton>
         </s.CenteredWrapper>
       </Modal>
-      
+
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
         {modalErrorContent}
       </ErrorModal>
