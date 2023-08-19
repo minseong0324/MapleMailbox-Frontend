@@ -65,7 +65,12 @@ function MyPage() {
     const handleSubmitLeave = async () => { 
         // 입력된 word가 'MapleMailbox'인지 확인
         if (word !== 'MapleMailbox') {
-            alert("입력값이 일치하지 않습니다!");
+            setErrorModalOpen(true)
+            setModalErrorContent(
+                <s.CenterModalWrapper>
+                    <s.ModalTextsWrapper>입력값이 일치하지 않아요.</s.ModalTextsWrapper>
+                </s.CenterModalWrapper>
+              );
             setCheckModalOpen(false);
             setLeaveModalOpen(false);
             setWord(''); // input의 값 초기화
@@ -89,20 +94,27 @@ function MyPage() {
         
         } catch (error: unknown) { //에러 일 경우
             if (error instanceof AxiosError) {
-                const status = error?.response?.status;
-                console.error('Failed to fetch user info:', error);
-                if (status === 404) {
-                    // 리소스를 찾을 수 없음
-                } else if (status === 500) {
-                    // 서버 내부 오류
-                } else {
-                // 기타 상태 코드 처리
-                } 
-            }
-            alert("계정을 탈퇴하는 데에 실패했습니다.");
-        } 
-        return null;
-    }
+              const status = error?.response?.status;
+              console.error('Failed to fetch user info:', error);
+              setErrorModalOpen(true)
+              setModalErrorContent(
+                <s.CenterModalWrapper>
+                    <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
+                    <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
+                </s.CenterModalWrapper>
+              );
+              if (status === 404) {
+                // 리소스를 찾을 수 없음
+              } else if (status === 500) {
+                  // 서버 내부 오류
+              } else {
+                  // 기타 상태 코드 처리
+              }
+            } 
+            setErrorModalOpen(true);
+            return null;
+          }
+        }
     
 
     return (
@@ -148,6 +160,10 @@ function MyPage() {
                 
             </Modal>
             </s.CenteredWrapper>
+            <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+                {modalErrorContent}
+            </ErrorModal>
+
             <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
                 {modalErrorContent}
             </ErrorModal>
