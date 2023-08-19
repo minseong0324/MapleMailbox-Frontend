@@ -16,6 +16,7 @@ import PurpleCharImg from "../../../assets/charImg/purple-small.png";
 import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
@@ -51,6 +52,9 @@ const OwnerUserId = localStorage.getItem('userId');
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
   const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
+  
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
   // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
@@ -58,12 +62,20 @@ const getUserInfoFromServer = async (userId: string) => {
   if (!userId) {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
-    console.log('userId is undefined');
+    console.error('userId is undefined');
+    <s.ErrorCenterModalWrapper>
+      <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+    </s.ErrorCenterModalWrapper>
     return null;
   }
 
   if (!accessToken) {
-    console.log('accessToken is not available');
+    console.error('accessToken is not available');
+    <s.ErrorCenterModalWrapper>
+      <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+    </s.ErrorCenterModalWrapper>
     return null;
   }
 
@@ -87,9 +99,25 @@ const getUserInfoFromServer = async (userId: string) => {
       lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
     };
     
-  } catch (error) {
-    // 요청이 실패하면 오류를 출력하고 null을 반환합니다.
-    console.error('Failed to fetch user info:', error);
+  } catch (error: unknown) { //에러 일 경우
+    if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        setModalErrorContent(
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+                <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+            </s.ErrorCenterModalWrapper>
+        );
+        if (status === 404) {
+            // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+    } 
+    setErrorModalOpen(true);
     return null;
   }
 };
@@ -368,6 +396,9 @@ const handleSendLetter = async (event: React.FormEvent) => {
         </s.ModalCenterWrapper>
         
       </Modal>
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
     </s.CenteredWrapper>
     </>
   );
