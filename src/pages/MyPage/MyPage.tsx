@@ -21,13 +21,13 @@ function MyPage() {
 
     useEffect(() => {
         if(userId !== MyUserId) {
-            setErrorModalOpen(true)
             setModalErrorContent(
                 <s.CenterModalWrapper>
                   <s.ErrorModalTextsWrapper>잘못된 접근이에요!</s.ErrorModalTextsWrapper>
                   <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                 </s.CenterModalWrapper>
               );
+            setErrorModalOpen(true)
         }
         
     })
@@ -94,21 +94,21 @@ function MyPage() {
         
         } catch (error: unknown) { //에러 일 경우
             if (error instanceof AxiosError) {
-              const status = error?.response?.status;
-              console.error('Failed to fetch user info:', error);
-              setModalErrorContent(
-                <s.CenterModalWrapper>
-                    <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
-                    <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
-                </s.CenterModalWrapper>
-              );
-              if (status === 404) {
-                // 리소스를 찾을 수 없음
-              } else if (status === 500) {
-                  // 서버 내부 오류
-              } else {
-                  // 기타 상태 코드 처리
-              }
+                const status = error?.response?.status;
+                console.error('Failed to fetch user info:', error);
+                setModalErrorContent(
+                    <s.CenterModalWrapper>
+                        <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
+                        <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
+                    </s.CenterModalWrapper>
+                );
+                if (status === 404) {
+                    // 리소스를 찾을 수 없음
+                } else if (status === 500) {
+                    // 서버 내부 오류
+                } else {
+                    // 기타 상태 코드 처리
+                }
             } 
             setErrorModalOpen(true);
             return null;

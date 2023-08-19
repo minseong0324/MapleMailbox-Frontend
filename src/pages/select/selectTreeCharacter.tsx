@@ -159,7 +159,7 @@ function SelectTreeCharacter() {
             onClick={() => setSelectedCharacter(character.name)}
             isSelected={selectedCharacter === character.name}
             >
-              <s.ImageButton 
+              <s.ImageButton
                 src={character.imgSrc} 
                 alt={character.name} 
                 selected={selectedCharacter === character.name} 

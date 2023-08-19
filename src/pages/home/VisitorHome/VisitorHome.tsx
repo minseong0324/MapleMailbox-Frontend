@@ -17,8 +17,42 @@ import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 
+// 이미지를 동적으로 가져오는 함수 1~30까지
+const importImages = async (prefix: string, count: number) => {
+  const images = [];
+  for (let i = 1; i <= count; i++) {
+    const image = await import(`../../../assets/${prefix}/${prefix}${i}.png`);
+    images.push(image.default);
+  }
+  return images;
+};
 
-// 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
+function VisitorHome() {
+  const accessToken = localStorage.getItem('accessToken');
+const OwnerUserId = localStorage.getItem('userId');
+  // 상태를 관리하는 useState 훅을 사용합니다.
+  const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
+  const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태
+  const [letterContent, setLetterContent] = useState('');  // 편지 내용을 관리하는 상태
+  const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
+  const [treeType, setTreeType] = useState(null);
+  const [characterType, setCharacterType] = useState(null);
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
+  const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
+  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
+  const [treeGrowthStage, setTreeGrowthStage] = useState(0);
+  const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
+  const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
+  const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
+  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 5개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
+
+  const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
+  const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
+
+  // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   const accessToken = localStorage.getItem('accessToken');
   if (!userId) {
@@ -59,43 +93,6 @@ const getUserInfoFromServer = async (userId: string) => {
     return null;
   }
 };
-
-// 이미지를 동적으로 가져오는 함수 1~30까지
-const importImages = async (prefix: string, count: number) => {
-  const images = [];
-  for (let i = 1; i <= count; i++) {
-    const image = await import(`../../../assets/${prefix}/${prefix}${i}.png`);
-    images.push(image.default);
-  }
-  return images;
-};
-
-function VisitorHome() {
-  const accessToken = localStorage.getItem('accessToken');
-const OwnerUserId = localStorage.getItem('userId');
-  // 상태를 관리하는 useState 훅을 사용합니다.
-  const [isSendModalOpen, setSendModalOpen] = useState(false);  // "보내기" 모달의 보임/안보임을 관리하는 상태
-  const [senderName, setSenderName] = useState('');  // 보내는 사람 이름을 관리하는 상태
-  const [letterContent, setLetterContent] = useState('');  // 편지 내용을 관리하는 상태
-  const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
-  const [treeType, setTreeType] = useState(null);
-  const [characterType, setCharacterType] = useState(null);
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
-  const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
-  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
-  const [treeGrowthStage, setTreeGrowthStage] = useState(0);
-  const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
-  const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
-  const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
-  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 5개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
-
-  const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
-
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //로그인 유무를 확인하는 상태
-  const [showLoginAlertModal, setShowLoginAlertModal] = useState(false); //로그인 상태가 아니면 모달창을 띄위기 위한 상태
-
-  
 
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {

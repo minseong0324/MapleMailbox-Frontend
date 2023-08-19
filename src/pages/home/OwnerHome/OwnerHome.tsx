@@ -7,8 +7,6 @@ import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style';
 import LettersList from '../../letters/LettersList/LettersList';
 import StampList from 'src/pages/stamp/StampList/StampList';
-import MapleTreeImage from "../../../assets/treeImg/MapleMainTree.png";
-import GinkgoTreeImage from "../../../assets/treeImg/GinkgoMainTree.png";
 import MapleCharImg from "../../../assets/charImg/maple-small.png";
 import GinkgoCharImg from "../../../assets/charImg/ginkgo-small.png";
 import BlackCharImg from "../../../assets/charImg/black-small.png";
@@ -19,57 +17,8 @@ import PurpleCharImg from "../../../assets/charImg/purple-small.png";
 import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
-// 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
-const getUserInfoFromServer = async (userId: string) => {
-  const accessToken = localStorage.getItem('accessToken');
-  if (!userId) {
-    // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
-    // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
-    console.error('userId is undefined');
-    return null;
-  }
-
-  if (!accessToken) {
-    console.error('accessToken is not available');
-    return null;
-  }
-
-  try {
-    // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
-      headers: {
-        'authorization': `${accessToken}`
-      }
-    });
-    if(response.status===200) {
-      // 응답에서 사용자 정보를 추출합니다.
-      const userInfo = response.data;
-
-      // 사용자의 나무와 캐릭터 정보를 반환합니다.
-      return {
-        treeType: userInfo.treeType, //사용자 나무 종류
-        characterType: userInfo.characterType, // 사용자 캐릭터 종류
-        userName: userInfo.userName, // 사용자 이름을 추가합니다.
-        nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
-        lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
-      };
-    }
-  } catch (error: unknown) { //에러 일 경우
-    if (error instanceof AxiosError) {
-      const status = error?.response?.status;
-      console.error('Failed to fetch user info:', error);
-      if (status === 404) {
-        // 리소스를 찾을 수 없음
-      } else if (status === 500) {
-          // 서버 내부 오류
-      } else {
-          // 기타 상태 코드 처리
-      }
-    } 
-    return null;
-  }
-};
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
   const images = [];
@@ -118,6 +67,9 @@ function OwnerHome() {
 
   const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
 
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+
 const accessToken = localStorage.getItem('accessToken');
 localStorage.setItem(`userName_${userId}`, userName);
   //const userId = localStorage.getItem("userId");
@@ -131,7 +83,63 @@ localStorage.setItem(`userName_${userId}`, userName);
     lettersOverFive: [false, false, true, true, false, true] // 3일, 4일, 6일에 5개 이상의 편지가 옴
   };
   */
+// 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
+const getUserInfoFromServer = async (userId: string) => {
+  const accessToken = localStorage.getItem('accessToken');
+  if (!userId) {
+    // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
+    // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
+    console.error('userId is undefined');
+    return null;
+  }
 
+  if (!accessToken) {
+    console.error('accessToken is not available');
+    return null;
+  }
+
+  try {
+    // 백엔드 서버에 GET 요청을 보냅니다.
+    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
+      headers: {
+        'authorization': `${accessToken}`
+      }
+    });
+    if(response.status===200) {
+      // 응답에서 사용자 정보를 추출합니다.
+      const userInfo = response.data;
+
+      // 사용자의 나무와 캐릭터 정보를 반환합니다.
+      return {
+        treeType: userInfo.treeType, //사용자 나무 종류
+        characterType: userInfo.characterType, // 사용자 캐릭터 종류
+        userName: userInfo.userName, // 사용자 이름을 추가합니다.
+        nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
+        lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
+      };
+    }
+  } catch (error: unknown) { //에러 일 경우
+    if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
+        setModalErrorContent(
+            <s.ErrorCenterModalWrapper>
+                <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
+                <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
+            </s.ErrorCenterModalWrapper>
+        );
+        if (status === 404) {
+            // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+    } 
+    setErrorModalOpen(true);
+    return null;
+  }
+};
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -324,7 +332,9 @@ localStorage.setItem(`userName_${userId}`, userName);
               <StampList nowDate={nowDate}/>
               {/*<StampList nowDate={2} /> {/* 테스트용 */}
             </Modal>
-
+            <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+                {modalErrorContent}
+            </ErrorModal>
       </s.CenteredWrapper>
     </>
   );
