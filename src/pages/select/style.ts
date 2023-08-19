@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import button1 from '../../assets/button/button1.png'; 
 import button4 from '../../assets/button/button4.png'; 
 import CheckImage from '../../assets/check/check-big1.png';
+import modalButton from '../../assets/button/button-midium-1.png'; 
+import modalButtonAfterClick from '../../assets/button/button-midium-2.png'; 
 
 const Wrapper = styled.div`
 z-index: 5;
@@ -107,8 +109,58 @@ const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
     }
 `;
 
+const ErrorModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
 
+const ModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 
+`;
+const CenterModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 60px;
+
+`;
+
+const ModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 16px;
+
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ModalButton = styled.button`
+  font-family: 'DOSSaemmul';
+  width: 170px; // 버튼 너비를 조정
+  height: 40px; // 버튼 높이를 조정
+  padding: 10px; // 내부 패딩을 조정
+  background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
+  background-size: cover; // 이미지가 버튼에 맞게 조절
+  color: black;
+  border-radius: 15px;
+  font-size: 17px; 
+  border: 0px transparent; // 테두리 색상을 투명
+  position: relative;
+  z-index: 5;
+  &:active { // 버튼이 눌렸을 때의 스타일
+    background: url(${modalButtonAfterClick}) no-repeat center center; // 눌렸을 때의 배경 이미지
+    background-size: cover; // 이미지가 버튼에 맞게 조절
+  }
+  margin-top: 50px;
+`;
 
 export const s = {
     CenteredWrapper,
@@ -122,5 +174,10 @@ export const s = {
     SelectClickEvent,
     TitleTextStyle,
     Wrapper,
+    ErrorModalTextsWrapper,
+    ModalWrapper,
+    CenterModalWrapper,
+    ModalTextsWrapper,
+    ModalButton
 }
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { s } from './style';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,17 +20,39 @@ import PurpleCharImg from "../../assets/charImg/purple-small.png";
 import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 
 function SelectTreeCharacter() {
-  const userId = localStorage.getItem('userId');
-const refreshToken = localStorage.getItem('refreshToken');
-const accessToken = localStorage.getItem('accessToken');
+  const MyUserId = localStorage.getItem("userId")
+  const refreshToken = localStorage.getItem('refreshToken');
+  const accessToken = localStorage.getItem('accessToken');
   const [selectedTree, setSelectedTree] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(true);
   const [isServiceModalOpen, setServiceModalOpen] = useState(false);
   const navigate = useNavigate(); // useNavigate hook 사용
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+  const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
+
+
+  useEffect(() => {
+    if(userId !== MyUserId) {
+        setErrorModalOpen(true)
+        setModalErrorContent(
+            <s.CenterModalWrapper>
+              <s.ErrorModalTextsWrapper>잘못된 접근이에요!</s.ErrorModalTextsWrapper>
+              <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+            </s.CenterModalWrapper>
+          );
+    }
+    
+  })
+
+  const handleNavigateHome = () => { 
+    navigate(`/home/${MyUserId}`);    
+  }
 
   const handleSubmit = async () => {
     const selectedData = {
@@ -40,21 +63,27 @@ const accessToken = localStorage.getItem('accessToken');
 
     try {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-      const response = await axios.put(`http://localhost:8080/api/users/${userId}`, selectedData, {
+      const response = await axios.put(`http://localhost:8080/api/users/${MyUserId}`, selectedData, {
         headers: {
           'authorization': `${accessToken}` // accessToken을 헤더에 추가
         }
       });
       if(response.status===200) {
         console.log('Success:', response.data);
-        // navigate('/Ownerhome'); //프론트 자체 테스트용
-        navigate(`/home/${userId}`, { replace: true });
+        navigate(`/home/${MyUserId}`, { replace: true });
         //어차피 자신의 홈으로 이동되면서 다시 유저의 정보들이 요청될 것이므로 따로 받아와야하는 값은 없다.
       }
     }catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
+
+        setModalErrorContent(
+          <s.ModalWrapper>
+              <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
+              <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
+          </s.ModalWrapper>
+        );
         if (status === 404) {
           // 리소스를 찾을 수 없음
         } else if (status === 500) {
@@ -63,8 +92,11 @@ const accessToken = localStorage.getItem('accessToken');
             // 기타 상태 코드 처리
         }
       } 
+      setErrorModalOpen(true);
+      navigate(`/home/${MyUserId}`, { replace: true });
       return null;
     }
+  
     // 홈으로 이동
     //navigate(`/home/${userId}`, { replace: true }); //에러처리 다 하면 이건 지워도 될 듯
 }
@@ -85,7 +117,7 @@ const accessToken = localStorage.getItem('accessToken');
 
   return (
     <s.Wrapper>
-    <BackButton to={`/mypage/${userId}`} />
+    <BackButton to={`/mypage/${MyUserId}`} />
       <s.CenteredWrapper>
         <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
         <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
@@ -149,6 +181,10 @@ const accessToken = localStorage.getItem('accessToken');
 
         <s.Button onClick={handleSubmit}>바꾸기</s.Button>
       </s.CenteredWrapper>
+
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
     </s.Wrapper>
   );
 }

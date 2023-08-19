@@ -65,12 +65,12 @@ function MyPage() {
     const handleSubmitLeave = async () => { 
         // 입력된 word가 'MapleMailbox'인지 확인
         if (word !== 'MapleMailbox') {
-            setErrorModalOpen(true)
             setModalErrorContent(
                 <s.CenterModalWrapper>
                     <s.ModalTextsWrapper>입력값이 일치하지 않아요.</s.ModalTextsWrapper>
                 </s.CenterModalWrapper>
-              );
+            );
+            setErrorModalOpen(true)
             setCheckModalOpen(false);
             setLeaveModalOpen(false);
             setWord(''); // input의 값 초기화
@@ -96,7 +96,6 @@ function MyPage() {
             if (error instanceof AxiosError) {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
-              setErrorModalOpen(true)
               setModalErrorContent(
                 <s.CenterModalWrapper>
                     <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
@@ -160,10 +159,6 @@ function MyPage() {
                 
             </Modal>
             </s.CenteredWrapper>
-            <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
-                {modalErrorContent}
-            </ErrorModal>
-
             <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
                 {modalErrorContent}
             </ErrorModal>
