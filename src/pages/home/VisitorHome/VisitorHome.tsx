@@ -63,19 +63,27 @@ const getUserInfoFromServer = async (userId: string) => {
     // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
     // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
     console.error('userId is undefined');
-    <s.ErrorCenterModalWrapper>
-      <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-    </s.ErrorCenterModalWrapper>
+    setModalErrorContent(
+      <s.ErrorCenterModalWrapper>
+          <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+          <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+      </s.ErrorCenterModalWrapper>
+  );
+  setErrorModalOpen(true);
+
     return null;
   }
 
   if (!accessToken) {
     console.error('accessToken is not available');
-    <s.ErrorCenterModalWrapper>
-      <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-    </s.ErrorCenterModalWrapper>
+    setModalErrorContent(
+      <s.ErrorCenterModalWrapper>
+          <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+          <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+      </s.ErrorCenterModalWrapper>
+  );
+  setErrorModalOpen(true);
+
     return null;
   }
 

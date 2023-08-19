@@ -8,6 +8,7 @@ import MapleLeafDisabled from '../../../assets/leafImg/MapleLeaf-disabled.png';
 import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png';
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 
 
@@ -17,11 +18,8 @@ const accessToken = localStorage.getItem("accessToken");
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
-  // 테스트용 코드
-  //const [nowDate, setNowDate] = useState<number | null>(2); // 테스트용 2일차 설정
-  //const [lettersOverFive, setLettersOverFive] = useState<boolean[]>([true, false, false, false, false]); // 1일차와 2일차 모두 5개의 편지를 받지 못한 상황
-
-  // 출시할 때 사용하는 코드
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
  
@@ -50,16 +48,23 @@ const accessToken = localStorage.getItem("accessToken");
         }
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
-          const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
-          if (status === 404) {
-            // 리소스를 찾을 수 없음
-          } else if (status === 500) {
-              // 서버 내부 오류
-          } else {
-              // 기타 상태 코드 처리
-          }
+            const status = error?.response?.status;
+            console.error('Failed to fetch user info:', error);
+            setModalErrorContent(
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+                    <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+                </s.ErrorCenterModalWrapper>
+            );
+            if (status === 404) {
+                // 리소스를 찾을 수 없음
+            } else if (status === 500) {
+                // 서버 내부 오류
+            } else {
+                // 기타 상태 코드 처리
+            }
         } 
+        setErrorModalOpen(true);
         return null;
       }
     };
@@ -111,14 +116,32 @@ const accessToken = localStorage.getItem("accessToken");
               key={index}
               onClick={() => {
                 if (nowDate === null) {
-                  alert("날짜 정보를 가져올 수 없습니다.");
+                  setModalErrorContent(
+                    <s.ErrorCenterModalWrapper>
+                        <s.ErrorModalTextsWrapper>날짜 정보를 가져오는</s.ErrorModalTextsWrapper>
+                        <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+                    </s.ErrorCenterModalWrapper>
+                );
+                setErrorModalOpen(true);
                   return;
                 }
                 if (!isButtonActive) {
                   if (date === nowDate) {
-                    alert("아직 오늘 받은 편지 수가 5개 미만입니다!");
+                    setModalErrorContent(
+                      <s.ErrorCenterModalWrapper>
+                          <s.ErrorModalTextsWrapper>오늘 받은 편지 수가</s.ErrorModalTextsWrapper>
+                          <s.ErrorModalTextsWrapper>아직 5개 미만이에요.</s.ErrorModalTextsWrapper>
+                      </s.ErrorCenterModalWrapper>
+                  );
+                  setErrorModalOpen(true);
                   } else {
-                    alert(date-Number(nowDate)+"일 뒤에 열람할 수 있습니다.");
+                    setModalErrorContent(
+                      <s.ErrorCenterModalWrapper>
+                          <s.ErrorModalTextsWrapper>{date-Number(nowDate)}일 뒤에 </s.ErrorModalTextsWrapper>
+                          <s.ErrorModalTextsWrapper>열람할 수 있어요.</s.ErrorModalTextsWrapper>
+                      </s.ErrorCenterModalWrapper>
+                  );
+                  setErrorModalOpen(true);
                   }
                 } else {
                   handleOpenModal(date);
@@ -137,6 +160,10 @@ const accessToken = localStorage.getItem("accessToken");
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         {modalContent}
       </Modal>
+
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
     </s.Container>
   );
 }
