@@ -96,10 +96,10 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
             const getUserId = localStorage.getItem('userId');
             // 모든 항목을 삭제합니다.
             localStorage.clear();
-            // "keepThisKey"의 값을 다시 저장합니다.
+            // "menuButtonClickedCount"의 값을 다시 저장합니다.
             if (menuButtonClickedCount !== null) {
                 localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
-            }
+              }
         navigate('/')
         
     

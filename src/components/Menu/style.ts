@@ -14,11 +14,15 @@ const SunWrapper = styled.div`
   @media (min-width: 821px) {
     right: calc(50% - 410px + 10px);
   }
+  @media (min-height: 1180px) {
+    top: calc(50% - 590px + 10px);
+  }
 `;
 
 
 const Wrapper = styled.div`
   max-width: 820px;
+  max-height: 1180px;
   margin: auto;
 `;
 
