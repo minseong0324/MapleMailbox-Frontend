@@ -119,6 +119,7 @@ function OwnerHome() {
   const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
 
 const accessToken = localStorage.getItem('accessToken');
+localStorage.setItem(`userName_${userId}`, userName);
   //const userId = localStorage.getItem("userId");
 
   /* //테스트용 데이터

@@ -10,10 +10,10 @@ function MyPage() {
     const [isCheckModalOpen, setCheckModalOpen] = useState(false);
     const [word, setWord] = useState('');  // 보내는 사람 이름을 관리하는 상태
     const navigate = useNavigate(); // useNavigate hook 사용
-    const [userName, setUserName] = useState('김단풍'); // 기본 이름 설정
     const userId = localStorage.getItem("userId")
     const accessToken = localStorage.getItem("accessToken")
-
+    const userName = localStorage.getItem(`userName_${userId}`);
+    
     const handleNavigateSelectCharacterTree = () => { 
         navigate(`/select-character-tree/${userId}`);
     }
