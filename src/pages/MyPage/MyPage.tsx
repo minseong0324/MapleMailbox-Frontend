@@ -1,21 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { s } from './style';
 import { useNavigate } from 'react-router-dom';
 import axios, {AxiosError} from "axios";
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 function MyPage() {
     const [isLeaveModalOpen, setLeaveModalOpen] = useState(false);
     const [isCheckModalOpen, setCheckModalOpen] = useState(false);
     const [word, setWord] = useState('');  // 보내는 사람 이름을 관리하는 상태
     const navigate = useNavigate(); // useNavigate hook 사용
-    const userId = localStorage.getItem("userId")
+    const MyUserId = localStorage.getItem("userId")
     const accessToken = localStorage.getItem("accessToken")
+    const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
     const userName = localStorage.getItem(`userName_${userId}`);
-    
+    const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+    const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+
+    useEffect(() => {
+        if(userId !== MyUserId) {
+            setErrorModalOpen(true)
+            setModalErrorContent(
+                <s.CenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>잘못된 접근이에요!</s.ErrorModalTextsWrapper>
+                  <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+                </s.CenterModalWrapper>
+              );
+        }
+        
+    })
+
+    const handleNavigateHome = () => { 
+        navigate(`/home/${MyUserId}`);    
+    }
+
     const handleNavigateSelectCharacterTree = () => { 
-        navigate(`/select-character-tree/${userId}`);
+        navigate(`/select-character-tree/${MyUserId}`);
     }
 
     //탈퇴하기 모달창 열기 함수
@@ -50,7 +72,7 @@ function MyPage() {
             return; // 함수 종료
         }
         try {
-            const response = await axios.delete(`http://localhost:8080/api/auth/leave/${userId}`, {
+            const response = await axios.delete(`http://localhost:8080/api/auth/leave/${MyUserId}`, {
                 headers: {
                     'authorization': `${accessToken}`
                 }
@@ -85,7 +107,7 @@ function MyPage() {
 
     return (
         <s.Wrapper>
-            <BackButton to={`/home/${userId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
+            <BackButton to={`/home/${MyUserId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
             {/*<BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
             <s.CenteredWrapper>
             <s.TitleTextStyle>{userName}의 마이페이지</s.TitleTextStyle>
@@ -126,6 +148,9 @@ function MyPage() {
                 
             </Modal>
             </s.CenteredWrapper>
+            <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+                {modalErrorContent}
+            </ErrorModal>
         </s.Wrapper>
     );
 }

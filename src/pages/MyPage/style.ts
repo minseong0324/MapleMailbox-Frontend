@@ -114,6 +114,32 @@ margin-bottom: 20px;
 background-color: #fff8f0;
 `;
 
+const ErrorModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+`;
+const CenterModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+
+`;
+
+
+
 export const s = {
     CenteredWrapper,
     TitleTextStyle,
@@ -124,6 +150,9 @@ export const s = {
     ButtonWrapper,
     ModalButton,
     Wrapper,
-    WordInput
+    WordInput,
+    ErrorModalTextsWrapper,
+    ModalWrapper,
+    CenterModalWrapper
 }
 
