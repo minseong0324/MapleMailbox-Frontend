@@ -61,11 +61,29 @@ font-size:15px;
 color: gray;
 `;
 
+const ErrorCenterModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 65px;
+
+`;
+
+const ErrorModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 16px;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
 export const s = {
     BackButton,
     TextsStyle,
     LetterWrapper,
     LetterContent,
     H2, H3, tips,
-    P
+    P,
+    ErrorCenterModalWrapper,
+    ErrorModalTextsWrapper
 }

@@ -120,5 +120,5 @@ export const s = {
     StampImage,
     stampImages,
     H2, H3, tips,
-    P
+    P,
 }

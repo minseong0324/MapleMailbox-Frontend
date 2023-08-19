@@ -22,7 +22,6 @@ const accessToken = localStorage.getItem("accessToken");
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   const [nowDate, setNowDate] = useState<number | null>(null);
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
- 
   const [treeType, setTreeType] = useState<string>('Maple Tree');
 
     // 사용자 데이터를 가져옵니다.

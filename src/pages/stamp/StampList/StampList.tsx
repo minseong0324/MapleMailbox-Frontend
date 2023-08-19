@@ -5,7 +5,7 @@ import StampDetail from '../StampDetail/StampDetail';
 import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
 import MissionText from '../../../components/MissionText/MissionText';
-
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 // 현재 날짜의 속성을 정의하는 인터페이스입니다.
 interface NowDateProps {
@@ -25,6 +25,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const [missionComplete, setMissionComplete] = useState<boolean | null>(false);
   //const [missionComplete, setMissionComplete] = useState<boolean | null>(true); //테스트용
   const [todayMissionCompleteModalOpen, setTodayMissionCompleteModalOpen] = useState(false); //우표를 수령했으면 그 이후로 '오늘의 미션을 완료했어요!' 라고 띄워주는 모달창
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
   // 서버에서 우표 상태를 가져오는 함수입니다.
   const fetchStampStatus = useCallback(async () => {
@@ -46,16 +48,23 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       } 
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        if (status === 404) {
-          // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
-        }
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>우표 정보를 가져오는</s.ErrorModalTextsWrapper>
+                  <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
       } 
+      setErrorModalOpen(true);
       return null;
     }
   }, []);
@@ -92,16 +101,23 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           }
         } catch (error: unknown) { //에러 일 경우
           if (error instanceof AxiosError) {
-            const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
-            if (status === 404) {
-              // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-                // 기타 상태 코드 처리
-            }
+              const status = error?.response?.status;
+              console.error('Failed to fetch user info:', error);
+              setModalErrorContent(
+                  <s.ErrorCenterModalWrapper>
+                      <s.ErrorModalTextsWrapper>미션 정보를 가져오는</s.ErrorModalTextsWrapper>
+                      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+                  </s.ErrorCenterModalWrapper>
+              );
+              if (status === 404) {
+                  // 리소스를 찾을 수 없음
+              } else if (status === 500) {
+                  // 서버 내부 오류
+              } else {
+                  // 기타 상태 코드 처리
+              }
           } 
+          setErrorModalOpen(true);
           return null;
         }
       } else {
@@ -173,31 +189,45 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           }
         } catch (error: unknown) { //에러 일 경우
           if (error instanceof AxiosError) {
-            const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
-            if (status === 404) {
-              // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-                // 기타 상태 코드 처리
-            }
+              const status = error?.response?.status;
+              console.error('Failed to fetch user info:', error);
+              setModalErrorContent(
+                  <s.ErrorCenterModalWrapper>
+                      <s.ErrorModalTextsWrapper>우표 완료 정보를 가져</s.ErrorModalTextsWrapper>
+                      <s.ErrorModalTextsWrapper>오는 데에 실패했어요.</s.ErrorModalTextsWrapper>
+                  </s.ErrorCenterModalWrapper>
+              );
+              if (status === 404) {
+                  // 리소스를 찾을 수 없음
+              } else if (status === 500) {
+                  // 서버 내부 오류
+              } else {
+                  // 기타 상태 코드 처리
+              }
           } 
+          setErrorModalOpen(true);
           return null;
         }
       } 
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        if (status === 404) {
-          // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
-        }
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>미션 완료 정보를 가져</s.ErrorModalTextsWrapper>
+                  <s.ErrorModalTextsWrapper>오는 데에 실패했어요.</s.ErrorModalTextsWrapper>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
       } 
+      setErrorModalOpen(true);
       return null;
     }
   };
@@ -317,7 +347,10 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           </s.ModalButton>
         </s.CenteredWrapper>
       </Modal>
-
+      
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
     </s.Container>
   );
 };

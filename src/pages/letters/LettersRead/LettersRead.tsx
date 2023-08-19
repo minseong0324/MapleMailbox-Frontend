@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios, {AxiosError} from 'axios';
 import { s } from './style'
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
@@ -19,6 +20,8 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   const userId = localStorage.getItem("userId");
 const accessToken = localStorage.getItem("accessToken");
   const [letters, setLetters] = useState<Letter[]>([]); // 선택된 날짜의 편지들을 저장할 상태입니다.
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
@@ -37,16 +40,23 @@ const accessToken = localStorage.getItem("accessToken");
       }
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        if (status === 404) {
-          // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
-        }
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
+                  <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
       } 
+      setErrorModalOpen(true);
       return null;
     }
   }, [selectedDate]);
@@ -70,7 +80,10 @@ const accessToken = localStorage.getItem("accessToken");
         ))}
 
         <s.BackButton onClick={onClose}>닫기</s.BackButton>
-
+        
+        <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
       </s.LetterWrapper>
     );
   //} 

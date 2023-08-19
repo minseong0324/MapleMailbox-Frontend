@@ -207,6 +207,22 @@ const ShowStampEffect = styled.div`
   height: 120px;
 `;
 
+const ErrorCenterModalWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 65px;
+
+`;
+
+const ErrorModalTextsWrapper = styled.div`
+position: relative;
+display: flex;
+font-size: 16px;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
 export const s = {
     ButtonWrapper,
     TextsStyle,
@@ -224,5 +240,7 @@ export const s = {
     ShowStamp,
     ShowStampEffect,
     ShowStampWrapper,
-    Break
+    Break,
+    ErrorCenterModalWrapper,
+    ErrorModalTextsWrapper
 }
