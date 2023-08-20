@@ -4,7 +4,7 @@ import {s} from "./style";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
-
+import {useToken}  from '../../contexts/TokenProvider/TokenProvider'
 
 interface MenuProps {
   onLogout: () => void;
@@ -14,7 +14,7 @@ interface MenuProps {
 
 
 const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => { 
-  const accessToken = localStorage.getItem('accessToken');
+  const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem('userId');  
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
@@ -26,9 +26,6 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   
   const navigate = useNavigate(); // useNavigate hook 사용
-  console.log("menuButtonClickedCount");
-  console.log(menuButtonClickedCount);
-  console.log("menuButtonClickedCount--");
 
   const handleMenuToggle = async () => {
     setIsOpen(prev => !prev);

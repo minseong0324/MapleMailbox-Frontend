@@ -68,7 +68,8 @@ function MyPage() {
         if (word !== 'MapleMailbox') {
             setModalErrorContent(
                 <s.ErrorCenterModalWrapper>
-                    <s.ErrorModalTextsWrapper1>입력값이 일치하지 않아요.</s.ErrorModalTextsWrapper1>
+                    <s.ErrorModalTextsWrapper2>입력값이</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>일치하지 않아요.</s.ErrorModalTextsWrapper2>
                     <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                 </s.ErrorCenterModalWrapper>
             );

@@ -114,7 +114,7 @@ const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 50px;
 `;
 
 const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용

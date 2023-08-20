@@ -4,6 +4,7 @@ import {s} from "./style";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import {useToken}  from '../../contexts/TokenProvider/TokenProvider'
 
 interface MenuProps {
   onLogout: () => void;
@@ -11,7 +12,7 @@ interface MenuProps {
 }
 
 const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => { 
-  const accessToken = localStorage.getItem("accessToken");
+  const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem("userId");
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);  // 로그인 상태를 저장하는 state 추가
