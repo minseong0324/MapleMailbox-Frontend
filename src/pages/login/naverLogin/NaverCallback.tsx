@@ -13,11 +13,19 @@ function NaverCallback() {
   const handleOAuthNaver = async (code: string) => {
     try {
         // 네이버로부터 받아온 code를 서버에 전달하여 네이버로 회원가입 & 로그인한다
-        const response = await axios.get(`http://localhost:8080/oauth/login/?code=${code}`);
+        const response = await axios.get(`http://localhost:8080/oauth/login/naver?code=${code}`);
         if (response.status === 200) {
-          localStorage.setItem('accessToken', response.headers.accessToken);
-          localStorage.setItem('refreshToken', response.headers.refreshToken);
-          const accessToken = localStorage.getItem('accessToken');
+          const accessToken = response.headers['authorization'];
+          const refreshToken = response.headers['reauthorization'];
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
+          console.log("refreshToken")
+          console.log(response.headers.refreshToken)
+          console.log("refreshToken----")
+          console.log("accessToken")
+          console.log(response.headers.accessToken)
+          console.log("accessToken----")
+          console.log(response.headers); 
           try {
             const userResponse = await axios.get(`http://localhost:8080/api/users`, {
               headers: {

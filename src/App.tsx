@@ -42,6 +42,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree/:userId" element={<SelectTreeCharacter />} />
         
+        
           <Route path="/kakao/callback" element={<KakaoCallback />} />
         
           <Route path="/naver/callback" element={<NaverCallback />} />
