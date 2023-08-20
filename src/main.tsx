@@ -11,7 +11,7 @@ if (!rootElement) throw new Error('Failed to find the root element');
 const root = CreateDOM.createRoot(rootElement); // reactDOM 쓰니 자꾸 에러 발생합니다. CreateDOM으로 사용.
 
 root.render(
-  <React.StrictMode>
+
       <App />
-  </React.StrictMode>
+
 );

@@ -28,11 +28,12 @@ function App() {
     
     <QueryClientProvider client={queryClient}>
      <GlobalStyle /> {/* 이 줄 추가 */}
-
+    <UserProvider>
       <LeafFalling />
       <Clouds />
+      
       <Router>
-      <TokenProvider>
+
         <Routes>
         
           <Route path="/" element={<HomeBeforeLogin />} />
@@ -47,11 +48,11 @@ function App() {
           <Route path="/naver/callback" element={<NaverCallback />} />
           
           <Route path="/mypage/:userId" element={<MyPage />} />
-         
+          
         </Routes>
-       </TokenProvider>
-      </Router>
 
+      </Router>
+    </UserProvider>
     </QueryClientProvider>
     
     </>

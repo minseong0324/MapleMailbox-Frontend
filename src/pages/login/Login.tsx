@@ -37,6 +37,7 @@ function Login() {
     const response = await axios.post(`http://localhost:8080/api/auth/login/self`, credentials);
     return response; // return whole response object, not just data
   }, {
+    
     onSuccess: async (response) => {
       console.log(response.headers); 
       // your token processing code here
@@ -45,10 +46,7 @@ function Login() {
       
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-
-      console.log(accessToken);
-      console.log(refreshToken);
-
+      
       try{
         if (response.status === 200) {
           // 로그인 성공 시 GET 요청을 수행
@@ -86,7 +84,7 @@ function Login() {
               setModalErrorContent(
                 <s.ErrorCenterModalWrapper>
                     <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
-                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
                     <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
                 </s.ErrorCenterModalWrapper>
               );
@@ -103,6 +101,7 @@ function Login() {
           }
         } 
       } catch (error: unknown) { //에러 일 경우
+        
         if (error instanceof AxiosError) {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);

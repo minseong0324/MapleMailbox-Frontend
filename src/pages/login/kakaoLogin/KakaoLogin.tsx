@@ -1,27 +1,32 @@
-import React from "react";
+// NaverLogin.tsx
+import React from 'react';
 import { s } from './style'
 
 interface KakaoProps {
     imageUrl: string;
   }
 
-const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
-   // const CLIENT_ID = `${import.meta.env.VITE_APP_KAKAO_CLIENT_ID}`;
-    //const REDIRECT_URL = `${import.meta.env.VITE_APP_KAKAO_REDIRECT_URL}`;
-    //const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`
+// 네이버 로그인 컴포넌트
+const NaverLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
+    // 네이버 클라이언트 ID
+    //const CLIENT_ID = `${import.meta.env.VITE_APP_NAVER_CLIENT_ID}`;
+    // 네이버 리다이렉트 URI
+    //const REDIRECT_URL = `${import.meta.env.VITE_APP_NAVER_REDIRECT_URL}`;
+    // 네이버 인증 URL 생성
+    //const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=STATE_STRING`;
 
-    // 이미지 클릭 시 카카오 로그인 페이지로 이동
+    // 이미지 클릭 시 네이버 로그인 페이지로 이동
     const handleButtonClick = () => {
         window.location.href = 'http://localhost:8080/oauth/kakao';
-    };
+    }
 
     return(
         <s.KakaoLoginButton
-        alt="카카오 로그인"
-        src={imageUrl}
-        onClick={handleButtonClick}
+            alt="카카오 로그인"
+            src={imageUrl}
+            onClick={handleButtonClick}
         />
     )
 }
 
-export default KakaoLogin;
+export default NaverLogin;
