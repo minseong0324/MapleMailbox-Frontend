@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import '../../../static/font/font.css';
 import button1 from '../../../assets/button/button1.png'; 
 import button2 from '../../../assets/button/button2.png'; 
 import button3 from '../../../assets/button/button3.png'; 

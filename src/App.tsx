@@ -16,7 +16,6 @@ import NaverLogin from './pages/login/naverLogin/NaverLogin';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
 import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
 import MyPage from './pages/MyPage/MyPage';
-import {GlobalStyle} from './style'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
 
@@ -27,13 +26,13 @@ function App() {
     <>
     
     <QueryClientProvider client={queryClient}>
-     <GlobalStyle /> {/* 이 줄 추가 */}
+     
     <UserProvider>
       <LeafFalling />
       <Clouds />
       
       <Router>
-
+      <TokenProvider>
         <Routes>
         
           <Route path="/" element={<HomeBeforeLogin />} />
@@ -50,7 +49,7 @@ function App() {
           <Route path="/mypage/:userId" element={<MyPage />} />
           
         </Routes>
-
+        </TokenProvider>
       </Router>
     </UserProvider>
     </QueryClientProvider>

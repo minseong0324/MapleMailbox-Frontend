@@ -3,7 +3,6 @@ import button1 from '../../../assets/button/button1.png';
 import button4 from '../../../assets/button/button4.png'; 
 import buttonMidium1 from '../../../assets/button/button-midium-1.png'; 
 import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
-import '../../../static/font/font.css';
 
 const Button = styled.button`
   margin-bottom: 15px;

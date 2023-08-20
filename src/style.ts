@@ -33,7 +33,19 @@ export const GlobalStyle = createGlobalStyle`
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
     }
+    @font-face {
+    font-family: 'DOSSaemmul';
+    src: url('./static/font/DOSSaemmul.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
 
+    @font-face {
+        font-family: 'DOSGothic';
+        src: url('./static/font/DOSGothic.ttf') format('ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
     #content {
         position: relative;
         height: 100%;

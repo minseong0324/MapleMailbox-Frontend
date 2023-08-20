@@ -6,7 +6,7 @@ import modalButtonAfterClick from '../../../assets/button/button-midium-2.png';
 import buttonSmall4 from '../../../assets/button/button-small-4.png'; 
 import SquirrelButton from '../../../assets/animal/squirrel.png'
 import SpeechBubbleGif from '../../../assets/speechBubble/speechBubble1.gif'
-import '../../../static/font/font.css';
+
 
 
 const Button = styled.button`
