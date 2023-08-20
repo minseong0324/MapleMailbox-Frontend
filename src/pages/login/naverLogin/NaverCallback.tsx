@@ -1,34 +1,24 @@
-// NaverCallback.tsx
 import React, { useEffect, useState } from 'react';
-import axios, {AxiosError} from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios,{AxiosError} from 'axios';
+import {useLocation, useNavigate} from 'react-router-dom';
 import { s } from './style'
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 function NaverCallback() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
-
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const authorizationCode = url.searchParams.get('authorizationCode');
-    const state = url.searchParams.get('state');
-
-    if (!authorizationCode || !state) {
-      alert('인증 코드 또는 상태 값이 없습니다.');
-      navigate('/login');
-      return;
-    }
-
-    // 백엔드 서버에 인증 코드를 전달하여 액세스 토큰 요청
-    axios.post(`http://localhost:8080/api/auth/login/naver`, { authorizationCode, state })
-      .then(async (response) => {
+  
+  const handleOAuthNaver = async (code: string) => {
+    try {
+        // 네이버로부터 받아온 code를 서버에 전달하여 네이버로 회원가입 & 로그인한다
+        const response = await axios.get(`http://localhost:8080/oauth/login/?code=${code}`);
         if (response.status === 200) {
           localStorage.setItem('accessToken', response.headers.accessToken);
           localStorage.setItem('refreshToken', response.headers.refreshToken);
           const accessToken = localStorage.getItem('accessToken');
-          try {   
+          try {
             const userResponse = await axios.get(`http://localhost:8080/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
@@ -65,24 +55,21 @@ function NaverCallback() {
               );
               if (status === 404) {
                 // 리소스를 찾을 수 없음
-                navigate('/login');
               } else if (status === 500) {
                   // 서버 내부 오류
-                  navigate('/login');
               } else {
                   // 기타 상태 코드 처리
-                  navigate('/login');
               }
             } 
             setErrorModalOpen(true);
+            navigate('/login');
             return null;
           }
         }
-      }
-      )
-      .catch((error) => {
-        const status = error.response.status;
-
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+        const status = error?.response?.status;
+        console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>네이버에서 정보를</s.ErrorModalTextsWrapper2>
@@ -91,19 +78,37 @@ function NaverCallback() {
           </s.ErrorCenterModalWrapper>
         );
         if (status === 404) {
-              // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-                // 기타 상태 코드 처리
-            }
-        setErrorModalOpen(true);
-      });
-  }, [navigate]);
+          // 리소스를 찾을 수 없음
+        } else if (status === 500) {
+            // 서버 내부 오류
+        } else {
+            // 기타 상태 코드 처리
+        }
+      } 
+      setErrorModalOpen(true);
+      navigate('/login');
+      return null;
+    }
+};
 
-  const handleErrorModalClose = () => {
-    navigate('/login');
-  }
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get('code');  // 네이버는 Redirect 시키면서 code를 쿼리 스트링으로 준다.
+    if (code) {
+        alert("CODE = " + code)
+        handleOAuthNaver(code);
+    }
+
+    if (!code) {
+      alert('인증 코드 또는 상태 값이 없습니다.');
+      navigate('/login');
+      return;
+    }
+}, [location]);
+
+    const handleErrorModalClose = () => {
+      navigate('/login');
+    }
 
   return (
     <s.NaverWrapper>
