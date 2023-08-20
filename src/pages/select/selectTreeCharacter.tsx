@@ -21,12 +21,11 @@ import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
-
+import {useToken}  from '../../contexts/TokenProvider/TokenProvider'
 
 function SelectTreeCharacter() {
+  const { accessToken, refreshToken } = useToken();
   const MyUserId = localStorage.getItem("userId")
-  const refreshToken = localStorage.getItem('refreshToken');
-  const accessToken = localStorage.getItem('accessToken');
   const [selectedTree, setSelectedTree] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(true);

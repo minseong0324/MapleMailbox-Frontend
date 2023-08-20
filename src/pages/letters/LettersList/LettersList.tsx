@@ -9,12 +9,11 @@ import GinkgoLeafDisabled from '../../../assets/leafImg/GinkgoLeaf-disabled.png'
 import { s } from './style'
 import LettersRead from '../LettersRead/LettersRead';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
-
-
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 function LettersList() {
+  const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달의 내용을 저장할 상태입니다.
@@ -27,7 +26,6 @@ const accessToken = localStorage.getItem("accessToken");
     // 사용자 데이터를 가져옵니다.
     const fetchUserData = async () => {
       const userId = localStorage.getItem("userId");
-      const accessToken = localStorage.getItem("accessToken");
       try {
         const response = await axios.get(`http://localhost:8080/api/users/${userId}/letters`, {
           headers: {

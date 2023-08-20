@@ -6,14 +6,15 @@ import axios, {AxiosError} from "axios";
 import Modal from '../../components/Modal/Modal';
 import BackButton from "src/components/BackButton/BackButton";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import {useToken}  from '../../contexts/TokenProvider/TokenProvider'
 
 function MyPage() {
+    const { accessToken, refreshToken } = useToken();
     const [isLeaveModalOpen, setLeaveModalOpen] = useState(false);
     const [isCheckModalOpen, setCheckModalOpen] = useState(false);
     const [word, setWord] = useState('');  // 보내는 사람 이름을 관리하는 상태
     const navigate = useNavigate(); // useNavigate hook 사용
     const MyUserId = localStorage.getItem("userId")
-    const accessToken = localStorage.getItem("accessToken")
     const { userId } = useParams<{ userId: string }>(); //userId를 url에서 떼오기 코드
     const userName = localStorage.getItem(`userName_${userId}`);
     const [isErrorModalOpen, setErrorModalOpen] = useState(false);

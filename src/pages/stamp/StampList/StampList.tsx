@@ -6,6 +6,7 @@ import disabledStamp from '../../../assets/stamp/disabledStamp.png';
 import { s } from './style';
 import MissionText from '../../../components/MissionText/MissionText';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 // 현재 날짜의 속성을 정의하는 인터페이스입니다.
 interface NowDateProps {
@@ -13,8 +14,8 @@ interface NowDateProps {
 }
 
 const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
+  const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem("userId");
-    const accessToken = localStorage.getItem("accessToken");
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [stampsStatus, setStampsStatus] = useState<boolean[]>(Array(30).fill(false));
   const [isOpen, setIsOpen] = useState(false);

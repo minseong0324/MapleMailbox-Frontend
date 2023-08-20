@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios, {AxiosError} from 'axios';
 import { s } from './style'
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 // 편지 정보를 저장할 타입을 정의합니다.
 type Letter = {
@@ -15,8 +16,8 @@ type Props = {
 };
 
 const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
+  const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem("userId");
-const accessToken = localStorage.getItem("accessToken");
   const [letters, setLetters] = useState<Letter[]>([]); // 선택된 날짜의 편지들을 저장할 상태입니다.
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
