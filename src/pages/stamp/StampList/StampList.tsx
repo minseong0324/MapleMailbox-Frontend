@@ -51,10 +51,11 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
-              <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>우표 정보를 가져오는</s.ErrorModalTextsWrapper>
-                  <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-              </s.ErrorCenterModalWrapper>
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>우표 정보를</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
               // 리소스를 찾을 수 없음
@@ -104,10 +105,11 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
               setModalErrorContent(
-                  <s.ErrorCenterModalWrapper>
-                      <s.ErrorModalTextsWrapper>미션 정보를 가져오는</s.ErrorModalTextsWrapper>
-                      <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-                  </s.ErrorCenterModalWrapper>
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>미션 정보를</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
               );
               if (status === 404) {
                   // 리소스를 찾을 수 없음
@@ -120,11 +122,24 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           setErrorModalOpen(true);
           return null;
         }
-      } else {
+      } else if(stampsStatus[nowDate-1] === true) {
         handleOpenTodayMissionCompleteModal();
+      } else {
+        setModalErrorContent(
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>미션 정보를</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
+        );
+        setErrorModalOpen(true);
       }
     }
   };
+
+  const handleErrorModalClose = () => { 
+    setErrorModalOpen(false);
+  }
   // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
   const handleOpenTodayMissionCompleteModal = () => {
     setTodayMissionCompleteModalOpen(true);
@@ -192,10 +207,11 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
               setModalErrorContent(
-                  <s.ErrorCenterModalWrapper>
-                      <s.ErrorModalTextsWrapper>우표 완료 정보를 가져</s.ErrorModalTextsWrapper>
-                      <s.ErrorModalTextsWrapper>오는 데에 실패했어요.</s.ErrorModalTextsWrapper>
-                  </s.ErrorCenterModalWrapper>
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>우표 정보를</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
               );
               if (status === 404) {
                   // 리소스를 찾을 수 없음
@@ -214,10 +230,11 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
-              <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>미션 완료 정보를 가져</s.ErrorModalTextsWrapper>
-                  <s.ErrorModalTextsWrapper>오는 데에 실패했어요.</s.ErrorModalTextsWrapper>
-              </s.ErrorCenterModalWrapper>
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>미션 완료 정보를</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
               // 리소스를 찾을 수 없음
@@ -273,7 +290,14 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
             console.log("currentStatus.status--")
             currentStatus && currentStatus 
               ? handleOpenModal(i) 
-              : alert("획득하지 않은 우표입니다.");
+              : setModalErrorContent(
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>획득하지</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>않은 우표예요.</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
+              );
+              setErrorModalOpen(true);
           }}
           stampImage={
             currentStatus === true

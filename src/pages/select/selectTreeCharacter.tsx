@@ -41,7 +41,7 @@ function SelectTreeCharacter() {
         setErrorModalOpen(true)
         setModalErrorContent(
             <s.CenterModalWrapper>
-              <s.ErrorModalTextsWrapper>잘못된 접근이에요!</s.ErrorModalTextsWrapper>
+              <s.ErrorModalTextsWrapper1>잘못된 접근이에요!</s.ErrorModalTextsWrapper1>
               <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
             </s.CenterModalWrapper>
           );

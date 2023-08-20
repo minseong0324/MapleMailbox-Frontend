@@ -109,16 +109,6 @@ const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
     }
 `;
 
-const ErrorModalTextsWrapper = styled.div`
-position: relative;
-display: flex;
-font-size: 18px;
-align-items: center;
-  justify-content: center;
-line-height: 2;  // 글자 간격
-margin-bottom: 10px;
-`;
-
 const ModalWrapper = styled.div`
   align-items: center;
   justify-content: center;
@@ -202,7 +192,6 @@ export const s = {
     SelectClickEvent,
     TitleTextStyle,
     Wrapper,
-    ErrorModalTextsWrapper,
     ModalWrapper,
     CenterModalWrapper,
     ModalTextsWrapper,

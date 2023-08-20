@@ -31,7 +31,6 @@ import Stamp29 from '../../../assets/stamp/mail_squ-big.png';
 import Stamp30 from '../../../assets/stamp/mail_squ-big.png';
 //일단 테스트 해야해서 mail_squ-big으로 통일시켜둠. 우표 이미지 만들 때마다 수정해야함.
 
-
 const stampImages = [
   Stamp1, Stamp2, Stamp3, Stamp4, Stamp5, Stamp6, Stamp7, Stamp8,
   Stamp9, Stamp10, Stamp11, Stamp12, Stamp13, Stamp14, Stamp15,
@@ -112,6 +111,8 @@ margin-bottom:10px;
 font-size:15px;
 color: gray;
 `;
+
+
 
 export const s = {
     BackButton,
