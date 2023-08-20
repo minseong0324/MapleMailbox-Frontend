@@ -58,20 +58,18 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
             const status = error?.response?.status;
             console.error('Failed to fetch user info:', error);
             setModalErrorContent(
-              <s.ModalWrapper>
-                <s.ModalTextsWrapper>유저의 정보를</s.ModalTextsWrapper>
-                <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
-              </s.ModalWrapper>
+              <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+              </s.ErrorCenterModalWrapper>
             );
             if (status === 404) {
               // 리소스를 찾을 수 없음
-              navigate('/login');
             } else if (status === 500) {
                 // 서버 내부 오류
-                navigate('/login');
             } else {
                 // 기타 상태 코드 처리
-                navigate('/login');
             }
           } 
           setErrorModalOpen(true);
@@ -83,27 +81,30 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
-          <s.ModalWrapper>
-            <s.ModalTextsWrapper>구글에서 정보를</s.ModalTextsWrapper>
-            <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
-          </s.ModalWrapper>
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>구글에서 정보를</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
         );
         if (status === 404) {
           // 리소스를 찾을 수 없음
-          navigate('/login');
         } else if (status === 500) {
             // 서버 내부 오류
-            navigate('/login');
         } else {
             // 기타 상태 코드 처리
-            navigate('/login');
         }
       } 
       setErrorModalOpen(true);
+      navigate('/login');
       return null;
     }
   };
 
+  const handleErrorModalClose = () => {
+    navigate('/login')
+  }
+  
   return (
 
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID || ''}>
@@ -124,9 +125,6 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
           {modalErrorContent}
       </ErrorModal>
         </GoogleOAuthProvider>
-      
-
-   
   );
 }
 

@@ -106,8 +106,8 @@ function OwnerHome() {
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
               <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
-                  <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+                  <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
                   <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
               </s.ErrorCenterModalWrapper>
           );
@@ -120,6 +120,7 @@ function OwnerHome() {
           }
       } 
       setErrorModalOpen(true);
+      navigate(`/`); //모달창 바깥을 눌러 모달을 끄고, 메뉴버튼을 클릭해서 1일차 보상 수령에 문제가 발생할 수도 있어서 navigate 
       return null;
     }
 };

@@ -88,8 +88,8 @@ const getUserInfoFromServer = async (userId: string) => {
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
-              <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
-              <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
               <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
           </s.ErrorCenterModalWrapper>
       );
@@ -243,7 +243,6 @@ const handleSendLetter = async (event: React.FormEvent) => {
         setSenderName('');
         setLetterContent('');
 
-
         // 모달을 닫습니다.
         setSendModalOpen(false);
       }
@@ -252,23 +251,32 @@ const handleSendLetter = async (event: React.FormEvent) => {
       
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        if (status === 404) {
-          // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
-        }
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper2>편지를 보내는</s.ErrorModalTextsWrapper2>
+                  <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+                  <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
       } 
+      setErrorModalOpen(true);
       return null;
     }
-  } else { //로그인 상태가 아닐 때
-    setShowLoginAlertModal(true);
   }
 };
 
+const handleErrorModalClose = () => {
+  setErrorModalOpen(false);
+}
 
   // 이름을 작성하는 함수입니다.
   const writeName = (e: React.ChangeEvent<HTMLInputElement>) => {

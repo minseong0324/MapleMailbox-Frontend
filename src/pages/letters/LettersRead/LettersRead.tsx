@@ -42,10 +42,11 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
-              <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-                  <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-              </s.ErrorCenterModalWrapper>
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
               // 리소스를 찾을 수 없음
@@ -63,6 +64,10 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   useEffect(() => {
     fetchLetters();
   }, [fetchLetters]);
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+  }
   
     return (
       <s.LetterWrapper>

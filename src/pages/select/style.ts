@@ -162,6 +162,34 @@ const ModalButton = styled.button`
   margin-top: 50px;
 `;
 
+
+const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 60px;
+`;
+
+const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ErrorModalTextsWrapper2 = styled.div` //두줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -10px;
+`;
+
 export const s = {
     CenteredWrapper,
     TextsStyle,
@@ -178,6 +206,9 @@ export const s = {
     ModalWrapper,
     CenterModalWrapper,
     ModalTextsWrapper,
-    ModalButton
+    ModalButton,
+    ErrorCenterModalWrapper,
+    ErrorModalTextsWrapper1,
+    ErrorModalTextsWrapper2
 }
 

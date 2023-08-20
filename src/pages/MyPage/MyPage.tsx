@@ -31,7 +31,7 @@ function MyPage() {
             setErrorModalOpen(true)
         }
         
-    }, [userId, MyUserId])
+    })
 
     const handleNavigateHome = () => { 
         navigate(`/home/${MyUserId}`);    
@@ -100,8 +100,8 @@ function MyPage() {
                 console.error('Failed to fetch user info:', error);
                 setModalErrorContent(
                     <s.CenterModalWrapper>
-                        <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
-                        <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
                         <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                     </s.CenterModalWrapper>
                 );

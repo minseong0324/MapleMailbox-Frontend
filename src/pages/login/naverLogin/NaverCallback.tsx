@@ -57,10 +57,11 @@ function NaverCallback() {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
               setModalErrorContent(
-                <s.ModalWrapper>
-                  <s.ModalTextsWrapper>유저의 정보를</s.ModalTextsWrapper>
-                  <s.ModalTextsWrapper>불러오지 못했어요.</s.ModalTextsWrapper>
-                </s.ModalWrapper>
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
               );
               if (status === 404) {
                 // 리소스를 찾을 수 없음
@@ -81,11 +82,13 @@ function NaverCallback() {
       )
       .catch((error) => {
         const status = error.response.status;
+
         setModalErrorContent(
-          <s.ModalWrapper>
-            <s.ModalTextsWrapper>네이버에서 정보를</s.ModalTextsWrapper>
-            <s.ModalTextsWrapper>불러오지 못했어요</s.ModalTextsWrapper>
-          </s.ModalWrapper>
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>네이버에서 정보를</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
         );
         if (status === 404) {
               // 리소스를 찾을 수 없음
@@ -94,10 +97,13 @@ function NaverCallback() {
             } else {
                 // 기타 상태 코드 처리
             }
-        navigate('/login');
         setErrorModalOpen(true);
       });
   }, [navigate]);
+
+  const handleErrorModalClose = () => {
+    navigate('/login');
+  }
 
   return (
     <s.NaverWrapper>

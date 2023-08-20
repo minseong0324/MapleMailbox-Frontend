@@ -48,10 +48,11 @@ function LettersList() {
             const status = error?.response?.status;
             console.error('Failed to fetch user info:', error);
             setModalErrorContent(
-                <s.ErrorCenterModalWrapper>
-                    <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-                    <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-                </s.ErrorCenterModalWrapper>
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper2>편지 정보를</s.ErrorModalTextsWrapper2>
+                  <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                  <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+              </s.ErrorCenterModalWrapper>
             );
             if (status === 404) {
                 // 리소스를 찾을 수 없음
@@ -81,6 +82,10 @@ function LettersList() {
     setIsOpen(false);
     setSelectedDate(null); // 모달을 닫을 때 선택을 해제합니다.
     setModalContent(null); // 모달의 내용을 초기화합니다.
+  };
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
   };
 
   return (
@@ -115,10 +120,11 @@ function LettersList() {
                 if (nowDate === null) {
                   setModalErrorContent(
                     <s.ErrorCenterModalWrapper>
-                        <s.ErrorModalTextsWrapper>날짜 정보를 가져오는</s.ErrorModalTextsWrapper>
-                        <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
+                        <s.ErrorModalTextsWrapper2>날짜 정보를</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                        <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
                     </s.ErrorCenterModalWrapper>
-                );
+                  );
                 setErrorModalOpen(true);
                   return;
                 }
@@ -126,16 +132,18 @@ function LettersList() {
                   if (date === nowDate) {
                     setModalErrorContent(
                       <s.ErrorCenterModalWrapper>
-                          <s.ErrorModalTextsWrapper>오늘 받은 편지 수가</s.ErrorModalTextsWrapper>
-                          <s.ErrorModalTextsWrapper>아직 5개 미만이에요.</s.ErrorModalTextsWrapper>
+                          <s.ErrorModalTextsWrapper2>오늘 받은 편지 수가</s.ErrorModalTextsWrapper2>
+                          <s.ErrorModalTextsWrapper2>아직 5개 미만이에요.</s.ErrorModalTextsWrapper2>
+                          <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
                       </s.ErrorCenterModalWrapper>
                   );
                   setErrorModalOpen(true);
                   } else {
                     setModalErrorContent(
                       <s.ErrorCenterModalWrapper>
-                          <s.ErrorModalTextsWrapper>{date-Number(nowDate)}일 뒤에 </s.ErrorModalTextsWrapper>
-                          <s.ErrorModalTextsWrapper>열람할 수 있어요.</s.ErrorModalTextsWrapper>
+                          <s.ErrorModalTextsWrapper2>{date-Number(nowDate)}일 뒤에 </s.ErrorModalTextsWrapper2>
+                          <s.ErrorModalTextsWrapper2>열람할 수 있어요.</s.ErrorModalTextsWrapper2>
+                          <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
                       </s.ErrorCenterModalWrapper>
                   );
                   setErrorModalOpen(true);

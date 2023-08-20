@@ -43,16 +43,6 @@ function Login() {
       const accessToken = response.headers['authorization']; 
       const refreshToken = response.headers['reauthorization'];
       
-      localStorage.removeItem("email");
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('nowDate');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('treeType');
-      localStorage.removeItem('characterType');
-      localStorage.removeItem('lettersOverFive');
-
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
@@ -73,7 +63,6 @@ function Login() {
               //const { email, userName } = userResponse.data;
               const { userId, userName } = userResponse.data;
               localStorage.setItem("userId", userId);
-
               localStorage.setItem("userName", userName);
               //alert("로그인에 성공했습니다!");
             }
@@ -95,10 +84,11 @@ function Login() {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
               setModalErrorContent(
-                <s.ModalWrapper>
-                  <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
-                  <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
-                </s.ModalWrapper>
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
               );
               if (status === 404) {
                 // 리소스를 찾을 수 없음
@@ -117,10 +107,11 @@ function Login() {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
-            <s.ModalWrapper>
-              <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
-              <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
-            </s.ModalWrapper>
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
             // 리소스를 찾을 수 없음
@@ -141,10 +132,11 @@ function Login() {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
-          <s.ModalWrapper>
-            <s.ModalTextsWrapper>이메일 혹은 비밀번호를</s.ModalTextsWrapper>
-            <s.ModalTextsWrapper>정확히 입력해주세요!</s.ModalTextsWrapper>
-          </s.ModalWrapper>
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>이메일 혹은 비밀번호를</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>정확히 입력해주세요!</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
         );
         if (status === 404) {
           // 리소스를 찾을 수 없음
@@ -159,6 +151,10 @@ function Login() {
     }
     
   });
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+  }
 
   // 폼 제출 시 로그인 뮤테이션을 실행합니다.
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
