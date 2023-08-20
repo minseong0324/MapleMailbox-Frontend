@@ -144,7 +144,35 @@ margin-top: 60px;
 
 `;
 
+const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 60px;
+`;
+
+const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+
+const ErrorModalTextsWrapper2 = styled.div` //두줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -10px;
+`;
+
 const ModalButton = styled.button`
+  margin-top: 45px;
   font-family: 'DOSSaemmul';
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
@@ -156,30 +184,11 @@ const ModalButton = styled.button`
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;
-  z-index: 5;
+  z-index: 2;
   &:active { // 버튼이 눌렸을 때의 스타일
     background: url(${modalButtonAfterClick}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
-  margin-top: 50px;
-`;
-
-const ErrorCenterModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;  // 세로 방향으로 아이템들을 배열
-  align-items: center;     // 텍스트를 중앙으로 정렬
-  justify-content: center; // 세로 방향으로 중앙에 정렬
-  text-align: left;        // 텍스트는 왼쪽에 정렬
-  margin-top: 80px;
-`;
-
-const ErrorModalTextsWrapper = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;     // 세로로 중앙에 정렬
-  font-size: 16px;
-  line-height: 2;
-  margin-bottom: 10px;
 `;
 
 export const s = {
@@ -197,5 +206,6 @@ export const s = {
     H2,
     ModalButton,
     ErrorCenterModalWrapper,
-    ErrorModalTextsWrapper
+    ErrorModalTextsWrapper1,
+    ErrorModalTextsWrapper2
 }

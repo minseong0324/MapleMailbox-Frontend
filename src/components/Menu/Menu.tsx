@@ -66,10 +66,11 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
                   const status = error?.response?.status;
                   console.error('Failed to fetch user info:', error);
                   setModalErrorContent(
-                      <s.ErrorCenterModalWrapper>
-                          <s.ErrorModalTextsWrapper>메뉴 버튼 클릭 </s.ErrorModalTextsWrapper>
-                          <s.ErrorModalTextsWrapper>요청에 실패했어요.</s.ErrorModalTextsWrapper>
-                      </s.ErrorCenterModalWrapper>
+                    <s.ErrorCenterModalWrapper>
+                        <s.ErrorModalTextsWrapper2>클릭 정보를</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>보내지 못했어요.</s.ErrorModalTextsWrapper2>
+                        <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                    </s.ErrorCenterModalWrapper>
                   );
                   if (status === 404) {
                       // 리소스를 찾을 수 없음
@@ -85,6 +86,10 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         }
     })(); // 마지막의 괄호 ()는 즉시 실행을 의미합니다.
 }, [menuButtonClickedCount, nowDate]); // 의존성 배열에 nowDate를 추가했습니다.
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+  }
 
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
@@ -110,15 +115,11 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         navigate('/')
         
     
-    } catch (error: unknown) { //에러 일 경우
+    } catch (error: unknown) { //에러 일 경우, 로그아웃 요청에 에러가 떠도 로그아웃을 시켜야함. 로컬스토리지도 clear
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
-          setModalErrorContent(
-              <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>로그아웃에 실패했어요.</s.ErrorModalTextsWrapper>
-              </s.ErrorCenterModalWrapper>
-          );
+          
           if (status === 404) {
               // 리소스를 찾을 수 없음
           } else if (status === 500) {
@@ -127,7 +128,18 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
               // 기타 상태 코드 처리
           }
       } 
-      setErrorModalOpen(true);
+
+      setLogoutModalOpen(false);
+      // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
+      const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
+      const getUserId = localStorage.getItem('userId');
+      // 모든 항목을 삭제합니다.
+      localStorage.clear();
+      // "keepThisKey"의 값을 다시 저장합니다.
+      if (menuButtonClickedCount !== null) {
+          localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
+        }
+      navigate('/')
       return null;
     }
   }
