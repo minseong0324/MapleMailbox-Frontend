@@ -28,7 +28,7 @@ function App() {
     
     <QueryClientProvider client={queryClient}>
      <GlobalStyle /> {/* 이 줄 추가 */}
-    <UserProvider>
+
       <LeafFalling />
       <Clouds />
       <Router>
@@ -51,7 +51,7 @@ function App() {
         </Routes>
        </TokenProvider>
       </Router>
-    </UserProvider>
+
     </QueryClientProvider>
     
     </>

@@ -286,20 +286,24 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
         <s.StampButton 
           key={i}
           onClick={() => {
-            console.log("currentStatus.status")
-            console.log(currentStatus)
-            console.log("currentStatus.status--")
-            currentStatus && currentStatus 
-              ? handleOpenModal(i) 
-              : setModalErrorContent(
-                <s.ErrorCenterModalWrapper>
-                    <s.ErrorModalTextsWrapper2>획득하지</s.ErrorModalTextsWrapper2>
-                    <s.ErrorModalTextsWrapper2>않은 우표예요.</s.ErrorModalTextsWrapper2>
-                    <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
-                </s.ErrorCenterModalWrapper>
-              );
-              setErrorModalOpen(true);
-          }}
+            console.log("currentStatus.status");
+            console.log(currentStatus);
+            console.log("currentStatus.status--");
+        
+            if (currentStatus) {
+                handleOpenModal(i);
+            } else {
+                setModalErrorContent(
+                    <s.ErrorCenterModalWrapper>
+                        <s.ErrorModalTextsWrapper2>획득하지</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>않은 우표예요.</s.ErrorModalTextsWrapper2>
+                        <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                    </s.ErrorCenterModalWrapper>
+                );
+                setErrorModalOpen(true);
+            }
+        }}
+        
           stampImage={
             currentStatus === true
               ? s.stampImages[i]

@@ -104,7 +104,7 @@ function KakaoCallback() {
       navigate('/login');
       return;
     }
-}, [location]);
+}, []);
 
     const handleErrorModalClose = () => {
       navigate('/login');
