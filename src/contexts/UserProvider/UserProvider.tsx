@@ -1,6 +1,6 @@
 // components/UserProvider.tsx
 import React, { useState } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../UserContext';
 
 // User 타입 정의
 type User = {

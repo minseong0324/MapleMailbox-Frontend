@@ -17,7 +17,7 @@ const Button = styled.button`
   background-size: cover; // 이미지가 버튼에 맞게 조절
   color: black;
   border-radius: 15px;
-  font-size: 17px; 
+  font-size: 17px;
   border: 0px transparent; // 테두리 색상을 투명
   position: relative;
   z-index: 5;
@@ -114,15 +114,6 @@ margin-bottom: 20px;
 background-color: #fff8f0;
 `;
 
-const ErrorModalTextsWrapper = styled.div`
-position: relative;
-display: flex;
-font-size: 18px;
-align-items: center;
-  justify-content: center;
-line-height: 2;  // 글자 간격
-margin-bottom: 10px;
-`;
 
 const ModalWrapper = styled.div`
   align-items: center;
@@ -138,13 +129,32 @@ const CenterModalWrapper = styled.div`
 
 `;
 
-const ModalTextsWrapper = styled.div`
+
+const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 60px;
+`;
+
+const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용
 position: relative;
 display: flex;
-font-size: 16px;
-
+font-size: 18px;
+align-items: center;
+  justify-content: center;
 line-height: 2;  // 글자 간격
 margin-bottom: 10px;
+`;
+
+const ErrorModalTextsWrapper2 = styled.div` //두줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -10px;
 `;
 
 export const s = {
@@ -158,9 +168,10 @@ export const s = {
     ModalButton,
     Wrapper,
     WordInput,
-    ErrorModalTextsWrapper,
+    ErrorModalTextsWrapper1,
     ModalWrapper,
     CenterModalWrapper,
-    ModalTextsWrapper
+    ErrorModalTextsWrapper2,
+    ErrorCenterModalWrapper
 }
 

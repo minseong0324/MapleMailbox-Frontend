@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import axios, { AxiosError } from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
@@ -18,6 +18,7 @@ import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
@@ -30,6 +31,7 @@ const importImages = async (prefix: string, count: number) => {
 };
 
 function OwnerHome() {
+  const { accessToken, refreshToken } = useToken();
   // 모달 상태에 대한 상태변수들입니다.
   const [isReadModalOpen, setReadModalOpen] = useState(false);
   const [isShareModalOpen, setShareModalOpen] = useState(false);
@@ -70,92 +72,61 @@ function OwnerHome() {
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
-const accessToken = localStorage.getItem('accessToken');
-localStorage.setItem(`userName_${userId}`, userName);
+  const navigate = useNavigate(); // useNavigate hook 사용
+  
+
+  localStorage.setItem(`userName_${userId}`, userName);
   //const userId = localStorage.getItem("userId");
 
-  /* //테스트용 데이터
-  const testUserInfo = {
-    treeType: 'Maple Tree',
-    characterType: 'Maple Character',
-    userName: '테스트 단풍',
-    nowDate: 5, 
-    lettersOverFive: [false, false, true, true, false, true] // 3일, 4일, 6일에 5개 이상의 편지가 옴
-  };
-  */
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
   const getUserInfoFromServer = async (userId: string) => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!userId) {
-      // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
-      // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
-      console.error('userId is undefined');
-      setModalErrorContent(
-        <s.ErrorCenterModalWrapper>
-            <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-            <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-        </s.ErrorCenterModalWrapper>
-    );
-    setErrorModalOpen(true);
-  
-      return null;
-    }
-  
-    if (!accessToken) {
-      console.error('accessToken is not available');
-      setModalErrorContent(
-        <s.ErrorCenterModalWrapper>
-            <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-            <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-        </s.ErrorCenterModalWrapper>
-    );
-    setErrorModalOpen(true);
-  
-      return null;
-    }
-
-  try {
-    // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
-      headers: {
-        'authorization': `${accessToken}`
-      }
-    });
-    if(response.status===200) {
-      // 응답에서 사용자 정보를 추출합니다.
-      const userInfo = response.data;
-
-      // 사용자의 나무와 캐릭터 정보를 반환합니다.
-      return {
-        treeType: userInfo.treeType, //사용자 나무 종류
-        characterType: userInfo.characterType, // 사용자 캐릭터 종류
-        userName: userInfo.userName, // 사용자 이름을 추가합니다.
-        nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
-        lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
-      };
-    }
-  } catch (error: unknown) { //에러 일 경우
-    if (error instanceof AxiosError) {
-        const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
-        setModalErrorContent(
-            <s.ErrorCenterModalWrapper>
-                <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-                <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-            </s.ErrorCenterModalWrapper>
-        );
-        if (status === 404) {
-            // 리소스를 찾을 수 없음
-        } else if (status === 500) {
-            // 서버 내부 오류
-        } else {
-            // 기타 상태 코드 처리
+    try {
+      // 백엔드 서버에 GET 요청을 보냅니다.
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}`, {
+        headers: {
+          'authorization': `${accessToken}`
         }
-    } 
-    setErrorModalOpen(true);
-    return null;
-  }
+      });
+      if(response.status===200) {
+        // 응답에서 사용자 정보를 추출합니다.
+        const userInfo = response.data;
+
+        // 사용자의 나무와 캐릭터 정보를 반환합니다.
+        return {
+          treeType: userInfo.treeType, //사용자 나무 종류
+          characterType: userInfo.characterType, // 사용자 캐릭터 종류
+          userName: userInfo.userName, // 사용자 이름을 추가합니다.
+          nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
+          lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
+        };
+      }
+    } catch (error: unknown) { //에러 일 경우
+      if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
+                  <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+                  <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+      } 
+      setErrorModalOpen(true);
+      return null;
+    }
 };
+
+const handleNavigateHome = () => { 
+  navigate(`/`);    
+}
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");

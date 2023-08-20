@@ -59,33 +59,7 @@ const OwnerUserId = localStorage.getItem('userId');
   // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
   const accessToken = localStorage.getItem('accessToken');
-  if (!userId) {
-    // userId가 undefined일 경우의 처리 로직을 여기에 작성합니다.
-    // 예를 들어, 에러 메시지를 표시하거나, null을 반환하는 등의 처리를 할 수 있습니다.
-    console.error('userId is undefined');
-    setModalErrorContent(
-      <s.ErrorCenterModalWrapper>
-          <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-          <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-      </s.ErrorCenterModalWrapper>
-  );
-  setErrorModalOpen(true);
-
-    return null;
-  }
-
-  if (!accessToken) {
-    console.error('accessToken is not available');
-    setModalErrorContent(
-      <s.ErrorCenterModalWrapper>
-          <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-          <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-      </s.ErrorCenterModalWrapper>
-  );
-  setErrorModalOpen(true);
-
-    return null;
-  }
+  
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
@@ -112,11 +86,12 @@ const getUserInfoFromServer = async (userId: string) => {
         const status = error?.response?.status;
         console.error('Failed to fetch user info:', error);
         setModalErrorContent(
-            <s.ErrorCenterModalWrapper>
-                <s.ErrorModalTextsWrapper>사용자 정보를 가져오는</s.ErrorModalTextsWrapper>
-                <s.ErrorModalTextsWrapper>데에 실패했어요.</s.ErrorModalTextsWrapper>
-            </s.ErrorCenterModalWrapper>
-        );
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
+      );
         if (status === 404) {
             // 리소스를 찾을 수 없음
         } else if (status === 500) {
@@ -129,6 +104,10 @@ const getUserInfoFromServer = async (userId: string) => {
     return null;
   }
 };
+
+const handleNavigateHome = () => { 
+  navigate(`/`);    
+}
 
   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
   useEffect(() => {

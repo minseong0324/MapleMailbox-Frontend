@@ -167,54 +167,6 @@ function Login() {
     localStorage.setItem("email", email);
   };
 
-  // useEffect를 사용해 토큰의 유효성을 주기적으로 확인합니다.
-  // 토큰이 만료되면 사용자를 로그아웃시키거나 새 토큰을 요청합니다.
-  useEffect(() => {
-    // 30분마다 토큰을 새로 발급받는 요청을 보냅니다.
-    const interval = setInterval(async () => {
-      // 여기서는 refresh-token을 사용해 access-token을 새로 발급받습니다.
-      const refreshToken = localStorage.getItem('refreshToken');
-      const accessToken = localStorage.getItem('accessToken');
-      
-      if (refreshToken) {
-        const response = await axios.post(`http://localhost:8080/api/auth/refresh`, {
-          headers: {
-            'authorization': `${accessToken}`,
-            'reauthorization': `${refreshToken}`
-          }
-        });
-
-        if (response.status === 200) {
-          const accessToken = response.headers['authorization'];
-          localStorage.setItem('accessToken', accessToken);
-          const refreshToken = response.headers['reauthorization'];
-          localStorage.setItem('refreshToken', refreshToken);
-        } else {
-          // 토큰 발급에 실패한 경우 로그아웃하거나 적절한 조치를 취합니다.
-          setModalErrorContent(
-            <s.ModalWrapper>s
-              <s.ModalTextsWrapper>세션이 만료되었어요!</s.ModalTextsWrapper>
-              <s.ModalTextsWrapper>로그아웃 처리 됩니다!</s.ModalTextsWrapper>
-            </s.ModalWrapper>
-          );
-          localStorage.removeItem("email");
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('userId');
-          localStorage.removeItem('refreshToken');
-          localStorage.removeItem('nowDate');
-          localStorage.removeItem('userName');
-          localStorage.removeItem('treeType');
-          localStorage.removeItem('characterType');
-          localStorage.removeItem('lettersOverFive');
-          navigate('/login');
-        }
-      }
-    }, 1000 * 60 * 30); // 30분 마다 실행
-
-    // 컴포넌트 unmount 시 clearInterval 실행
-    return () => clearInterval(interval);
-}, [navigate]);
-
     return (
       <>
       <s.LoginWrapper>

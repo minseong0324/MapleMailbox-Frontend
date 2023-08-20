@@ -165,18 +165,21 @@ const ModalButton = styled.button`
 `;
 
 const ErrorCenterModalWrapper = styled.div`
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 65px;
+  display: flex;
+  flex-direction: column;  // 세로 방향으로 아이템들을 배열
+  align-items: center;     // 텍스트를 중앙으로 정렬
+  justify-content: center; // 세로 방향으로 중앙에 정렬
+  text-align: left;        // 텍스트는 왼쪽에 정렬
+  margin-top: 80px;
 `;
 
 const ErrorModalTextsWrapper = styled.div`
-position: relative;
-display: flex;
-font-size: 16px;
-line-height: 2;  // 글자 간격
-margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;     // 세로로 중앙에 정렬
+  font-size: 16px;
+  line-height: 2;
+  margin-bottom: 10px;
 `;
 
 export const s = {

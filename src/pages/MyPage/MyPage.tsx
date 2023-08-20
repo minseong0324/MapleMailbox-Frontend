@@ -22,15 +22,15 @@ function MyPage() {
     useEffect(() => {
         if(userId !== MyUserId) {
             setModalErrorContent(
-                <s.CenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>잘못된 접근이에요!</s.ErrorModalTextsWrapper>
-                  <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
-                </s.CenterModalWrapper>
-              );
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper1>잘못된 접근이에요!</s.ErrorModalTextsWrapper1>
+                    <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
+            );
             setErrorModalOpen(true)
         }
         
-    })
+    }, [userId, MyUserId])
 
     const handleNavigateHome = () => { 
         navigate(`/home/${MyUserId}`);    
@@ -66,9 +66,10 @@ function MyPage() {
         // 입력된 word가 'MapleMailbox'인지 확인
         if (word !== 'MapleMailbox') {
             setModalErrorContent(
-                <s.CenterModalWrapper>
-                    <s.ModalTextsWrapper>입력값이 일치하지 않아요.</s.ModalTextsWrapper>
-                </s.CenterModalWrapper>
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper1>입력값이 일치하지 않아요.</s.ErrorModalTextsWrapper1>
+                    <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
             );
             setErrorModalOpen(true)
             setCheckModalOpen(false);
@@ -98,8 +99,9 @@ function MyPage() {
                 console.error('Failed to fetch user info:', error);
                 setModalErrorContent(
                     <s.CenterModalWrapper>
-                        <s.ModalTextsWrapper>사용자 정보를 가져오는</s.ModalTextsWrapper>
-                        <s.ModalTextsWrapper>데에 실패했어요.</s.ModalTextsWrapper>
+                        <s.ErrorModalTextsWrapper2>사용자 정보를 가져오는</s.ErrorModalTextsWrapper2>
+                        <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
+                        <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                     </s.CenterModalWrapper>
                 );
                 if (status === 404) {

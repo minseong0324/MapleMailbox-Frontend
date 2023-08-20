@@ -3,21 +3,22 @@ import axios, {AxiosError} from 'axios';
 import {s} from "./style";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
+import ErrorModal from "src/components/ErrorModal/ErrorModal";
 
 interface MenuProps {
   onLogout: () => void;
   onServiceDescription: () => void;
 }
 
-
-
 const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => { 
   const accessToken = localStorage.getItem("accessToken");
-const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);  // 로그인 상태를 저장하는 state 추가
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const navigate = useNavigate(); // useNavigate hook 사용
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
   
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -42,34 +43,27 @@ const userId = localStorage.getItem("userId");
             setLogoutModalOpen(false);
             
         } 
-        // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
-        const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
-        const getUserId = localStorage.getItem('userId');
-        // 모든 항목을 삭제합니다.
-        localStorage.clear();
-
-        // "keepThisKey"의 값을 다시 저장합니다.
-        if (menuButtonClickedCount !== null) {
-            localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
-        }
         navigate('/')
-        
-    
     } catch (error: unknown) { //에러 일 경우
-        if (error instanceof AxiosError) {
-            const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
-            if (status === 404) {
-                // 리소스를 찾을 수 없음
-            } else if (status === 500) {
-                // 서버 내부 오류
-            } else {
-            // 기타 상태 코드 처리
-            } 
-        }
-        alert("로그아웃 하는 데에 실패했습니다.");
-    } 
-    return null;
+      if (error instanceof AxiosError) {
+          const status = error?.response?.status;
+          console.error('Failed to fetch user info:', error);
+          setModalErrorContent(
+              <s.ErrorCenterModalWrapper>
+                  <s.ErrorModalTextsWrapper>로그아웃에 실패했어요.</s.ErrorModalTextsWrapper>
+              </s.ErrorCenterModalWrapper>
+          );
+          if (status === 404) {
+              // 리소스를 찾을 수 없음
+          } else if (status === 500) {
+              // 서버 내부 오류
+          } else {
+              // 기타 상태 코드 처리
+          }
+      } 
+      setErrorModalOpen(true);
+      return null;
+    }
   }
   
   //로그아웃 하기 모달창 열기 함수
@@ -120,6 +114,9 @@ const userId = localStorage.getItem("userId");
         <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
       </s.CenteredWrapper>
     </Modal>
+    <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+      {modalErrorContent}
+    </ErrorModal>
     </s.Wrapper>
   );
 };

@@ -26,7 +26,7 @@ const Button = styled.button`
 `;
 
 const ModalButton = styled.button`
-  margin-top: 70px;
+  margin-top: 45px;
   font-family: 'DOSSaemmul';
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
@@ -214,20 +214,31 @@ const Form = styled.form`
   gap: 10px;
 `;
 
-const ErrorCenterModalWrapper = styled.div`
+const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 65px;
-
+  margin-top: 60px;
 `;
 
-const ErrorModalTextsWrapper = styled.div`
+const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용
 position: relative;
 display: flex;
-font-size: 16px;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
 line-height: 2;  // 글자 간격
 margin-bottom: 10px;
+`;
+
+const ErrorModalTextsWrapper2 = styled.div` //두줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -10px;
 `;
 
 export const s = {
@@ -254,5 +265,6 @@ export const s = {
     ModalButton,
     CheckTextLength,
     ErrorCenterModalWrapper,
-    ErrorModalTextsWrapper
+    ErrorModalTextsWrapper1,
+    ErrorModalTextsWrapper2
 }
