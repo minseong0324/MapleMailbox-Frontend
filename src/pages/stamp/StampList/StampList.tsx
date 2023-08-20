@@ -140,6 +140,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const handleErrorModalClose = () => { 
     setErrorModalOpen(false);
   }
+  
   // 미션에 성공해서 미션완료하기 버튼을 눌렀을 때 오픈되는 모달창을 위한 함수
   const handleOpenTodayMissionCompleteModal = () => {
     setTodayMissionCompleteModalOpen(true);

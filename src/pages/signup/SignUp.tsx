@@ -46,9 +46,10 @@ function SignUp() {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
           setModalErrorContent(
-            <s.ModalWrapper>
-              <s.ErrorModalTextsWrapper>이메일이 존재해요!</s.ErrorModalTextsWrapper>
-            </s.ModalWrapper>
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper1>이메일이 존재해요!</s.ErrorModalTextsWrapper1>
+                <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
             // 리소스를 찾을 수 없음
@@ -61,6 +62,10 @@ function SignUp() {
         setErrorModalOpen(true);
         return null;
       }
+    }
+    
+    const handleErrorModalClose = () => { 
+      setErrorModalOpen(false);
     }
   
     return (
