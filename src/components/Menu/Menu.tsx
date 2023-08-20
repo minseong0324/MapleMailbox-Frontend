@@ -179,7 +179,6 @@ const onClickHandler = () => {
       }
 
       {isOpen && (
-        
         <s.MenuWrapper>
           <s.MenuItem onClick={handleSubmitLeaveModalOpen} isActive={isOpen}>로그아웃</s.MenuItem>
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
@@ -191,13 +190,13 @@ const onClickHandler = () => {
       )}
     </s.SunWrapper>
 
-    <Modal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)}>
-      <s.CenteredWrapper>
-        <s.H2>로그아웃 하시겠습니까?</s.H2>
-        <s.ModalButton onClick={handleSubmitLogout}>로그아웃하기</s.ModalButton>
-        <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
-      </s.CenteredWrapper>
-    </Modal>
+    <ErrorModal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)}>
+      <s.ErrorCenterModalWrapper>
+          <s.LogoutModalTextsWrapper>로그아웃 하시겠어요?</s.LogoutModalTextsWrapper>
+          <s.ModalButton onClick={handleSubmitLogout}>로그아웃하기</s.ModalButton>
+          <s.LogoutModalButton onClick={handleSubmitCancel}>취소</s.LogoutModalButton>
+      </s.ErrorCenterModalWrapper>
+    </ErrorModal>
     <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
       {modalErrorContent}
     </ErrorModal>

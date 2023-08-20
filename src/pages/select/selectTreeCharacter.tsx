@@ -77,11 +77,11 @@ function SelectTreeCharacter() {
         console.error('Failed to fetch user info:', error);
 
         setModalErrorContent(
-          <s.ModalWrapper>
+          <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
               <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
               <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
-          </s.ModalWrapper>
+          </s.ErrorCenterModalWrapper>
         );
         if (status === 404) {
           // 리소스를 찾을 수 없음

@@ -48,11 +48,7 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
           console.error('Failed to fetch user info:', error);
-          setModalErrorContent(
-              <s.ErrorCenterModalWrapper>
-                  <s.ErrorModalTextsWrapper>로그아웃에 실패했어요.</s.ErrorModalTextsWrapper>
-              </s.ErrorCenterModalWrapper>
-          );
+          
           if (status === 404) {
               // 리소스를 찾을 수 없음
           } else if (status === 500) {
@@ -61,7 +57,17 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
               // 기타 상태 코드 처리
           }
       } 
-      setErrorModalOpen(true);
+      setLogoutModalOpen(false);
+      // "menuButtonClickedCount"의 값을 가져옵니다. 로그아웃 하고도 첫번째날 미션인 메뉴클릭하기에 대해 계속 요청이 보내지기 떄문.
+      const menuButtonClickedCount = localStorage.getItem(`menuButtonClickedCount_${userId}`);
+      const getUserId = localStorage.getItem('userId');
+      // 모든 항목을 삭제합니다.
+      localStorage.clear();
+      // "keepThisKey"의 값을 다시 저장합니다.
+      if (menuButtonClickedCount !== null) {
+          localStorage.setItem(`menuButtonClickedCount_${getUserId}`, menuButtonClickedCount);
+        }
+      navigate('/')
       return null;
     }
   }
@@ -107,17 +113,17 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
           </>
         )}
       </s.SunWrapper>
-      <Modal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)}>
-      <s.CenteredWrapper>
-        <s.H2>로그아웃 하시겠습니까?</s.H2>
-        <s.ModalButton onClick={handleSubmitLogout}>로그아웃하기</s.ModalButton>
-        <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
-      </s.CenteredWrapper>
-    </Modal>
-    <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
-      {modalErrorContent}
-    </ErrorModal>
-    </s.Wrapper>
+      <ErrorModal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)}>
+        <s.ErrorCenterModalWrapper>
+            <s.LogoutModalTextsWrapper>로그아웃 하시겠어요?</s.LogoutModalTextsWrapper>
+            <s.ModalButton onClick={handleSubmitLogout}>로그아웃하기</s.ModalButton>
+            <s.LogoutModalButton onClick={handleSubmitCancel}>취소</s.LogoutModalButton>
+        </s.ErrorCenterModalWrapper>
+      </ErrorModal>
+      <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+        {modalErrorContent}
+      </ErrorModal>
+      </s.Wrapper>
   );
 };
 
