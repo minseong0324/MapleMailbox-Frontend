@@ -247,6 +247,24 @@ line-height: 2;  // 글자 간격
 margin-bottom: -10px;
 `;
 
+const LinkModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 0px;
+margin-top: -25px;
+`;
+
+const LinkModalTextsStyle2 = styled.div`
+font-family: 'DOSSaemmul';
+font-size: 15px;
+text-align: center;
+margin-bottom: -20px;
+`;
+
 export const s = {
     Button,
     CenteredWrapper,
@@ -272,6 +290,8 @@ export const s = {
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
     ErrorModalTextsWrapper2,
-    ModalButton
+    ModalButton,
+    LinkModalTextsStyle2,
+    LinkModalTextsStyle1
 }
 

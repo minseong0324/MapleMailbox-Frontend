@@ -19,6 +19,7 @@ import SkyBlueCharImg from "../../../assets/charImg/skyblue-small.png";
 import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import SmallModal from "src/components/SmallModal/SmallModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
@@ -266,6 +267,10 @@ const handleNavigateHome = () => {
     setServiceModalOpen(true);
   };
 
+  const handleCloseLinkCopyClose = () => {
+    setShareModalOpen(false)
+  }
+
   return (
     <>
         {isMenuOpen && <Menu nowDate={nowDate} onLogout={() => {}} onServiceDescription={handleServiceDescription} />}
@@ -301,12 +306,14 @@ const handleNavigateHome = () => {
               <LettersList/>
             </Modal>
 
-            <Modal isOpen={isShareModalOpen} onClose={() => setShareModalOpen(false)}>
-              <s.ModalTextsWrapper>
-                <s.ModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.ModalTextsStyle1>
-                <s.ModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.ModalTextsStyle2>
-              </s.ModalTextsWrapper>
-            </Modal>
+            <SmallModal isOpen={isShareModalOpen} onClose={() => setShareModalOpen(false)}>
+              <s.ErrorCenterModalWrapper>
+                <s.LinkModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.LinkModalTextsStyle1>
+                <s.Break/>
+                <s.LinkModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.LinkModalTextsStyle2>
+                <s.ModalButton onClick={handleCloseLinkCopyClose}>확인</s.ModalButton>
+              </s.ErrorCenterModalWrapper>
+            </SmallModal>
 
             <ServiceModal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}/>
 

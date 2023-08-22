@@ -8,7 +8,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const ErrorModal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const SmallModal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <s.ModalWrapper show={isOpen} onClick={onClose}>
       <s.ModalContent onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
@@ -20,4 +20,4 @@ const ErrorModal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   );
 };
 
-export default ErrorModal;
+export default SmallModal;
