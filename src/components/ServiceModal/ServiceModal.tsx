@@ -53,6 +53,21 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
                         <s.GinkgoLeafImageSmall/>
                         <s.Text>가을과 관련된 귀여운 우표들을 다양한 미션을 통해 모아봐요!</s.Text>
                     </s.HorizontalContainer3>
+                    <s.CollectionImg/>
+
+                    <s.HorizontalContainer2>
+                        <s.MapleLeafImageSmall/>
+                        <s.SubSubTitle>단풍 우편함</s.SubSubTitle>
+                        <s.InstagramImg/>
+                    </s.HorizontalContainer2>
+                    <s.HorizontalContainer3>
+                        <s.GinkgoLeafImageSmall/>
+                        <s.Text>단풍 우편함은 동국대, 삼육대, 숙명여대 학생 5명에서 만든 편지 교환 서비스입니다.</s.Text>
+                    </s.HorizontalContainer3>
+                    <s.HorizontalContainer3>
+                        <s.GinkgoLeafImageSmall/>
+                        <s.Text>단풍 우편함은 수익을 창출하지 않는 비영리 서비스입니다.</s.Text>
+                    </s.HorizontalContainer3>
                     
                 
                 

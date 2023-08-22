@@ -33,7 +33,7 @@ const SubSubTitle = styled.span`
 const Text = styled.span`
     margin-top: 0px;
     margin-left: 5px;
-    font-family: 'DOSSaemmul';
+    font-family: 'DOSGothic';
     font-size: 10px;
     padding-right: 0px;
     padding-left: 0px;
@@ -119,6 +119,28 @@ const HorizontalContainer3 = styled.div`
   margin-bottom: 5px;
 `;
 
+const CollectionImg = styled.img.attrs({
+    src: MapleLeaf //바꿔야함
+  })`
+      z-index: 2;
+      width:190px;
+      height:100px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+      margin-top: 5px;
+     align-items:center;
+`;
+
+const InstagramImg = styled.img.attrs({
+    src: MapleLeaf //바꿔야함
+  })`
+      z-index: 2;
+      width:90px;
+      height:13px;
+      margin-left: 5px;
+      margin-bottom: 10px;
+     align-items:center;
+`;
 
 export const s = {
     Wrapper,
@@ -135,5 +157,7 @@ export const s = {
     GinkgoLeafImageSmall,
     MapleLeafImageSmall,
     HorizontalContainer2,
-    HorizontalContainer3
+    HorizontalContainer3,
+    CollectionImg,
+    InstagramImg
 }
