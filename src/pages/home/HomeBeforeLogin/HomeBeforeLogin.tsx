@@ -7,6 +7,8 @@ import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
 import { s } from './style'
 import { useNavigate } from 'react-router-dom';  // useNavigate import
 import GinkgoCharImg from '../../../assets/charImg/ginkgo-small.png';
+import GrayCharImg from '../../../assets/charImg/gray-small.png';
+import YellowCharImg from '../../../assets/charImg/yellow-small.png';
 import ServiceModal from 'src/components/ServiceModal/ServiceModal';
 
 
@@ -32,7 +34,7 @@ return (
    
     <s.TreeImageWrapper>
       <s.TreeImg src={MapleTreeImage} alt="Autumn Tree"/>
-      <s.GinkgoCharImage src={GinkgoCharImg} alt="Ginkgo Image" />
+      <s.GinkgoCharImage src={YellowCharImg} alt="Yellow Character" />
     </s.TreeImageWrapper>
     <s.ButtonWrapper>
       <s.Break/>
