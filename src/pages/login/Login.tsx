@@ -3,6 +3,7 @@ import { s } from './style'
 import { useNavigate } from 'react-router-dom';
 import KakaoLogin from './kakaoLogin/KakaoLogin';
 import NaverLogin from './naverLogin/NaverLogin';
+import GoogleLogin from './googleLogin/GoogleLogin'
 import GoogleLoginButton from './googleLogin/GoogleLoginButton';
 import axios, {AxiosError} from 'axios';
 import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
@@ -187,7 +188,8 @@ function Login() {
           <s.LoginButton type="submit">로그인하기</s.LoginButton>
           <KakaoLogin imageUrl={KakaoLoginImage}/>
           <NaverLogin imageUrl={NaverLoginImage}/>
-          <GoogleLoginButton buttonImage={GoogleLoginImage} />
+          <GoogleLogin buttonImage={GoogleLoginImage}/>
+          {/*<GoogleLoginButton buttonImage={GoogleLoginImage} />*/}
         </s.LoginForm>
       </s.LoginWrapper>
 

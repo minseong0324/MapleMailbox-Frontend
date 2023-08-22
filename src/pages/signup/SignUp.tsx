@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import KakaoLogin from '../login/kakaoLogin/KakaoLogin';
 import NaverLogin from '../login/naverLogin/NaverLogin';
+import GoogleLogin from '../login/googleLogin/GoogleLogin'
 import GoogleLoginButton from '../login/googleLogin/GoogleLoginButton';
 import axios, {AxiosError} from 'axios';
 import { s } from './style';
@@ -96,8 +97,9 @@ function SignUp() {
             <s.SignUpButton type="submit">회원가입하기</s.SignUpButton> {/* onclick 이벤트로 회원가입하기를 누르면 로그인 페이지로 */}
             <KakaoLogin imageUrl={KakaoSignUpImage}/>
             <NaverLogin imageUrl={NaverSignUpImage}/>
-            <GoogleLoginButton buttonImage={GoogleSignUpImage} />
-        </s.SignUpForm>
+            <GoogleLogin buttonImage={GoogleSignUpImage}/>
+        {/* <GoogleLoginButton buttonImage={GoogleSignUpImage}/> */}        
+          </s.SignUpForm>
 
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}

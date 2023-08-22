@@ -34,6 +34,24 @@ const CustomButton = styled.button<CustomButtonProps>`
   background-repeat: no-repeat; 
 `;
 
+const GoogleLoginButton = styled.button<CustomButtonProps>`
+  background-image: url(${props => props.buttonImage});
+  background-image: url(${props => props.buttonImage});
+  background-color: transparent; 
+  color: white;
+  border: none;
+  width: 250px;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  z-index: 2;
+
+`;
+
 const ModalTextsWrapper = styled.div`
 position: relative;
 display: flex;
@@ -100,6 +118,12 @@ const ModalButton = styled.button`
   }
 `;
 
+const GoogleWrapper = styled.div`
+  position: relative;
+  z-index: 2;
+
+`;
+
 export const s = {
   ButtonWrapper,
   CustomButton,
@@ -110,5 +134,7 @@ export const s = {
   ErrorCenterModalWrapper,
   ErrorModalTextsWrapper1,
   ErrorModalTextsWrapper2,
-  ModalButton
+  ModalButton,
+  GoogleLoginButton,
+  GoogleWrapper
 };

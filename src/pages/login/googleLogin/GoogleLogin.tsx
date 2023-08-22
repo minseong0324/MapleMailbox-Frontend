@@ -2,12 +2,12 @@
 import React from 'react';
 import { s } from './style'
 
-interface KakaoProps {
-    imageUrl: string;
+type GoogleLoginButtonProps = {
+    buttonImage: string; // Declare the prop type as string (assuming the image is a string path)
   }
 
 // 네이버 로그인 컴포넌트
-const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
+const KakaoLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
     // 네이버 클라이언트 ID
     //const CLIENT_ID = `${import.meta.env.VITE_APP_NAVER_CLIENT_ID}`;
     // 네이버 리다이렉트 URI
@@ -17,16 +17,16 @@ const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
 
     // 이미지 클릭 시 네이버 로그인 페이지로 이동
     const handleButtonClick = () => {
-        window.location.href = 'http://localhost:8080/oauth/kakao';
+        window.location.href = 'http://localhost:8080/oauth/google';
     }
 
-    return(
-        <s.KakaoLoginButton
-            alt="카카오 로그인"
-            src={imageUrl}
-            onClick={handleButtonClick}
-        />
-    )
-}
+    return (
+        <s.GoogleLoginButton
+        buttonImage={buttonImage}
+        onClick={handleButtonClick}
+    />
+      );
+    }
+
 
 export default KakaoLogin;
