@@ -103,12 +103,18 @@ function NaverCallback() {
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('code');  // 네이버는 Redirect 시키면서 code를 쿼리 스트링으로 준다.
     if (code) {
-        alert("CODE = " + code)
         handleOAuthNaver(code);
     }
 
     if (!code) {
-      alert('인증 코드 또는 상태 값이 없습니다.');
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>네이버에서 정보를</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+      );
+      setErrorModalOpen(true);
       navigate('/login');
       return;
     }

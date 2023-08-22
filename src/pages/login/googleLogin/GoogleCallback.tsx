@@ -104,12 +104,18 @@ function GoogleCallback() {
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('code');  
     if (code) {
-        alert("CODE = " + code)
         handleOAuthGoogle(code);
     }
 
     if (!code) {
-      alert('인증 코드 또는 상태 값이 없습니다.');
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>구글에서 정보를</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+      );
+      setErrorModalOpen(true);
       navigate('/login');
       return;
     }
