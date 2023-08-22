@@ -27,7 +27,7 @@ function LettersList() {
     const fetchUserData = async () => {
       const userId = localStorage.getItem("userId");
       try {
-        const response = await axios.get(`http://maplemailbox.com/api/users/${userId}/letters`, {
+        const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/letters`, {
           headers: {
             'authorization': `${accessToken}`
           }

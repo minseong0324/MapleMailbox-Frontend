@@ -65,7 +65,7 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`http://maplemailbox.com/api/users/${userId}`, {
+    const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}`, {
       headers: {
         'authorization': `${accessToken}`
       }
@@ -234,7 +234,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`http://maplemailbox.com/api/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`http://13.125.112.77:80/api/users/${userId}/letters`, letterData, {
         headers: {
           'authorization': `${accessToken}`
         }

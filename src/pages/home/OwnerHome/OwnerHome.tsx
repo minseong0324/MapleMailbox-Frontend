@@ -84,7 +84,7 @@ function OwnerHome() {
   const getUserInfoFromServer = async (userId: string) => {
     try {
       // 백엔드 서버에 GET 요청을 보냅니다.
-      const response = await axios.get(`http://maplemailbox.com/api/users/${userId}`, {
+      const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}`, {
         headers: {
           'authorization': `${accessToken}`
         }

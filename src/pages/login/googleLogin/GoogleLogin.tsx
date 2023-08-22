@@ -17,7 +17,7 @@ const KakaoLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
 
     // 이미지 클릭 시 네이버 로그인 페이지로 이동
     const handleButtonClick = () => {
-        window.location.href = 'http://maplemailbox.com/oauth/google';
+        window.location.href = 'http://13.125.112.77:80/oauth/google';
     }
 
     return (

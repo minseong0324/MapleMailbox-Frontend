@@ -23,7 +23,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
   const handleLogin = async (credentialResponse: CredentialResponse | MyCredentialResponse) => {
     try {
       const credential = 'credential' in credentialResponse ? credentialResponse.credential : credentialResponse; //credential, 즉 id토큰을 뽑아냄. 이를 디코딩 하면 유저의 정보가 모두 나옴.
-      const response = await axios.post(`http://maplemailbox.com/oauth/login/google`, credential);
+      const response = await axios.post(`http://13.125.112.77:80/oauth/login/google`, credential);
       if (response.status === 200) {
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['reauthorization'];
@@ -37,7 +37,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) =>
         console.log("accessToken----")
         console.log(response.headers); 
         try {   
-          const userResponse = await axios.get(`http://maplemailbox.com/api/users`, {
+          const userResponse = await axios.get(`http://13.125.112.77:80/api/users`, {
             headers: {
               'authorization': `${accessToken}` 
             }

@@ -25,7 +25,7 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
     try {
-      const response = await axios.get(`http://maplemailbox.com/api/users/${userId}/letters/${selectedDate}`, {
+      const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/letters/${selectedDate}`, {
         headers: {
           'authorization': `${accessToken}`
         }

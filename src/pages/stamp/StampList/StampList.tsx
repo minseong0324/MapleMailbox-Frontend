@@ -34,7 +34,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     const userId = localStorage.getItem("userId");
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await axios.get(`http://maplemailbox.com/api/users/${userId}/missions`, {
+      const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/missions`, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -88,7 +88,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       if(stampsStatus[nowDate-1] === false) {
         setMissionModalOpen(true);
         try {
-          const response = await axios.get(`http://maplemailbox.com/api/users/${userId}/missions/todayMission`, {
+          const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/missions/todayMission`, {
             headers: {
               'authorization': `${accessToken}`
             }
@@ -176,7 +176,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     //handleOpenMissionCompleteModal(); //테스트용
     try {
       // 1. PUT 요청을 통해 missionCompleteButtonClick 값을 true로 업데이트
-      const putResponse = await axios.put(`http://maplemailbox.com/api/users/${userId}/missions/todayMission`,{
+      const putResponse = await axios.put(`http://13.125.112.77:80/api/users/${userId}/missions/todayMission`,{
         missionCompleteButtonClick: true
       }, {
         headers: {
@@ -187,7 +187,7 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       if (putResponse.status === 200) {
         try {
           // 2. 성공적으로 완료되었을 때 GET 요청을 통해 stampsStatus 리스트를 가져옴
-          const getResponse = await axios.get(`http://maplemailbox.com/api/users/${userId}/missions`, {
+          const getResponse = await axios.get(`http://13.125.112.77:80/api/users/${userId}/missions`, {
             headers: {
               'authorization': `${accessToken}`
             }
