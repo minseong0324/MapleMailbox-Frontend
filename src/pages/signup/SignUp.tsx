@@ -22,6 +22,19 @@ function SignUp() {
     // 회원가입 처리 함수
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      // 여기서 입력값 검사 시작
+      if (!userName || !email || !password) {
+        setModalErrorContent(
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper2>이름, 이메일, 비밀번호</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>를 모두 입력해주세요!</s.ErrorModalTextsWrapper2>
+              <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+          </s.ErrorCenterModalWrapper>
+        );
+        setErrorModalOpen(true);
+        return; // 함수 실행을 중단
+      }
   
       // 여기에 회원가입 로직 추가
       // API 요청 등
