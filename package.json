@@ -9,8 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy":"http://maplemailbox.com",
+  "proxy": "http://maplemailbox.com",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -18,6 +19,7 @@
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "axios": "^1.4.0",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
@@ -33,8 +35,6 @@
   "dependencies": {
     "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@types/axios": "^0.14.0",
-    "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "jwt-decode": "^3.1.2",
     "react-native": "^0.72.3",
@@ -44,5 +44,4 @@
     "react-router-dom": "^6.14.2",
     "styled-components": "^6.0.7"
   }
-  
 }

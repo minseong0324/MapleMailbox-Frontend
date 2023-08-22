@@ -91,7 +91,7 @@ const getUserInfoFromServer = async (userId: string) => {
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
               <s.ErrorModalTextsWrapper2>불러오지 못했어요.</s.ErrorModalTextsWrapper2>
-              <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+              <s.ModalButton onClick={handleUnLoggedInModalClose}>돌아가기</s.ModalButton>
           </s.ErrorCenterModalWrapper>
       );
         if (status === 404) {
@@ -258,7 +258,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
               <s.ErrorCenterModalWrapper>
                   <s.ErrorModalTextsWrapper2>편지를 보내는</s.ErrorModalTextsWrapper2>
                   <s.ErrorModalTextsWrapper2>데에 실패했어요.</s.ErrorModalTextsWrapper2>
-                  <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
+                  <s.ModalButton onClick={handleUnLoggedInModalClose}>닫기</s.ModalButton>
               </s.ErrorCenterModalWrapper>
           );
           if (status === 404) {
@@ -272,11 +272,21 @@ const handleSendLetter = async (event: React.FormEvent) => {
       setErrorModalOpen(true);
       return null;
     }
+  } else {
+    setModalErrorContent(
+      <s.ErrorCenterModalWrapper>
+          <s.ErrorModalTextsWrapper2>로그인을 하셔야</s.ErrorModalTextsWrapper2>
+          <s.ErrorModalTextsWrapper2>이용가능해요!</s.ErrorModalTextsWrapper2>
+          <s.ModalButton onClick={handleUnLoggedInModalClose}>닫기</s.ModalButton>
+      </s.ErrorCenterModalWrapper>
+  );
+  setErrorModalOpen(true);
   }
 };
 
-const handleErrorModalClose = () => {
+const handleUnLoggedInModalClose = () => {
   setErrorModalOpen(false);
+  handleCloseAlertModal();
 }
 
   // 이름을 작성하는 함수입니다.
@@ -313,7 +323,15 @@ const handleErrorModalClose = () => {
       //navigate('/OwnerHome'); //이거 바꿔야 함. 자신의 url로.
       navigate(`/home/${OwnerUserId}`, { replace: true });
     } else {
-      setShowLoginAlertModal(true);
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>로그인을 하셔야</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>이용가능해요!</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleUnLoggedInModalClose}>닫기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+    );
+    setErrorModalOpen(true);
+    
     }
   };
 
@@ -378,14 +396,6 @@ const handleErrorModalClose = () => {
       
       <ServiceModal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}/>
 
-      <Modal isOpen={showLoginAlertModal} onClose={() => setShowLoginAlertModal(false)}>
-        <s.ModalCenterWrapper>
-          <s.TextsStyle>로그인을 하셔야 </s.TextsStyle>
-          <s.TextsStyle>이용가능해요!</s.TextsStyle>
-          <s.ModalButton onClick={handleCloseAlertModal}>확인</s.ModalButton>
-        </s.ModalCenterWrapper>
-        
-      </Modal>
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
         {modalErrorContent}
       </ErrorModal>
