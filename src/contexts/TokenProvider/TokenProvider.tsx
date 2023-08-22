@@ -27,7 +27,8 @@ function TokenProvider({ children }: TokenProviderProps) {
 
     useEffect(() => {
         const refreshToken = localStorage.getItem('refreshToken');
-        console.log("TokenProvider");
+        if(refreshToken!==null || refreshToken!=="null") {
+            console.log("TokenProvider");
         console.log(refreshToken);
         console.log("TokenProvider----");
 
@@ -70,6 +71,8 @@ function TokenProvider({ children }: TokenProviderProps) {
         }, 1000 * 60 * 0.1); // 30분 마다 실행
 
         return () => clearInterval(interval);
+        }
+        
   }, [navigate]);
 
   const handleNavigateHome = () => {
