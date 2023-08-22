@@ -18,7 +18,7 @@ function BackButton({ to }: BackButtonProps) {
 
     return(
         <s.Wrapper>
-            <s.BackButton onClick={handleBack}>←</s.BackButton>
+            <s.BackButton onClick={handleBack}></s.BackButton>
         </s.Wrapper>
     )
 }
