@@ -21,18 +21,23 @@ const TitleWrapper = styled.div`
 `;
 
 const SubSubTitle = styled.span`
-  margin-top: 0px;
-  font-family: 'DOSSaemmul';
-  font-size: 10px;
-  padding-right: 0px;
+    margin-top: 0px;
+    margin-left: 5px;
+    font-family: 'DOSGothic';
+    font-size: 14px;
+    padding-right: 0px;
     padding-left: 0px;
+    margin-bottom: 10px;
 `;
 
 const Text = styled.span`
-  margin-top: 6px;
-  font-size: 14px;
-  padding-bottom: 30px;
-
+    margin-top: 0px;
+    margin-left: 5px;
+    font-family: 'DOSSaemmul';
+    font-size: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 7px;
 `;
 
 const Break = styled.br``;
@@ -52,6 +57,7 @@ text-align: center;
 
 
  const ModalTextsWrapper = styled.div`
+ 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,11 +84,41 @@ const MapleLeafImage = styled.img.attrs({
      
 `;
 
+const GinkgoLeafImageSmall = styled.img.attrs({
+    src: GinkgoLeaf
+  })`
+      z-index: 2;
+  width:10px;
+  height:10px;
+`;
+
+const MapleLeafImageSmall = styled.img.attrs({
+    src: MapleLeaf
+  })`
+      z-index: 2;
+      width:20px;
+      margin-bottom: 10px;
+     
+`;
+
 const HorizontalContainer = styled.div`
   display: flex;
   align-items: center;  // 아이템들을 세로 중앙 정렬
-  justify-content: space-between;  // 아이템들 사이에 동일한 공간을 둡니다.
+  justify-content: center;
 `;
+
+const HorizontalContainer2 = styled.div`
+  display: flex;
+  align-items: center;  // 아이템들을 세로 중앙 정렬
+  margin-bottom: 5px;
+`;
+
+const HorizontalContainer3 = styled.div`
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 5px;
+`;
+
 
 export const s = {
     Wrapper,
@@ -95,5 +131,9 @@ export const s = {
     ModalTextsWrapper,
     GinkgoLeafImage,
     MapleLeafImage,
-    HorizontalContainer
+    HorizontalContainer,
+    GinkgoLeafImageSmall,
+    MapleLeafImageSmall,
+    HorizontalContainer2,
+    HorizontalContainer3
 }

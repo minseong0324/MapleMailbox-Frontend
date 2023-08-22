@@ -21,9 +21,41 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
                     </s.TitleWrapper>
                     <s.GinkgoLeafImage/>
                 </s.HorizontalContainer>
-           
+                <s.HorizontalContainer2>
+                    <s.MapleLeafImageSmall/>
+                    <s.SubSubTitle>단풍우편함 이용방법</s.SubSubTitle>
+                </s.HorizontalContainer2>
+                <s.HorizontalContainer3>
+                    <s.GinkgoLeafImageSmall/>
+                    <s.Text>내 나무를 심고 링크를 공유해요.</s.Text>
+                </s.HorizontalContainer3>
+                <s.HorizontalContainer3>
+                    <s.GinkgoLeafImageSmall/>
+                    <s.Text>주변인에게 편지를 받을 수 있어요.</s.Text>
+                </s.HorizontalContainer3>
+                <s.HorizontalContainer3>
+                    <s.GinkgoLeafImageSmall/>
+                    <s.Text>하루에 편지 5장 이상을 받으면 나무가 물들어요.</s.Text>
+                </s.HorizontalContainer3>
+                <s.HorizontalContainer3>
+                    <s.GinkgoLeafImageSmall/>
+                    <s.Text>하지만, 하루에 편지 5장 이상을 받지 못하면 30일 뒤에 편지를 열람할 수 있어요.
+                        그래도 우울해하지 말아요. 위로의 편지를 단풍나라 친구들이 보내줄거니까요.
+                    </s.Text>
+                </s.HorizontalContainer3>
                 
-                <s.SubSubTitle>룰루</s.SubSubTitle>
+                
+                    <s.HorizontalContainer2>
+                        <s.MapleLeafImageSmall/>
+                        <s.SubSubTitle>우표 컬렉션을 모아봐요!</s.SubSubTitle>
+                    </s.HorizontalContainer2>
+                    <s.HorizontalContainer3>
+                        <s.GinkgoLeafImageSmall/>
+                        <s.Text>가을과 관련된 귀여운 우표들을 다양한 미션을 통해 모아봐요!</s.Text>
+                    </s.HorizontalContainer3>
+                    
+                
+                
             </s.ModalTextsWrapper>
             
 
