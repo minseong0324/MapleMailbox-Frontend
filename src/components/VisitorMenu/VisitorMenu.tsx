@@ -33,7 +33,7 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-      const response = await axios.put(`http://localhost:8080/api/auth/logout/${userId}`, {}, {
+      const response = await axios.put(`http://maplemailbox.com/api/auth/logout/${userId}`, {}, {
           headers: {
               'authorization': `${accessToken}`
           }

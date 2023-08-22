@@ -13,7 +13,7 @@ function KakaoCallback() {
   const handleOAuthKakao = async (code: string) => {
     try {
         // 카카오로부터 받아온 code를 서버에 전달하여 카카오로 회원가입 & 로그인한다
-        const response = await axios.get(`http://localhost:8080/oauth/login/kakao?code=${code}`);
+        const response = await axios.get(`http://maplemailbox.com/oauth/login/kakao?code=${code}`);
         if (response.status === 200) {
           const accessToken = response.headers['authorization'];
           const refreshToken = response.headers['reauthorization'];
@@ -27,7 +27,7 @@ function KakaoCallback() {
           console.log("accessToken----")
           console.log(response.headers); 
           try {
-            const userResponse = await axios.get(`http://localhost:8080/api/users`, {
+            const userResponse = await axios.get(`http://maplemailbox.com/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
               }

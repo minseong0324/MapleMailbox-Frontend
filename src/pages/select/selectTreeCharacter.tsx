@@ -61,7 +61,7 @@ function SelectTreeCharacter() {
 
     try {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-      const response = await axios.put(`http://localhost:8080/api/users/${MyUserId}`, selectedData, {
+      const response = await axios.put(`http://maplemailbox.com/api/users/${MyUserId}`, selectedData, {
         headers: {
           'authorization': `${accessToken}` // accessToken을 헤더에 추가
         }
