@@ -4,6 +4,7 @@ import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
 import Modal from '../../../components/Modal/Modal';
+import ServiceModal from 'src/components/ServiceModal/ServiceModal';
 import initialTreeImage from '../../../assets/treeImg/MainTree.png';
 import {s} from './style'
 import MapleCharImg from "../../../assets/charImg/maple-small.png";
@@ -375,14 +376,7 @@ const handleErrorModalClose = () => {
         </s.ModalCenterWrapper>
       </Modal>
       
-      <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-        <s.H3>가을을 기다리며, 단풍우편함</s.H3>
-        <s.P>
-          하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-          <s.Break/>
-          어쩌구 저쩌구
-        </s.P>
-      </Modal>
+      <ServiceModal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}/>
 
       <Modal isOpen={showLoginAlertModal} onClose={() => setShowLoginAlertModal(false)}>
         <s.ModalCenterWrapper>

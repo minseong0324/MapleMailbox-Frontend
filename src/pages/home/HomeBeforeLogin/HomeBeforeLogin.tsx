@@ -7,7 +7,7 @@ import MapleTreeImage from '../../../assets/treeImg/MapleMainTree.png';
 import { s } from './style'
 import { useNavigate } from 'react-router-dom';  // useNavigate import
 import GinkgoCharImg from '../../../assets/charImg/ginkgo-small.png';
-
+import ServiceModal from 'src/components/ServiceModal/ServiceModal';
 
 
 function HomeBeforeLogin() {
@@ -40,14 +40,8 @@ return (
       <s.Break/> 
       <s.Button onClick={() => navigate('/signup')}>회원가입</s.Button>
     </s.ButtonWrapper>
-      <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-        <s.H3>가을을 기다리며, 단풍우편함</s.H3>
-        <s.P>
-          하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-          <s.Break/>
-          어쩌구 저쩌구
-        </s.P>
-      </Modal>
+    <ServiceModal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}/>
+
     </s.CenteredWrapper>
   </>
 );
