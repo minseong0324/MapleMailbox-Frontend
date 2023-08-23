@@ -12,15 +12,15 @@
 - ginkgo (완)
 
 - mountain (완)
-- 숲속 
+- 숲속 (작업중)
 
 - hPumpkin (완)
 - 할로윈 마녀
 - 할로윈 고양이
 
 - pupleSky (완)
-- 노을
-- 푸른 하늘
+- 노을 (작업중)
+- 푸른 하늘 (작업중)
 
 - squirrel (완)
 - teddybear (완)
