@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Stamp1 from '../../../assets/stamp/ginkgo-squ.png';
+import Stamp1 from '../../../assets/stamp/ginkgo_squ.png';
 import Stamp2 from '../../../assets/stamp/maple_squ.png';
 import Stamp3 from '../../../assets/stamp/pumkin_squ.png';
 import Stamp4 from '../../../assets/stamp/sky_squ.png';
@@ -9,8 +9,8 @@ import Stamp7 from '../../../assets/stamp/mailbox-squ.png';
 import Stamp8 from '../../../assets/stamp/mail_squ.png';
 import Stamp9 from '../../../assets/stamp/pie_squ.png';
 import Stamp10 from '../../../assets/stamp/mountain_squ.png';
-import Stamp11 from '../../../assets/stamp/mail_squ.png';
-import Stamp12 from '../../../assets/stamp/mail_squ.png';
+import Stamp11 from '../../../assets/stamp/forest_squ.png';
+import Stamp12 from '../../../assets/stamp/sunset_squ.png';
 import Stamp13 from '../../../assets/stamp/mail_squ.png';
 import Stamp14 from '../../../assets/stamp/mail_squ.png';
 import Stamp15 from '../../../assets/stamp/mail_squ.png';
