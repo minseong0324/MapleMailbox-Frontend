@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     body::after {
         content: "";
         position: absolute;
-        top: 65px;
+        top: 49px;
         left: 0px;
         height: 100%;
         width: 100%;
@@ -51,7 +51,7 @@ export const GlobalStyle = createGlobalStyle`
     #content {
         position: relative;
         height: 100%;
-        overflow: auto;
+        overflow: hidden;
         z-index: 1;
     }
 `;
