@@ -11,7 +11,7 @@
 - maple (완)
 - ginkgo (완)
 
-- 산 (멀리서 본 산)
+- mountain (완)
 - 숲속 
 
 - hPumpkin (완)
@@ -47,6 +47,6 @@
 - mailbox (완)
 
 - 호박파이
-- 파이 조각
+- pie (완)
 */
 
