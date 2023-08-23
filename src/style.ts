@@ -33,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
         z-index: 1;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
+        overflow: auto;
     }
     @font-face {
     font-family: 'DOSSaemmul';
