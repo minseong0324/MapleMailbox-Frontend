@@ -8,7 +8,7 @@ import Stamp6 from '../../../assets/stamp/teddybear_squ-big.png';
 import Stamp7 from '../../../assets/stamp/mailbox_squ-big.png';
 import Stamp8 from '../../../assets/stamp/mail_squ-big.png';
 import Stamp9 from '../../../assets/stamp/pie_squ-big.png';
-import Stamp10 from '../../../assets/stamp/mail_squ-big.png';
+import Stamp10 from '../../../assets/stamp/mountain_squ-big.png';
 import Stamp11 from '../../../assets/stamp/mail_squ-big.png';
 import Stamp12 from '../../../assets/stamp/mail_squ-big.png';
 import Stamp13 from '../../../assets/stamp/mail_squ-big.png';
