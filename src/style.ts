@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     body::after {
         content: "";
         position: absolute;
-        top: 49px;
+        top: 75px;
         left: 0px;
         height: 100%;
         width: 100%;
