@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     html, body {
         margin: 0;
         padding: 0;
-        height: 100vh;
+        height: 1180px;
         background: url(${bodyBackground});
         background-size: cover;
         background-position: center ;
@@ -24,8 +24,8 @@ export const GlobalStyle = createGlobalStyle`
         position: absolute;
         top: 65px;
         left: 0px;
-        height: 100%;
-        width: 100%;
+        height: 1180px;
+        width: 820px;
         background: url(${bodyAfterBackground});
         background-size: cover;
         background-position: center ;
