@@ -16,12 +16,13 @@ import GoogleCallback from './pages/login/googleLogin/GoogleCallback';
 import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
+import { ScrollProvider } from './contexts/ScrollProvider/ScrollProvider';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
+    <ScrollProvider>
     
     <QueryClientProvider client={queryClient}>
      
@@ -54,7 +55,7 @@ function App() {
     </UserProvider>
     </QueryClientProvider>
     
-    </>
+    </ScrollProvider>
     
   );
 }

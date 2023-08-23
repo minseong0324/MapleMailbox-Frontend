@@ -10,6 +10,7 @@ import GinkgoCharImg from '../../../assets/charImg/ginkgo-small.png';
 import GrayCharImg from '../../../assets/charImg/gray-small.png';
 import YellowCharImg from '../../../assets/charImg/yellow-small.png';
 import ServiceModal from 'src/components/ServiceModal/ServiceModal';
+import ScrollContext from 'src/contexts/ScrollContext/ScrollContext';
 
 
 function HomeBeforeLogin() {
