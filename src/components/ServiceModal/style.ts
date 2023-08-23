@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
 import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
+import Collection from '../../assets/stamp/collection3.png'
 
 const Wrapper = styled.div`
 font-family: 'DOSSaemmul';
@@ -120,7 +121,7 @@ const HorizontalContainer3 = styled.div`
 `;
 
 const CollectionImg = styled.img.attrs({
-    src: MapleLeaf //바꿔야함
+    src: Collection 
   })`
       z-index: 2;
       width:190px;
