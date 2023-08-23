@@ -44,7 +44,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         if (nowDate === 1 && menuButtonClickedCount === 1) {
             // 조건에 맞을 때 서버에 PUT 요청 보내기
             try {
-                const response = await axios.put(`http://13.125.112.77:80/api/users/${userId}/missions/${nowDate}`, {
+                const response = await axios.put(`https://maplemailbox.com/api/users/${userId}/missions/${nowDate}`, {
                     menuButtonClicked: true
                 }, {
                     headers: {
@@ -57,7 +57,6 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
             } catch (error: unknown) { //에러 일 경우
               if (error instanceof AxiosError) {
                   const status = error?.response?.status;
-                  console.error('Failed to fetch user info:', error);
                   setModalErrorContent(
                     <s.ErrorCenterModalWrapper>
                         <s.ErrorModalTextsWrapper2>클릭 정보를</s.ErrorModalTextsWrapper2>
@@ -83,11 +82,11 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   const handleErrorModalClose = () => {
     setErrorModalOpen(false);
   }
-
+  
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-      const response = await axios.put(`http://13.125.112.77:80/api/auth/logout/${userId}`, {}, {
+      const response = await axios.put(`https://maplemailbox.com/api/auth/logout/${userId}`, {}, {
           headers: {
               'authorization': `${accessToken}`
           }
@@ -111,7 +110,6 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
     } catch (error: unknown) { //에러 일 경우, 로그아웃 요청에 에러가 떠도 로그아웃을 시켜야함. 로컬스토리지도 clear
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           
           if (status === 404) {
               // 리소스를 찾을 수 없음

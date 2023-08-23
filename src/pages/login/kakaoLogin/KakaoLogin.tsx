@@ -17,7 +17,7 @@ const KakaoLogin: React.FC<KakaoProps> = ({ imageUrl }) => {
 
     // 이미지 클릭 시 네이버 로그인 페이지로 이동
     const handleButtonClick = () => {
-        window.location.href = 'http://13.125.112.77:80/oauth/kakao';
+        window.location.href = 'https://maplemailbox.com/api/oauth/kakao';
     }
 
     return(

@@ -25,7 +25,7 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
   // 선택된 날짜의 편지들을 가져오는 함수입니다.
   const fetchLetters = useCallback(async () => {
     try {
-      const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/letters/${selectedDate}`, {
+      const response = await axios.get(`https://maplemailbox.com/api/users/${userId}/letters/${selectedDate}`, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -36,7 +36,6 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
             <s.ErrorCenterModalWrapper>
                 <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>

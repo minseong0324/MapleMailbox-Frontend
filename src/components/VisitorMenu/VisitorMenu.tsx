@@ -33,7 +33,7 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-      const response = await axios.put(`http://13.125.112.77:80/api/auth/logout/${userId}`, {}, {
+      const response = await axios.put(`https://maplemailbox.com/api/auth/logout/${userId}`, {}, {
           headers: {
               'authorization': `${accessToken}`
           }
@@ -48,7 +48,6 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           
           if (status === 404) {
               // 리소스를 찾을 수 없음

@@ -80,7 +80,7 @@ function MyPage() {
             return; // 함수 종료
         }
         try {
-            const response = await axios.delete(`http://13.125.112.77:80/api/auth/leave/${MyUserId}`, {
+            const response = await axios.delete(`https://maplemailbox.com/api/auth/leave/${MyUserId}`, {
                 headers: {
                     'authorization': `${accessToken}`
                 }
@@ -98,7 +98,6 @@ function MyPage() {
         } catch (error: unknown) { //에러 일 경우
             if (error instanceof AxiosError) {
                 const status = error?.response?.status;
-                console.error('Failed to fetch user info:', error);
                 setModalErrorContent(
                     <s.CenterModalWrapper>
                         <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>

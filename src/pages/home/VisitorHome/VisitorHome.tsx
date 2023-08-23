@@ -65,7 +65,7 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}`, {
+    const response = await axios.get(`https://maplemailbox.com/api/users/${userId}`, {
       headers: {
         'authorization': `${accessToken}`
       }
@@ -86,7 +86,6 @@ const getUserInfoFromServer = async (userId: string) => {
   } catch (error: unknown) { //에러 일 경우
     if (error instanceof AxiosError) {
         const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -252,7 +251,6 @@ const handleSendLetter = async (event: React.FormEvent) => {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
               <s.ErrorCenterModalWrapper>
                   <s.ErrorModalTextsWrapper2>편지를 보내는</s.ErrorModalTextsWrapper2>

@@ -27,7 +27,7 @@ function LettersList() {
     const fetchUserData = async () => {
       const userId = localStorage.getItem("userId");
       try {
-        const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}/letters`, {
+        const response = await axios.get(`https://maplemailbox.com/api/users/${userId}/letters`, {
           headers: {
             'authorization': `${accessToken}`
           }
@@ -41,7 +41,6 @@ function LettersList() {
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
             const status = error?.response?.status;
-            console.error('Failed to fetch user info:', error);
             setModalErrorContent(
               <s.ErrorCenterModalWrapper>
                   <s.ErrorModalTextsWrapper2>편지 정보를</s.ErrorModalTextsWrapper2>

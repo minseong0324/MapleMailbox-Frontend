@@ -2,6 +2,8 @@
 import { createGlobalStyle } from 'styled-components';
 import bodyBackground from './assets/sky/sky-small.png';
 import bodyAfterBackground from './assets/background/background-small.png';
+import DoSSaemmul from './static/font/DOSSaemmul.ttf';
+import DOSGothic from './static/font/DOSGothic.ttf';
 
 export const GlobalStyle = createGlobalStyle`
     html, body {
@@ -35,14 +37,14 @@ export const GlobalStyle = createGlobalStyle`
     }
     @font-face {
     font-family: 'DOSSaemmul';
-    src: url('./static/font/DOSSaemmul.ttf') format('ttf');
+    src: url(${DoSSaemmul}) format('ttf');
     font-weight: normal;
     font-style: normal;
     }
 
     @font-face {
         font-family: 'DOSGothic';
-        src: url('./static/font/DOSGothic.ttf') format('ttf');
+        src: url(${DOSGothic}) format('ttf');
         font-weight: normal;
         font-style: normal;
     }

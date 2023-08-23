@@ -37,7 +37,7 @@ function SignUp() {
 
       // 회원가입 API 요청
       try {
-        const response = await axios.post(`http://13.125.112.77:80/api/auth/signup/self`, {
+        const response = await axios.post(`https://maplemailbox.com/api/auth/signup/self`, {
           userName,
           email,
           password,
@@ -51,7 +51,6 @@ function SignUp() {
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
             <s.ErrorCenterModalWrapper>
                 <s.ErrorModalTextsWrapper1>이메일이 존재해요!</s.ErrorModalTextsWrapper1>
