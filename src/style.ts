@@ -7,16 +7,18 @@ import DOSGothic from './static/font/DOSGothic.ttf';
 
 export const GlobalStyle = createGlobalStyle`
     html, body {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0px;
         margin: 0;
         padding: 0;
-        height: 100%;
         background: url(${bodyBackground});
-        background-size: cover;
         background-position: center ;
         background-repeat: no-repeat;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
-        overflow: auto;
+
     }
 
     body::after {
@@ -27,13 +29,12 @@ export const GlobalStyle = createGlobalStyle`
         height: 100%;
         width: 100%;
         background: url(${bodyAfterBackground});
-        background-size: cover;
         background-position: center ;
         background-repeat: no-repeat;
         z-index: 1;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
-        overflow: auto;
+
     }
     @font-face {
     font-family: 'DOSSaemmul';
@@ -51,7 +52,6 @@ export const GlobalStyle = createGlobalStyle`
     #content {
         position: relative;
         height: 100%;
-        overflow: hidden;
         z-index: 1;
     }
 `;
