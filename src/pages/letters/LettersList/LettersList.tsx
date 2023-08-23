@@ -37,11 +37,6 @@ function LettersList() {
           setNowDate(nowDate);
           setLettersOverFive(lettersOverFive);
           setTreeType(treeType);
-          console.log("LettersList");
-          console.log(lettersOverFive);
-          console.log("LettersList");
-          console.log(response.data.lettersOverFive);
-
         }
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
@@ -69,7 +64,6 @@ function LettersList() {
 
   useEffect(() => {
     fetchUserData();
-    console.log("fetchUserData load")
   }, []);
 
   const handleOpenModal = (selectedDate: number) => {

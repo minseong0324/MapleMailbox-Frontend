@@ -19,13 +19,6 @@ function NaverCallback() {
           const refreshToken = response.headers['reauthorization'];
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
-          console.log("refreshToken")
-          console.log(response.headers.refreshToken)
-          console.log("refreshToken----")
-          console.log("accessToken")
-          console.log(response.headers.accessToken)
-          console.log("accessToken----")
-          console.log(response.headers); 
           try {
             const userResponse = await axios.get(`http://13.125.112.77:80/api/users`, {
               headers: {

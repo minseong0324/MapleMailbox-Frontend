@@ -57,7 +57,6 @@ function SelectTreeCharacter() {
       treeType: selectedTree, 
       characterType: selectedCharacter 
     };
-    console.log(selectedData);
 
     try {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
@@ -67,7 +66,6 @@ function SelectTreeCharacter() {
         }
       });
       if(response.status===200) {
-        console.log('Success:', response.data);
         navigate(`/home/${MyUserId}`, { replace: true });
         //어차피 자신의 홈으로 이동되면서 다시 유저의 정보들이 요청될 것이므로 따로 받아와야하는 값은 없다.
       }

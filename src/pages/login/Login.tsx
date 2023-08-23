@@ -40,7 +40,6 @@ function Login() {
   }, {
     
     onSuccess: async (response) => {
-      console.log(response.headers); 
       // your token processing code here
       const accessToken = response.headers['authorization']; 
       const refreshToken = response.headers['reauthorization'];

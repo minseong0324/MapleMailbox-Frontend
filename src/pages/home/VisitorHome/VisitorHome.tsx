@@ -123,7 +123,6 @@ const handleNavigateHome = () => {
         setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
         setNowDate(userInfo?.nowDate); 
         setLettersOverFive(userInfo?.lettersOverFive);
-        console.log(userInfo?.nowDate)
       }
     };
     fetchUserInfo();

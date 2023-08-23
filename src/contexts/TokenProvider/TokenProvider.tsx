@@ -28,10 +28,6 @@ function TokenProvider({ children }: TokenProviderProps) {
     useEffect(() => {
         const refreshToken = localStorage.getItem('refreshToken');
         if(refreshToken!==null || refreshToken!=="null") {
-            console.log("TokenProvider");
-        console.log(refreshToken);
-        console.log("TokenProvider----");
-
         const interval = setInterval(async () => {
             const refreshToken = localStorage.getItem('refreshToken');
 

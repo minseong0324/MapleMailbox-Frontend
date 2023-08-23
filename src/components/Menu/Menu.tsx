@@ -38,10 +38,6 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   
   useEffect(() => {
     const userId = localStorage.getItem('userId');
-    console.log("useEffect 안1");
-        console.log(userId);
-        console.log("useEffect 안1--");
-    console.log(menuButtonClickedCount);
     localStorage.setItem(`menuButtonClickedCount_${userId}`, menuButtonClickedCount.toString());
 
     (async () => { // 즉시 실행 함수 표현식
@@ -150,14 +146,6 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
     setLogoutModalOpen(false);
 } 
 
-const onClickHandler = () => {
-  console.log("useEffect 안1");
-  console.log(userId);
-  console.log("useEffect 안1--");
-  // 아래 코드는 실제로 페이지 이동을 막기 위한 것입니다.
-  // e.preventDefault();
-};
-
   return (
     <s.Wrapper>
     <s.SunWrapper>
@@ -180,7 +168,7 @@ const onClickHandler = () => {
           <s.MenuItem onClick={handleSubmitLeaveModalOpen} isActive={isOpen}>로그아웃</s.MenuItem>
           <s.MenuItem onClick={onServiceDescription} isActive={isOpen}>이용안내</s.MenuItem>
           <s.StyledLinkContainer isActive={isOpen}>
-          <s.StyledLink to={`/mypage/${userId}`} onClick={onClickHandler}>마이페이지</s.StyledLink>
+          <s.StyledLink to={`/mypage/${userId}`}>마이페이지</s.StyledLink>
           </s.StyledLinkContainer>
 
         </s.MenuWrapper>

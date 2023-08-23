@@ -35,11 +35,6 @@ function SignUp() {
         setErrorModalOpen(true);
         return; // 함수 실행을 중단
       }
-  
-      // 여기에 회원가입 로직 추가
-      // API 요청 등
-      // 이부분은 백엔드 API가 준비되면 주석 해제하고 사용
-      console.log(`Signing up as: ${userName}, ${email}, ${password}`);
 
       // 회원가입 API 요청
       try {
@@ -48,7 +43,6 @@ function SignUp() {
           email,
           password,
         });
-        console.log(userName, email, password);
   
         // 회원가입 성공, status 200일 때
         if (response.status === 200) {

@@ -19,13 +19,6 @@ function GoogleCallback() {
           const refreshToken = response.headers['reauthorization'];
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
-          console.log("refreshToken")
-          console.log(response.headers.refreshToken)
-          console.log("refreshToken----")
-          console.log("accessToken")
-          console.log(response.headers.accessToken)
-          console.log("accessToken----")
-          console.log(response.headers); 
           try {
             const userResponse = await axios.get(`http://13.125.112.77:80/api/users`, {
               headers: {
@@ -51,7 +44,6 @@ function GoogleCallback() {
               navigate(`/home/${userId}`, { replace: true }); // 인가 코드 제거 및 /OwnerHome/${email}로 리다이렉트
             }
           }catch (error: unknown) { 
-            console.log("유저정보 요청 실패")//에러 일 경우
             if (error instanceof AxiosError) {
               const status = error?.response?.status;
               console.error('Failed to fetch user info:', error);
