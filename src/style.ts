@@ -11,8 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         height: 100vh;
         background: url(${bodyBackground});
-        background-size: auto;
-        background-position: center center;
+        background-size: cover;
+        background-position: center ;
         background-repeat: no-repeat;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
@@ -27,8 +27,8 @@ export const GlobalStyle = createGlobalStyle`
         height: 100%;
         width: 100%;
         background: url(${bodyAfterBackground});
-        background-size: auto;
-        background-position: center center;
+        background-size: cover;
+        background-position: center ;
         background-repeat: no-repeat;
         z-index: 1;
         -ms-interpolation-mode: nearest-neighbor;
