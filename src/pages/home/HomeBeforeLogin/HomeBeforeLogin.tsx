@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useSelector} from 'react-redux';
 import useScroll from 'src/hooks/useScroll/useScroll';
 import MenuBeforeLogin from '../../../components/MenuBeforeLogin/MenuBeforeLogin';
@@ -10,7 +10,6 @@ import GinkgoCharImg from '../../../assets/charImg/ginkgo-small.png';
 import GrayCharImg from '../../../assets/charImg/gray-small.png';
 import YellowCharImg from '../../../assets/charImg/yellow-small.png';
 import ServiceModal from 'src/components/ServiceModal/ServiceModal';
-import ScrollContext from 'src/contexts/ScrollContext/ScrollContext';
 
 
 function HomeBeforeLogin() {

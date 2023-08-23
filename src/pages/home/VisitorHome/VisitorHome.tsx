@@ -1,5 +1,5 @@
 // 필요한 모듈들을 import 합니다.
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
@@ -19,7 +19,6 @@ import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
-
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
   const images = [];
@@ -232,7 +231,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`http://13.125.112.77:80/api/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`https://maplemailbox.com/api/users/${userId}/letters`, letterData, {
         headers: {
           'authorization': `${accessToken}`
         }

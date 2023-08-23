@@ -10,14 +10,13 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         height: 100vh;
-        overflow: hidden;
         background: url(${bodyBackground});
         background-size: auto;
         background-position: center center;
         background-repeat: no-repeat;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
-        
+        overflow: auto;
     }
 
     body::after {
