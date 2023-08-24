@@ -20,8 +20,7 @@ import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
-import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
-import ScrollContext from 'src/contexts/ScrollContext/ScrollContext';
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
@@ -34,7 +33,6 @@ const importImages = async (prefix: string, count: number) => {
 };
 
 function OwnerHome() {
-  const scroll = useContext(ScrollContext);
   const { accessToken, refreshToken } = useToken();
   // 모달 상태에 대한 상태변수들입니다.
   const [isReadModalOpen, setReadModalOpen] = useState(false);

@@ -3,7 +3,7 @@ import CreateDOM from 'react-dom/client'; //중요
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import App from './App';
-import {GlobalStyle} from './style'
+import {GlobalStyle, BackgroundAfter, Background} from './style'
 
 
 
@@ -13,7 +13,9 @@ const root = CreateDOM.createRoot(rootElement); // reactDOM 쓰니 자꾸 에러
 
 root.render(
   <React.StrictMode>
+      <Background />
       <GlobalStyle />
+      <BackgroundAfter />
       <App />
   </React.StrictMode>
 );

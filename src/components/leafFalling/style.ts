@@ -26,7 +26,7 @@ const leafFall = keyframes`
 
 const Leaf = styled.div<LeafProps>`
   position: absolute;
-  top: 0;
+  top: -20px;
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -39,6 +39,7 @@ const LeafDiv = styled.div`
   width: 100%;
   max-width: 820px;
   height: 100vh;
+  top: -60px;
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
