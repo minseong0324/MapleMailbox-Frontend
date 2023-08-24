@@ -69,8 +69,8 @@ const LettersRead: React.FC<Props> = ({ selectedDate, onClose }) => {
         {letters.map((letter, index) => (
           <s.LetterContent key={index}>
             <s.TextsStyle>
-              <s.H2>보낸이: {letter.senderName}</s.H2>
-              <s.P>편지내용: {letter.letterContent}</s.P>
+              <s.SenderNameText>보낸이: {letter.senderName}</s.SenderNameText>
+              <s.LetterContentText>{letter.letterContent}</s.LetterContentText>
             </s.TextsStyle>
           </s.LetterContent>
         ))}

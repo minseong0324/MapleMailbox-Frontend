@@ -42,8 +42,8 @@ const LetterContent = styled.div`
 
 `;
 
-const H2 = styled.h2`
-
+const SenderNameText = styled.span`
+font-size: 18px;
 `;
 
 const H3 = styled.h3`
@@ -51,9 +51,10 @@ margin-top:10px;
 margin-bottom:10px;
 `;
 
-const P = styled.p`
+const LetterContentText = styled.span`
 margin-top:5px;
 margin-bottom:10px;
+font-size: 13px;
 `;
 
 const tips = styled.p`
@@ -115,8 +116,8 @@ export const s = {
     TextsStyle,
     LetterWrapper,
     LetterContent,
-    H2, H3, tips,
-    P,
+    SenderNameText, H3, tips,
+    LetterContentText,
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
     ErrorModalTextsWrapper2,
