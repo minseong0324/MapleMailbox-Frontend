@@ -121,9 +121,13 @@ function MyPage() {
 
     return (
         <s.Wrapper>
-            <BackButton to={`/home/${MyUserId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
+            
             {/*<BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
+       
+            <BackButton to={`/home/${MyUserId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
+          
             <s.CenteredWrapper>
+                
             <s.TitleTextStyle>{userName}의 마이페이지</s.TitleTextStyle>
             <s.ButtonWrapper>
                 <s.Button onClick={handleNavigateSelectCharacterTree}>내 나무/캐릭터 변경하기</s.Button>

@@ -41,6 +41,16 @@ const LoginForm = styled.form`
   margin-top: 67px;
 `;
 
+const SocialLoginWrapper = styled.div`
+  font-family: 'DOSSaemmul';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+
 const LoginInput = styled.input`
   font-family: 'DOSSaemmul';
   padding: 10px;
@@ -165,5 +175,6 @@ export const s = {
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
     ErrorModalTextsWrapper2,
-    ModalButton
+    ModalButton,
+    SocialLoginWrapper
 }

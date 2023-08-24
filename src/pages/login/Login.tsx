@@ -179,11 +179,14 @@ function Login() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
           <s.LoginButton type="submit">로그인하기</s.LoginButton>
-          <KakaoLogin imageUrl={KakaoLoginImage}/>
-          <NaverLogin imageUrl={NaverLoginImage}/>
-          <GoogleLogin buttonImage={GoogleLoginImage}/>
+          
           {/*<GoogleLoginButton buttonImage={GoogleLoginImage} />*/}
         </s.LoginForm>
+        <s.SocialLoginWrapper>
+            <KakaoLogin imageUrl={KakaoLoginImage}/>
+            <NaverLogin  imageUrl={NaverLoginImage}/>
+            <GoogleLogin buttonImage={GoogleLoginImage}/>
+          </s.SocialLoginWrapper>
       </s.LoginWrapper>
 
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >

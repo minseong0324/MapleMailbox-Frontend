@@ -39,11 +39,11 @@ const SunButton = styled.button`
 const MenuWrapper = styled.div`
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 23px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 13px;
-  text-align: center;
+  font-size: 10px;
+  text-align: right;
 `;
 
 
@@ -98,7 +98,7 @@ margin-bottom: 5px;
 font-family: 'DOSSaemmul'; 
 background: transparent;
 border: none;
-font-size: 13px;
+font-size: 10px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;

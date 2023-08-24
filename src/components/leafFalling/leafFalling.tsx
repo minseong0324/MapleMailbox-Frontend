@@ -24,8 +24,8 @@ const LeafFalling: React.FC = () => {
       const delay = Math.random() * 5;
       const startLeft = `${Math.random() * 200 - 50}%`;  
       const endLeft = `${Math.random() * 200 - 50}%`;   
-      const rotateStart = `${Math.floor(Math.random() * 360)}deg`;
-      const rotateEnd = `${Math.floor(Math.random() * 360)}deg`;
+      const rotateStart = `${Math.floor(Math.random() * 180)}deg`;
+      const rotateEnd = `${Math.floor(Math.random() * 180)}deg`;
 
       newLeaves.push(
         <s.LeafDiv key={i}>

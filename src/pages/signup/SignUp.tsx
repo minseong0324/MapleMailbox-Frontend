@@ -100,12 +100,15 @@ function SignUp() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
             <s.SignUpButton type="submit">회원가입하기</s.SignUpButton> {/* onclick 이벤트로 회원가입하기를 누르면 로그인 페이지로 */}
-            <KakaoLogin imageUrl={KakaoSignUpImage}/>
-            <NaverLogin imageUrl={NaverSignUpImage}/>
-            <GoogleLogin buttonImage={GoogleSignUpImage}/>
+            
         {/* <GoogleLoginButton buttonImage={GoogleSignUpImage}/> */}        
           </s.SignUpForm>
 
+          <s.SocialSignUpWrapper>
+              <KakaoLogin imageUrl={KakaoSignUpImage}/>
+              <NaverLogin imageUrl={NaverSignUpImage}/>
+              <GoogleLogin buttonImage={GoogleSignUpImage}/>
+          </s.SocialSignUpWrapper>
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}
       </ErrorModal>

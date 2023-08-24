@@ -40,6 +40,15 @@ const SignUpButton = styled.button`
   gap: 20px;
 `;
 
+const SocialSignUpWrapper = styled.div`
+  font-family: 'DOSSaemmul';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
 const SignUpInput = styled.input`
   font-family: 'DOSSaemmul';
   padding: 10px;
@@ -149,5 +158,6 @@ export const s = {
   ErrorCenterModalWrapper,
   ErrorModalTextsWrapper1,
   ErrorModalTextsWrapper2,
-  ModalButton
+  ModalButton,
+  SocialSignUpWrapper
 }

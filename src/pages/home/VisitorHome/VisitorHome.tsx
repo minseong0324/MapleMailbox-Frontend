@@ -209,10 +209,16 @@ const handleNavigateHome = () => {
     }
   };
 
+  const handleSendLetterModalOpen = async (event: React.FormEvent) => {
+    if (isLoggedIn === true) {
+      setSendModalOpen(true)
+    }
+  }
+
+  
   // 편지를 보내는 함수입니다.
 const handleSendLetter = async (event: React.FormEvent) => {
   if (isLoggedIn === true) {
-    setSendModalOpen(true)
     event.preventDefault();
 
     // 입력값을 검사합니다.
@@ -359,7 +365,7 @@ const handleUnLoggedInModalClose = () => {
       </s.TreeImageWrapper>
       <s.ButtonWrapper>
       <s.Break/>
-      <s.Button onClick={handleSendLetter}>단풍잎 물들이기</s.Button>
+      <s.Button onClick={handleSendLetterModalOpen}>단풍잎 물들이기</s.Button>
       <s.Break/> 
       <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
       </s.ButtonWrapper>
