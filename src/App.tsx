@@ -16,7 +16,6 @@ import GoogleCallback from './pages/login/googleLogin/GoogleCallback';
 import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
-
 const queryClient = new QueryClient();
 
 function App() {
@@ -31,6 +30,7 @@ function App() {
       
       <Router>
       <TokenProvider>
+
         <Routes>
         
           <Route path="/" element={<HomeBeforeLogin />} />
@@ -49,6 +49,7 @@ function App() {
           <Route path="/mypage/:userId" element={<MyPage />} />
           
         </Routes>
+
         </TokenProvider>
       </Router>
     </UserProvider>
