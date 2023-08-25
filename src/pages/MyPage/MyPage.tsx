@@ -28,7 +28,9 @@ function MyPage() {
                     <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                 </s.ErrorCenterModalWrapper>
             );
-            setErrorModalOpen(true)
+            setErrorModalOpen(false) //임시 확인용
+            // setErrorModalOpen(true) //실제 배포시 이 코드
+
         }
         
     })

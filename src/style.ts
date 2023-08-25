@@ -234,3 +234,4 @@ export const BackgroundAfterPC = styled.div`
   transform: translateY(320px); 
   min-height: 1180px;
   `;
+
