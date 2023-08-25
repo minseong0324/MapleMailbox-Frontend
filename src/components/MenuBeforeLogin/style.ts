@@ -5,15 +5,15 @@ import sunImg from '../../assets/sunImg/sun.png';
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 5px;
   z-index: 5;
 
   @media (min-width: 821px) {
-    right: calc(50% - 410px + 10px);
+    right: calc(50% - 410px + 5px);
   }
   @media (min-height: 1181px) {
-    top: calc(50% - 590px + 10px);
+    top: calc(50% - 590px + 5px);
   }
 `;
 

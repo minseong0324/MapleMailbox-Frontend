@@ -6,16 +6,16 @@ import modalButtonAfterClick from '../../assets/button/button-midium-2.png';
 
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  top: 0px;
+  right: 5px;
   z-index: 5;
 
   @media (min-width: 821px) {
-    right: calc(50% - 410px + 10px);
+    right: calc(50% - 410px + 5px);
   }
   @media (min-height: 1181px) {
-    top: calc(50% - 590px + 10px);
+    top: calc(50% - 590px + 0px);
   }
 `;
 

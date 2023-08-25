@@ -35,7 +35,7 @@ html, body {
 
         /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
-          padding-top: 10px;
+          //padding-top: 10px;
           background-color: rgb(80 198 255);
         }
 
@@ -161,8 +161,8 @@ export const BackgroundAfter = styled.div`
 
         /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
-          transform: translateY(78px); 
-          min-height: 690px;
+          transform: translateY(132px); 
+          min-height: 800px;
         }
 
         /* small 모바일 세로모드용 스타일 아이폰 미니*/
