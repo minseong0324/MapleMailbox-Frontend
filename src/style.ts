@@ -5,136 +5,181 @@ import bodyAfterBackground from './assets/background/background-small.png';
 import DoSSaemmul from './static/font/DOSSaemmul.ttf';
 import DOSGothic from './static/font/DOSGothic.ttf';
 import styled from 'styled-components';
+
 export const GlobalStyle = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
+html, body {
+        margin: 0;
+        padding: 0;
+        
+        //background-color: rgb(88 201 255);
+        //padding-top: 15px;  // 이 부분을 추가
+        
+        /* PC용 스타일 */
+        /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
+        @media screen and (min-width: 821px) and (orientation: landscape) {
+          padding-top: 20px;
+          background-color: rgb(62 192 255);
+          //transform: translateY(0px);  
+        }
 
-    @media screen and (min-width: 51.31em) and (orientation: landscape) {
-      padding-top: 1.25em;
-      background-color: rgb(62 192 255);
+        /* 태블릿 세로모드용 스타일 */
+        @media screen and (max-width: 820px) and (orientation: portrait) {
+          //margin-top: -10px;
+          transform: translateY(0px);  /* 10px 위로 옮김 */
+        }
+
+        /* 모바일 가로모드용 스타일 */
+        @media screen and (max-width: 899px) and (orientation: landscape) {
+          padding-top: 100px;
+          background-color: rgb(62 192 255);
+        }
+
+        /* 모바일 세로모드용 스타일 */
+        @media screen and (max-width: 599px) and (orientation: portrait) {
+          padding-top: 10px;
+          background-color: rgb(80 198 255);
+        }
+
+        /* small 모바일 가로모드용 스타일 */
+        @media screen and (max-width: 799px) and (orientation: landscape) {
+          padding-top: 100px;
+          background-color: rgb(62 192 255);
+        }
+
+        /* small 모바일 세로모드용 스타일 아이폰 미니*/
+        @media screen and (max-width: 399px) and (orientation: portrait) {
+          padding-top: 20px;
+          background-color: rgb(80 198 255);
+        }
+
+        
+
     }
-
-    @media screen and (max-width: 51.25em) and (orientation: portrait) {
-      transform: translateY(0em);
-    }
-
-    @media screen and (max-width: 56.19em) and (orientation: landscape) {
-      padding-top: 6.25em;
-      background-color: rgb(62 192 255);
-    }
-
-    @media screen and (max-width: 37.44em) and (orientation: portrait) {
-      padding-top: 0.625em;
-      background-color: rgb(80 198 255);
-    }
-
-    @media screen and (max-width: 49.94em) and (orientation: landscape) {
-      padding-top: 6.25em;
-      background-color: rgb(62 192 255);
-    }
-
-    @media screen and (max-width: 24.94em) and (orientation: portrait) {
-      padding-top: 1.25em;
-      background-color: rgb(80 198 255);
-    }
-  }
-
-  @font-face {
+    @font-face {
     font-family: 'DOSSaemmul';
     src: url(${DoSSaemmul}) format('truetype');
     font-weight: normal;
     font-style: normal;
-  }
+    }
 
-  @font-face {
-    font-family: 'DOSGothic';
-    src: url(${DOSGothic}) format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
+    @font-face {
+        font-family: 'DOSGothic';
+        src: url(${DOSGothic}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    
 `;
 
 export const Background = styled.div`
-  position: absolute;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background: url(${bodyBackground});
-  background-position: center;
-  background-repeat: no-repeat;
-  -ms-interpolation-mode: nearest-neighbor;
-  image-rendering: pixelated;
-  background-size: 51.25em 73.75em;
-  background-attachment: scroll;
-  overflow: auto;
+        position: absolute;
+        bottom: 0;
+        //top: 40px;
+        height: 100%;
+        //min-height: 740px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(${bodyBackground});
+        background-position: center ;
+        background-repeat: no-repeat;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
+        background-size: 820px 1180px; 
+        background-attachment: scroll; // 이 부분을 추가
+        overflow: auto;
+ 
 
-  @media screen and (min-width: 51.31em) and (orientation: landscape){
-    min-height: 64em;
-    transform: translateY(13.375em);
-  }
+        /* PC용 스타일 */
+        /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
+        @media screen and (min-width: 821px) and (orientation: landscape){
+          min-height: 1024px;
+          transform: translateY(214px); 
+        }
 
-  @media screen and (max-width: 51.25em) and (orientation: portrait) {
-    min-height: 46.25em;
-  }
+        /* 태블릿 세로모드용 스타일, 모바일 가로모드용 스타일 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
+        @media screen and (max-width: 820px) and (orientation: landscape) {
+          top: 0px;
+          min-height: 740px;
+        }
 
-  @media screen and (max-width: 49.94em) and (orientation: landscape) {
-    min-height: 46.25em;
-  }
+        /* small 모바일 가로모드용 스타일 */
+        @media screen and (max-width: 799px) and (orientation: landscape) {
+          top: 0px;
+          min-height: 740px;
+        }
 
-  @media screen and (max-width: 37.44em) and (orientation: portrait) {
-    min-height: 46.875em;
-  }
+        /* 모바일 세로모드용 스타일 */
+        @media screen and (max-width: 599px) and (orientation: portrait) {
+          min-height: 750px;
+        }
 
-  @media screen and (max-width: 24.94em) and (orientation: portrait) {
-    min-height: 37.5em;
-    transform: translateY(0.4375em);
-  }
+        /* small 모바일 세로모드용 스타일 */
+        @media screen and (max-width: 399px) and (orientation: portrait) {
+          min-height: 600px;
+          transform: translateY(7px); 
+        }
+
 `;
 
 export const BackgroundAfter = styled.div`
   position: absolute;
   bottom: 0;
+  //height: 100%;
+  //min-height: 700px;
   width: 100%;
   background: url(${bodyAfterBackground});
-  background-position: center calc(50% - 2.5em);
+  background-position: center calc(50% - 40px); //이미지 크기 더 늘리기
   background-repeat: no-repeat;
   z-index: 1;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
-  background-size: 51.25em 73.75em;
-  background-attachment: scroll;
+  background-size: 820px 1180px;
+  background-attachment: scroll; // 이 부분을 추가
   overflow: auto;
 
-  @media screen and (min-width: 51.31em) and (orientation: landscape){
-    min-height: 64em;
-    transform: translateY(20.25em);
-  }
 
-  @media screen and (max-width: 51.25em) and (orientation: portrait) {
-    transform: translateY(3.125em);
-    min-height: 64em;
-  }
+        /* PC용 스타일 */
+        /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
+        @media screen and (min-width: 821px) and (orientation: landscape){
+          min-height: 1024px;
+          transform: translateY(324px); 
+        }
 
-  @media screen and (max-width: 49.94em) and (orientation: landscape) {
-    transform: translateY(35.5625em);
-    min-height: 50em;
-  }
 
-  @media screen and (max-width: 48em) and (orientation: portrait) {
-    transform: translateY(4.375em);
-    min-height: 64em;
-  }
+        /* 태블릿 세로모드용 스타일 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
+        @media screen and (max-width: 820px) and (orientation: portrait) {
+          transform: translateY(50px); 
+          min-height: 1024px;
+        }
 
-  @media screen and (max-width: 37.44em) and (orientation: portrait) {
-    transform: translateY(4.875em);
-    min-height: 43.125em;
-  }
 
-  @media screen and (max-width: 24.31em) and (orientation: portrait) {
-    transform: translateY(9.375em);
-    min-height: 50em;
-  }
+         /* small, 모바일 가로모드용 스타일 */
+        @media screen and (max-width: 799px) and (orientation: landscape) {
+          transform: translateY(569px); 
+          min-height: 800px;
+        }
+
+        /* 태블릿 미니 세로모드용 스타일 */
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+          transform: translateY(70px); 
+          min-height: 1024px;
+        }
+
+        /* 모바일 세로모드용 스타일 */
+        @media screen and (max-width: 599px) and (orientation: portrait) {
+          transform: translateY(78px); 
+          min-height: 690px;
+        }
+
+        /* small 모바일 세로모드용 스타일 아이폰 미니*/
+        @media screen and (max-width: 389px) and (orientation: portrait) {
+          transform: translateY(150px); 
+          min-height: 800px;
+        }
+
+        
+
+        
 `;
