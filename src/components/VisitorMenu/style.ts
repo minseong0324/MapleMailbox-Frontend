@@ -99,6 +99,7 @@ cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
 white-space: nowrap;
+color : black;
 `;
 
 interface StyledLinkContainerProps {
