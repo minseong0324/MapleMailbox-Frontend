@@ -125,7 +125,7 @@ export const BackgroundAfter = styled.div`
   background: url(${bodyAfterBackground});
   background-position: center calc(50% - 40px); //이미지 크기 더 늘리기
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 2;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
   background-size: 820px 1180px;
