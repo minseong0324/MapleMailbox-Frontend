@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	y="0px" viewBox="0 0 250 40" style="enable-background:new 0 0 250 40;" xml:space="preserve">
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 250 40" style="enable-background:new 0 0 250 40;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FDE400;}
-	.st1{font-family:'DOSSaemmul';}
-	.st2{font-size:13px;}
+	.st0{fill:#FFE200;}
+	.st1{fill:#401C1D;}
 </style>
 <g>
 	<g>
 		<path class="st0" d="M230,40H20C8.95,40,0,31.05,0,20l0,0C0,8.95,8.95,0,20,0h210c11.05,0,20,8.95,20,20l0,0
 			C250,31.05,241.05,40,230,40z"/>
-		<text transform="matrix(1 0 0 1 68.0001 25.875)" class="st1 st2">카카오로 로그인하기</text>
 	</g>
-	
-		<image style="overflow:visible;enable-background:new    ;" width="131" height="122" id="Layer_0_00000177449419955870267000000014723315365889512895_" xlink:href="data:image/png;base64,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" transform="matrix(0.1418 0 0 0.1393 17.7602 11.5007)">
-	</image>
+	<g>
+		<polygon points="64.8,15.75 69.49,15.75 69.49,16.44 64.8,16.44 64.8,17.62 69.49,17.62 69.49,21.38 70.68,21.38 70.68,14.56 
+			64.8,14.56 		"/>
+		<polygon points="75.24,14.56 74.05,14.56 74.05,24.19 75.24,24.19 75.24,18.56 77.12,18.56 77.12,17.38 75.24,17.38 		"/>
+		<polygon points="91.24,14.56 90.05,14.56 90.05,24.19 91.24,24.19 91.24,18.56 93.12,18.56 93.12,17.38 91.24,17.38 		"/>
+		<polygon points="80.8,15.75 85.49,15.75 85.49,16.44 80.8,16.44 80.8,17.62 85.49,17.62 85.49,21.38 86.68,21.38 86.68,14.56 
+			80.8,14.56 		"/>
+		<path d="M101.62,19.5h1.88v-0.94h0.94V15.5h-0.94v-0.94h-4.94v0.94h-0.94v3.06h0.94v0.94h1.88v2.56h-4.69v1.19h10.56v-1.19h-4.69
+			V19.5z M98.81,15.75h4.44v2.56h-4.44V15.75z"/>
+		<polygon points="116.62,19.5 120.37,19.5 120.37,18.31 112.87,18.31 112.87,17.62 120.37,17.62 120.37,14.56 111.68,14.56 
+			111.68,15.75 119.18,15.75 119.18,16.44 111.68,16.44 111.68,19.5 115.43,19.5 115.43,22.06 110.74,22.06 110.74,23.25 
+			121.31,23.25 121.31,22.06 116.62,22.06 		"/>
+		<polygon points="139.12,19.5 142.87,19.5 142.87,18.31 135.37,18.31 135.37,17.62 142.87,17.62 142.87,14.56 134.18,14.56 
+			134.18,15.75 141.68,15.75 141.68,16.44 134.18,16.44 134.18,19.5 137.93,19.5 137.93,22.06 133.24,22.06 133.24,23.25 
+			143.8,23.25 143.8,22.06 139.12,22.06 		"/>
+		<polygon points="156.68,18.56 157.87,18.56 157.87,14.56 149.18,14.56 149.18,15.75 156.68,15.75 		"/>
+		<rect x="148.24" y="22.06" width="10.56" height="1.19"/>
+		<rect x="173.55" y="14.56" width="1.19" height="7.75"/>
+		<path d="M168.18,19.5h0.94v-3.06h-0.94V15.5h-0.94v-0.94h-2.12v0.94h-0.94v0.94h-0.94v3.06h0.94v0.94h0.94v0.94h2.12v-0.94h0.94
+			V19.5z M167.93,19.25h-0.94v0.94h-1.62v-0.94h-0.94v-2.56h0.94v-0.94h1.62v0.94h0.94V19.25z"/>
+		<polygon points="169.12,23 167.93,23 167.93,27.94 174.74,27.94 174.74,26.75 169.12,26.75 		"/>
+		<path d="M183.18,17.38h-3.06v0.94h-0.94v2.12h0.94v0.94h3.06v-0.94h0.94v-2.12h-0.94V17.38z M182.93,20.19h-2.56v-1.62h2.56V20.19
+			z"/>
+		<rect x="180.12" y="13.62" width="3.06" height="1.19"/>
+		<rect x="178.24" y="15.5" width="6.81" height="1.19"/>
+		<polygon points="189.74,14.56 188.55,14.56 188.55,24.19 189.74,24.19 189.74,18.56 191.62,18.56 191.62,17.38 189.74,17.38 		"/>
+		<rect x="203.55" y="14.56" width="1.19" height="9.62"/>
+		<polygon points="192.3,15.75 196.99,15.75 196.99,21.38 198.18,21.38 198.18,14.56 192.3,14.56 		"/>
+	</g>
+	<g>
+		<path class="st1" d="M35.59,11c-5.25,0-9.5,3.41-9.5,7.61c0,2.69,1.75,5.06,4.39,6.41L29.55,29l4.42-2.9
+			c0.53,0.07,1.07,0.12,1.62,0.12c5.25,0,9.5-3.41,9.5-7.61S40.83,11,35.59,11z"/>
+	</g>
+	<g>
+		<rect x="64.69" y="16.14" class="st0" width="4.8" height="1.97"/>
+	</g>
+	<g>
+		<rect x="64.8" y="17.51" width="4.81" height="1.19"/>
+	</g>
+	<g>
+		<rect x="80.69" y="16.14" class="st0" width="4.8" height="1.97"/>
+	</g>
+	<g>
+		<rect x="80.81" y="17.51" width="4.81" height="1.19"/>
+	</g>
 </g>
 </svg>

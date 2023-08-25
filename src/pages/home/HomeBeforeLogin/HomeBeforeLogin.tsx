@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useSelector} from 'react-redux';
 import useScroll from 'src/hooks/useScroll/useScroll';
 import MenuBeforeLogin from '../../../components/MenuBeforeLogin/MenuBeforeLogin';

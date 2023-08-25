@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import KakaoLogin from './kakaoLogin/KakaoLogin';
 import NaverLogin from './naverLogin/NaverLogin';
 import GoogleLogin from './googleLogin/GoogleLogin'
-import GoogleLoginButton from './googleLogin/GoogleLoginButton';
 import axios, {AxiosError} from 'axios';
 import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
 import NaverLoginImage from "../../assets/socialLoginButton/NaverLogin.svg";
@@ -35,7 +34,7 @@ function Login() {
   // 요청이 성공하면 성공 메시지를 보여주고, 실패하면 오류 메시지를 보여줍니다.
   // 요청이 성공하면 토큰을 로컬 스토리지에 저장합니다.
   const loginMutation = useMutation(async (credentials: LoginCredentials) => {
-    const response = await axios.post(`http://13.125.112.77:80/api/auth/login/self`, credentials);
+    const response = await axios.post(`https://maplemailbox.com/api/auth/login/self`, credentials);
     return response; // return whole response object, not just data
   }, {
     
@@ -51,7 +50,7 @@ function Login() {
         if (response.status === 200) {
           // 로그인 성공 시 GET 요청을 수행
           try {
-            const userResponse = await axios.get(`http://13.125.112.77:80/api/users`, {
+            const userResponse = await axios.get(`https://maplemailbox.com/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
               }
@@ -77,10 +76,8 @@ function Login() {
             }
 
           } catch (error: unknown) { //에러 일 경우
-            console.error("사용자 정보를 가져오는 도중 오류가 발생했습니다.", error);
             if (error instanceof AxiosError) {
               const status = error?.response?.status;
-              console.error('Failed to fetch user info:', error);
               setModalErrorContent(
                 <s.ErrorCenterModalWrapper>
                     <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -104,7 +101,6 @@ function Login() {
         
         if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
             <s.ErrorCenterModalWrapper>
                 <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -129,7 +125,6 @@ function Login() {
     onError: (error) => {
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>이메일 혹은 비밀번호를</s.ErrorModalTextsWrapper2>
@@ -145,7 +140,6 @@ function Login() {
             // 기타 상태 코드 처리
         }
       } 
-      console.error("Login error:", error);
       setErrorModalOpen(true);
     }
     
@@ -185,11 +179,14 @@ function Login() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
           <s.LoginButton type="submit">로그인하기</s.LoginButton>
-          <KakaoLogin imageUrl={KakaoLoginImage}/>
-          <NaverLogin imageUrl={NaverLoginImage}/>
-          <GoogleLogin buttonImage={GoogleLoginImage}/>
+          
           {/*<GoogleLoginButton buttonImage={GoogleLoginImage} />*/}
         </s.LoginForm>
+        <s.SocialLoginWrapper>
+            <KakaoLogin imageUrl={KakaoLoginImage}/>
+            <NaverLogin  imageUrl={NaverLoginImage}/>
+            <GoogleLogin buttonImage={GoogleLoginImage}/>
+          </s.SocialLoginWrapper>
       </s.LoginWrapper>
 
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >

@@ -1,5 +1,5 @@
 // 필요한 모듈들을 import 합니다.
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import VisitorMenu from '../../../components/VisitorMenu/VisitorMenu';
@@ -19,7 +19,6 @@ import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
-
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
   const images = [];
@@ -65,7 +64,7 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}`, {
+    const response = await axios.get(`https://maplemailbox.com/api/users/${userId}`, {
       headers: {
         'authorization': `${accessToken}`
       }
@@ -86,7 +85,6 @@ const getUserInfoFromServer = async (userId: string) => {
   } catch (error: unknown) { //에러 일 경우
     if (error instanceof AxiosError) {
         const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -211,10 +209,16 @@ const handleNavigateHome = () => {
     }
   };
 
+  const handleSendLetterModalOpen = async (event: React.FormEvent) => {
+    if (isLoggedIn === true) {
+      setSendModalOpen(true)
+    }
+  }
+
+  
   // 편지를 보내는 함수입니다.
 const handleSendLetter = async (event: React.FormEvent) => {
   if (isLoggedIn === true) {
-    setSendModalOpen(true)
     event.preventDefault();
 
     // 입력값을 검사합니다.
@@ -233,7 +237,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`http://13.125.112.77:80/api/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`https://maplemailbox.com/api/users/${userId}/letters`, letterData, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -252,7 +256,6 @@ const handleSendLetter = async (event: React.FormEvent) => {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
               <s.ErrorCenterModalWrapper>
                   <s.ErrorModalTextsWrapper2>편지를 보내는</s.ErrorModalTextsWrapper2>
@@ -362,7 +365,7 @@ const handleUnLoggedInModalClose = () => {
       </s.TreeImageWrapper>
       <s.ButtonWrapper>
       <s.Break/>
-      <s.Button onClick={handleSendLetter}>단풍잎 물들이기</s.Button>
+      <s.Button onClick={handleSendLetterModalOpen}>단풍잎 물들이기</s.Button>
       <s.Break/> 
       <s.Button onClick={handleShareLink}>내 나무 보러가기</s.Button>
       </s.ButtonWrapper>

@@ -13,14 +13,14 @@ function NaverCallback() {
   const handleOAuthNaver = async (code: string) => {
     try {
         // 네이버로부터 받아온 code를 서버에 전달하여 네이버로 회원가입 & 로그인한다
-        const response = await axios.get(`http://13.125.112.77:80/oauth/login/naver?code=${code}`);
+        const response = await axios.get(`https://maplemailbox.com/api/oauth/login/naver?code=${code}`);
         if (response.status === 200) {
           const accessToken = response.headers['authorization'];
           const refreshToken = response.headers['reauthorization'];
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
           try {
-            const userResponse = await axios.get(`http://13.125.112.77:80/api/users`, {
+            const userResponse = await axios.get(`https://maplemailbox.com/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
               }
@@ -46,7 +46,6 @@ function NaverCallback() {
           }catch (error: unknown) { //에러 일 경우
             if (error instanceof AxiosError) {
               const status = error?.response?.status;
-              console.error('Failed to fetch user info:', error);
               setModalErrorContent(
                 <s.ErrorCenterModalWrapper>
                     <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -70,7 +69,6 @@ function NaverCallback() {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>네이버에서 정보를</s.ErrorModalTextsWrapper2>

@@ -20,6 +20,7 @@ const SunWrapper = styled.div`
 
 const Wrapper = styled.div`
   max-width: 820px;
+  max-height: 1180px;
   margin: auto;
 `;
 

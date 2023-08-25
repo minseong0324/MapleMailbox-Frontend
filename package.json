@@ -36,6 +36,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "date-fns": "^2.30.0",
     "jwt-decode": "^3.1.2",
+    "react-device-detect": "^2.2.3",
     "react-native": "^0.72.3",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.1",

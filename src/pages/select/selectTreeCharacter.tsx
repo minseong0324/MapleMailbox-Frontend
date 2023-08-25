@@ -60,7 +60,7 @@ function SelectTreeCharacter() {
 
     try {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-      const response = await axios.put(`http://13.125.112.77:80/api/users/${MyUserId}`, selectedData, {
+      const response = await axios.put(`https://maplemailbox.com/api/users/${MyUserId}`, selectedData, {
         headers: {
           'authorization': `${accessToken}` // accessToken을 헤더에 추가
         }
@@ -72,7 +72,6 @@ function SelectTreeCharacter() {
     }catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
         const status = error?.response?.status;
-        console.error('Failed to fetch user info:', error);
 
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>

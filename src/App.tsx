@@ -10,16 +10,12 @@ import useScroll from './hooks/useScroll/useScroll';
 import LeafFalling from './components/leafFalling/leafFalling'
 import Clouds from './components/Clouds/Clouds';
 import SelectTreeCharacter from './pages/select/selectTreeCharacter';
-import KakaoLogin from './pages/login/kakaoLogin/KakaoLogin';
 import KakaoCallback from './pages/login/kakaoLogin/KakaoCallback';
-import NaverLogin from './pages/login/naverLogin/NaverLogin';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
-import GoogleLoginButton from './pages/login/googleLogin/GoogleLoginButton';
 import GoogleCallback from './pages/login/googleLogin/GoogleCallback';
 import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
-
 const queryClient = new QueryClient();
 
 function App() {
@@ -34,6 +30,7 @@ function App() {
       
       <Router>
       <TokenProvider>
+
         <Routes>
         
           <Route path="/" element={<HomeBeforeLogin />} />
@@ -52,6 +49,7 @@ function App() {
           <Route path="/mypage/:userId" element={<MyPage />} />
           
         </Routes>
+
         </TokenProvider>
       </Router>
     </UserProvider>

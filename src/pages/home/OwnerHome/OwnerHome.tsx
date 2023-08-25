@@ -20,7 +20,7 @@ import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
-import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
+import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
@@ -84,7 +84,7 @@ function OwnerHome() {
   const getUserInfoFromServer = async (userId: string) => {
     try {
       // 백엔드 서버에 GET 요청을 보냅니다.
-      const response = await axios.get(`http://13.125.112.77:80/api/users/${userId}`, {
+      const response = await axios.get(`https://maplemailbox.com/api/users/${userId}`, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -105,7 +105,6 @@ function OwnerHome() {
     } catch (error: unknown) { //에러 일 경우
       if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
               <s.ErrorCenterModalWrapper>
                   <s.ErrorModalTextsWrapper2>유저의 정보를</s.ErrorModalTextsWrapper2>
@@ -166,17 +165,12 @@ const handleNavigateHome = () => {
   }, []);
 
   useEffect(() => {
-      try {  
         if (typeof nowDate === 'number') {
           const ddayValue = 30 - nowDate; // 30일 기준에서 D-day를 계산합니다.
           setDday(ddayValue);
         } else {
           setDday(30);
         }
-      } catch (error) {
-        console.error('D-day 계산 중 에러:', error);
-      }
-
   }, [nowDate]);
   
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
@@ -258,7 +252,7 @@ const handleNavigateHome = () => {
         setShareModalOpen(true);
       })
       .catch(err => {
-        console.error('Could not copy text: ', err);
+        //console.error('Could not copy text: ', err);
       });
   };
 

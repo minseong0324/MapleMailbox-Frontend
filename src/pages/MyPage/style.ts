@@ -62,6 +62,16 @@ const CenteredWrapper = styled.div`
   }
 `;
 
+const BackButtonWrapper = styled.div`
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  z-index: 4;
+
+`;
+
 const ButtonWrapper = styled.div`
 margin-top: 70px;
 position: relative; 
@@ -172,6 +182,7 @@ export const s = {
     ModalWrapper,
     CenterModalWrapper,
     ErrorModalTextsWrapper2,
-    ErrorCenterModalWrapper
+    ErrorCenterModalWrapper,
+    BackButtonWrapper
 }
 

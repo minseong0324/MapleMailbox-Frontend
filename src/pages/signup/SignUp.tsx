@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import KakaoLogin from '../login/kakaoLogin/KakaoLogin';
 import NaverLogin from '../login/naverLogin/NaverLogin';
 import GoogleLogin from '../login/googleLogin/GoogleLogin'
-import GoogleLoginButton from '../login/googleLogin/GoogleLoginButton';
 import axios, {AxiosError} from 'axios';
 import { s } from './style';
 import NaverSignUpImage from "../../assets/socialLoginButton/NaverSignUp.svg";
@@ -38,7 +37,7 @@ function SignUp() {
 
       // 회원가입 API 요청
       try {
-        const response = await axios.post(`http://13.125.112.77:80/api/auth/signup/self`, {
+        const response = await axios.post(`https://maplemailbox.com/api/auth/signup/self`, {
           userName,
           email,
           password,
@@ -52,7 +51,6 @@ function SignUp() {
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
           const status = error?.response?.status;
-          console.error('Failed to fetch user info:', error);
           setModalErrorContent(
             <s.ErrorCenterModalWrapper>
                 <s.ErrorModalTextsWrapper1>이메일이 존재해요!</s.ErrorModalTextsWrapper1>
@@ -102,12 +100,15 @@ function SignUp() {
                 onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setPassword(e.target.value)}
             />
             <s.SignUpButton type="submit">회원가입하기</s.SignUpButton> {/* onclick 이벤트로 회원가입하기를 누르면 로그인 페이지로 */}
-            <KakaoLogin imageUrl={KakaoSignUpImage}/>
-            <NaverLogin imageUrl={NaverSignUpImage}/>
-            <GoogleLogin buttonImage={GoogleSignUpImage}/>
+            
         {/* <GoogleLoginButton buttonImage={GoogleSignUpImage}/> */}        
           </s.SignUpForm>
 
+          <s.SocialSignUpWrapper>
+              <KakaoLogin imageUrl={KakaoSignUpImage}/>
+              <NaverLogin imageUrl={NaverSignUpImage}/>
+              <GoogleLogin buttonImage={GoogleSignUpImage}/>
+          </s.SocialSignUpWrapper>
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}
       </ErrorModal>

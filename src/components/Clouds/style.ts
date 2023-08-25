@@ -15,14 +15,14 @@ const moveCloud = keyframes`
 const CloudsDiv = styled.div`
   position: absolute;
   width: 200%; 
-  height: 100vh;
+  height: 100%;
   background: url(${cloudImageSmall}) repeat-x;
   animation: ${moveCloud} 45s linear infinite;
   z-index: 0;
 
   @media screen and (min-width: 560px) {
     background: url(${cloudImageBig}) repeat-x;
-    bottom: 100px
+    bottom: 120px
   }
 `;
 
