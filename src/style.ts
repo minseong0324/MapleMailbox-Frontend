@@ -14,7 +14,6 @@ html, body {
         //background-color: rgb(88 201 255);
         //padding-top: 15px;  // 이 부분을 추가
         
-        /* PC용 스타일 */
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
         @media screen and (min-width: 821px) and (orientation: landscape) {
           padding-top: 20px;
@@ -51,9 +50,6 @@ html, body {
           padding-top: 20px;
           background-color: rgb(80 198 255);
         }
-
-        
-
     }
     @font-face {
     font-family: 'DOSSaemmul';
@@ -68,8 +64,6 @@ html, body {
         font-weight: normal;
         font-style: normal;
     }
-    
-    
 `;
 
 export const Background = styled.div`
@@ -91,7 +85,6 @@ export const Background = styled.div`
         overflow: auto;
  
 
-        /* PC용 스타일 */
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
         @media screen and (min-width: 821px) and (orientation: landscape){
           min-height: 1024px;
@@ -140,7 +133,6 @@ export const BackgroundAfter = styled.div`
   overflow: auto;
 
 
-        /* PC용 스타일 */
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
         @media screen and (min-width: 821px) and (orientation: landscape){
           min-height: 1024px;
@@ -178,8 +170,67 @@ export const BackgroundAfter = styled.div`
           transform: translateY(150px); 
           min-height: 800px;
         }
-
-        
-
-        
 `;
+
+
+export const GlobalStylePC = createGlobalStyle`
+html, body {
+        margin: 0;
+        padding: 0;
+        padding-top: 25px;
+        background-color: rgb(62 192 255);
+    }
+    @font-face {
+    font-family: 'DOSSaemmul';
+    src: url(${DoSSaemmul}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'DOSGothic';
+        src: url(${DOSGothic}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+`;
+
+export const BackgroundPC = styled.div`
+        position: absolute;
+        bottom: 0;
+        //top: 40px;
+        height: 100%;
+        //min-height: 740px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(${bodyBackground});
+        background-position: center;
+        background-repeat: no-repeat;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
+        background-size: 820px 1180px; 
+        background-attachment: scroll; // 이 부분을 추가
+        overflow: auto;
+        transform: translateY(250px); 
+        min-height: 1180px;
+`;        
+
+export const BackgroundAfterPC = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  //min-height: 700px;
+  width: 100%;
+  background: url(${bodyAfterBackground});
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+  background-size: 820px 1180px;
+  background-attachment: scroll; // 이 부분을 추가
+  overflow: auto;
+  transform: translateY(320px); 
+  min-height: 1180px;
+  `;
