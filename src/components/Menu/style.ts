@@ -102,6 +102,7 @@ font-size: 10px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
+white-space: nowrap;
 `;
 
 
@@ -122,6 +123,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;  // 밑줄 제거
   color: black; 
   cursor: pointer;
+  white-space: nowrap;
 `;
 
 const CenteredWrapper = styled.div`

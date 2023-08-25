@@ -99,6 +99,8 @@ font-size: 13px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
+color : black;
+white-space: nowrap;
 `;
 
 
