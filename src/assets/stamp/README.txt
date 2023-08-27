@@ -20,7 +20,7 @@
 
 - pupleSky (완)
 - sunset (완)
-- forest (완)
+- blueSky (완)
 
 - squirrel (완)
 - teddybear (완)
