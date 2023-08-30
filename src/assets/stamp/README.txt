@@ -25,8 +25,8 @@
 - squirrel (완)
 - teddybear (완)
 
-- 허수아비 (작업중)
-- 벼 (작업중)
+- scarecrow (완)
+- riceField (완)
 - 풍차 (작업중)
 
 - 고구마
