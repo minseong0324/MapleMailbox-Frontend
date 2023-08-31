@@ -165,6 +165,7 @@ const H1 = styled.h1`
   //margin-top: 0px;
   font-family: 'DOSGothic';
   font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`
@@ -185,8 +186,8 @@ const TreeFragmentImg = styled.img`
   top: 0;
   left: 0;
   z-index: 4;
-  //width: 300px;
-  //height: 300px;
+  width: 300px;
+  height: 300px;
 `;
 
 const StampCollectionButton = styled.button`

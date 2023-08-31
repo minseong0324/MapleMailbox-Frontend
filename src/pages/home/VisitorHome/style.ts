@@ -162,8 +162,8 @@ const P = styled.p`
 const Break = styled.br``;
 
 const TreeImg = styled.img`
-  width: 300px;
-  height: 300px;
+  //width: 300px;
+  //height: 300px;
 `;
 
 const TreeFragmentImg = styled.img`

@@ -88,8 +88,9 @@ const H3 = styled.h3`
 
 const H1 = styled.h1`
   //margin-top: 0px;
-  font-size: 28px;
   font-family: 'DOSGothic';
+  font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`
