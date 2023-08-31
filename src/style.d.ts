@@ -1090,3 +1090,8 @@ export declare const BackgroundAfterPC: import("styled-components").IStyledCompo
     onTransitionEnd?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
+interface AppStyleProps {
+    isScrolled: boolean;
+}
+export declare const AppStylePC: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, AppStyleProps>>;
+export {};
