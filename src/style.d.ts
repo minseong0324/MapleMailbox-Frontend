@@ -1093,5 +1093,5 @@ export declare const BackgroundAfterPC: import("styled-components").IStyledCompo
 interface AppStyleProps {
     isScrolled: boolean;
 }
-export declare const AppStylePC: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, AppStyleProps>>;
+export declare const AppStyle: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, AppStyleProps>>;
 export {};
