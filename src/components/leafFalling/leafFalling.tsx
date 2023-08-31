@@ -3,7 +3,7 @@ import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
 import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
 import { s } from './style'; 
 
-const numLeaves = 30;
+const numLeaves = 20;
 
 // CSSProperties를 확장하여 사용자 정의 CSS 변수를 포함
 interface CSSPropertiesWithCustomVars extends CSSProperties {
@@ -21,7 +21,7 @@ const LeafFalling: React.FC = () => {
       
     for (let i = 0; i < numLeaves; i++) {
       const leafType = Math.random() > 0.5 ? GinkgoLeaf : MapleLeaf;
-      const delay = Math.random() * 5;
+      const delay = Math.random() * 10;
       const startLeft = `${Math.random() * 200 - 50}%`;  
       const endLeft = `${Math.random() * 200 - 50}%`;   
       const rotateStart = `${Math.floor(Math.random() * 180)}deg`;

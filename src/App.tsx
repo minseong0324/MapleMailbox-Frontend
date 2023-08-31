@@ -6,6 +6,7 @@ import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
 import HomeBeforeLogin from './pages/home/HomeBeforeLogin/HomeBeforeLogin';
 import OwnerHome from './pages/home/OwnerHome/OwnerHome';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 import useScroll from './hooks/useScroll/useScroll';
 import LeafFalling from './components/leafFalling/leafFalling'
 import Clouds from './components/Clouds/Clouds';
@@ -39,15 +40,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree/:userId" element={<SelectTreeCharacter />} />
-        
-        
           <Route path="/kakao/callback" element={<KakaoCallback />} />
-        
           <Route path="/naver/callback" element={<NaverCallback />} />
           <Route path="/google/callback" element={<GoogleCallback />} />
-
           <Route path="/mypage/:userId" element={<MyPage />} />
-          
+          <Route path="/*" element={<ErrorPage />} />
+
         </Routes>
 
         </TokenProvider>

@@ -35,7 +35,7 @@ html, body {
 
         /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
-          padding-top: 10px;
+          //padding-top: 10px;
           background-color: rgb(80 198 255);
         }
 
@@ -106,6 +106,12 @@ export const Background = styled.div`
         /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
           min-height: 750px;
+          transform: translateY(15px); 
+        }
+
+        /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
+        @media screen and (max-width: 429px) and (orientation: portrait) {
+          min-height: 750px;
         }
 
         /* small 모바일 세로모드용 스타일 */
@@ -125,7 +131,7 @@ export const BackgroundAfter = styled.div`
   background: url(${bodyAfterBackground});
   background-position: center calc(50% - 40px); //이미지 크기 더 늘리기
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 2;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
   background-size: 820px 1180px;
@@ -159,10 +165,16 @@ export const BackgroundAfter = styled.div`
           min-height: 1024px;
         }
 
-        /* 모바일 세로모드용 스타일 */
+        /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
-          transform: translateY(78px); 
-          min-height: 690px;
+          transform: translateY(110px); 
+          min-height: 800px;
+        }
+
+         /* 모바일 세로모드용 스타일 */
+         @media screen and (max-width: 429px) and (orientation: portrait) {
+          transform: translateY(132px); 
+          min-height: 800px;
         }
 
         /* small 모바일 세로모드용 스타일 아이폰 미니*/
@@ -225,7 +237,7 @@ export const BackgroundAfterPC = styled.div`
   background: url(${bodyAfterBackground});
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 2;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
   background-size: 820px 1180px;
@@ -234,3 +246,4 @@ export const BackgroundAfterPC = styled.div`
   transform: translateY(320px); 
   min-height: 1180px;
   `;
+

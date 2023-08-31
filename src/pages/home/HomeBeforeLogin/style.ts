@@ -49,7 +49,7 @@ const TextsStyle = styled.div`
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
-  padding-top: 30px;
+  padding-top: 50px;
 `;
 
 const GinkgoCharImage = styled.img`
@@ -78,6 +78,7 @@ const H1 = styled.h1`
   //margin-top: 0px;
   font-family: 'DOSGothic';
   font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`

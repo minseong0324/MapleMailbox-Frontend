@@ -38,13 +38,14 @@ function SelectTreeCharacter() {
 
   useEffect(() => {
     if(userId !== MyUserId) {
-        setErrorModalOpen(true)
         setModalErrorContent(
             <s.CenterModalWrapper>
               <s.ErrorModalTextsWrapper1>잘못된 접근이에요!</s.ErrorModalTextsWrapper1>
               <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
             </s.CenterModalWrapper>
           );
+          //setErrorModalOpen(false) //임시 확인용
+          setErrorModalOpen(true) //실제 배포시 이 코드
     }  
   })
 
@@ -113,69 +114,74 @@ function SelectTreeCharacter() {
 
   return (
     <s.Wrapper>
-    <BackButton to={`/mypage/${MyUserId}`} />
+
+        <BackButton to={`/mypage/${MyUserId}`} />
+
       <s.CenteredWrapper>
         <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
-        <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
+        <s.SelectContainer>
+          <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
 
-        <s.SelectWrapper>
-        <Carousel showThumbs={false} showStatus={false}>
-        <s.SelectClickEvent 
-            onClick={() => setSelectedTree("Maple Tree")}
-            isSelected={selectedTree === "Maple Tree"}
-          >
-          <s.ImageButton 
-            src={MapleTreeImage} 
-            alt="Maple Tree" 
-            selected={selectedTree === "Maple Tree"} 
-            style={{width: "200px", height: "200px"}}
-          />
-        </s.SelectClickEvent>
-          <s.SelectClickEvent 
-            onClick={() => setSelectedTree("Ginkgo Tree")}
-            isSelected={selectedTree === "Ginkgo Tree"}
-          >
-          <s.ImageButton 
-            src={GinkgoTreeImage}
-            alt="Ginkgo Tree"
-            selected={selectedTree === "Ginkgo Tree"} 
-            style={{width: "200px", height: "200px"}}
-          />
-        </s.SelectClickEvent>
-          {/* Add more trees as needed */}
-        </Carousel>
-        </s.SelectWrapper>
-
-        <s.TextsStyle>나를 닮은 캐릭터를 찾아봐요!</s.TextsStyle>
-
-        <s.SelectWrapper>
-        <Carousel showThumbs={false} showStatus={false} className="carousel">
-          {characterData.map((character) => (
-            <s.SelectClickEvent 
-            onClick={() => setSelectedCharacter(character.name)}
-            isSelected={selectedCharacter === character.name}
-            >
-              <s.ImageButton
-                src={character.imgSrc} 
-                alt={character.name} 
-                selected={selectedCharacter === character.name} 
-                style={{width: "70px", height: "100px"}}
-              />
-            </s.SelectClickEvent>
-          ))}
-        </Carousel>
-        </s.SelectWrapper>
         
-        <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
-          <s.H2>이용안내</s.H2>
-          <s.P>
-            하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
-            <s.Break/>
-            어쩌구 저쩌구
-          </s.P>
-        </Modal>
+          <s.SelectWrapper>
+          <Carousel showThumbs={false} showStatus={false}>
+          <s.SelectClickEvent 
+              onClick={() => setSelectedTree("Maple Tree")}
+              isSelected={selectedTree === "Maple Tree"}
+            >
+            <s.ImageButton 
+              src={MapleTreeImage} 
+              alt="Maple Tree" 
+              selected={selectedTree === "Maple Tree"} 
+              style={{width: "200px", height: "200px"}}
+            />
+          </s.SelectClickEvent>
+            <s.SelectClickEvent 
+              onClick={() => setSelectedTree("Ginkgo Tree")}
+              isSelected={selectedTree === "Ginkgo Tree"}
+            >
+            <s.ImageButton 
+              src={GinkgoTreeImage}
+              alt="Ginkgo Tree"
+              selected={selectedTree === "Ginkgo Tree"} 
+              style={{width: "200px", height: "200px"}}
+            />
+          </s.SelectClickEvent>
+            {/* Add more trees as needed */}
+          </Carousel>
+          </s.SelectWrapper>
 
-        <s.Button onClick={handleSubmit}>바꾸기</s.Button>
+          <s.TextsStyle>나를 닮은 캐릭터를 찾아봐요!</s.TextsStyle>
+
+          <s.SelectWrapper>
+          <Carousel showThumbs={false} showStatus={false} className="carousel">
+            {characterData.map((character) => (
+              <s.SelectClickEvent 
+              onClick={() => setSelectedCharacter(character.name)}
+              isSelected={selectedCharacter === character.name}
+              >
+                <s.ImageButton
+                  src={character.imgSrc} 
+                  alt={character.name} 
+                  selected={selectedCharacter === character.name} 
+                  style={{width: "70px", height: "100px"}}
+                />
+              </s.SelectClickEvent>
+            ))}
+          </Carousel>
+          </s.SelectWrapper>
+        
+          <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
+            <s.H2>이용안내</s.H2>
+            <s.P>
+              하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
+              <s.Break/>
+              어쩌구 저쩌구
+            </s.P>
+          </Modal>
+
+          <s.Button onClick={handleSubmit}>바꾸기</s.Button>
+        </s.SelectContainer>
       </s.CenteredWrapper>
 
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >

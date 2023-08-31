@@ -19,7 +19,7 @@ const leafFall = keyframes`
   }
   100% {
       opacity: 0;
-      top: 50%;
+      top: 90%;
       left: var(--end-left); 
       transform: rotate(var(--rotation-end));
   }

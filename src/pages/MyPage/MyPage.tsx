@@ -28,7 +28,9 @@ function MyPage() {
                     <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                 </s.ErrorCenterModalWrapper>
             );
-            setErrorModalOpen(true)
+            //setErrorModalOpen(false) //임시 확인용
+            setErrorModalOpen(true) //실제 배포시 이 코드
+
         }
         
     })
@@ -123,9 +125,8 @@ function MyPage() {
         <s.Wrapper>
             
             {/*<BackButton to="/ownerhome" /> {/* 프론트 단독 개발 시에 이거 사용. */}
-       
             <BackButton to={`/home/${MyUserId}`} /> {/* 백엔드 코드와 결합 시 이거 사용. */}
-          
+
             <s.CenteredWrapper>
                 
             <s.TitleTextStyle>{userName}의 마이페이지</s.TitleTextStyle>

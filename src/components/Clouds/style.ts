@@ -22,7 +22,7 @@ const CloudsDiv = styled.div`
 
   @media screen and (min-width: 560px) {
     background: url(${cloudImageBig}) repeat-x;
-    bottom: 120px
+    bottom: 10px
   }
 `;
 
