@@ -103,15 +103,17 @@ export const Background = styled.div`
           min-height: 740px;
         }
 
-        /* 모바일 세로모드용 스타일 */
+        
+         /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
           min-height: 750px;
           transform: translateY(15px); 
         }
 
-        /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
+       /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 429px) and (orientation: portrait) {
           min-height: 750px;
+          //transform: translateY(15px); 
         }
 
         /* small 모바일 세로모드용 스타일 */
@@ -124,7 +126,8 @@ export const Background = styled.div`
 
 export const BackgroundAfter = styled.div`
   position: absolute;
-  bottom: 0;
+  //bottom: 0;
+  top: 0;
   //height: 100%;
   //min-height: 700px;
   width: 100%;
