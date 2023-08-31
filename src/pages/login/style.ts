@@ -25,6 +25,7 @@ const LoginButton = styled.button`
 
 const LoginWrapper = styled.div`
   font-family: 'DOSSaemmul';
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
