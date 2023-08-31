@@ -156,14 +156,6 @@ text-align: center;
 
 `;
 
-// 기존의 HTML 태그를 styled-components로 변경합니다.
-const StyledImg = styled.img`
-  position: relative;
-  z-index: 2;
-  width: 160px;
-  height: 40px;
-`;
-
 const H3 = styled.h3`
   margin-bottom: 5px;
   font-size: 15px;
@@ -184,8 +176,8 @@ const P = styled.p`
 const Break = styled.br``;
 
 const TreeImg = styled.img`
-  width: 300px;
-  height: 300px;
+  //width: 300px;
+  //height: 300px;
 `;
 
 const TreeFragmentImg = styled.img`
@@ -193,8 +185,8 @@ const TreeFragmentImg = styled.img`
   top: 0;
   left: 0;
   z-index: 4;
-  width: 300px;
-  height: 300px;
+  //width: 300px;
+  //height: 300px;
 `;
 
 const StampCollectionButton = styled.button`
@@ -274,7 +266,6 @@ export const s = {
     ModalTextsWrapper,
     CharImage,
     TreeImageWrapper,
-    StyledImg,
     H3,
     H1,
     P,
