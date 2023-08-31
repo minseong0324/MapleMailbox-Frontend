@@ -276,24 +276,24 @@ const handleNavigateHome = () => {
             </s.TextsStyle>
 
             <s.TreeImageWrapper>
-            <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
-            {treeFragmentImages && treeFragmentImages.map((image, index) => (
-              <s.TreeFragmentImg
-                key={index}
-                src={image}
-                alt={`Tree at stage ${index + 1}`}
-              />
-            ))}
-            <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
-            <s.StampCollectionButton onClick={() => setStampModalOpen(true)} />
-            <s.SpeechBubble />
+              <s.TreeImg src={initialTreeImage} alt="Initial Tree" />
+              {treeFragmentImages && treeFragmentImages.map((image, index) => (
+                <s.TreeFragmentImg
+                  key={index}
+                  src={image}
+                  alt={`Tree at stage ${index + 1}`}
+                />
+              ))}
+              <s.CharImage src={getCharacterImage(characterType)} alt="Selected Character"/>
+              <s.StampCollectionButton onClick={() => setStampModalOpen(true)} />
+              <s.SpeechBubble />
             </s.TreeImageWrapper>
             <s.ButtonWrapper>
-            <s.Break/> 
-            <s.LetterOpenButton onClick={handleReadLetters}>편지 확인하기</s.LetterOpenButton>
-            <s.DdayCount>D-{dday}</s.DdayCount>
-            <s.Break/> 
-            <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
+              <s.Break/> 
+              <s.LetterOpenButton onClick={handleReadLetters}>편지 확인하기</s.LetterOpenButton>
+              <s.DdayCount>D-{dday}</s.DdayCount>
+              <s.Break/> 
+              <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
             </s.ButtonWrapper>
             {/* 편지 읽는 모달을 추가합니다 */}
             <Modal isOpen={isReadModalOpen} onClose={() => setReadModalOpen(false)}>

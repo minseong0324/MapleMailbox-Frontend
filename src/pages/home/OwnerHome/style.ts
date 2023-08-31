@@ -6,6 +6,7 @@ import modalButtonAfterClick from '../../../assets/button/button-midium-2.png';
 import buttonSmall4 from '../../../assets/button/button-small-4.png'; 
 import SquirrelButton from '../../../assets/animal/squirrel.png'
 import SpeechBubbleGif from '../../../assets/speechBubble/speechBubble1.gif'
+import { isMobile } from 'react-device-detect';
 
 
 
@@ -93,14 +94,35 @@ const ButtonWrapper = styled.div`
   z-index: 2;
 `;
   
- const CenteredWrapper = styled.div`
+const mobileStyles = `
+  /* 모바일 스타일 */
+
+  /* 모바일 모든 크기 가로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: landscape) {
+    height: 320px;
+  }
+
+  /* 큰 태블릿 세로모드용 스타일 */
+  @media screen and (min-width: 821px) and (orientation: portrait) {
+    height: 1180px;
+  }
+
+  /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 820px;
+  }
+`;
+
+export const CenteredWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: relative; 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 820px;
+
+  ${isMobile ? mobileStyles : ''}
 `;
 
  const TextsStyle = styled.div`
@@ -156,14 +178,6 @@ text-align: center;
 
 `;
 
-// 기존의 HTML 태그를 styled-components로 변경합니다.
-const StyledImg = styled.img`
-  position: relative;
-  z-index: 2;
-  width: 160px;
-  height: 40px;
-`;
-
 const H3 = styled.h3`
   margin-bottom: 5px;
   font-size: 15px;
@@ -173,6 +187,7 @@ const H1 = styled.h1`
   //margin-top: 0px;
   font-family: 'DOSGothic';
   font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`
@@ -184,8 +199,8 @@ const P = styled.p`
 const Break = styled.br``;
 
 const TreeImg = styled.img`
-  width: 300px;
-  height: 300px;
+  //width: 300px;
+  //height: 300px;
 `;
 
 const TreeFragmentImg = styled.img`
@@ -274,7 +289,6 @@ export const s = {
     ModalTextsWrapper,
     CharImage,
     TreeImageWrapper,
-    StyledImg,
     H3,
     H1,
     P,

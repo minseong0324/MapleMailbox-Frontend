@@ -3,6 +3,7 @@ import button1 from '../../../assets/button/button1.png';
 import button2 from '../../../assets/button/button2.png'; 
 import button3 from '../../../assets/button/button3.png'; 
 import button4 from '../../../assets/button/button4.png'; 
+import { isMobile } from 'react-device-detect';
 
 
 const Button = styled.button`
@@ -33,14 +34,35 @@ const ButtonWrapper = styled.div`
 `;
 
 
-  const CenteredWrapper = styled.div`
+const mobileStyles = `
+  /* 모바일 스타일 */
+
+  /* 모바일 모든 크기 가로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: landscape) {
+    height: 320px;
+  }
+
+  /* 큰 태블릿 세로모드용 스타일 */
+  @media screen and (min-width: 821px) and (orientation: portrait) {
+    height: 1180px;
+  }
+
+  /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 820px;
+  }
+`;
+
+export const CenteredWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: relative; 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 820px;
+
+  ${isMobile ? mobileStyles : ''}
 `;
 
 const TextsStyle = styled.div`

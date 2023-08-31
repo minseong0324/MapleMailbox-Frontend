@@ -25,11 +25,12 @@ const LoginButton = styled.button`
 
 const LoginWrapper = styled.div`
   font-family: 'DOSSaemmul';
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 820px;
 `;
 
 const LoginForm = styled.form`
@@ -87,8 +88,9 @@ const H3 = styled.h3`
 
 const H1 = styled.h1`
   //margin-top: 0px;
-  font-size: 28px;
   font-family: 'DOSGothic';
+  font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`

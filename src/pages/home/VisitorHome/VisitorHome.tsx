@@ -212,13 +212,21 @@ const handleNavigateHome = () => {
   const handleSendLetterModalOpen = async (event: React.FormEvent) => {
     if (isLoggedIn === true) {
       setSendModalOpen(true)
+    } else {
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>로그인을 하셔야</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>이용가능해요!</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleUnLoggedInModalClose}>로그인하기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+    );
+    setErrorModalOpen(true);
     }
   }
 
   
   // 편지를 보내는 함수입니다.
 const handleSendLetter = async (event: React.FormEvent) => {
-  if (isLoggedIn === true) {
     event.preventDefault();
 
     // 입력값을 검사합니다.
@@ -274,16 +282,6 @@ const handleSendLetter = async (event: React.FormEvent) => {
       setErrorModalOpen(true);
       return null;
     }
-  } else {
-    setModalErrorContent(
-      <s.ErrorCenterModalWrapper>
-          <s.ErrorModalTextsWrapper2>로그인을 하셔야</s.ErrorModalTextsWrapper2>
-          <s.ErrorModalTextsWrapper2>이용가능해요!</s.ErrorModalTextsWrapper2>
-          <s.ModalButton onClick={handleUnLoggedInModalClose}>닫기</s.ModalButton>
-      </s.ErrorCenterModalWrapper>
-  );
-  setErrorModalOpen(true);
-  }
 };
 
 const handleUnLoggedInModalClose = () => {
@@ -329,7 +327,7 @@ const handleUnLoggedInModalClose = () => {
         <s.ErrorCenterModalWrapper>
             <s.ErrorModalTextsWrapper2>로그인을 하셔야</s.ErrorModalTextsWrapper2>
             <s.ErrorModalTextsWrapper2>이용가능해요!</s.ErrorModalTextsWrapper2>
-            <s.ModalButton onClick={handleUnLoggedInModalClose}>닫기</s.ModalButton>
+            <s.ModalButton onClick={handleUnLoggedInModalClose}>로그인하기</s.ModalButton>
         </s.ErrorCenterModalWrapper>
     );
     setErrorModalOpen(true);
@@ -350,6 +348,7 @@ const handleUnLoggedInModalClose = () => {
       <s.TextsStyle>
         <s.H3>가을을 기다리며,</s.H3>
         <s.H1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.H1>
+        <s.Break/>
         <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
       </s.TextsStyle>
       <s.TreeImageWrapper>
