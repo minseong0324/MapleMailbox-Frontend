@@ -249,11 +249,9 @@ export const BackgroundAfterPC = styled.div`
   min-height: 1024px;
   `;
 
-interface AppStyleProps {
-  isScrolled: boolean;
-}
 
-export const AppStyle = styled.div<AppStyleProps>`
+
+export const AppStyle = styled.div`
   position: absolute;
   //bottom: 0;
   top:0;
@@ -270,7 +268,6 @@ export const AppStyle = styled.div<AppStyleProps>`
   //overflow: auto;
   transform: translateY(0px); 
   min-height: 1024px;
-  padding-top: ${props => props.isScrolled ? '0px' : '50px'}; // 예시
 
   `;
 
