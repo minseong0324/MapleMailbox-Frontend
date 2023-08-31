@@ -6,6 +6,7 @@ import button4 from '../../assets/button/button4.png';
 
 const Wrapper = styled.div`
 z-index: 5;
+
 `;
 
 const Button = styled.button`
@@ -56,10 +57,7 @@ const CenteredWrapper = styled.div`
   justify-content: center;
   z-index: 4;
 
-  @media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
-    align-items: center;
-    justify-content: center;
-  }
+  
 `;
 
 const BackButtonWrapper = styled.div`
@@ -80,11 +78,37 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 z-index: 4;
+margin-bottom: 365px;
 
-@media (min-width: 570px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+@media (min-width: 360px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 255px;
+}
+@media (min-width: 389px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 290px;
+}
+@media (min-width: 429px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 370px;
+}
+@media (min-width: 599px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 645px;
+}
+@media (min-width: 799px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 685px;
 }
 `;
 
@@ -96,7 +120,7 @@ flex-direction: column;
 align-items: center;
 line-height: 5;
 font-size: 25px;
-margin-top: -10%;
+//margin-top: -10%;
 `;
 
 

@@ -114,8 +114,8 @@ const StampButton = styled.button<StampButtonProps>`
   width: 90px;
   height: 90px;
   z-index: 2;
-  padding: 0px;
-  margin: 4px;
+  padding: 50px;
+  margin: 0px;
 `;
 
 const CenteredWrapper = styled.div`

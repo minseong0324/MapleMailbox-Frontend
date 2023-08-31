@@ -3,7 +3,6 @@ import buttonMidium1 from '../../../assets/button/button-midium-1.png';
 import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
 
 const Container = styled.div`
-
 `;
 
 const ButtonWrapper = styled.div`
@@ -43,8 +42,8 @@ const LeafButton = styled.button<LeafButtonProps>`
   width: 45px;
   height: 45px;
   z-index: 2;
-  padding: 0px;
-  margin: 8px;
+  padding: 15px;
+  margin: 10px;
 `;
 
 const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper

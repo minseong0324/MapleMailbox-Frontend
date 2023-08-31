@@ -106,6 +106,12 @@ export const Background = styled.div`
         /* 모바일 세로모드용 스타일 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
           min-height: 750px;
+          transform: translateY(15px); 
+        }
+
+        /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
+        @media screen and (max-width: 429px) and (orientation: portrait) {
+          min-height: 750px;
         }
 
         /* small 모바일 세로모드용 스타일 */
@@ -159,8 +165,14 @@ export const BackgroundAfter = styled.div`
           min-height: 1024px;
         }
 
-        /* 모바일 세로모드용 스타일 */
+        /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */
         @media screen and (max-width: 599px) and (orientation: portrait) {
+          transform: translateY(110px); 
+          min-height: 800px;
+        }
+
+         /* 모바일 세로모드용 스타일 */
+         @media screen and (max-width: 429px) and (orientation: portrait) {
           transform: translateY(132px); 
           min-height: 800px;
         }

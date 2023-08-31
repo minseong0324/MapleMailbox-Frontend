@@ -44,6 +44,7 @@ const CenteredWrapper = styled.div`
   }
 `;
 
+
 const TitleTextStyle = styled.div`
   position: relative; 
 font-family: 'DOSGothic';
@@ -52,8 +53,10 @@ flex-direction: column;
 align-items: center;
 line-height: 5;
 font-size: 25px;
-margin-top: -10%;
+//margin-top: -10%;
 `;
+
+
 
 
 const TextsStyle = styled.div`
@@ -83,6 +86,48 @@ type ImageButtonProps = {
 
 const SelectWrapper = styled.div`
   width: 300px;
+`;
+
+const SelectContainer = styled.div`
+margin-top: 70px;
+position: relative; 
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 4;
+margin-bottom: 365px;
+
+@media (min-width: 360px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+@media (min-width: 389px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+@media (min-width: 429px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 130px;
+}
+@media (min-width: 599px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 395px;
+}
+@media (min-width: 799px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 445px;
+}
 `;
 
 const H2 = styled.h2`
@@ -198,6 +243,7 @@ export const s = {
     ModalButton,
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
-    ErrorModalTextsWrapper2
+    ErrorModalTextsWrapper2,
+    SelectContainer
 }
 
