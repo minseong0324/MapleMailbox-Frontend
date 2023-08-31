@@ -70,8 +70,8 @@ const SendButton = styled.button`
   }
   
 `;
-  
- const CenteredWrapper = styled.div`
+
+const CenteredWrapper = styled.div`
   font-family: 'DOSSaemmul';
   position: relative; 
   display: flex;
@@ -87,7 +87,7 @@ const SendButton = styled.button`
   flex-direction: column;
   align-items: center;
   line-height: 0.2;  // 글자 간격
-  padding-top: 30px;
+  padding-top: 50px;
 `;
 
 const CheckTextLength = styled.div`
@@ -150,6 +150,7 @@ const H1 = styled.h1`
   //margin-top: 0px;
   font-family: 'DOSGothic';
   font-size: 28px;
+  padding-bottom: 7px;
 `;
 
 const P = styled.p`

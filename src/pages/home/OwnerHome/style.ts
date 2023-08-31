@@ -93,7 +93,7 @@ const ButtonWrapper = styled.div`
   z-index: 2;
 `;
   
- const CenteredWrapper = styled.div`
+const CenteredWrapper = styled.div`
   font-family: 'DOSSaemmul';
   position: relative; 
   display: flex;

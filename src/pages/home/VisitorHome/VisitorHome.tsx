@@ -348,6 +348,7 @@ const handleUnLoggedInModalClose = () => {
       <s.TextsStyle>
         <s.H3>가을을 기다리며,</s.H3>
         <s.H1>{userName}의 {treeType === 'Ginkgo Tree' ? '은행나무' : '단풍나무'}</s.H1>
+        <s.Break/>
         <s.P>당신의 따뜻한 마음으로 나무를 물들여봐요.</s.P>
       </s.TextsStyle>
       <s.TreeImageWrapper>
