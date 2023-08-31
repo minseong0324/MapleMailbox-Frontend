@@ -12,7 +12,6 @@ const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
 const root = CreateDOM.createRoot(rootElement);
 
-// eslint-disable-next-line react-refresh/only-export-components
 const AppContainer = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -33,14 +32,15 @@ const AppContainer = () => {
   }, []);
 
   return (
+    
     <React.StrictMode>
+      <AppStyle isScrolled={isScrolled}>
       <BrowserView>
         <GlobalStylePC />
         <BackgroundPC>
           <BackgroundAfterPC>
-            <AppStyle isScrolled={isScrolled}>
+            
               <App />
-            </AppStyle>
           </BackgroundAfterPC>
         </BackgroundPC>
         <Clouds />
@@ -53,6 +53,7 @@ const AppContainer = () => {
         <Clouds />
         <App />
       </MobileView>
+      </AppStyle>
     </React.StrictMode>
   );
 };
