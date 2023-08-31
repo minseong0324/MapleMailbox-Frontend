@@ -41,6 +41,23 @@ const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 820px;
+
+ /* 모바일 모든 크기 가로모드용 스타일 */
+ @media screen and (max-width: 820px) and (orientation: landscape) {
+  height: 320px;
+  }
+
+   /* 큰 태블릿 세로모드용 스타일 */
+ @media screen and (min-width: 821px) and (orientation: portrait) {
+  height: 1180px;
+  }
+
+  /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
+ @media screen and (max-width: 820px) and (orientation: portrait) {
+  height: 940px;
+  }
+  
+
 `;
 
 const TextsStyle = styled.div`

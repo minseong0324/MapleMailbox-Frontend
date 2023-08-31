@@ -17,12 +17,11 @@ root.render(
   <React.StrictMode>
       <BrowserView>
         <GlobalStylePC />
-        <BackgroundPC>
-          <BackgroundAfterPC>
-              <App />
-          </BackgroundAfterPC>
-        </BackgroundPC>
+        <BackgroundPC />
+        <BackgroundAfterPC />
         <Clouds />
+        <App />
+        
 
       </BrowserView>
       { /* mobile */ }
