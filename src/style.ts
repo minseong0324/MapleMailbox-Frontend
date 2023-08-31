@@ -10,7 +10,6 @@ export const GlobalStyle = createGlobalStyle`
 html, body {
         margin: 0;
         padding: 0;
-        overflow: hidden;
         
         //background-color: rgb(88 201 255);
         //padding-top: 15px;  // 이 부분을 추가
@@ -83,7 +82,7 @@ export const Background = styled.div`
         image-rendering: pixelated;
         background-size: 820px 1180px; 
         background-attachment: scroll; // 이 부분을 추가
-        overflow: hidden auto;
+        overflow: auto;
  
 
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
@@ -137,7 +136,7 @@ export const BackgroundAfter = styled.div`
   image-rendering: pixelated;
   background-size: 820px 1180px;
   background-attachment: scroll; // 이 부분을 추가
-  overflow: hidden auto;
+  overflow: auto;
 
 
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
@@ -254,7 +253,7 @@ interface AppStyleProps {
   isScrolled: boolean;
 }
 
-export const AppStylePC = styled.div<AppStyleProps>`
+export const AppStyle = styled.div<AppStyleProps>`
   position: absolute;
   //bottom: 0;
   top:0;
@@ -271,7 +270,7 @@ export const AppStylePC = styled.div<AppStyleProps>`
   //overflow: auto;
   transform: translateY(0px); 
   min-height: 1024px;
-  background-attachment: ${props => props.isScrolled ? 'scroll' : 'fixed'};
+  padding-top: ${props => props.isScrolled ? '0px' : '50px'}; // 예시
 
   `;
 
