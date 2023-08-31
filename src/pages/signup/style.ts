@@ -30,7 +30,7 @@ const SignUpButton = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 820px;
+  height: 100vh;
 `;
 
  const SignUpForm = styled.form`
