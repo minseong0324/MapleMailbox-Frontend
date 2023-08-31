@@ -249,10 +249,14 @@ export const BackgroundAfterPC = styled.div`
   min-height: 1024px;
   `;
 
-export const AppStylePC = styled.div`
+interface AppStyleProps {
+  isScrolled: boolean;
+}
+
+export const AppStylePC = styled.div<AppStyleProps>`
   position: absolute;
   //bottom: 0;
-  //top:0;
+  top:0;
   //height: 100%;
   //min-height: 700px;
   width: 100%;
@@ -261,10 +265,12 @@ export const AppStylePC = styled.div`
   z-index: 3;
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
-
-  background-attachment: scroll; // 이 부분을 추가
+  background-size: 820px 1180px;
+  //background-attachment: scroll; // 이 부분을 추가
   //overflow: auto;
   transform: translateY(0px); 
   min-height: 1024px;
+  background-attachment: ${props => props.isScrolled ? 'scroll' : 'fixed'};
+
   `;
 

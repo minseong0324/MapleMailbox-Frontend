@@ -17,6 +17,7 @@ import GoogleCallback from './pages/login/googleLogin/GoogleCallback';
 import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
+
 const queryClient = new QueryClient();
 
 function App() {
