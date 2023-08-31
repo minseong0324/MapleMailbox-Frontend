@@ -209,9 +209,10 @@ html, body {
 
 export const BackgroundPC = styled.div`
         position: absolute;
-        bottom: 0;
+        //bottom: 0;
+        top:0;
         //top: 40px;
-        height: 100%;
+        //height: 100%;
         //min-height: 740px;
         width: 100%;
         margin: 0;
@@ -221,17 +222,18 @@ export const BackgroundPC = styled.div`
         background-repeat: no-repeat;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
-        background-size: 820px 1180px; 
+        //background-size: 820px 1180px; 
         background-attachment: scroll; // 이 부분을 추가
-        overflow: auto;
-        transform: translateY(250px); 
-        min-height: 1180px;
+        //overflow: auto;
+        //transform: translateY(250px); 
+        min-height: 1024px;
 `;        
 
 export const BackgroundAfterPC = styled.div`
   position: absolute;
-  bottom: 0;
-  height: 100%;
+  //bottom: 0;
+  top:0;
+  //height: 100%;
   //min-height: 700px;
   width: 100%;
   background: url(${bodyAfterBackground});
@@ -241,9 +243,28 @@ export const BackgroundAfterPC = styled.div`
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
   background-size: 820px 1180px;
+  //background-attachment: scroll; // 이 부분을 추가
+  //overflow: auto;
+  transform: translateY(10px); 
+  min-height: 1024px;
+  `;
+
+export const AppStylePC = styled.div`
+  position: absolute;
+  //bottom: 0;
+  //top:0;
+  //height: 100%;
+  //min-height: 700px;
+  width: 100%;
+
+  //background-position: center;
+  z-index: 3;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+
   background-attachment: scroll; // 이 부분을 추가
-  overflow: auto;
-  transform: translateY(320px); 
-  min-height: 1180px;
+  //overflow: auto;
+  transform: translateY(0px); 
+  min-height: 1024px;
   `;
 

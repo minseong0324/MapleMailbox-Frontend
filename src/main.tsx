@@ -3,8 +3,9 @@ import CreateDOM from 'react-dom/client'; //중요
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import App from './App';
-import {GlobalStyle, GlobalStylePC, BackgroundAfter, Background, BackgroundPC, BackgroundAfterPC} from './style'
+import {GlobalStyle, GlobalStylePC, BackgroundAfter, Background, BackgroundPC, BackgroundAfterPC, AppStylePC} from './style'
 import { BrowserView, MobileView } from 'react-device-detect';
+import Clouds from './components/Clouds/Clouds';
 
 
 const rootElement = document.getElementById('root');
@@ -14,16 +15,23 @@ const root = CreateDOM.createRoot(rootElement); // reactDOM 쓰니 자꾸 에러
 root.render(
   <React.StrictMode>
       <BrowserView>
-        <BackgroundPC/>
         <GlobalStylePC />
-        <BackgroundAfterPC />
-        <App />
+        <BackgroundPC>
+          <BackgroundAfterPC>
+            <AppStylePC>
+              <App />
+            </AppStylePC>
+          </BackgroundAfterPC>
+        </BackgroundPC>
+        <Clouds />
+
       </BrowserView>
       { /* mobile */ }
       <MobileView>
         <Background />
         <GlobalStyle />
         <BackgroundAfter />
+        <Clouds />
         <App />
       </MobileView>
   </React.StrictMode>
