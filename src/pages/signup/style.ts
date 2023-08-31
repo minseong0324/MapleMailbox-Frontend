@@ -25,7 +25,6 @@ const SignUpButton = styled.button`
 
  const SignUpWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
