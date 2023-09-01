@@ -7,15 +7,15 @@ import modalButtonAfterClick from '../../assets/button/button-midium-2.png';
 const SunWrapper = styled.div`
   font-family: 'DOSSaemmul';
   position: fixed;
-  top: 0px;
+  top: 5px;
   right: 5px;
   z-index: 5;
 
   @media (min-width: 821px) {
-    right: calc(50% - 410px + 5px);
+    right: calc(50% - 410px + 10px);
   }
   @media (min-height: 1181px) {
-    top: calc(50% - 590px + 0px);
+    top: calc(50% - 590px + 10px);
   }
 `;
 
