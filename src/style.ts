@@ -261,7 +261,7 @@ export const BackgroundPC = styled.div`
         //background-size: 820px 1180px; 
         background-attachment: scroll; // 이 부분을 추가
         //overflow: auto;
-        //transform: translateY(250px); 
+        transform: translateY(-55px); 
         min-height: 1024px;
 `;        
 
