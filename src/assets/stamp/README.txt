@@ -29,10 +29,10 @@
 - riceField (완)
 - windmill (완)
 
-- 고구마
-- 밤
-- 감
-- 감자
+- 고구마 (작업중)
+- 밤 (작업중)
+- 감 (작업중)
+- 감자 (작업중)
 
 - reading (완)
 - burberry (완)
@@ -40,8 +40,8 @@
 - camping (완)
 - campFire (완)
 
-- 코스모스 (작업중)
-- 꽃 축제 (꽃밭) (작업중)
+- cosmos (완)
+- flowers (완)
 
 - mail (완)
 - mailbox (완)
