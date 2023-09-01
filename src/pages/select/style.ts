@@ -102,31 +102,31 @@ margin-bottom: 365px;
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 85px;
 }
 @media (min-width: 389px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 105px;
 }
 @media (min-width: 429px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 130px;
+    margin-bottom: 185px;
 }
 @media (min-width: 599px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 395px;
+    margin-bottom: 252px;
 }
 @media (min-width: 799px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 445px;
+    margin-bottom: 260px;
 }
 `;
 

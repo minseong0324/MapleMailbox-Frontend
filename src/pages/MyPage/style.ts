@@ -6,7 +6,8 @@ import button4 from '../../assets/button/button4.png';
 
 const Wrapper = styled.div`
 z-index: 5;
-
+//padding-top: -1px;
+padding-bottom: 55px;
 `;
 
 const Button = styled.button`
@@ -84,7 +85,7 @@ margin-bottom: 365px;
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 255px;
+    margin-bottom: 270px;
 }
 @media (min-width: 389px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
@@ -102,13 +103,13 @@ margin-bottom: 365px;
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 645px;
+    margin-bottom: 432px;
 }
 @media (min-width: 799px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 685px;
+    margin-bottom: 441px;
 }
 `;
 

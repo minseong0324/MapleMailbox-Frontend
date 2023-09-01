@@ -109,7 +109,7 @@ export const Background = styled.div`
 
         /* 태블릿 미니 세로모드용 스타일 */
         @media screen and (max-width: 768px) and (orientation: portrait) {
-          transform: translateY(5px); 
+          transform: translateY(0px); 
         }
 
         /* 모바일 가로모드용 스타일 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
@@ -154,7 +154,7 @@ export const BackgroundAfter = styled.div`
   //min-height: 700px;
   width: 100%;
   background: url(${bodyAfterBackground});
-  background-position: center calc(50% - 40px); //이미지 크기 더 늘리기
+  background-position: center; //calc(50% + 5px); //이미지 크기 더 늘리기
   background-repeat: no-repeat;
   z-index: 2;
   -ms-interpolation-mode: nearest-neighbor;
@@ -172,14 +172,14 @@ export const BackgroundAfter = styled.div`
 
         /* 큰 태블릿 새로모드용 스타일  */
         @media screen and (min-width: 821px) and (orientation: portrait) {
-          transform: translateY(105px); 
+          transform: translateY(103px); 
           min-height: 1024px;
         }
 
         /* 태블릿 세로모드용 스타일 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
         @media screen and (max-width: 820px) and (orientation: portrait) {
-          transform: translateY(4px); 
-          min-height: 1024px;
+          transform: translateY(-45px); 
+          min-height: 1180px;
         }
 
         /* 모바일 max, plus 가로모드용 스타일 */
@@ -196,26 +196,26 @@ export const BackgroundAfter = styled.div`
 
         /* 태블릿 미니 세로모드용 스타일 */
         @media screen and (max-width: 768px) and (orientation: portrait) {
-          transform: translateY(70px); 
-          min-height: 1024px;
+          transform: translateY(-50px); 
+          min-height: 1180px;
 
         }
 
         /* 모바일 세로모드용 스타일 아이폰 프로맥스, 플러스 */ 
         @media screen and (max-width: 599px) and (orientation: portrait) {
-          transform: translateY(120px); 
+          transform: translateY(80px); 
           min-height: 800px;
         }
 
          /* 모바일 세로모드용 스타일 */
          @media screen and (max-width: 429px) and (orientation: portrait) {
-          transform: translateY(122px); 
+          transform: translateY(80px); 
           min-height: 800px;
         }
 
         /* small 모바일 세로모드용 스타일 아이폰 미니*/
         @media screen and (max-width: 389px) and (orientation: portrait) {
-          transform: translateY(113px); 
+          transform: translateY(75px); 
           min-height: 800px;
         }
 `;
@@ -258,12 +258,12 @@ export const BackgroundPC = styled.div`
         background-repeat: no-repeat;
         -ms-interpolation-mode: nearest-neighbor;
         image-rendering: pixelated;
-        //background-size: 820px 1180px; 
+        //background-size: 820px 1180px;
         background-attachment: scroll; // 이 부분을 추가
         //overflow: auto;
-        transform: translateY(-55px); 
+        transform: translateY(-55px);
         min-height: 1024px;
-`;        
+`;
 
 export const BackgroundAfterPC = styled.div`
   position: absolute;
