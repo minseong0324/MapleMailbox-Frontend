@@ -27,7 +27,7 @@
 
 - scarecrow (완)
 - riceField (완)
-- 풍차 (작업중)
+- windmill (완)
 
 - 고구마
 - 밤
@@ -36,7 +36,7 @@
 
 - reading (완)
 - burberry (완)
-- 연 날리기 (작업중)
+- kite (완)
 - camping (완)
 - campFire (완)
 
