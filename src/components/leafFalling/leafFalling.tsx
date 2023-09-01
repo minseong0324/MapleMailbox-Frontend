@@ -3,7 +3,7 @@ import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
 import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
 import { s } from './style'; 
 
-const numLeaves = 20;
+const numLeaves = 30;
 
 // CSSProperties를 확장하여 사용자 정의 CSS 변수를 포함
 interface CSSPropertiesWithCustomVars extends CSSProperties {

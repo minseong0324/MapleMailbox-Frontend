@@ -33,7 +33,7 @@ const Leaf = styled.div<LeafProps>`
   height: 20px;
   background-size: cover;
   
-  animation: ${leafFall} 5s linear infinite;
+  animation: ${leafFall} 6s linear infinite;
 `;
 
 const LeafDiv = styled.div`
@@ -41,7 +41,7 @@ const LeafDiv = styled.div`
   width: 100%;
   max-width: 820px;
   max-height: 1180px;
-  height: 100vh;
+  height: 800px;
   top: -10px;
   left: 50%;
   right: 50%;
