@@ -167,12 +167,12 @@ export const BackgroundAfter = styled.div`
         /* 태블릿 가로모드용 스타일, 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
         @media screen and (min-width: 821px) and (orientation: landscape){
           min-height: 1024px;
-          transform: translateY(55px); 
+          transform: translateY(15px); 
         }
 
         /* 큰 태블릿 새로모드용 스타일  */
         @media screen and (min-width: 821px) and (orientation: portrait) {
-          transform: translateY(103px); 
+          transform: translateY(65px); 
           min-height: 1024px;
         }
 
@@ -184,13 +184,13 @@ export const BackgroundAfter = styled.div`
 
         /* 모바일 max, plus 가로모드용 스타일 */
         @media screen and (max-width: 899px) and (orientation: landscape) {
-          transform: translateY(75px); 
+          transform: translateY(35px); 
           min-height: 800px;
         }
 
          /* small, 모바일 가로모드용 스타일 */
         @media screen and (max-width: 799px) and (orientation: landscape) {
-          transform: translateY(75px); 
+          transform: translateY(35px); 
           min-height: 800px;
         }
 
