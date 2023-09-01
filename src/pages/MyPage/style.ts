@@ -76,7 +76,7 @@ const mobileStyles = `
 
   /* 모바일 기본 세로모드용 스타일 */
   @media screen and (max-width: 599px) and (orientation: portrait) {
-    height: 820px;
+    height: 765px;
   }
 
   /* 모바일 미니 세로모드용 스타일 */

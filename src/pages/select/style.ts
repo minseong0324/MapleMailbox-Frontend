@@ -45,22 +45,22 @@ const mobileStyles = `
 
   /* 태블릿 미니, 기본 세로모드용 스타일 */
   @media screen and (max-width: 820px) and (orientation: portrait) {
-    height: 950px;
+    height: 955px;
   }
 
   /* 큰 태블릿 세로모드용 스타일 */
   @media screen and (min-width: 821px) and (orientation: portrait) {
-    height: 1175px;
+    height: 1180px;
   }
 
   /* 모바일 기본 세로모드용 스타일 */
   @media screen and (max-width: 599px) and (orientation: portrait) {
-    height: 870px;
+    height: 820px;
   }
 
   /* 모바일 미니 세로모드용 스타일 */
   @media screen and (max-width: 379px) and (orientation: portrait) {
-    height: 815px;
+    height: 820px;
   }
 
 `;
