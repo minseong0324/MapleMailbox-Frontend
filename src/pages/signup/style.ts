@@ -3,6 +3,7 @@ import button1 from '../../assets/button/button1.png';
 import button4 from '../../assets/button/button4.png'; 
 import modalButton from '../../assets/button/button-midium-1.png'; 
 import modalButtonAfterClick from '../../assets/button/button-midium-2.png'; 
+import { isMobile } from 'react-device-detect';
 
 const SignUpButton = styled.button`
   font-family: 'DOSSaemmul';
@@ -23,14 +24,40 @@ const SignUpButton = styled.button`
   }
 `;
 
- const SignUpWrapper = styled.div`
+const mobileStyles = `
+  /* 모바일 스타일 */
+
+  /* 모바일 모든 크기 가로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: landscape) {
+    height: 320px;
+  }
+
+  /* 큰 태블릿 세로모드용 스타일 */
+  @media screen and (min-width: 821px) and (orientation: portrait) {
+    height: 1180px;
+  }
+
+  /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 950px;
+  }
+
+  /* 모바일 세로모드용 스타일 */
+  @media screen and (max-width: 599px) and (orientation: portrait) {
+    height: 820px;
+  }
+`;
+
+export const SignUpWrapper = styled.div`
   font-family: 'DOSSaemmul';
-  position: relative; 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 820px;
+
+  ${isMobile ? mobileStyles : ''}
 `;
 
  const SignUpForm = styled.form`
@@ -147,6 +174,53 @@ line-height: 2;  // 글자 간격
 margin-bottom: -10px;
 `;
 
+
+const PolicyTextsWrapper = styled.div`
+  position: absolute;
+  bottom: -20px;  // 화면 하단에 고정
+  font-family: 'DOSGothic';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.2;
+  z-index: 2;
+  overflow: auto;
+
+  // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
+  @media (min-width: 768px) {
+    bottom: -5%;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+
+  // 큰 태블릿 세로모드용 스타일
+  @media screen and (min-width: 820px) and (orientation: portrait) {
+    bottom: 50px;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+
+  /* 모바일 max, plus 가로모드용 스타일 */
+  @media screen and (max-width: 899px) and (orientation: landscape) {
+    bottom: -80%;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+`;
+
+const PolicyTextsStyle = styled.p`
+  margin-top: 6px;
+  font-size: 8px;
+  padding-bottom: 10px;
+`;
+
+const PolicyStyledLink = styled.a`
+  color: #333;  // 색상 설정
+  text-decoration: underline;  // 밑줄 추가
+
+  &:hover {
+    color: darkblue;  // 마우스 오버 시 색상 변경
+  }
+`;
+
+
 export const s = {
   SignUpWrapper,
   SignUpForm,
@@ -160,5 +234,8 @@ export const s = {
   ErrorModalTextsWrapper1,
   ErrorModalTextsWrapper2,
   ModalButton,
-  SocialSignUpWrapper
+  SocialSignUpWrapper,
+  PolicyTextsWrapper,
+  PolicyTextsStyle,
+  PolicyStyledLink
 }

@@ -3,10 +3,12 @@ import modalButton from '../../assets/button/button-midium-1.png';
 import modalButtonAfterClick from '../../assets/button/button-midium-2.png'; 
 import button1 from '../../assets/button/button1.png'; 
 import button4 from '../../assets/button/button4.png'; 
+import { isMobile } from 'react-device-detect';
 
 const Wrapper = styled.div`
 z-index: 5;
-
+//padding-top: -1px;
+padding-bottom: 55px;
 `;
 
 const Button = styled.button`
@@ -49,15 +51,51 @@ const ModalButton = styled.button`
   margin-top: 50px;
 `;
 
-const CenteredWrapper = styled.div`
-  position: relative; 
+const mobileStyles = `
+  /* 모바일 스타일 */
+
+  /* 모바일 모든 크기 가로모드용 스타일 */
+  @media screen and (max-width: 999px) and (orientation: landscape) {
+    height: 200px;
+  }
+
+  /* 태블릿 모든 크기 가로모드용 스타일 */
+  @media screen and (min-width: 1000px) and (orientation: landscape) {
+    height: 800px;
+  }
+
+  /* 태블릿 미니, 기본 세로모드용 스타일 */
+  @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 900px;
+  }
+
+  /* 큰 태블릿 세로모드용 스타일 */
+  @media screen and (min-width: 821px) and (orientation: portrait) {
+    height: 1125px;
+  }
+
+  /* 모바일 기본 세로모드용 스타일 */
+  @media screen and (max-width: 599px) and (orientation: portrait) {
+    height: 765px;
+  }
+
+  /* 모바일 미니 세로모드용 스타일 */
+  @media screen and (max-width: 379px) and (orientation: portrait) {
+    height: 765px;
+  }
+
+`;
+
+export const CenteredWrapper = styled.div`
+  font-family: 'DOSSaemmul';
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 4;
+  height: 820px;
 
-  
+  ${isMobile ? mobileStyles : ''}
 `;
 
 const BackButtonWrapper = styled.div`
@@ -84,31 +122,37 @@ margin-bottom: 365px;
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 255px;
+    margin-bottom: 270px;
 }
-@media (min-width: 389px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+@media (min-width: 380px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 290px;
+    margin-bottom: 300px;
 }
 @media (min-width: 429px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 370px;
+    margin-bottom: 300px;
 }
 @media (min-width: 599px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 645px;
+    margin-bottom: 50px;
 }
 @media (min-width: 799px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
     margin-top: 150px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 685px;
+    margin-bottom: 50px;
+}
+@media (min-width: 821px) { // 디바이스의 너비가 570px 이상일 때 적용될 스타일
+  margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 `;
 

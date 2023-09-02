@@ -87,6 +87,11 @@ const mobileStyles = `
 
   /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
   @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 950px;
+  }
+
+  /* 모바일 세로모드용 스타일 */
+  @media screen and (max-width: 599px) and (orientation: portrait) {
     height: 820px;
   }
 `;

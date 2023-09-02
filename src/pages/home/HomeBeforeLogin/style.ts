@@ -49,6 +49,11 @@ const mobileStyles = `
 
   /* 큰 태블릿 제외 air, air mini 태블릿 모든 크기 세로모드용 스타일 */
   @media screen and (max-width: 820px) and (orientation: portrait) {
+    height: 950px;
+  }
+
+  /* 모바일 세로모드용 스타일 */
+  @media screen and (max-width: 599px) and (orientation: portrait) {
     height: 820px;
   }
 `;
@@ -74,6 +79,8 @@ const TextsStyle = styled.div`
   padding-top: 50px;
 `;
 
+
+
 const GinkgoCharImage = styled.img`
   position: absolute;
   z-index: 2;
@@ -91,6 +98,7 @@ const TreeImageWrapper = styled.div`
 const H3 = styled.h3`
   margin-bottom: 5px;
   font-size: 15px;
+  //font-size: 16px;
 `;
 
 const H2 = styled.h2`
@@ -100,13 +108,17 @@ const H1 = styled.h1`
   //margin-top: 0px;
   font-family: 'DOSGothic';
   font-size: 28px;
+  //font-size: 33px;
   padding-bottom: 7px;
+  color: #111;
 `;
 
 const P = styled.p`
   margin-top: 6px;
   font-size: 14px;
+  //font-size: 16px;
   padding-bottom: 30px;
+  font-family: 'DOSSaemmul';
 `;
 
 const Break = styled.br``;
@@ -117,6 +129,51 @@ const Form = styled.form`
 
 const TreeImg = styled.img`
  
+`;
+
+const PolicyTextsWrapper = styled.div`
+  position: absolute;
+  bottom: -20px;  // 화면 하단에 고정
+  font-family: 'DOSGothic';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.2;
+  z-index: 2;
+  overflow: auto;
+
+  // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
+  @media (min-width: 768px) {
+    bottom: -5%;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+
+  // 큰 태블릿 세로모드용 스타일
+  @media screen and (min-width: 820px) and (orientation: portrait) {
+    bottom: 50px;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+
+  /* 모바일 max, plus 가로모드용 스타일 */
+  @media screen and (max-width: 899px) and (orientation: landscape) {
+    bottom: -80%;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+`;
+
+const PolicyTextsStyle = styled.p`
+  margin-top: 6px;
+  font-size: 8px;
+  padding-bottom: 10px;
+`;
+
+const PolicyStyledLink = styled.a`
+  color: #333;  // 색상 설정
+  text-decoration: underline;  // 밑줄 추가
+
+  &:hover {
+    color: darkblue;  // 마우스 오버 시 색상 변경
+  }
 `;
 
 export const s = {
@@ -132,5 +189,8 @@ export const s = {
     Form,
     TreeImg,
     Break,
-    ButtonWrapper
+    ButtonWrapper,
+    PolicyTextsStyle,
+    PolicyTextsWrapper,
+    PolicyStyledLink
 }
