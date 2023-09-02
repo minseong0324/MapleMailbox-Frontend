@@ -174,6 +174,48 @@ line-height: 2;  // 글자 간격
 margin-bottom: -10px;
 `;
 
+
+const PolicyTextsWrapper = styled.div`
+  position: fixed;
+  bottom: -20px;  // 화면 하단에 고정
+  width: 100%;  // 화면 너비만큼 차지
+  font-family: 'DOSGothic';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.2;
+  z-index: 2;
+  // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
+  @media (min-width: 768px) {
+    bottom: -5%;  // 화면 하단에서 조금 더 아래로
+    width: auto; // 너비를 자동으로 설정
+  }
+
+  // 가로 모드일 때 적용되는 스타일
+  @media (orientation: landscape) {
+    position: relative;  // 또는 'relative'
+    //margin-top: 200px;  // 원하는 위치로 조금 더 아래로
+    //bottom: -20px;  // 화면 하단에 고정
+
+  }
+`;
+
+const PolicyTextsStyle = styled.p`
+  margin-top: 6px;
+  font-size: 8px;
+  //font-size: 16px;
+  padding-bottom: 10px;
+`;
+
+const PolicyStyledLink = styled.a`
+  color: #333;  // 색상 설정
+  text-decoration: underline;  // 밑줄 추가
+
+  &:hover {
+    color: darkblue;  // 마우스 오버 시 색상 변경
+  }
+`;
+
 export const s = {
   SignUpWrapper,
   SignUpForm,
@@ -187,5 +229,8 @@ export const s = {
   ErrorModalTextsWrapper1,
   ErrorModalTextsWrapper2,
   ModalButton,
-  SocialSignUpWrapper
+  SocialSignUpWrapper,
+  PolicyTextsWrapper,
+  PolicyTextsStyle,
+  PolicyStyledLink
 }

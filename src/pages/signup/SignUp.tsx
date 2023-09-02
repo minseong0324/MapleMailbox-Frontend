@@ -109,6 +109,16 @@ function SignUp() {
               <NaverLogin imageUrl={NaverSignUpImage}/>
               <GoogleLogin buttonImage={GoogleSignUpImage}/>
           </s.SocialSignUpWrapper>
+
+          <s.PolicyTextsWrapper>
+            <s.PolicyTextsStyle>
+              계속 진행하면 <s.PolicyStyledLink href="https://naver.com">서비스 이용약관</s.PolicyStyledLink>에 동의하고
+            </s.PolicyTextsStyle>
+            <s.PolicyTextsStyle>
+              <s.PolicyStyledLink href="https://naver.com">개인정보 처리방침</s.PolicyStyledLink>을 읽었음을 인정하는 것으로 간주됩니다.
+            </s.PolicyTextsStyle>
+          </s.PolicyTextsWrapper>
+
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}
       </ErrorModal>

@@ -4,6 +4,10 @@ import bodyBackground from './assets/sky/sky-small.png';
 import bodyAfterBackground from './assets/background/background-small.png';
 import DoSSaemmul from './static/font/DOSSaemmul.ttf';
 import DOSGothic from './static/font/DOSGothic.ttf';
+import HSAutumn_Thin from './static/font/HSAutumn_Thin.ttf'
+import Dovemayo_gothic from './static/font/Dovemayo_gothic.ttf'
+
+
 import styled from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -70,6 +74,20 @@ html, body {
     @font-face {
         font-family: 'DOSGothic';
         src: url(${DOSGothic}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Dovemayo_gothic';
+        src: url(${Dovemayo_gothic}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'HSAutumn_Thin';
+        src: url(${HSAutumn_Thin}) format('truetype');
         font-weight: normal;
         font-style: normal;
     }
