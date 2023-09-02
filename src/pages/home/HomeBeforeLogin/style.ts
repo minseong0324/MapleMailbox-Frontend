@@ -132,27 +132,38 @@ const TreeImg = styled.img`
 `;
 
 const PolicyTextsWrapper = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: -20px;  // 화면 하단에 고정
-  width: 100%;  // 화면 너비만큼 차지
   font-family: 'DOSGothic';
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 0.2;
-  //padding-top: 100px; // padding 추가
   z-index: 2;
+  overflow: auto;
+
   // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
   @media (min-width: 768px) {
     bottom: -5%;  // 화면 하단에서 조금 더 아래로
-    width: auto; // 너비를 자동으로 설정
+    overflow: auto;
+  }
+
+  // 큰 태블릿 세로모드용 스타일
+  @media screen and (min-width: 820px) and (orientation: portrait) {
+    bottom: 50px;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
+  }
+
+  /* 모바일 max, plus 가로모드용 스타일 */
+  @media screen and (max-width: 899px) and (orientation: landscape) {
+    bottom: -80%;  // 화면 하단에서 조금 더 아래로
+    overflow: auto;
   }
 `;
 
 const PolicyTextsStyle = styled.p`
   margin-top: 6px;
   font-size: 8px;
-  //font-size: 16px;
   padding-bottom: 10px;
 `;
 

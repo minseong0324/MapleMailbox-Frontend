@@ -191,7 +191,7 @@ export const BackgroundAfter = styled.div`
         /* 큰 태블릿 새로모드용 스타일  */
         @media screen and (min-width: 821px) and (orientation: portrait) {
           transform: translateY(65px); 
-          min-height: 1024px;
+          min-height: 1180px;
         }
 
         /* 태블릿 세로모드용 스타일 아이패드 에어 기준으로 배경을 제작했기 때문에 820px */
