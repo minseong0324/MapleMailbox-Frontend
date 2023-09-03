@@ -72,7 +72,8 @@ const ModalButton = styled.button`
 
 const DdayCount = styled.button`
   margin-bottom: 15px;
-  font-family: 'BareunHipi';
+  font-family: 'NanumBarunpenB';
+  font-weight: normal; // 명시적으로 굵기 설정
   width: 75px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   margin-left: 5px;
@@ -268,6 +269,7 @@ margin-bottom: -10px;
 `;
 
 const LinkModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용
+font-family: 'BareunHipi';
 position: relative;
 display: flex;
 font-size: 20px;

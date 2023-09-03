@@ -123,6 +123,7 @@ flex-direction: column;
 color: #666 !important;
 align-self: flex-end;   // 이 부분을 추가
 line-height: 0.2;  // 글자 간격
+font-size: 15px;
 `;
 
 

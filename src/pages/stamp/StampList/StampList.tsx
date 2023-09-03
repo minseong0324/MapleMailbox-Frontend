@@ -140,16 +140,16 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           <s.MissionText>
             오늘의 미션을
           </s.MissionText>
-          <s.TextsStyle>
+          <s.MissionText>
             완료했어요!
-          </s.TextsStyle>
+          </s.MissionText>
           <s.Break/>
-          <s.TextsStyle>
+          <s.MissionText>
             내일의 미션을 
-          </s.TextsStyle>
-          <s.TextsStyle>
+          </s.MissionText>
+          <s.MissionText>
             기대해주세요! 
-          </s.TextsStyle>
+          </s.MissionText>
 
         </s.TextWrapper>
       );

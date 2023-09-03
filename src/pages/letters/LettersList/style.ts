@@ -18,12 +18,12 @@ padding-bottom: 10px;
 
 
 const TextsStyle = styled.div`
-font-family: 'NanumBarunpenB';
+font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
 //align-items: center;
 //line-height: 0.2;  // 글자 간격
-font-size: 17px; 
+font-size: 19px; 
 text-align: center;
 `;
 

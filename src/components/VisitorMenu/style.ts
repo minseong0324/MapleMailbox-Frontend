@@ -94,7 +94,7 @@ margin-bottom: 10px;
 font-family: 'BareunHipi'; 
 background: transparent;
 border: none;
-font-size: 13px;
+font-size: 16px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;

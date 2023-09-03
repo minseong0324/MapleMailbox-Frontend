@@ -94,15 +94,15 @@ const Break = styled.br`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'NanumBarunpenB';
-  font-weight: normal; // 명시적으로 굵기 설정
+font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
 //align-items: center;
 //line-height: 0.2;  // 글자 간격
-font-size: 17px; 
+font-size: 19px; 
 text-align: center;
 `;
+
 type StampButtonProps = {
     stampImage: string;
 };
@@ -134,7 +134,7 @@ interface MissionCompletedButtonProps {
 }
 
 const MissionCompletedButton = styled.button<MissionCompletedButtonProps>`
-  font-family: 'BareunHipi';
+  font-family: 'NanumBarunpenB';
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
