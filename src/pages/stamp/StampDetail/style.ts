@@ -40,7 +40,7 @@ const stampImages = [
 
 // 뒤로가기 버튼을 스타일링합니다.
 const BackButton = styled.button`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   background-color: #FFE5CC;
   border:2px; 
   border-style:hidden;
@@ -55,7 +55,8 @@ const BackButton = styled.button`
 `;
 
 const TextsStyle = styled.div`
-font-family: 'DOSSaemmul';
+font-family: 'NanumBarunpenB';
+  font-weight: normal; // 명시적으로 굵기 설정
 display: flex;
 flex-direction: column;
 //align-items: center;

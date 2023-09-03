@@ -4,7 +4,6 @@ import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
 import Collection from '../../assets/stamp/collection3.png'
 
 const Wrapper = styled.div`
-font-family: 'DOSSaemmul';
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -14,7 +13,6 @@ padding-top: 30px;
 `;
 
 const TitleWrapper = styled.div`
-  font-family: 'DOSSaemmul';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +22,8 @@ const TitleWrapper = styled.div`
 const SubSubTitle = styled.span`
     margin-top: 0px;
     margin-left: 5px;
-    font-family: 'DOSGothic';
+    font-family: 'NanumBarunpenB';
+    font-weight: normal; // 명시적으로 굵기 설정
     font-size: 14px;
     padding-right: 0px;
     padding-left: 0px;
@@ -34,8 +33,8 @@ const SubSubTitle = styled.span`
 const Text = styled.span`
     margin-top: 0px;
     margin-left: 5px;
-    font-family: 'DOSGothic';
-    font-size: 10px;
+    font-family: 'BareunHipi';
+    font-size: 12px;
     padding-right: 0px;
     padding-left: 0px;
     margin-left: 7px;
@@ -44,15 +43,15 @@ const Text = styled.span`
 const Break = styled.br``;
 
 const Title = styled.span`
-font-family: 'DOSGothic';
-font-size: 20px;
-margin-bottom: 20px;
+font-family: 'BareunHipi';
+font-size: 30px;
+margin-bottom: 30px;
 text-align: center;
 `;
 
  const SubTitle = styled.span`
-  font-family: 'DOSSaemmul';
-  font-size: 15px;
+  font-family: 'BareunHipi';
+  font-size: 16px;
   text-align: center;
 `;
 
@@ -72,7 +71,7 @@ const GinkgoLeafImage = styled.img.attrs({
   })`
       z-index: 2;
   width:30px;
-  margin-top:-20px;
+  //margin-top:-20px;
 
 `;
 
@@ -81,7 +80,7 @@ const MapleLeafImage = styled.img.attrs({
   })`
       z-index: 2;
       width:30px;
-      margin-top:-20px;
+      //margin-top:-20px;
      
 `;
 
@@ -91,6 +90,8 @@ const GinkgoLeafImageSmall = styled.img.attrs({
       z-index: 2;
   width:10px;
   height:10px;
+  margin-bottom: 0px;
+
 `;
 
 const MapleLeafImageSmall = styled.img.attrs({

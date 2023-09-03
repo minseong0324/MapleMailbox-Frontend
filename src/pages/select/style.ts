@@ -11,13 +11,12 @@ z-index: 5;
 `;
 
 const Button = styled.button`
-  font-family: 'DOSSaemmul';
+  font-family: 'NanumBarunpenB';
+  font-weight: normal; // 명시적으로 굵기 설정
   width: 250px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
-  padding: 10px; // 내부 패딩을 조정
   background: url(${button4}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -28,6 +27,7 @@ const Button = styled.button`
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
   margin-top: 50px;
+  color: #444;
 `;
 
 const mobileStyles = `
@@ -66,7 +66,7 @@ const mobileStyles = `
 `;
 
 export const CenteredWrapper = styled.div`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   position: relative;
   display: flex;
   flex-direction: column;
@@ -75,17 +75,18 @@ export const CenteredWrapper = styled.div`
   height: 820px;
 
   ${isMobile ? mobileStyles : ''}
+  color: #444;
 `;
 
 
 const TitleTextStyle = styled.div`
   position: relative; 
-font-family: 'DOSGothic';
+font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
 align-items: center;
 line-height: 5;
-font-size: 25px;
+font-size: 38px;
 //margin-top: -10%;
 `;
 
@@ -93,12 +94,12 @@ font-size: 25px;
 
 
 const TextsStyle = styled.div`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 5;
-  font-size: 15px;
+  font-size: 22px;
 `;
 
 const ImageButton = styled.button<ImageButtonProps>`
@@ -218,13 +219,12 @@ margin-bottom: 10px;
 `;
 
 const ModalButton = styled.button`
-  font-family: 'DOSSaemmul';
+  font-family: 'NanumBarunpenB';
+  font-weight: normal; // 명시적으로 굵기 설정
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
-  padding: 10px; // 내부 패딩을 조정
   background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -235,6 +235,7 @@ const ModalButton = styled.button`
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
   margin-top: 50px;
+  color: #444;
 `;
 
 
