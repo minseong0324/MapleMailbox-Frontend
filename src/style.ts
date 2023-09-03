@@ -16,10 +16,6 @@ import styled from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 
-body, button, input, textarea, select {
-    color: #444; // 폰트 색상을 #444로 설정
-  }
-
   html, body {
 
     margin: 0;
@@ -283,6 +279,20 @@ html, body {
     @font-face {
         font-family: 'DOSGothic';
         src: url(${DOSGothic}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'NanumBarunpenB';
+        src: url(${NanumBarunpenB}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'BareunHipi';
+        src: url(${BareunHipi}) format('truetype');
         font-weight: normal;
         font-style: normal;
     }
