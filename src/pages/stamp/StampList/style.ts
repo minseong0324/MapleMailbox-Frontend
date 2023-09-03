@@ -238,6 +238,24 @@ const ModalButton = styled.button`
   color: #444;
 `;
 
+const SmallModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용
+font-family: 'BareunHipi';
+position: relative;
+display: flex;
+font-size: 15px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -5px;
+`;
+
+const SmallModalTextsStyle2 = styled.div`
+font-family: 'BareunHipi';
+font-size: 20px;
+text-align: center;
+margin-bottom: -10px;
+`;
+
 export const s = {
     ButtonWrapper,
     TextsStyle,
@@ -259,4 +277,6 @@ export const s = {
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
     ErrorModalTextsWrapper2,
+    SmallModalTextsStyle1,
+    SmallModalTextsStyle2
 }

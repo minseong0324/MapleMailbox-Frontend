@@ -7,7 +7,7 @@ import { s } from './style';
 import MissionText from '../../../components/MissionText/MissionText';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
-
+import SmallModal from "src/components/SmallModal/SmallModal";
 // 현재 날짜의 속성을 정의하는 인터페이스입니다.
 interface NowDateProps {
   nowDate: number | null;
@@ -137,20 +137,12 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
     setTodayMissionCompleteModalOpen(true);
       setModalContent(
         <s.TextWrapper>
-          <s.TextsStyle>
-            오늘의 미션을
-          </s.TextsStyle>
-          <s.TextsStyle>
-            완료했어요!
-          </s.TextsStyle>
-          <s.Break/>
-          <s.TextsStyle>
-            내일의 미션을 
-          </s.TextsStyle>
-          <s.TextsStyle>
-            기대해주세요! 
-          </s.TextsStyle>
-
+          <s.SmallModalTextsStyle1>
+            오늘의 미션을 완료했어요!
+          </s.SmallModalTextsStyle1>
+          <s.SmallModalTextsStyle1>
+            내일의 미션을 기대해주세요! 
+          </s.SmallModalTextsStyle1>
         </s.TextWrapper>
       );
   };
@@ -349,14 +341,14 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
       </Modal>
 
       {/* 미션 완료하기 버튼을 누르고 나서 뜨는 모달창 */}
-      <Modal isOpen={todayMissionCompleteModalOpen} onClose={() => setTodayMissionCompleteModalOpen(false)}>
+      <SmallModal isOpen={todayMissionCompleteModalOpen} onClose={() => setTodayMissionCompleteModalOpen(false)}>
         <s.CenteredWrapper>
-          {modalContent} {/* 여기에 이미지를 표시 */}
+          {modalContent}
           <s.ModalButton onClick={handleCloseModal}>
             확인
           </s.ModalButton>
         </s.CenteredWrapper>
-      </Modal>
+      </SmallModal>
 
       <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
         {modalErrorContent}
