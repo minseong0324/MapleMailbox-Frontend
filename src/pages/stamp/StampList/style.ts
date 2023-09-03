@@ -56,7 +56,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const MissionButton = styled.button`
-  margin-left: 10px;  // 버튼과 텍스트 사이의 간격을 조절
+  margin-left: 25px;  // 버튼과 텍스트 사이의 간격을 조절
   border: none;
   width: 40px;
   height: 40px;
@@ -69,7 +69,7 @@ const ButtonTextWrapper = styled.div`
   display: flex;  
   align-items: center;  
   justify-content: center;
-  margin-left: 50px;
+  margin-left: 65px;
 `;
 
 const TextWrapper = styled.div`

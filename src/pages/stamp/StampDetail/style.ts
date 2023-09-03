@@ -105,6 +105,7 @@ z-index: 2;
 padding: 0px;
 margin: 20px;
 top: 25%;
+align-items: center;
 `;
 
 const H2 = styled.h2`

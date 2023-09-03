@@ -20,11 +20,11 @@ const TitleWrapper = styled.div`
 `;
 
 const SubSubTitle = styled.span`
-    margin-top: 0px;
+    margin-top: 10px;
     margin-left: 5px;
     font-family: 'NanumBarunpenB';
     font-weight: normal; // 명시적으로 굵기 설정
-    font-size: 14px;
+    font-size: 15px;
     padding-right: 0px;
     padding-left: 0px;
     margin-bottom: 10px;
@@ -34,11 +34,12 @@ const Text = styled.span`
     margin-top: 0px;
     margin-left: 5px;
     font-family: 'BareunHipi';
-    font-size: 12px;
+    font-size: 13px;
     padding-right: 0px;
     padding-left: 0px;
     margin-left: 7px;
     margin-top: -4px;
+    margin-bottom: 2px;
 `;
 
 const Break = styled.br``;
@@ -103,6 +104,7 @@ const MapleLeafImageSmall = styled.img.attrs({
       z-index: 2;
       width:20px;
       margin-bottom: 10px;
+      margin-top: 10px;
      
 `;
 
@@ -131,7 +133,7 @@ const CollectionImg = styled.img.attrs({
       width:190px;
       height:100px;
       margin-left: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 2px;
       margin-top: 5px;
      align-items:center;
 `;
