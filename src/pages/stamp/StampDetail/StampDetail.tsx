@@ -11,9 +11,10 @@ const StampDetail: React.FC<Props> = ({ index, onClose }) => {
     return (
       <>
        <s.BackButton onClick={onClose}>닫기</s.BackButton>
-       <s.TextsStyle>
+       <s.Break/>
+       <s.TitleTextsStyle>
           {StampName[index]}  {/* 우표 이름 */}
-        </s.TextsStyle>
+        </s.TitleTextsStyle>
         <s.StampWrapper>
           <s.StampImage
             stampImage={s.stampImages[index]}>

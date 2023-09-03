@@ -52,16 +52,31 @@ const BackButton = styled.button`
   text-decoration: none;
   cursor: pointer;
   float: right;
-  margin-bottom: 20px;
+`;
+
+const TitleTextsStyle = styled.div`
+font-family: 'BareunHipi';
+display: flex;
+flex-direction: column;
+align-items: center;
+//line-height: 0.2;  // 글자 간격
+font-size: 23px; 
+border:2px; 
+border-style:hidden;
+border-radius: 5%;
+background-color: #FFE5CC;
+padding: 10px;
+margin-top:5px;
+margin-bottom:10px;
 `;
 
 const TextsStyle = styled.div`
 font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
-//align-items: center;
+align-items: center;
 //line-height: 0.2;  // 글자 간격
-font-size: 20px; 
+font-size: 18px; 
 border:2px; 
 border-style:hidden;
 border-radius: 5%;
@@ -82,7 +97,6 @@ type StampImageProps = {
 
 
 const StampImage = styled.div<StampImageProps>`
-position: absolute;
 background: url(${props => props.stampImage}) no-repeat center;
 border: none;
 width: 160px;
@@ -95,6 +109,9 @@ top: 25%;
 
 const H2 = styled.h2`
 
+`;
+
+const Break = styled.br`
 `;
 
 const H3 = styled.h3`
@@ -124,5 +141,6 @@ export const s = {
     StampImage,
     stampImages,
     H2, H3, tips,
-    P,
+    P, Break,
+    TitleTextsStyle
 }
