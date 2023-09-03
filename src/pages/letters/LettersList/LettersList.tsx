@@ -149,7 +149,7 @@ function LettersList() {
               (!isButtonActive ? MapleLeafDisabled : MapleLeaf ) :
               (!isButtonActive ? GinkgoLeafDisabled : GinkgoLeaf ) }
             >
-              {date}일
+              {date}
             </s.LeafButton>
           );
         })}

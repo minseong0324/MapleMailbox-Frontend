@@ -272,19 +272,18 @@ const LinkModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용
 font-family: 'BareunHipi';
 position: relative;
 display: flex;
-font-size: 20px;
+font-size: 15px;
 align-items: center;
   justify-content: center;
 line-height: 2;  // 글자 간격
-margin-bottom: 0px;
-margin-top: -25px;
+margin-bottom: 20px;
 `;
 
 const LinkModalTextsStyle2 = styled.div`
 font-family: 'BareunHipi';
-font-size: 15px;
+font-size: 20px;
 text-align: center;
-margin-bottom: -20px;
+margin-bottom: 10px;
 `;
 
 export const s = {

@@ -134,7 +134,7 @@ function MyPage() {
             </s.ButtonWrapper>
 
             <Modal isOpen={isLeaveModalOpen} onClose={() => setLeaveModalOpen(false)}>
-                <s.CenteredWrapper>
+                <s.CenterModalWrapper>
                     <s.H2>정말 탈퇴하시겠습니까?</s.H2>
                     <s.P>
                         삭제된 정보는 복구할 수 없습니다. 신중하게 생각하시고 결정해주시기 바랍니다.
@@ -142,12 +142,12 @@ function MyPage() {
                     </s.P>
                     <s.ModalButton onClick={handleSubmitCheckModal}>탈퇴하기</s.ModalButton>
                     <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
-                </s.CenteredWrapper>
+                </s.CenterModalWrapper>
                 
             </Modal>
 
             <Modal isOpen={isCheckModalOpen} onClose={() => setCheckModalOpen(false)}>
-                <s.CenteredWrapper>
+                <s.CenterModalWrapper>
                     <s.H2>탈퇴를 원하시면,</s.H2>
                     <s.P>
                         'MapleMailbox'를 입력해주세요. 탈퇴가 완료됩니다.
@@ -161,7 +161,7 @@ function MyPage() {
                     />
                     <s.ModalButton onClick={handleSubmitCancel}>취소</s.ModalButton>
                     <s.ModalButton onClick={handleSubmitLeave}>확인</s.ModalButton>
-                </s.CenteredWrapper>
+                </s.CenterModalWrapper>
                 
             </Modal>
             </s.CenteredWrapper>

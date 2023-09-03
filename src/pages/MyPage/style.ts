@@ -37,7 +37,6 @@ const ModalButton = styled.button`
   font-weight: normal; // 명시적으로 굵기 설정
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
-  padding: 10px; // 내부 패딩을 조정
   background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
   color: black;
@@ -187,7 +186,7 @@ const P = styled.p`
 const Break = styled.br``;
 
 const WordInput = styled.input`
-  font-family: 'NanumBarunpenR';
+  font-family: 'BareunHipi';
 width: 190px;
 height: 30px;
 border: none; // 모든 테두리를 제거합니다.

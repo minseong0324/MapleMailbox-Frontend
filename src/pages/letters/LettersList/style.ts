@@ -33,8 +33,11 @@ type LeafButtonProps = {
 
 const LeafButton = styled.button<LeafButtonProps>`
   font-family: 'NanumBarunpenB';
-  font-size: 3px;
-  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+  color: #111;
   position: relative;
   background: url(${props => props.leafImage}) no-repeat center;
   border: none;
@@ -42,7 +45,8 @@ const LeafButton = styled.button<LeafButtonProps>`
   width: 45px;
   height: 45px;
   z-index: 2;
-  padding: 15px;
+  padding-right: 0px;
+  padding-top: 3px;
   margin: 10px;
 `;
 
