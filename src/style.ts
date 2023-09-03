@@ -2,11 +2,8 @@
 import { createGlobalStyle } from 'styled-components';
 import bodyBackground from './assets/sky/sky-small.png';
 import bodyAfterBackground from './assets/background/background-small.png';
-import DoSSaemmul from './static/font/DOSSaemmul.ttf';
-import DOSGothic from './static/font/DOSGothic.ttf';
 import NanumBarunpenR from './static/font/NanumBarunpenR.ttf'
 import NanumBarunpenB from './static/font/NanumBarunpenB.ttf'
-import GangwonEducationSaeum from './static/font/GangwonEducationSaeum.ttf'
 import BareunHipi from './static/font/BareunHipi.ttf'
 
 
@@ -70,19 +67,6 @@ export const GlobalStyle = createGlobalStyle`
       //background-color: rgb(62 192 25);
     }
   }
-    @font-face {
-    font-family: 'DOSSaemmul';
-    src: url(${DoSSaemmul}) format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'DOSGothic';
-        src: url(${DOSGothic}) format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
 
     @font-face {
         font-family: 'NanumBarunpenB';
@@ -94,13 +78,6 @@ export const GlobalStyle = createGlobalStyle`
     @font-face {
         font-family: 'NanumBarunpenR';
         src: url(${NanumBarunpenR}) format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'GangwonEducationSaeum';
-        src: url(${GangwonEducationSaeum}) format('truetype');
         font-weight: normal;
         font-style: normal;
     }
@@ -268,19 +245,6 @@ html, body {
         padding: 0;
         padding-top: 25px;
         background-color: rgb(62 192 255);
-    }
-    @font-face {
-    font-family: 'DOSSaemmul';
-    src: url(${DoSSaemmul}) format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'DOSGothic';
-        src: url(${DOSGothic}) format('truetype');
-        font-weight: normal;
-        font-style: normal;
     }
 
     @font-face {
