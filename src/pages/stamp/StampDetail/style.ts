@@ -52,6 +52,7 @@ const BackButton = styled.button`
   text-decoration: none;
   cursor: pointer;
   float: right;
+  margin-bottom: 20px;
 `;
 
 const TextsStyle = styled.div`
@@ -71,7 +72,8 @@ margin-bottom:10px;
 `;
 
 const StampWrapper = styled.div`
-
+margin-top: 20px;
+margin-bottom: 20px;
 `;
 
 type StampImageProps = {
@@ -111,6 +113,7 @@ margin-bottom:10px;
 font-size:15px;
 color: gray;
 `;
+
 
 
 
