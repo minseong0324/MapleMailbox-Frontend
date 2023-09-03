@@ -5,7 +5,7 @@ import Stamp3 from '../../../assets/stamp/pumkin_squ.png';
 import Stamp4 from '../../../assets/stamp/sky_squ.png';
 import Stamp5 from '../../../assets/stamp/squirrel_squ.png';
 import Stamp6 from '../../../assets/stamp/teddybear_squ.png';
-import Stamp7 from '../../../assets/stamp/mailbox-squ.png';
+import Stamp7 from '../../../assets/stamp/mailbox_squ.png';
 import Stamp8 from '../../../assets/stamp/mail_squ.png';
 import Stamp9 from '../../../assets/stamp/pie_squ.png';
 import Stamp10 from '../../../assets/stamp/mountain_squ.png';
