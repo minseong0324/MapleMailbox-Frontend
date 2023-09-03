@@ -4,7 +4,7 @@ import sunImg from '../../assets/sunImg/sun.png';
 
 const SunWrapper = styled.div`
   font-family: 'BareunHipi';
-  position: absolute; // 'relative'도 가능
+  position: fixed;
   top: 5px;
   right: 5px;
   z-index: 5;
@@ -19,9 +19,6 @@ const SunWrapper = styled.div`
 
 
 const Wrapper = styled.div`
-position: relative;
-  width: 100%;
-  height: 100%;
   max-width: 820px;
   max-height: 1180px;
   margin: auto;
@@ -102,7 +99,7 @@ font-size: 16px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
-color: #444; 
+  color: #444; 
 white-space: nowrap;
 `;
 
