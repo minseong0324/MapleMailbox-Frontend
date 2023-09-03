@@ -114,7 +114,7 @@ const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
 `;
 
 const StyledLink = styled(Link)`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   background: transparent;
   border: none;
   text-decoration: none;  // 밑줄 제거

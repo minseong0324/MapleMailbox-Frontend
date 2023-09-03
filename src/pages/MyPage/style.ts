@@ -96,7 +96,7 @@ export const CenteredWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 820px;
+  height: 714px;
 
   ${isMobile ? mobileStyles : ''}
   color: #444;

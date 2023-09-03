@@ -48,15 +48,14 @@ const BackButton = styled.button`
   font-size: 13px;
   width: 45px;
   height: 25px;
-  color: black;
+  color: #444;
   text-decoration: none;
   cursor: pointer;
   float: right;
 `;
 
 const TextsStyle = styled.div`
-font-family: 'NanumBarunpenB';
-  font-weight: normal; // 명시적으로 굵기 설정
+font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
 //align-items: center;

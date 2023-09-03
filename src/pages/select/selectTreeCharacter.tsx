@@ -118,7 +118,7 @@ function SelectTreeCharacter() {
         <BackButton to={`/mypage/${MyUserId}`} />
 
       <s.CenteredWrapper>
-        <s.TitleTextStyle>내 나무/캐릭터 변경하기</s.TitleTextStyle>
+        <s.TitleTextStyle>의 마이페이지</s.TitleTextStyle>
         <s.SelectContainer>
           <s.TextsStyle>어떤 나무로 물들일거예요?</s.TextsStyle>
 

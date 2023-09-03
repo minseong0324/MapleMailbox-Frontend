@@ -43,7 +43,7 @@ const MenuWrapper = styled.div`
   z-index: 3;
   padding-top: 80px;
   font-size: 16px;
-  text-align: right;
+  text-align: center;
 `;
 
 

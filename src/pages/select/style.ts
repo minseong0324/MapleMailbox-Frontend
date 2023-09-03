@@ -35,32 +35,32 @@ const mobileStyles = `
 
   /* 모바일 모든 크기 가로모드용 스타일 */
   @media screen and (max-width: 999px) and (orientation: landscape) {
-    height: 250px;
+    height: 308px;
   }
 
   /* 태블릿 모든 크기 가로모드용 스타일 */
   @media screen and (min-width: 1000px) and (orientation: landscape) {
-    height: 850px;
+    height: 908px;
   }
 
   /* 태블릿 미니, 기본 세로모드용 스타일 */
   @media screen and (max-width: 820px) and (orientation: portrait) {
-    height: 955px;
+    height: 1013px;
   }
 
   /* 큰 태블릿 세로모드용 스타일 */
   @media screen and (min-width: 821px) and (orientation: portrait) {
-    height: 1180px;
+    height: 1238px;
   }
 
   /* 모바일 기본 세로모드용 스타일 */
   @media screen and (max-width: 599px) and (orientation: portrait) {
-    height: 820px;
+    height: 878px;
   }
 
   /* 모바일 미니 세로모드용 스타일 */
   @media screen and (max-width: 379px) and (orientation: portrait) {
-    height: 820px;
+    height: 878px;
   }
 
 `;
