@@ -130,9 +130,9 @@ const CollectionImg = styled.img.attrs({
     src: Collection 
   })`
       z-index: 2;
-      width:190px;
+      width:240px;
       height:100px;
-      margin-left: 10px;
+      //margin-left: 10px;
       margin-bottom: 2px;
       margin-top: 5px;
      align-items:center;
