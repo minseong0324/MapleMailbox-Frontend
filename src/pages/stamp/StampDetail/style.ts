@@ -40,22 +40,22 @@ const stampImages = [
 
 // 뒤로가기 버튼을 스타일링합니다.
 const BackButton = styled.button`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   background-color: #FFE5CC;
   border:2px; 
   border-style:hidden;
   border-radius: 30%;
-  font-size: 15px;
+  font-size: 13px;
   width: 45px;
   height: 25px;
-  color: black;
+  color: #444;
   text-decoration: none;
   cursor: pointer;
   float: right;
 `;
 
 const TextsStyle = styled.div`
-font-family: 'DOSSaemmul';
+font-family: 'BareunHipi';
 display: flex;
 flex-direction: column;
 //align-items: center;

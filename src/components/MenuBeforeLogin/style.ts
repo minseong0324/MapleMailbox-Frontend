@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import sunImg from '../../assets/sunImg/sun.png';
 
 const SunWrapper = styled.div`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   position: fixed;
   top: 5px;
   right: 5px;
@@ -42,7 +42,7 @@ const MenuWrapper = styled.div`
   right: 20px;
   z-index: 3;
   padding-top: 80px;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
 `;
 
@@ -92,14 +92,14 @@ interface MenuItemProps {
 
 const MenuItem = styled.button<MenuItemProps>`
 margin-bottom: 5px;
-font-family: 'DOSSaemmul'; 
+font-family: 'BareunHipi'; 
 background: transparent;
 border: none;
-font-size: 13px;
+font-size: 16px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
-color : black;
+color: #444; 
 white-space: nowrap;
 `;
 
@@ -115,11 +115,11 @@ const StyledLinkContainer = styled.div<StyledLinkContainerProps>`
 `;
 
 const StyledLink = styled(Link)`
-  font-family: 'DOSSaemmul';
+  font-family: 'BareunHipi';
   background: transparent;
   border: none;
   text-decoration: none;  // 밑줄 제거
-  color: black; 
+  color: #444; 
   cursor: pointer;
   
 `;
