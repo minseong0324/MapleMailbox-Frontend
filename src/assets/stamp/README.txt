@@ -29,10 +29,10 @@
 - riceField (완)
 - windmill (완)
 
-- 고구마 (작업중)
-- 밤 (작업중)
-- 감 (작업중)
-- 감자 (작업중)
+- sweetPotato (완)
+- chsetnut (완)
+- persimmon (완)
+- Potato (완)
 
 - reading (완)
 - burberry (완)
