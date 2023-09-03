@@ -10,10 +10,10 @@ const BackButton = styled.button`
   border:2px; 
   border-style:hidden;
   border-radius: 30%;
-  font-size: 15px; 
+  font-size: 13px; 
   width: 45px;
   height: 25px;
-  color: black;
+  color: #444;
   text-decoration: none;
   cursor: pointer;
   float: right;
@@ -44,7 +44,7 @@ const LetterContent = styled.div`
 `;
 
 const SenderNameText = styled.span`
-font-size: 18px;
+font-size: 20px;
 `;
 
 const H3 = styled.h3`
@@ -55,14 +55,14 @@ margin-bottom:10px;
 const LetterContentText = styled.span`
 margin-top:5px;
 margin-bottom:10px;
-font-size: 13px;
+font-size: 14px;
 `;
 
 const tips = styled.p`
 margin-top:5px;
 margin-bottom:10px;
 font-size:15px;
-color: gray;
+color: #444;
 `;
 
 const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper

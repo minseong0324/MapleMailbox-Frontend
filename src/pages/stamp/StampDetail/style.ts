@@ -89,6 +89,7 @@ margin-bottom:10px;
 const StampWrapper = styled.div`
 margin-top: 20px;
 margin-bottom: 20px;
+align-items: center;
 `;
 
 type StampImageProps = {
@@ -103,9 +104,9 @@ width: 160px;
 height: 160px;
 z-index: 2;
 padding: 0px;
-margin: 20px;
-top: 25%;
-align-items: center;
+margin: auto; // 이 부분을 수정
+position: relative; // 이 부분을 추가
+
 `;
 
 const H2 = styled.h2`
