@@ -282,7 +282,7 @@ margin-top: -25px;
 
 const LinkModalTextsStyle2 = styled.div`
 font-family: 'BareunHipi';
-font-size: 20px;
+font-size: 15px;
 text-align: center;
 margin-bottom: -20px;
 `;

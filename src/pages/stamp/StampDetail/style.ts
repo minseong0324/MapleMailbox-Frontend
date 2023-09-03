@@ -45,7 +45,7 @@ const BackButton = styled.button`
   border:2px; 
   border-style:hidden;
   border-radius: 30%;
-  font-size: 15px;
+  font-size: 13px;
   width: 45px;
   height: 25px;
   color: black;

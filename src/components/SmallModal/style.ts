@@ -17,7 +17,7 @@ interface ModalWrapperProps {
   }
 // ModalWrapper 컴포넌트에 ModalWrapperProps 타입을 적용하여 show 프로퍼티를 사용할 수 있도록 했습니다.
 const ModalWrapper = styled.div<ModalWrapperProps>`
-  font-family: 'DOSSaemmul';
+  //font-family: 'DOSSaemmul';
   position: fixed;
   top: 0;
   left: 0;

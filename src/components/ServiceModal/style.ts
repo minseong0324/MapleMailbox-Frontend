@@ -38,6 +38,7 @@ const Text = styled.span`
     padding-right: 0px;
     padding-left: 0px;
     margin-left: 7px;
+    margin-top: -4px;
 `;
 
 const Break = styled.br``;
@@ -71,8 +72,9 @@ const GinkgoLeafImage = styled.img.attrs({
   })`
       z-index: 2;
   width:30px;
-  //margin-top:-20px;
 
+  margin-top:-20px;
+  margin-left: 10px;
 `;
 
 const MapleLeafImage = styled.img.attrs({
@@ -80,7 +82,8 @@ const MapleLeafImage = styled.img.attrs({
   })`
       z-index: 2;
       width:30px;
-      //margin-top:-20px;
+      margin-top:-20px;
+      margin-right: 10px;
      
 `;
 
