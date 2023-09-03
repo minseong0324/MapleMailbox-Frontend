@@ -139,7 +139,7 @@ const MissionCompletedButton = styled.button<MissionCompletedButtonProps>`
   padding: 10px; // 내부 패딩을 조정
   background: url(${props => props.isActive ? modalButton : MissionCompletedButtonDisabledImage}) no-repeat center center;
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -158,7 +158,7 @@ const BackButton = styled.button`
   font-size: 13px;
   width: 45px;
   height: 25px;
-  color: black;
+  color: #444;
   text-decoration: none;
   cursor: pointer;
   float: right;
@@ -224,7 +224,7 @@ const ModalButton = styled.button`
   height: 40px; // 버튼 높이를 조정
   background: url(${buttonMidium1}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -234,7 +234,6 @@ const ModalButton = styled.button`
     background: url(${buttonMidium2}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
-  color: #444;
 `;
 
 const SmallModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용

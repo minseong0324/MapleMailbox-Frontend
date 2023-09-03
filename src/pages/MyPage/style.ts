@@ -18,7 +18,7 @@ const Button = styled.button`
   height: 40px; // 버튼 높이를 조정
   background: url(${button4}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px;
   border: 0px transparent; // 테두리 색상을 투명
@@ -39,7 +39,7 @@ const ModalButton = styled.button`
   height: 40px; // 버튼 높이를 조정
   background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
