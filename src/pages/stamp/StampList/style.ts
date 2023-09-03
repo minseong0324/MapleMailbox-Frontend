@@ -241,18 +241,23 @@ const SmallModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사�
 font-family: 'BareunHipi';
 position: relative;
 display: flex;
-font-size: 15px;
+font-size: 18px;
 align-items: center;
   justify-content: center;
 line-height: 2;  // 글자 간격
 margin-bottom: -5px;
+margin-top: -25px;
 `;
 
 const SmallModalTextsStyle2 = styled.div`
 font-family: 'BareunHipi';
-font-size: 20px;
-text-align: center;
-margin-bottom: -10px;
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -5px;
 `;
 
 export const s = {

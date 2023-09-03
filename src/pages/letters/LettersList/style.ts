@@ -45,7 +45,7 @@ const LeafButton = styled.button<LeafButtonProps>`
   width: 45px;
   height: 45px;
   z-index: 2;
-  padding-right: 0px;
+  //padding-right: 25px;
   padding-top: 3px;
   margin: 10px;
 `;

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import modalBackground from '../../assets/modal/modal1.png';
+import modalBackground from '../../assets/modal/modal.png';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -41,7 +41,7 @@ const ModalContent = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box; // 이 부분을 추가
-  padding: 50px;
+  padding: 30px;
   width: 300px;
   height: 600px;
   color: #333; 

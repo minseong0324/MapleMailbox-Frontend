@@ -17,8 +17,8 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
   const { accessToken, refreshToken } = useToken();
   const userId = localStorage.getItem("userId");
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  //const [stampsStatus, setStampsStatus] = useState<boolean[]>(Array(30).fill(false)); //배포용
-  const [stampsStatus, setStampsStatus] = useState<boolean[]>(Array(30).fill(true)); //테스트용
+  const [stampsStatus, setStampsStatus] = useState<boolean[]>(Array(30).fill(false)); //배포용
+  //const [stampsStatus, setStampsStatus] = useState<boolean[]>(Array(30).fill(true)); //테스트용
 
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
@@ -142,9 +142,9 @@ const StampList: React.FC<NowDateProps> = ({ nowDate }) => {
           <s.SmallModalTextsStyle1>
             오늘의 미션을 완료했어요!
           </s.SmallModalTextsStyle1>
-          <s.SmallModalTextsStyle1>
+          <s.SmallModalTextsStyle2>
             내일의 미션을 기대해주세요! 
-          </s.SmallModalTextsStyle1>
+          </s.SmallModalTextsStyle2>
         </s.TextWrapper>
       );
   };
