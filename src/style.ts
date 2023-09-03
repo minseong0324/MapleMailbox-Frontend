@@ -21,8 +21,6 @@ body, button, input, textarea, select {
   }
 
   html, body {
-    font-family: 'NanumBarunpenB';
-    //font-weight: normal; // 명시적으로 굵기 설정
 
     margin: 0;
     padding: 0;
