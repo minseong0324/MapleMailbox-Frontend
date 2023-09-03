@@ -10,16 +10,16 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import MapleTreeImage from "../../assets/treeImg/MapleMainTree.png";
 import GinkgoTreeImage from "../../assets/treeImg/GinkgoMainTree.png";
-import MapleCharImg from "../../assets/charImg/maple-small.png";
-import GinkgoCharImg from "../../assets/charImg/ginkgo-small.png";
-import BlackCharImg from "../../assets/charImg/black-small.png";
-import BlueCharImg from "../../assets/charImg/blue-small.png";
-import BrownCharImg from "../../assets/charImg/brown-small.png";
-import GrayCharImg from "../../assets/charImg/gray-small.png";
-import PurpleCharImg from "../../assets/charImg/purple-small.png";
-import SkyBlueCharImg from "../../assets/charImg/skyblue-small.png";
-import VioletCharImg from "../../assets/charImg/violet-small.png";
-import YellowCharImg from "../../assets/charImg/yellow-small.png";
+import MapleCharImg from "../../assets/charImg/maple.png";
+import GinkgoCharImg from "../../assets/charImg/ginkgo.png";
+import BlackCharImg from "../../assets/charImg/black.png";
+import BlueCharImg from "../../assets/charImg/blue.png";
+import BrownCharImg from "../../assets/charImg/brown.png";
+import GrayCharImg from "../../assets/charImg/gray.png";
+import PurpleCharImg from "../../assets/charImg/purple.png";
+import SkyBlueCharImg from "../../assets/charImg/skyblue.png";
+import VioletCharImg from "../../assets/charImg/violet.png";
+import YellowCharImg from "../../assets/charImg/yellow.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../contexts/TokenProvider/TokenProvider'
 
@@ -164,7 +164,7 @@ function SelectTreeCharacter() {
                   src={character.imgSrc} 
                   alt={character.name} 
                   selected={selectedCharacter === character.name} 
-                  style={{width: "70px", height: "100px"}}
+                  style={{width: "60px", height: "90px"}}
                 />
               </s.SelectClickEvent>
             ))}

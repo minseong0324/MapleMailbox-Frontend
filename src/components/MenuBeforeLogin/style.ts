@@ -9,11 +9,13 @@ const SunWrapper = styled.div`
   right: 5px;
   z-index: 5;
 
-  @media (min-width: 821px) {
-    right: calc(50% - 410px + 10px);
-  }
-  @media (min-height: 1181px) {
-    top: calc(50% - 590px + 10px);
+  @media (orientation: portrait) {
+    @media (min-width: 821px) {
+      right: calc(50% - 410px + 10px);
+    }
+    @media (min-height: 1181px) {
+      top: calc(50% - 590px + 10px);
+    }
   }
 `;
 
@@ -99,7 +101,7 @@ font-size: 16px;
 cursor: pointer;
 opacity: 0;
 animation: ${props => props.isActive ? fadeIn : fadeOut} 1s forwards;
-color: #444; 
+  color: #444; 
 white-space: nowrap;
 `;
 

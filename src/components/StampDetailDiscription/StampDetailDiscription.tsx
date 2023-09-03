@@ -33,9 +33,9 @@ export const StampName: string[] = [
   '상큼한 라즈베리파이',
   '빗자루 위 마녀',
   '방금 만든 호박파이',
+  '마녀가 키우는 키티',
   '할로윈 호박',
   '할로윈 허수아비',
-  '마녀가 키우는 키티',
 ];
 
 export const StampDescription: string[] = [

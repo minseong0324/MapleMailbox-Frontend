@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import modalBackground from '../../assets/modal/modal1.png';
+import modalBackground from '../../assets/modal/modal.png';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -22,7 +22,7 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 150%;
   background-color: rgba(197, 247, 255, 0.8);
   animation: ${props => props.show ? fadeIn : fadeOut} 0.5s linear forwards;
   display: ${props => props.show ? 'block' : 'none'};
@@ -41,7 +41,7 @@ const ModalContent = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box; // 이 부분을 추가
-  padding: 50px;
+  padding: 30px;
   width: 300px;
   height: 600px;
   color: #333; 

@@ -1,35 +1,34 @@
 import styled from 'styled-components';
-import Stamp1 from '../../../assets/stamp/ginkgo_squ.png';
-import Stamp2 from '../../../assets/stamp/maple_squ.png';
-import Stamp3 from '../../../assets/stamp/pumkin_squ.png';
-import Stamp4 from '../../../assets/stamp/sky_squ.png';
-import Stamp5 from '../../../assets/stamp/squirrel_squ.png';
-import Stamp6 from '../../../assets/stamp/teddybear_squ.png';
-import Stamp7 from '../../../assets/stamp/mailbox-squ.png';
-import Stamp8 from '../../../assets/stamp/mail_squ.png';
-import Stamp9 from '../../../assets/stamp/pie_squ.png';
-import Stamp10 from '../../../assets/stamp/mountain_squ.png';
-import Stamp11 from '../../../assets/stamp/forest_squ.png';
-import Stamp12 from '../../../assets/stamp/sunset_squ.png';
-import Stamp13 from '../../../assets/stamp/blueSky_squ.png';
-import Stamp14 from '../../../assets/stamp/burberry_squ.png';
-import Stamp15 from '../../../assets/stamp/campFire_squ.png';
-import Stamp16 from '../../../assets/stamp/camping_squ.png';
-import Stamp17 from '../../../assets/stamp/pumpkinPie_squ.png';
-import Stamp18 from '../../../assets/stamp/reading_squ.png';
-import Stamp19 from '../../../assets/stamp/mail_squ.png';
-import Stamp20 from '../../../assets/stamp/mail_squ.png';
-import Stamp21 from '../../../assets/stamp/mail_squ.png';
-import Stamp22 from '../../../assets/stamp/mail_squ.png';
+import Stamp1 from '../../../assets/stamp/maple_squ.png';
+import Stamp2 from '../../../assets/stamp/ginkgo_squ.png';
+import Stamp3 from '../../../assets/stamp/sky_squ.png';
+import Stamp4 from '../../../assets/stamp/blueSky_squ.png';
+import Stamp5 from '../../../assets/stamp/reading_squ.png';
+import Stamp6 from '../../../assets/stamp/kite_squ.png';
+import Stamp7 from '../../../assets/stamp/mountain_squ.png';
+import Stamp8 from '../../../assets/stamp/forest_squ.png';
+import Stamp9 from '../../../assets/stamp/squirrel_squ.png';
+import Stamp10 from '../../../assets/stamp/riceField_squ.png';
+import Stamp11 from '../../../assets/stamp/sunset_squ.png';
+import Stamp12 from '../../../assets/stamp/teddybear_squ.png';
+import Stamp13 from '../../../assets/stamp/windmill_squ.png';
+import Stamp14 from '../../../assets/stamp/sweetPotato_squ.png';
+import Stamp15 from '../../../assets/stamp/burberry_squ.png';
+import Stamp16 from '../../../assets/stamp/chestnut_squ.png';
+import Stamp17 from '../../../assets/stamp/cosmos_squ.png';
+import Stamp18 from '../../../assets/stamp/persimmon_squ.png';
+import Stamp19 from '../../../assets/stamp/flowers_squ.png';
+import Stamp20 from '../../../assets/stamp/Potato_squ.png';
+import Stamp21 from '../../../assets/stamp/camping_squ.png';
+import Stamp22 from '../../../assets/stamp/campFire_squ.png';
 import Stamp23 from '../../../assets/stamp/mail_squ.png';
-import Stamp24 from '../../../assets/stamp/mail_squ.png';
-import Stamp25 from '../../../assets/stamp/mail_squ.png';
-import Stamp26 from '../../../assets/stamp/mail_squ.png';
-import Stamp27 from '../../../assets/stamp/mail_squ.png';
-import Stamp28 from '../../../assets/stamp/mail_squ.png';
-import Stamp29 from '../../../assets/stamp/mail_squ.png';
-import Stamp30 from '../../../assets/stamp/mail_squ.png';
-//일단 테스트 해야해서 mail_squ로 통일시켜둠. 우표 이미지 만들 때마다 수정해야함.
+import Stamp24 from '../../../assets/stamp/mailbox_squ.png';
+import Stamp25 from '../../../assets/stamp/pie_squ.png';
+import Stamp26 from '../../../assets/stamp/witch_squ.png';
+import Stamp27 from '../../../assets/stamp/pumpkinPie_squ.png';
+import Stamp28 from '../../../assets/stamp/kitty_squ.png';
+import Stamp29 from '../../../assets/stamp/pumkin_squ.png';
+import Stamp30 from '../../../assets/stamp/scarecrow_squ.png';
 
 import modalButton from '../../../assets/button/button-midium-1.png'; 
 import modalButtonAfterClick from '../../../assets/button/button-midium-2.png'; 
@@ -57,7 +56,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const MissionButton = styled.button`
-  margin-left: 10px;  // 버튼과 텍스트 사이의 간격을 조절
+  margin-left: 25px;  // 버튼과 텍스트 사이의 간격을 조절
   border: none;
   width: 40px;
   height: 40px;
@@ -70,7 +69,7 @@ const ButtonTextWrapper = styled.div`
   display: flex;  
   align-items: center;  
   justify-content: center;
-  margin-left: 50px;
+  margin-left: 65px;
 `;
 
 const TextWrapper = styled.div`
@@ -140,7 +139,7 @@ const MissionCompletedButton = styled.button<MissionCompletedButtonProps>`
   padding: 10px; // 내부 패딩을 조정
   background: url(${props => props.isActive ? modalButton : MissionCompletedButtonDisabledImage}) no-repeat center center;
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -159,7 +158,7 @@ const BackButton = styled.button`
   font-size: 13px;
   width: 45px;
   height: 25px;
-  color: black;
+  color: #444;
   text-decoration: none;
   cursor: pointer;
   float: right;
@@ -225,7 +224,7 @@ const ModalButton = styled.button`
   height: 40px; // 버튼 높이를 조정
   background: url(${buttonMidium1}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
@@ -235,7 +234,29 @@ const ModalButton = styled.button`
     background: url(${buttonMidium2}) no-repeat center center; // 눌렸을 때의 배경 이미지
     background-size: cover; // 이미지가 버튼에 맞게 조절
   }
-  color: #444;
+`;
+
+const SmallModalTextsStyle1 = styled.div` // 한줄짜리 에러창일 때 사용
+font-family: 'BareunHipi';
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -5px;
+margin-top: -25px;
+`;
+
+const SmallModalTextsStyle2 = styled.div`
+font-family: 'BareunHipi';
+position: relative;
+display: flex;
+font-size: 18px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -5px;
 `;
 
 export const s = {
@@ -259,4 +280,6 @@ export const s = {
     ErrorCenterModalWrapper,
     ErrorModalTextsWrapper1,
     ErrorModalTextsWrapper2,
+    SmallModalTextsStyle1,
+    SmallModalTextsStyle2
 }

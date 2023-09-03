@@ -276,14 +276,14 @@ font-size: 15px;
 align-items: center;
   justify-content: center;
 line-height: 2;  // 글자 간격
-margin-bottom: 20px;
+margin-bottom: -5px;
 `;
 
 const LinkModalTextsStyle2 = styled.div`
 font-family: 'BareunHipi';
 font-size: 20px;
 text-align: center;
-margin-bottom: 10px;
+margin-bottom: -10px;
 `;
 
 export const s = {

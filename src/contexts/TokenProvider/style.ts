@@ -36,7 +36,7 @@ const ModalButton = styled.button`
   padding: 10px; // 내부 패딩을 조정
   background: url(${modalButton}) no-repeat center center; // 이미지를 배경으로 사용
   background-size: cover; // 이미지가 버튼에 맞게 조절
-  color: black;
+  color: #444;
   border-radius: 15px;
   font-size: 17px; 
   border: 0px transparent; // 테두리 색상을 투명
