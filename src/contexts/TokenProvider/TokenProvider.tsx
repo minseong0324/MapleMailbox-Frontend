@@ -34,7 +34,7 @@ function TokenProvider({ children }: TokenProviderProps) {
         }
 
         const refreshToken = localStorage.getItem('refreshToken');
-        if(refreshToken!==null || refreshToken!=="null") {
+        if(refreshToken) { //이부분에 문제가 있는 것 같음
         const interval = setInterval(async () => {
             const refreshToken = localStorage.getItem('refreshToken');
 
@@ -74,6 +74,24 @@ function TokenProvider({ children }: TokenProviderProps) {
         }, 1000 * 60 * 30); // 30분 마다 실행
 
         return () => clearInterval(interval);
+        } else {
+            setModalErrorContent(
+                <s.ErrorCenterModalWrapper>
+                    <s.ErrorModalTextsWrapper2>세션이 만료되었어요!</s.ErrorModalTextsWrapper2>
+                    <s.ErrorModalTextsWrapper2>로그아웃 처리 됩니다!</s.ErrorModalTextsWrapper2>
+                    <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
+                </s.ErrorCenterModalWrapper>
+                );
+                setErrorModalOpen(true)
+                localStorage.removeItem("email");
+                    localStorage.removeItem('accessToken');
+                    localStorage.removeItem('userId');
+                    localStorage.removeItem('refreshToken');
+                    localStorage.removeItem('nowDate');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('treeType');
+                    localStorage.removeItem('characterType');
+                    localStorage.removeItem('lettersOverFive');
         }
         
   }, [navigate]);
