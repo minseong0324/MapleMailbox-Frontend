@@ -24,8 +24,15 @@ function TokenProvider({ children }: TokenProviderProps) {
     const navigate = useNavigate();
     const [isErrorModalOpen, setErrorModalOpen] = useState(false);
     const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+    const [skipInitialEffect, setSkipInitialEffect] = useState(true);
 
     useEffect(() => {
+
+        if (skipInitialEffect) {
+            setSkipInitialEffect(false);
+            return;
+        }
+
         const refreshToken = localStorage.getItem('refreshToken');
         if(refreshToken!==null || refreshToken!=="null") {
         const interval = setInterval(async () => {
