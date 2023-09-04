@@ -9,6 +9,7 @@ import NaverSignUpImage from "../../assets/socialLoginButton/NaverSignUp.svg";
 import KakaoSignUpImage from "../../assets/socialLoginButton/KakaoSignUp.svg";
 import GoogleSignUpImage from "../../assets/socialLoginButton/GoogleSignUp.svg";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
+import SmallModal from 'src/components/SmallModal/SmallModal';
 
 function SignUp() {
     const [userName, setUserName] = useState('');
@@ -17,8 +18,8 @@ function SignUp() {
     const navigate = useNavigate(); // useNavigate hook 사용
     const [isErrorModalOpen, setErrorModalOpen] = useState(false);
     const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
-  
-    // 회원가입 처리 함수
+    const [modalSignUpContent, setModalSignUpContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+    const [isSmallModalOpen,setSmallModalOpen] = useState(false);
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
@@ -46,7 +47,14 @@ function SignUp() {
         // 회원가입 성공, status 200일 때
         if (response.status === 200) {
           alert("회원가입에 성공하였습니다!")
-          navigate("/login"); 
+          setModalSignUpContent(
+            <s.ErrorCenterModalWrapper>
+                <s.ErrorModalTextsWrapper2>회원가입에</s.ErrorModalTextsWrapper2>
+                <s.ErrorModalTextsWrapper2>성공했어요!</s.ErrorModalTextsWrapper2>
+                <s.ModalButton onClick={handleSignUpSuccessModalClose}>로그인하러 가기</s.ModalButton>
+            </s.ErrorCenterModalWrapper>
+          );
+          setSmallModalOpen(true);
         } 
       } catch (error: unknown) { //에러 일 경우
         if (error instanceof AxiosError) {
@@ -72,6 +80,11 @@ function SignUp() {
     
     const handleErrorModalClose = () => { 
       setErrorModalOpen(false);
+    }
+
+    const handleSignUpSuccessModalClose = () => { 
+      setSmallModalOpen(false);
+      navigate("/login"); 
     }
   
     return (
@@ -122,6 +135,10 @@ function SignUp() {
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
           {modalErrorContent}
       </ErrorModal>
+
+      <SmallModal isOpen={isSmallModalOpen} onClose={() => setSmallModalOpen(false)} >
+          {modalSignUpContent}
+      </SmallModal>
       </s.SignUpWrapper>
     );
   }

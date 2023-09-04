@@ -100,6 +100,7 @@ const H1 = styled.h1`
   font-family: 'BareunHipi';
   font-size: 38px;
   margin-bottom: 24px;
+  color: #444;
 `;
 
 const ModalTextsWrapper = styled.div`
