@@ -87,11 +87,11 @@ function TokenProvider({ children }: TokenProviderProps) {
         accessToken: localStorage.getItem('accessToken'),
         refreshToken: localStorage.getItem('refreshToken')
     }}>
-      {children}
+        {children}
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
             {modalErrorContent}
         </ErrorModal>
-      {modalErrorContent}
+        {modalErrorContent}
     </TokenContext.Provider>
   );
 }
