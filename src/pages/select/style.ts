@@ -50,7 +50,7 @@ const mobileStyles = `
 
   /* 큰 태블릿 세로모드용 스타일 */
   @media screen and (min-width: 821px) and (orientation: portrait) {
-    height: 1238px;
+    height: 1180px;
   }
 
   /* 모바일 기본 세로모드용 스타일 */
