@@ -26,9 +26,6 @@ function TokenProvider({ children }: TokenProviderProps) {
     const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
     useEffect(() => {
-
-        const refreshToken = localStorage.getItem('refreshToken');
-        if(refreshToken) { //이부분에 문제가 있는 것 같음
         const interval = setInterval(async () => {
             const refreshToken = localStorage.getItem('refreshToken');
             try {
@@ -81,7 +78,6 @@ function TokenProvider({ children }: TokenProviderProps) {
         }, 1000 * 60 * 3); // 30분 마다 실행
 
         return () => clearInterval(interval);
-        } 
         
   }, []);
 
