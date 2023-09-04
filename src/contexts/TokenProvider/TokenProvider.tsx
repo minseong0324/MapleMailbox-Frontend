@@ -24,14 +24,8 @@ function TokenProvider({ children }: TokenProviderProps) {
     const navigate = useNavigate();
     const [isErrorModalOpen, setErrorModalOpen] = useState(false);
     const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
-    const [skipInitialEffect, setSkipInitialEffect] = useState(true);
 
     useEffect(() => {
-
-        if (skipInitialEffect) {
-            setSkipInitialEffect(false);
-            return;
-        }
 
         const refreshToken = localStorage.getItem('refreshToken');
         if(refreshToken) { //이부분에 문제가 있는 것 같음
@@ -74,7 +68,7 @@ function TokenProvider({ children }: TokenProviderProps) {
         }, 1000 * 60 * 3); // 30분 마다 실행
 
         return () => clearInterval(interval);
-        }
+        } 
         
   }, [navigate]);
 
