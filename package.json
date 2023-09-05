@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy": "http://maplemailbox.com",
+  "proxy": "https://maplemailbox.com",
   "devDependencies": {
     "@types/node": "^20.5.3",
     "@types/react": "^18.2.15",
