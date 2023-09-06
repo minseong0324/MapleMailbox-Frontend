@@ -11,7 +11,7 @@
   },
   "proxy": "https://maplemailbox.com",
   "devDependencies": {
-    "@types/node": "^20.5.3",
+    "@types/node": "^20.5.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.26",

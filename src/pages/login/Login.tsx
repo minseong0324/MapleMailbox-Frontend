@@ -3,7 +3,7 @@ import { s } from './style'
 import { useNavigate } from 'react-router-dom';
 import KakaoLogin from './kakaoLogin/KakaoLogin';
 import NaverLogin from './naverLogin/NaverLogin';
-import GoogleLogin from './googleLogin/GoogleLogin'
+import GoogleLogin from './googleLogin/GoogleLogin';
 import axios, {AxiosError} from 'axios';
 import { QueryClientProvider, useMutation, useQueryClient } from 'react-query';
 import NaverLoginImage from "../../assets/socialLoginButton/NaverLogin.svg";

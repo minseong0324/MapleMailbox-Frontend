@@ -1,7 +1,7 @@
 import React from 'react';
 import {s} from "./style";
 
-// children 프로퍼티를 포함하도록 ModalProps 인터페이스를 수정했습니다.
+// children 프로퍼티를 포함하도록 ModalProps 인터페이스를 수정
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
