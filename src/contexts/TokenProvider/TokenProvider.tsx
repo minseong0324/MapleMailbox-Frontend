@@ -82,6 +82,7 @@ function TokenProvider({ children }: TokenProviderProps) {
   }, []);
 
   const handleNavigateHome = () => {
+    setErrorModalOpen(false)
     navigate('/')
   };
 
