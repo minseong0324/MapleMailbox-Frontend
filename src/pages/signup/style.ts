@@ -179,7 +179,7 @@ margin-bottom: -10px;
 const mobilePolicyStyles = `
 // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
   @media (min-width: 768px) {
-    bottom: -5%;  // 화면 하단에서 조금 더 아래로
+    bottom: -5%;  // 화면 하단에서 조금 더 아래로.
     overflow: auto;
   }
 

@@ -23,7 +23,7 @@ const VisitorMenu: React.FC<MenuProps> = ({ onServiceDescription }) => {
   
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    setIsLoggedIn(accessToken !== null);  // accessToken의 값에 따라 로그인 상태를 설정
+    setIsLoggedIn(Boolean(accessToken));
   }, []);  // 컴포넌트가 마운트될 때만 실행
 
   const handleMenuToggle = () => {
