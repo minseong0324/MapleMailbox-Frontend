@@ -64,11 +64,7 @@ const getUserInfoFromServer = async (userId: string) => {
 
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://maplemailbox.com/api/users/${userId}`, {
-      headers: {
-        'authorization': `${accessToken}`
-      }
-    });
+    const response = await axios.get(`https://maplemailbox.com/api/users/${userId}/visitor`);
 
     // 응답에서 사용자 정보를 추출합니다.
     const userInfo = response.data;
