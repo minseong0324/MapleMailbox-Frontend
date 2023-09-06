@@ -57,6 +57,7 @@ export const SignUpWrapper = styled.div`
   height: 820px;
 
   ${isMobile ? mobileStyles : ''}
+  color: #444;
 `;
 
  const SignUpForm = styled.form`
