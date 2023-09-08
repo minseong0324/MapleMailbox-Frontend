@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, ReactNode } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import {s} from './style';
 import { useNavigate } from 'react-router-dom';
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
@@ -26,11 +26,9 @@ function TokenProvider({ children }: TokenProviderProps) {
     const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
     useEffect(() => {
-        const refreshToken = localStorage.getItem('refreshToken');
-        if(refreshToken!==null || refreshToken!=="null") {
         const interval = setInterval(async () => {
             const refreshToken = localStorage.getItem('refreshToken');
-
+            try {
             if (refreshToken) {
                 const response = await axios.post(`https://maplemailbox.com/api/auth/refresh`,{}, {
                     headers: {
@@ -44,7 +42,11 @@ function TokenProvider({ children }: TokenProviderProps) {
 
                     const newRefreshToken = response.headers['reauthorization'];
                     localStorage.setItem('refreshToken', newRefreshToken);
-                } else {
+                } 
+            }
+            }catch (error: unknown) {
+                if (error instanceof AxiosError) {
+                    const status = error?.response?.status;
                     setModalErrorContent(
                     <s.ErrorCenterModalWrapper>
                         <s.ErrorModalTextsWrapper2>세션이 만료되었어요!</s.ErrorModalTextsWrapper2>
@@ -52,6 +54,14 @@ function TokenProvider({ children }: TokenProviderProps) {
                         <s.ModalButton onClick={handleNavigateHome}>돌아가기</s.ModalButton>
                     </s.ErrorCenterModalWrapper>
                     );
+                    if (status === 404) {
+                        // 리소스를 찾을 수 없음
+                      } else if (status === 500) {
+                          // 서버 내부 오류
+                      } else {
+                          // 기타 상태 코드 처리
+                      }
+                    } 
                     setErrorModalOpen(true)
                     localStorage.removeItem("email");
                     localStorage.removeItem('accessToken');
@@ -62,16 +72,17 @@ function TokenProvider({ children }: TokenProviderProps) {
                     localStorage.removeItem('treeType');
                     localStorage.removeItem('characterType');
                     localStorage.removeItem('lettersOverFive');
-                }
+                
             }
-        }, 1000 * 60 * 30); // 30분 마다 실행
+        
+        }, 1000 * 60 * 3); // 30분 마다 실행
 
         return () => clearInterval(interval);
-        }
         
-  }, [navigate]);
+  }, []);
 
   const handleNavigateHome = () => {
+    setErrorModalOpen(false)
     navigate('/')
   };
 
@@ -80,11 +91,10 @@ function TokenProvider({ children }: TokenProviderProps) {
         accessToken: localStorage.getItem('accessToken'),
         refreshToken: localStorage.getItem('refreshToken')
     }}>
-      {children}
+        {children}
         <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
             {modalErrorContent}
         </ErrorModal>
-      {modalErrorContent}
     </TokenContext.Provider>
   );
 }

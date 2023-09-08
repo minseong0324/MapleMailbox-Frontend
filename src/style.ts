@@ -260,6 +260,13 @@ html, body {
         font-weight: normal;
         font-style: normal;
     }
+
+    @font-face {
+        font-family: 'NanumBarunpenR';
+        src: url(${NanumBarunpenR}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
 `;
 
 export const BackgroundPC = styled.div`

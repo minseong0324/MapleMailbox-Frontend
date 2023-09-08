@@ -167,7 +167,8 @@ flex-direction: column;
 align-items: center;
 line-height: 5;
 font-size: 38px;
-//margin-top: -10%;
+margin-bottom: -100px;
+margin-top: -100px;
 `;
 
 

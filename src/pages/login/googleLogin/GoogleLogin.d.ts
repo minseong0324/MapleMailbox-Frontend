@@ -2,5 +2,5 @@ import React from 'react';
 type GoogleLoginButtonProps = {
     buttonImage: string;
 };
-declare const KakaoLogin: React.FC<GoogleLoginButtonProps>;
-export default KakaoLogin;
+declare const GoogleLogin: React.FC<GoogleLoginButtonProps>;
+export default GoogleLogin;

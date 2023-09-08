@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "tsc && vite build",
+		"build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy": "http://maplemailbox.com",
+  "proxy": "https://maplemailbox.com",
   "devDependencies": {
-    "@types/node": "^20.5.3",
+    "@types/node": "^20.5.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.26",
@@ -32,12 +32,9 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
-    "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
     "date-fns": "^2.30.0",
-    "jwt-decode": "^3.1.2",
     "react-device-detect": "^2.2.3",
-    "react-native": "^0.72.3",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.1",
     "react-responsive-carousel": "^3.2.23",

@@ -28,7 +28,6 @@ function SelectTreeCharacter() {
   const MyUserId = localStorage.getItem("userId")
   const [selectedTree, setSelectedTree] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState("");
-  const [isMenuOpen, setMenuOpen] = useState(true);
   const [isServiceModalOpen, setServiceModalOpen] = useState(false);
   const navigate = useNavigate(); // useNavigate hook 사용
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
@@ -54,6 +53,19 @@ function SelectTreeCharacter() {
   }
 
   const handleSubmit = async () => {
+    // 나무나 캐릭터가 선택되지 않았을 경우
+  if (!selectedTree || !selectedCharacter) {
+    setModalErrorContent(
+      <s.CenterModalWrapper>
+        <s.ErrorModalTextsWrapper2>선택하고자 하는 캐릭터와</s.ErrorModalTextsWrapper2>
+        <s.ErrorModalTextsWrapper2>나무를 클릭해주세요!</s.ErrorModalTextsWrapper2>
+        <s.ModalButton onClick={() => setErrorModalOpen(false)}>확인</s.ModalButton>
+      </s.CenterModalWrapper>
+    );
+    setErrorModalOpen(true);
+    return;  // Early return
+  }
+
     const selectedData = {
       treeType: selectedTree, 
       characterType: selectedCharacter 

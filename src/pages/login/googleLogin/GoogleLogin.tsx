@@ -7,7 +7,7 @@ type GoogleLoginButtonProps = {
   }
 
 // 네이버 로그인 컴포넌트
-const KakaoLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
+const GoogleLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
     // 네이버 클라이언트 ID
     //const CLIENT_ID = `${import.meta.env.VITE_APP_NAVER_CLIENT_ID}`;
     // 네이버 리다이렉트 URI
@@ -29,4 +29,4 @@ const KakaoLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
     }
 
 
-export default KakaoLogin;
+export default GoogleLogin;

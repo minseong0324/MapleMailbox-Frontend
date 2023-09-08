@@ -57,6 +57,7 @@ export const SignUpWrapper = styled.div`
   height: 820px;
 
   ${isMobile ? mobileStyles : ''}
+  color: #444;
 `;
 
  const SignUpForm = styled.form`
@@ -100,6 +101,7 @@ const H1 = styled.h1`
   font-family: 'BareunHipi';
   font-size: 38px;
   margin-bottom: 24px;
+  color: #444;
 `;
 
 const ModalTextsWrapper = styled.div`
@@ -173,20 +175,11 @@ margin-bottom: -10px;
 `;
 
 
-const PolicyTextsWrapper = styled.div`
-  position: absolute;
-  bottom: -20px;  // 화면 하단에 고정
-  font-family: 'NanumBarunpenR';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 0.2;
-  z-index: 2;
-  overflow: auto;
 
-  // 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
+const mobilePolicyStyles = `
+// 반응형 디자인 (예: 미디어 쿼리를 사용하여 화면 크기가 768px 이상일 때 적용되는 스타일)
   @media (min-width: 768px) {
-    bottom: -5%;  // 화면 하단에서 조금 더 아래로
+    bottom: -5%;  // 화면 하단에서 조금 더 아래로.
     overflow: auto;
   }
 
@@ -201,12 +194,28 @@ const PolicyTextsWrapper = styled.div`
     bottom: -80%;  // 화면 하단에서 조금 더 아래로
     overflow: auto;
   }
+`
+
+const PolicyTextsWrapper = styled.div`
+  position: absolute;
+  bottom: -20px;  // 화면 하단에 고정
+  font-family: 'NanumBarunpenR';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.2;
+  z-index: 2;
+  overflow: auto;
+  ${isMobile ? mobilePolicyStyles : ''}
+
+  
 `;
 
 const PolicyTextsStyle = styled.p`
   margin-top: 6px;
   font-size: 9px;
   padding-bottom: 10px;
+  color: #444;
 `;
 
 const PolicyStyledLink = styled.a`
@@ -217,7 +226,6 @@ const PolicyStyledLink = styled.a`
     color: darkblue;  // 마우스 오버 시 색상 변경
   }
 `;
-
 
 
 export const s = {

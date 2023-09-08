@@ -25,7 +25,7 @@ display: flex;
 flex-direction: column;
 //align-items: center;
 //line-height: 0.2;  // 글자 간격
-font-size: 20px; 
+font-size: 25px; 
 border:2px; 
 border-style:hidden;
 border-radius: 5%;
@@ -55,7 +55,7 @@ margin-bottom:10px;
 const LetterContentText = styled.span`
 margin-top:5px;
 margin-bottom:10px;
-font-size: 14px;
+font-size: 20px;
 `;
 
 const tips = styled.p`

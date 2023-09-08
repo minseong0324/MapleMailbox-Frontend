@@ -2,11 +2,17 @@ import styled from 'styled-components';
 import buttonMidium1 from '../../../assets/button/button-midium-1.png'; 
 import buttonMidium2 from '../../../assets/button/button-midium-2.png'; 
 
-const NaverLoginButton = styled.img`
+const NaverLoginButton = styled.button`
   position: relative;
   z-index: 2;
   width: 250px;
   height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const NaverWrapper = styled.div`
