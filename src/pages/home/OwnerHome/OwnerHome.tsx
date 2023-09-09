@@ -22,7 +22,17 @@ import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
 
+// 이미지를 동적으로 가져오는 함수 1~30까지
+const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
+  const images = [];
+  const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
 
+  for (const index of indicesToImport) {
+    const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
+    images.push(image.default);
+  }
+  return images;
+};
 
 function OwnerHome() {
   const { accessToken, refreshToken } = useToken();
@@ -71,18 +81,6 @@ function OwnerHome() {
 
   localStorage.setItem(`userName_${userId}`, userName);
   //const userId = localStorage.getItem("userId");
-
-// 이미지를 동적으로 가져오는 함수 1~30까지
-const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-  const images = [];
-  const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
-
-  for (const index of indicesToImport) {
-    const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-    images.push(image.default);
-  }
-  return images;
-};
 
 // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
   const getUserInfoFromServer = async (userId: string) => {

@@ -20,6 +20,19 @@ import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
+
+  // 이미지를 동적으로 가져오는 함수 1~30까지
+  const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
+    const images = [];
+    const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
+  
+    for (const index of indicesToImport) {
+      const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
+      images.push(image.default);
+    }
+    return images;
+  };
+  
 function VisitorHome() {
   const { accessToken, refreshToken } = useToken();
   const OwnerUserId = localStorage.getItem('userId');
@@ -47,18 +60,6 @@ function VisitorHome() {
   
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
-
-  // 이미지를 동적으로 가져오는 함수 1~30까지
-  const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-    const images = [];
-    const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
-  
-    for (const index of indicesToImport) {
-      const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-      images.push(image.default);
-    }
-    return images;
-  };
 
   // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
