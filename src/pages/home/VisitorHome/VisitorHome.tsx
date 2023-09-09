@@ -23,7 +23,7 @@ import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
   // 이미지를 동적으로 가져오는 함수 1~30까지
   const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-    const images = [];
+    const images: string[] = [];
     const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
   
     for (const index of indicesToImport) {
@@ -32,7 +32,7 @@ import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
     }
     return images;
   };
-  
+
 function VisitorHome() {
   const { accessToken, refreshToken } = useToken();
   const OwnerUserId = localStorage.getItem('userId');
@@ -116,12 +116,17 @@ const handleNavigateHome = () => {
         const userInfo = await getUserInfoFromServer(userId);
         setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
 
-        setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
-        setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
-        setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
-        setNowDate(userInfo?.nowDate); 
-        setLettersOverFive(userInfo?.lettersOverFive);
-
+        if (userInfo) { // userInfo가 null이 아닌지 확인
+          setTreeType(userInfo.treeType); // 사용자 나무 종류를 상태 변수에 저장합니다.
+          setCharacterType(userInfo.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
+          setUserName(userInfo.userName); // 사용자 이름을 상태 변수에 저장합니다.
+          setNowDate(userInfo.nowDate);
+    
+          if (Array.isArray(userInfo.lettersOverFive)) { // lettersOverFive가 배열인지 확인
+            const lettersOverFive = userInfo.lettersOverFive.map((value: string) => value === 'true');
+            setLettersOverFive(lettersOverFive);
+          }
+        }
         // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
         const fetchImages = async () => {
           const mapleImages = await importSelectedImages('MapleTreeFragment', lettersOverFive);
