@@ -24,15 +24,19 @@ import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
 
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-  const images: string[] = [];
-  const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
+  const images: (string | null)[] = Array(filterArray.length).fill(null); // 빈 값을 null로 초기화
 
-  for (const index of indicesToImport) {
-    const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-    images.push(image.default);
+  for (let i = 0; i < filterArray.length; i++) {
+    if (filterArray[i]) { // 해당 인덱스의 값이 true일 때만 이미지를 가져옴
+      const index = i + 1; // 이미지 인덱스는 1부터 시작
+      const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
+      images[i] = image.default; // 원래의 인덱스에 이미지 저장
+    }
   }
+
   return images;
 };
+
 
 function OwnerHome() {
   const { accessToken, refreshToken } = useToken();
@@ -54,8 +58,8 @@ function OwnerHome() {
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
 
   // 단풍나무 이미지와 은행나무 이미지를 저장하는 상태 변수입니다.
-  const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
-  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
+  const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
+  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<(string | null)[]>([]);
 
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 

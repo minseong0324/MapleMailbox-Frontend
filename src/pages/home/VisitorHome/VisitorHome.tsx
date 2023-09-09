@@ -23,15 +23,19 @@ import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
   // 이미지를 동적으로 가져오는 함수 1~30까지
   const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-    const images: string[] = [];
-    const indicesToImport = filterArray.map((value, index) => value ? index + 1 : -1).filter(index => index !== -1);
+    const images: (string | null)[] = Array(filterArray.length).fill(null); // 빈 값을 null로 초기화
   
-    for (const index of indicesToImport) {
-      const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-      images.push(image.default);
+    for (let i = 0; i < filterArray.length; i++) {
+      if (filterArray[i]) { // 해당 인덱스의 값이 true일 때만 이미지를 가져옴
+        const index = i + 1; // 이미지 인덱스는 1부터 시작
+        const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
+        images[i] = image.default; // 원래의 인덱스에 이미지 저장
+      }
     }
+  
     return images;
   };
+  
 
 function VisitorHome() {
   const { accessToken, refreshToken } = useToken();
@@ -44,8 +48,8 @@ function VisitorHome() {
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
-  const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
-  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
+  const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
+  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<(string | null)[]>([]);
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
