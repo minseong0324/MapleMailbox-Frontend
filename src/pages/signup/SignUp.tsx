@@ -46,7 +46,6 @@ function SignUp() {
   
         // 회원가입 성공, status 200일 때
         if (response.status === 200) {
-          alert("회원가입에 성공하였습니다!")
           setModalSignUpContent(
             <s.ErrorCenterModalWrapper>
                 <s.ErrorModalTextsWrapper2>회원가입에</s.ErrorModalTextsWrapper2>

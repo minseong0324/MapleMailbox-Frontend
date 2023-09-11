@@ -131,7 +131,6 @@ const handleNavigateHome = () => {
       }
     };
 
-    
   
     fetchUserInfo();
   }, [userId, reloadUserInfo]);
@@ -256,7 +255,14 @@ const handleSendLetter = async (event: React.FormEvent) => {
     // 입력값을 검사합니다.
     if (!senderName.trim() || !letterContent.trim()) {
       // 이름이나 편지 내용이 비어있으면 경고 메시지를 표시하고 함수를 종료합니다.
-      alert('글귀를 적어주세요!');
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>이름 혹은 전하고 싶은 말</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>을 작성해주세요!</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleUnLoggedInModalClose}>로그인하기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+    );
+    setErrorModalOpen(true);
       return;
     }
 
