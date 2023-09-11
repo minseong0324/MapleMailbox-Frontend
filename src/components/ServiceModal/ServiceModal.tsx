@@ -2,10 +2,17 @@ import React from 'react';
 import { s } from './style';
 import Modal from '../../components/Modal/Modal'
 
+
 interface ServiceModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+const handleNavigateInstagram = () => {
+    window.location.href = 'https://instagram.com/maplemailbox_official?igshid=NGVhN2U2NjQ0Yg==';
+}
+
+
 
 const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
   return (
@@ -58,7 +65,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
                     <s.HorizontalContainer2>
                         <s.MapleLeafImageSmall/>
                         <s.SubSubTitle>단풍 우편함</s.SubSubTitle>
-                        <s.InstagramImg/>
+                        <s.InstagramButton onClick={handleNavigateInstagram}/>
                     </s.HorizontalContainer2>
                     <s.HorizontalContainer3>
                         <s.GinkgoLeafImageSmall/>
