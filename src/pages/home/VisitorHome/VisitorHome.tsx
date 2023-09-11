@@ -71,6 +71,7 @@ function VisitorHome() {
 const getUserInfoFromServer = async (userId: string) => {
   
   try {
+    
     // 백엔드 서버에 GET 요청을 보냅니다.
     const response = await axios.get(`https://maplemailbox.com/api/users/visitor/${userId}`);
 
@@ -114,9 +115,7 @@ const handleNavigateHome = () => {
 }
 
    // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
-   useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    
+   useEffect(() => {  
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
