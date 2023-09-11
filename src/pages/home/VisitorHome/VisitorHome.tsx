@@ -190,6 +190,19 @@ const handleNavigateHome = () => {
 }
 }, [nowDate, lettersOverFive, getTreeImageByGrowthStage, treeType]);
 
+// lettersOverFive 배열이 변경되었을 때 처리하는 로직
+useEffect(() => {
+  lettersOverFive.forEach((isOverFive, index) => {
+    if (isOverFive) {
+      getTreeImageByGrowthStage(treeType, index).then(newImage => {
+        if (newImage) {
+          setTreeFragmentImages(prevImages => [...(prevImages || []), newImage]);
+        }
+      });
+    }
+  });
+}, [lettersOverFive, getTreeImageByGrowthStage, treeType]);
+
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
     if (!characterType) {
