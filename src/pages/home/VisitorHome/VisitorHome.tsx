@@ -21,20 +21,22 @@ import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
 
 
-  // 이미지를 동적으로 가져오는 함수 1~30까지
-  const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-    const images: (string | null)[] = Array(filterArray.length).fill(null); // 빈 값을 null로 초기화
-  
-    for (let i = 0; i < filterArray.length; i++) {
-      if (filterArray[i]) { // 해당 인덱스의 값이 true일 때만 이미지를 가져옴
-        const index = i + 1; // 이미지 인덱스는 1부터 시작
-        const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-        images[i] = image.default; // 원래의 인덱스에 이미지 저장
-      }
-    }
-  
-    return images;
-  };
+type ImageModule = {
+  default: string;
+};
+// 이미지를 동적으로 가져오는 함수 1~30까지
+const importImages = async (prefix: string, count: number) => {
+  const promises: Promise<ImageModule>[] = [];
+
+  for (let i = 1; i <= count; i++) {
+    const promise = import(`../../../assets/${prefix}/${prefix}${i}.png`);
+    promises.push(promise);
+  }
+
+  const images = await Promise.all(promises);
+
+  return images.map(image => image.default);
+};
   
 
 function VisitorHome() {
@@ -67,9 +69,7 @@ function VisitorHome() {
 
   // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
-  const accessToken = localStorage.getItem('accessToken');
   
-
   try {
     // 백엔드 서버에 GET 요청을 보냅니다.
     const response = await axios.get(`https://maplemailbox.com/api/users/visitor/${userId}`);
@@ -131,20 +131,23 @@ const handleNavigateHome = () => {
             setLettersOverFive(lettersOverFive);
           }
         }
-        // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
-        const fetchImages = async () => {
-          const mapleImages = await importSelectedImages('MapleTreeFragment', lettersOverFive);
-          const ginkgoImages = await importSelectedImages('GinkgoTreeFragment', lettersOverFive);
-          setMapleTreeImages(mapleImages);
-          setGinkgoTreeImages(ginkgoImages);
-        };
-
-    fetchImages();
-
+      
       }
     };
     fetchUserInfo();
   }, [userId, reloadUserInfo]);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
+    const fetchImages = async () => {
+      const mapleImages = await importImages('MapleTreeFragment', 30);
+      const ginkgoImages = await importImages('GinkgoTreeFragment', 30);
+      setMapleTreeImages(mapleImages);
+      setGinkgoTreeImages(ginkgoImages);
+    };
+
+    fetchImages();
+  }, []);
 
   //로그인 상태 확인을 위함.
   useEffect(() => {

@@ -22,20 +22,25 @@ import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
 
-// 이미지를 동적으로 가져오는 함수 1~30까지
-const importSelectedImages = async (prefix: string, filterArray: boolean[]) => {
-  const images: (string | null)[] = Array(filterArray.length).fill(null); // 빈 값을 null로 초기화
 
-  for (let i = 0; i < filterArray.length; i++) {
-    if (filterArray[i]) { // 해당 인덱스의 값이 true일 때만 이미지를 가져옴
-      const index = i + 1; // 이미지 인덱스는 1부터 시작
-      const image = await import(`../../../assets/${prefix}/${prefix}${index}.png`);
-      images[i] = image.default; // 원래의 인덱스에 이미지 저장
-    }
+type ImageModule = {
+  default: string;
+};
+// 이미지를 동적으로 가져오는 함수 1~30까지
+const importImages = async (prefix: string, count: number) => {
+  const promises: Promise<ImageModule>[] = [];
+
+  for (let i = 1; i <= count; i++) {
+    const promise = import(`../../../assets/${prefix}/${prefix}${i}.png`);
+    promises.push(promise);
   }
 
-  return images;
+  const images = await Promise.all(promises);
+
+  return images.map(image => image.default);
 };
+
+
 
 
 function OwnerHome() {
@@ -53,6 +58,7 @@ function OwnerHome() {
   //사용자의 나무, 캐릭터 종류를 저장하는 상태변수입니다.
   const [treeType, setTreeType] = useState<string | null>(null);
   const [characterType, setCharacterType] = useState<string | null>(null);
+  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 
   // 나무가 물들어가는 이미지를 저장하는 상태변수입니다.
   const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
@@ -61,7 +67,6 @@ function OwnerHome() {
   const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<(string | null)[]>([]);
 
-  const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 
   // 나무의 성장 단계를 저장하는 상태 변수입니다.
   const [treeGrowthStage, setTreeGrowthStage] = useState<number>(0);
@@ -99,7 +104,7 @@ function OwnerHome() {
         // 응답에서 사용자 정보를 추출합니다.
         const userInfo = response.data;
 
-        // 사용자의 나무와 캐릭터 정보를 반환합니다.
+        // 사용자의 나무와 캐릭터 정보를 반환합니다.if (nowDate !== null && typeof nowDate === 'number'&& lett
         return {
           treeType: userInfo.treeType, //사용자 나무 종류
           characterType: userInfo.characterType, // 사용자 캐릭터 종류
@@ -154,22 +159,12 @@ const handleNavigateHome = () => {
             setLettersOverFive(lettersOverFive);
           }
         }
-        // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
-        const fetchImages = async () => {
-          const mapleImages = await importSelectedImages('MapleTreeFragment', lettersOverFive);
-          const ginkgoImages = await importSelectedImages('GinkgoTreeFragment', lettersOverFive);
-          setMapleTreeImages(mapleImages);
-          setGinkgoTreeImages(ginkgoImages);
-        };
-
-    fetchImages();
-
       }
     };
     fetchUserInfo();
   }, [userId]);
   
-  /*
+  
   useEffect(() => {
     // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
     const fetchImages = async () => {
@@ -181,7 +176,7 @@ const handleNavigateHome = () => {
 
     fetchImages();
   }, []);
-*/
+
 
   useEffect(() => {
         if (typeof nowDate === 'number') {
@@ -210,7 +205,7 @@ const handleNavigateHome = () => {
   }, [mapleTreeImages, ginkgoTreeImages]);
 
   useEffect(() => {
-    if (nowDate !== null && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
+    if (nowDate && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
       // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       setTreeGrowthStage(prevStage => {
         const newStage = nowDate - 1;
