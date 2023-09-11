@@ -128,8 +128,8 @@ const handleNavigateHome = () => {
         setUserName(userInfo?.userName);
         setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
-        alert(userInfo?.lettersOverFive);
       }
+      alert(lettersOverFive);
     };
 
     
