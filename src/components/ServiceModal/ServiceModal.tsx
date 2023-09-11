@@ -19,7 +19,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
                         <s.SubTitle>가을을 기다리며,</s.SubTitle>
                         <s.Title>단풍 우편함</s.Title>
                     </s.TitleWrapper>
-                    <s.GinkgoLeafImage/>
+                    <s.MapleLeafImageTransform/>
                 </s.HorizontalContainer>
                 <s.HorizontalContainer2>
                     <s.MapleLeafImageSmall/>
