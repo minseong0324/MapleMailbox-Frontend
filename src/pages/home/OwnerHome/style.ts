@@ -7,6 +7,7 @@ import buttonSmall4 from '../../../assets/button/button-small-4.png';
 import SquirrelButton from '../../../assets/animal/squirrel.png'
 import SpeechBubbleGif from '../../../assets/speechBubble/speechBubble1.gif'
 import { isMobile } from 'react-device-detect';
+import ChristmasButton from  '../../../assets/button/button-xmas.png'
 
 
 
@@ -86,6 +87,13 @@ const DdayCount = styled.button`
   z-index: 2;
   color: #444;
 `;
+
+const DdayCountXmas = styled(DdayCount)`
+  background: url(${ChristmasButton}) no-repeat center center; // 새로운 배경 이미지
+  background-size: cover;
+`;
+
+
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -312,6 +320,7 @@ export const s = {
     ErrorModalTextsWrapper2,
     ModalButton,
     LinkModalTextsStyle2,
-    LinkModalTextsStyle1
+    LinkModalTextsStyle1,
+    DdayCountXmas
 }
 

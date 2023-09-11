@@ -153,7 +153,7 @@ const InstagramImg = styled.img.attrs({
     src: Collection //바꿔야함
   })`
       z-index: 2;
-      width:110px;
+      width:130px;
       height:25px;
       margin-left: 5px;
       //margin-bottom: 10px;
