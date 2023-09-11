@@ -318,7 +318,18 @@ useEffect(() => {
             <s.ButtonWrapper>
               <s.Break/> 
               <s.LetterOpenButton onClick={handleReadLetters}>편지 확인하기</s.LetterOpenButton>
-              <s.DdayCount>D-{dday}</s.DdayCount>
+              {
+                dday === null ? (
+                  <s.DdayCount>"로딩중"</s.DdayCount>
+                ) : 
+                dday === 0 ? (
+                  <s.DdayCount>D-Day</s.DdayCount>
+                ) : dday < 0 ? (
+                  <s.DdayCountXmas>Soon...</s.DdayCountXmas>
+                ) : (
+                  <s.DdayCount>D-{dday}</s.DdayCount>
+                )
+              }
               <s.Break/> 
               <s.Button onClick={handleShareLink}>링크 공유하기</s.Button>
             </s.ButtonWrapper>

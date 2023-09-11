@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import GinkgoLeaf from '../../assets/leafImg/GinkgoLeaf.png';
 import MapleLeaf from '../../assets/leafImg/MapleLeaf.png';
 import Collection from '../../assets/stamp/collection3.png'
+import InstagramId from '../../assets/stamp/insta-id.png'
 
 const Wrapper = styled.div`
 display: flex;
@@ -150,14 +151,32 @@ const CollectionImg = styled.img.attrs({
 `;
 
 const InstagramImg = styled.img.attrs({
-    src: Collection //바꿔야함
+    src: InstagramId
   })`
       z-index: 2;
-      width:110px;
-      height:25px;
+      width:104px;
+      height:20px;
       margin-left: 5px;
-      //margin-bottom: 10px;
+      margin-top: 2px;
      align-items:center;
+`;
+
+const InstagramButton = styled.button`
+  background: url(${InstagramId}) no-repeat center;
+  background-size: 104px 20px;
+  z-index: 2;
+  width:104px;
+  height:20px;
+  margin-left: 5px;
+  margin-top: 2px;
+  align-items:center;
+  border: transparent;
+  border-radius: 10px;
+  background-color: #FFE5CC;
+  &:active {
+    background-color: rgba(128, 128, 128, 0.5);  // 반투명한 회색
+    border-radius: 10px;
+  }
 `;
 
 export const s = {
@@ -178,5 +197,6 @@ export const s = {
     HorizontalContainer3,
     CollectionImg,
     InstagramImg,
+    InstagramButton,
     MapleLeafImageTransform
 }

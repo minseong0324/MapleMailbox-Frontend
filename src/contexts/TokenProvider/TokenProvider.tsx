@@ -75,7 +75,7 @@ function TokenProvider({ children }: TokenProviderProps) {
                 
             }
         
-        }, 1000 * 60 * 3); // 30분 마다 실행
+        }, 1000 * 60 * 30); // 30분 마다 실행
 
         return () => clearInterval(interval);
         
