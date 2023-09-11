@@ -325,7 +325,7 @@ useEffect(() => {
                 dday === 0 ? (
                   <s.DdayCount>D-Day</s.DdayCount>
                 ) : dday < 0 ? (
-                  <s.DdayCountXmas />
+                  <s.DdayCountXmas>Soon...</s.DdayCountXmas>
                 ) : (
                   <s.DdayCount>D-{dday}</s.DdayCount>
                 )

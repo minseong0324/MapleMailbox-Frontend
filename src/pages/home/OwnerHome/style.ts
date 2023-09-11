@@ -91,6 +91,7 @@ const DdayCount = styled.button`
 const DdayCountXmas = styled(DdayCount)`
   background: url(${ChristmasButton}) no-repeat center center; // 새로운 배경 이미지
   background-size: cover;
+  color: transparent;
 `;
 
 
