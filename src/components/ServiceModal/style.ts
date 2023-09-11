@@ -88,6 +88,17 @@ const MapleLeafImage = styled.img.attrs({
      
 `;
 
+const MapleLeafImageTransform = styled.img.attrs({
+  src: MapleLeaf
+})`
+    z-index: 2;
+    width:30px;
+    margin-top:-20px;
+    margin-left: 7px;
+    transform: scaleX(-1); 
+
+`;
+
 const GinkgoLeafImageSmall = styled.img.attrs({
     src: GinkgoLeaf
   })`
@@ -139,13 +150,13 @@ const CollectionImg = styled.img.attrs({
 `;
 
 const InstagramImg = styled.img.attrs({
-    src: MapleLeaf //바꿔야함
+    src: Collection //바꿔야함
   })`
       z-index: 2;
-      width:90px;
-      height:13px;
+      width:110px;
+      height:25px;
       margin-left: 5px;
-      margin-bottom: 10px;
+      //margin-bottom: 10px;
      align-items:center;
 `;
 
@@ -166,5 +177,6 @@ export const s = {
     HorizontalContainer2,
     HorizontalContainer3,
     CollectionImg,
-    InstagramImg
+    InstagramImg,
+    MapleLeafImageTransform
 }

@@ -199,7 +199,8 @@ const mobilePolicyStyles = `
 const PolicyTextsWrapper = styled.div`
   position: absolute;
   bottom: -20px;  // 화면 하단에 고정
-  font-family: 'NanumBarunpenR';
+  font-family: 'NanumBarunpenB';
+  font-weight: lighter;
   display: flex;
   flex-direction: column;
   align-items: center;

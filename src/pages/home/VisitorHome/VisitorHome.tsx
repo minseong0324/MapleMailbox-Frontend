@@ -19,15 +19,25 @@ import VioletCharImg from "../../../assets/charImg/violet-small.png";
 import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider'
+
+
+type ImageModule = {
+  default: string;
+};
 // 이미지를 동적으로 가져오는 함수 1~30까지
 const importImages = async (prefix: string, count: number) => {
-  const images = [];
+  const promises: Promise<ImageModule>[] = [];
+
   for (let i = 1; i <= count; i++) {
-    const image = await import(`../../../assets/${prefix}/${prefix}${i}.png`);
-    images.push(image.default);
+    const promise = import(`../../../assets/${prefix}/${prefix}${i}.png`);
+    promises.push(promise);
   }
-  return images;
+
+  const images = await Promise.all(promises);
+
+  return images.map(image => image.default);
 };
+  
 
 function VisitorHome() {
   const { accessToken, refreshToken } = useToken();
@@ -39,9 +49,9 @@ function VisitorHome() {
   const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
-  const [mapleTreeImages, setMapleTreeImages] = useState<string[]>([]);
-  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<string[]>([]);
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(null));
+  const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
+  const [ginkgoTreeImages, setGinkgoTreeImages] = useState<(string | null)[]>([]);
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(true); // 메뉴의 보임/안보임을 관리하는 상태
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
@@ -59,10 +69,9 @@ function VisitorHome() {
 
   // 사용자의 나무와 캐릭터 정보를 가져오는 함수입니다.
 const getUserInfoFromServer = async (userId: string) => {
-  const accessToken = localStorage.getItem('accessToken');
   
-
   try {
+    
     // 백엔드 서버에 GET 요청을 보냅니다.
     const response = await axios.get(`https://maplemailbox.com/api/users/visitor/${userId}`);
 
@@ -105,31 +114,35 @@ const handleNavigateHome = () => {
   navigate(`/`);    
 }
 
-  // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
-  useEffect(() => {
+   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
+   useEffect(() => {  
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
         setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
 
-        setTreeType(userInfo?.treeType); //사용자 나무 종류를 상태 변수에 저장합니다.
-        setCharacterType(userInfo?.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
-        setUserName(userInfo?.userName); // 사용자 이름을 상태 변수에 저장합니다.
-        setNowDate(userInfo?.nowDate); 
+        //const userInfo = testUserInfo; // 테스트용 데이터 사용
+        setTreeType(userInfo?.treeType);
+        setCharacterType(userInfo?.characterType);
+        setUserName(userInfo?.userName);
+        setNowDate(userInfo?.nowDate);
         setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
+
+  
     fetchUserInfo();
   }, [userId, reloadUserInfo]);
 
-  // 컴포넌트가 마운트될 때 이미지를 가져옵니다.
   useEffect(() => {
+    // 컴포넌트가 마운트될 때 이미지 데이터를 가져옵니다.
     const fetchImages = async () => {
       const mapleImages = await importImages('MapleTreeFragment', 30);
       const ginkgoImages = await importImages('GinkgoTreeFragment', 30);
       setMapleTreeImages(mapleImages);
       setGinkgoTreeImages(ginkgoImages);
     };
+
     fetchImages();
   }, []);
 
@@ -172,6 +185,19 @@ const handleNavigateHome = () => {
   
 }
 }, [nowDate, lettersOverFive, getTreeImageByGrowthStage, treeType]);
+
+// lettersOverFive 배열이 변경되었을 때 처리하는 로직
+useEffect(() => {
+  lettersOverFive.forEach((isOverFive, index) => {
+    if (isOverFive) {
+      getTreeImageByGrowthStage(treeType, index).then(newImage => {
+        if (newImage) {
+          setTreeFragmentImages(prevImages => [...(prevImages || []), newImage]);
+        }
+      });
+    }
+  });
+}, [lettersOverFive, getTreeImageByGrowthStage, treeType]);
 
   // api를 통해 받아온 유저 정보에서 캐릭터 이미지를 가져오는 함수입니다.
   const getCharacterImage = (characterType: string | null) => {
@@ -228,7 +254,14 @@ const handleSendLetter = async (event: React.FormEvent) => {
     // 입력값을 검사합니다.
     if (!senderName.trim() || !letterContent.trim()) {
       // 이름이나 편지 내용이 비어있으면 경고 메시지를 표시하고 함수를 종료합니다.
-      alert('글귀를 적어주세요!');
+      setModalErrorContent(
+        <s.ErrorCenterModalWrapper>
+            <s.ErrorModalTextsWrapper2>이름 혹은 전하고 싶은 말</s.ErrorModalTextsWrapper2>
+            <s.ErrorModalTextsWrapper2>을 작성해주세요!</s.ErrorModalTextsWrapper2>
+            <s.ModalButton onClick={handleUnLoggedInModalClose}>로그인하기</s.ModalButton>
+        </s.ErrorCenterModalWrapper>
+    );
+    setErrorModalOpen(true);
       return;
     }
 
