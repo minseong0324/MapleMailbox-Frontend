@@ -61,7 +61,7 @@ function OwnerHome() {
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
 
   // 나무가 물들어가는 이미지를 저장하는 상태변수입니다.
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(null));
 
   // 단풍나무 이미지와 은행나무 이미지를 저장하는 상태 변수입니다.
   const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
@@ -143,24 +143,24 @@ const handleNavigateHome = () => {
 
    // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
    useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
         setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
 
-        if (userInfo) { // userInfo가 null이 아닌지 확인
-          setTreeType(userInfo.treeType); // 사용자 나무 종류를 상태 변수에 저장합니다.
-          setCharacterType(userInfo.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
-          setUserName(userInfo.userName); // 사용자 이름을 상태 변수에 저장합니다.
-          setNowDate(userInfo.nowDate);
-    
-          if (Array.isArray(userInfo.lettersOverFive)) { // lettersOverFive가 배열인지 확인
-            const lettersOverFive = userInfo.lettersOverFive.map((value: string) => value === 'true');
-            setLettersOverFive(lettersOverFive);
-          }
-        }
+        //const userInfo = testUserInfo; // 테스트용 데이터 사용
+        setTreeType(userInfo?.treeType);
+        setCharacterType(userInfo?.characterType);
+        setUserName(userInfo?.userName);
+        setNowDate(userInfo?.nowDate);
+        setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
+
+    
+  
     fetchUserInfo();
   }, [userId]);
   

@@ -49,7 +49,7 @@ function VisitorHome() {
   const [userName, setUserName] = useState('김은행'); // 기본 이름 설정
   const [treeType, setTreeType] = useState(null);
   const [characterType, setCharacterType] = useState(null);
-  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(false));
+  const [treeFragmentImages, setTreeFragmentImages] = useState<string[]>(Array(30).fill(null));
   const [mapleTreeImages, setMapleTreeImages] = useState<(string | null)[]>([]);
   const [ginkgoTreeImages, setGinkgoTreeImages] = useState<(string | null)[]>([]);
   const [treeGrowthStage, setTreeGrowthStage] = useState(0);
@@ -113,27 +113,26 @@ const handleNavigateHome = () => {
   navigate(`/`);    
 }
 
-  // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
-  useEffect(() => {
+   // 컴포넌트가 마운트될 때 사용자 정보를 가져옵니다.
+   useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    
     const fetchUserInfo = async () => {
       if (userId) {
         const userInfo = await getUserInfoFromServer(userId);
         setTreeFragmentImages([]); // 유저 정보를 새로 불러올 때마다 초기화
 
-        if (userInfo) { // userInfo가 null이 아닌지 확인
-          setTreeType(userInfo.treeType); // 사용자 나무 종류를 상태 변수에 저장합니다.
-          setCharacterType(userInfo.characterType);  // 사용자 캐릭터 종류를 상태 변수에 저장합니다.
-          setUserName(userInfo.userName); // 사용자 이름을 상태 변수에 저장합니다.
-          setNowDate(userInfo.nowDate);
-    
-          if (Array.isArray(userInfo.lettersOverFive)) { // lettersOverFive가 배열인지 확인
-            const lettersOverFive = userInfo.lettersOverFive.map((value: string) => value === 'true');
-            setLettersOverFive(lettersOverFive);
-          }
-        }
-      
+        //const userInfo = testUserInfo; // 테스트용 데이터 사용
+        setTreeType(userInfo?.treeType);
+        setCharacterType(userInfo?.characterType);
+        setUserName(userInfo?.userName);
+        setNowDate(userInfo?.nowDate);
+        setLettersOverFive(userInfo?.lettersOverFive);
       }
     };
+
+    
+  
     fetchUserInfo();
   }, [userId, reloadUserInfo]);
 
