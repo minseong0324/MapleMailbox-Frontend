@@ -25,6 +25,7 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   min-height: 100vh;
   overflow-y: auto;
   background-color: rgba(197, 247, 255, 0.8);
+  background-attachment: fixed;
   animation: ${props => props.show ? fadeIn : fadeOut} 0.5s linear forwards;
   display: ${props => props.show ? 'block' : 'none'};
   z-index: 999;
