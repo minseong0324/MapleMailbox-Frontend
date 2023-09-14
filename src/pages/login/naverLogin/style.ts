@@ -66,7 +66,7 @@ margin-bottom: -10px;
 
 const ModalButton = styled.button`
   margin-top: 45px;
-  font-family: 'DOSSaemmul';
+  font-family: 'NanumBarunpenB';
   width: 170px; // 버튼 너비를 조정
   height: 40px; // 버튼 높이를 조정
   padding: 10px; // 내부 패딩을 조정
