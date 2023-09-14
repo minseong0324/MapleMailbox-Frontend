@@ -276,6 +276,7 @@ useEffect(() => {
   // 링크 공유 함수
   const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href) // 현재 페이지의 URL을 클립보드에 복사합니다.
+    navigator.clipboard.writeText(`https://maplemailbox.com/home/${userId}`)
     //setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
     setShareModalOpen(true);
       
