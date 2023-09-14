@@ -21,7 +21,7 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vh;
+  width: 100%;
   height: 100vh;
   overflow-y: auto;
   background-color: rgba(197, 247, 255, 0.8);
