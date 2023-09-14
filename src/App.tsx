@@ -10,7 +10,7 @@ import OwnerHome from './pages/home/OwnerHome/OwnerHome';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import useScroll from './hooks/useScroll/useScroll';
 import LeafFalling from './components/leafFalling/leafFalling'
-//import Clouds from './components/Clouds/Clouds';
+
 import SelectTreeCharacter from './pages/select/selectTreeCharacter';
 import KakaoCallback from './pages/login/kakaoLogin/KakaoCallback';
 import NaverCallback from './pages/login/naverLogin/NaverCallback';
