@@ -276,14 +276,15 @@ useEffect(() => {
   // 링크 공유 함수
   const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href) // 현재 페이지의 URL을 클립보드에 복사합니다.
-    setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
+    //setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
     setShareModalOpen(true);
       
     setModalLinkContent(
       <s.ErrorCenterModalWrapper>
         <s.LinkModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.LinkModalTextsStyle1>
         <s.Break/>
-        <s.LinkModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.LinkModalTextsStyle2>
+        {/*<s.LinkModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.LinkModalTextsStyle2>*/}
+        <s.LinkModalTextsStyle2>링크가 복사되었습니다!</s.LinkModalTextsStyle2>
         <s.ModalButton onClick={handleCloseLinkCopyClose}>확인</s.ModalButton>
       </s.ErrorCenterModalWrapper>
     )
