@@ -30,7 +30,7 @@ function App() {
 
     function checkOrientation() {
       if (isAndroid() && window.innerWidth > window.innerHeight) {
-        alert('가로모드는 지원하지 않습니다.');
+        alert('가로모드는 지원하지 않습니다. 새로모드로 전환해주세요!');
       }
     }
 
@@ -57,7 +57,7 @@ function App() {
         
           <Route path="/" element={<HomeBeforeLogin />} />
           <Route path="/home/:userId" element={<Home />} />
-          <Route path="/ownerhome" element={<OwnerHome />} /> {/* 이건 출시 이전에 뺄 것입니다. 개발을 위해 라우트 해두었습니다. */}
+          {/* <Route path="/ownerhome" element={<OwnerHome />} /> {/* 이건 출시 이전에 뺄 것입니다. 개발을 위해 라우트 해두었습니다. */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/select-character-tree/:userId" element={<SelectTreeCharacter />} />
