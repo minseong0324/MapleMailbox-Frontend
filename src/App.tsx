@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VisitorHome from './pages/home/VisitorHome/VisitorHome';
 import Home from './pages/home/Home';
@@ -21,6 +22,26 @@ import TokenProvider from './contexts/TokenProvider/TokenProvider';
 const queryClient = new QueryClient();
 
 function App() {
+
+  useEffect(() => {
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
+
+    function checkOrientation() {
+      if (isAndroid() && window.innerWidth > window.innerHeight) {
+        alert('가로모드는 지원하지 않습니다.');
+      }
+    }
+
+    window.addEventListener('resize', checkOrientation);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+    };
+  }, []);
+
   return (
     <>
     
