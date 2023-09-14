@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import copy from 'copy-to-clipboard';
 import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
 import ServiceModal from 'src/components/ServiceModal/ServiceModal';
@@ -21,6 +22,7 @@ import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
+import fi from 'date-fns/esm/locale/fi/index.js';
 
 
 type ImageModule = {
@@ -84,6 +86,8 @@ function OwnerHome() {
 
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+
+  const [modalLinkContent, setModalLinkContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
   const navigate = useNavigate(); // useNavigate hook 사용
   
@@ -274,13 +278,20 @@ useEffect(() => {
   // 링크 공유 함수
   const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href) // 현재 페이지의 URL을 클립보드에 복사합니다.
-      .then(() => {
-        setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
-        setShareModalOpen(true);
-      })
-      .catch(err => {
-        //console.error('Could not copy text: ', err);
-      });
+    copy(`https://maplemailbox.com/home/${userId}`); //안드로이드 카카오톡 인앱 브라우저 이슈 대응
+
+    //setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
+    setShareModalOpen(true);
+      
+    setModalLinkContent(
+      <s.ErrorCenterModalWrapper>
+        <s.LinkModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.LinkModalTextsStyle1>
+        <s.Break/>
+        {/*<s.LinkModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.LinkModalTextsStyle2>*/}
+        <s.LinkModalTextsStyle2>링크가 복사되었습니다!</s.LinkModalTextsStyle2>
+        <s.ModalButton onClick={handleCloseLinkCopyClose}>확인</s.ModalButton>
+      </s.ErrorCenterModalWrapper>
+    )
   };
 
   // 서비스 설명 함수
@@ -339,12 +350,7 @@ useEffect(() => {
             </Modal>
 
             <SmallModal isOpen={isShareModalOpen} onClose={() => setShareModalOpen(false)}>
-              <s.ErrorCenterModalWrapper>
-                <s.LinkModalTextsStyle1>주변 사람에게 나무의 위치를 알려주세요!</s.LinkModalTextsStyle1>
-                <s.Break/>
-                <s.LinkModalTextsStyle2>{isLinkCopied ? "링크가 복사되었습니다!" : "링크 복사에 실패했습니다."}</s.LinkModalTextsStyle2>
-                <s.ModalButton onClick={handleCloseLinkCopyClose}>확인</s.ModalButton>
-              </s.ErrorCenterModalWrapper>
+              {modalLinkContent}
             </SmallModal>
 
             <ServiceModal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}/>

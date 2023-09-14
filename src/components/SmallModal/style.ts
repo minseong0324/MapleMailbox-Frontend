@@ -20,10 +20,13 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   //font-family: 'DOSSaemmul';
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 150%;
+  min-height: 100vh;
+  overflow-y: auto;
   background-color: rgba(197, 247, 255, 0.8);
+  background-attachment: fixed;
   animation: ${props => props.show ? fadeIn : fadeOut} 0.5s linear forwards;
   display: ${props => props.show ? 'block' : 'none'};
   z-index: 999;

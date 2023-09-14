@@ -3,7 +3,7 @@ import Arrow from '../../assets/arrow/arrow2.png';
 
 
 const BackWrapper = styled.div`
-  font-family: 'DOSSaemmul';
+  font-family: 'NanumBarunpenB';
   position: fixed;
   top: 10px;
   left: 20px;
