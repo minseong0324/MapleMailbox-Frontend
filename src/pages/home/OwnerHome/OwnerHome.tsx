@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import copy from 'copy-to-clipboard';
 import Menu from '../../../components/Menu/Menu';
 import Modal from '../../../components/Modal/Modal';
 import ServiceModal from 'src/components/ServiceModal/ServiceModal';
@@ -21,6 +22,7 @@ import YellowCharImg from "../../../assets/charImg/yellow-small.png";
 import ErrorModal from "src/components/ErrorModal/ErrorModal";
 import SmallModal from "src/components/SmallModal/SmallModal";
 import {useToken}  from '../../../contexts/TokenProvider/TokenProvider';
+import fi from 'date-fns/esm/locale/fi/index.js';
 
 
 type ImageModule = {
@@ -276,7 +278,8 @@ useEffect(() => {
   // 링크 공유 함수
   const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href) // 현재 페이지의 URL을 클립보드에 복사합니다.
-    navigator.clipboard.writeText(`https://maplemailbox.com/home/${userId}`)
+    copy(`https://maplemailbox.com/home/${userId}`); //안드로이드 카카오톡 인앱 브라우저 이슈 대응
+
     //setIsLinkCopied(true); // 링크가 복사되었음을 표시합니다.
     setShareModalOpen(true);
       
