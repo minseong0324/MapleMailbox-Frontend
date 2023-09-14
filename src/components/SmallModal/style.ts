@@ -22,9 +22,8 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
-  height: 150%;
   background-color: rgba(197, 247, 255, 0.8);
   animation: ${props => props.show ? fadeIn : fadeOut} 0.5s linear forwards;
   display: ${props => props.show ? 'block' : 'none'};
