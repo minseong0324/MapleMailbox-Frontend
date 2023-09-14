@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 import bodyBackground from './assets/sky/sky-small.png';
 import bodyAfterBackground from './assets/background/background-small.png';
 import NanumBarunpenB from './static/font/NanumBarunpenB.woff2'
-import BareunHipiWoff from './static/font/BareunHipi.woff'
 import BareunHipi from './static/font/BareunHipi.woff2'
 
 
@@ -78,8 +77,7 @@ export const GlobalStyle = createGlobalStyle`
 
     @font-face {
         font-family: 'BareunHipi';
-        src: url(${BareunHipi}) format('woff2'),
-            url(${BareunHipiWoff}) format('woff');
+        src: url(${BareunHipi}) format('woff2');
         font-weight: normal;
         font-style: normal;
     }
@@ -251,8 +249,7 @@ html, body {
 
     @font-face {
         font-family: 'BareunHipi';
-        src: url(${BareunHipi}) format('woff2'),
-            url(${BareunHipiWoff}) format('woff');
+        src: url(${BareunHipi}) format('woff2');
         font-weight: normal;
         font-style: normal;
     }
