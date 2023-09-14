@@ -10,23 +10,21 @@ interface ModalProps {
 
 const ErrorModal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
+  const [fullHeight, setFullHeight] = React.useState('100vh');  // 상태 변수
+
   useEffect(() => {
     if (isOpen) {
-      const modalWrapperElement = document.getElementById("modal-wrapper");
-      if (modalWrapperElement) { // null 체크
-        const fullHeight = Math.max(
-          document.body.scrollHeight,
-          document.documentElement.scrollHeight
-        );
-        modalWrapperElement.style.height = `${fullHeight}px`;
-      }
+      const calculatedHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
+      setFullHeight(`${calculatedHeight}px`);  // 상태 업데이트
     }
   }, [isOpen]);
   
-
   return (
-    <s.ModalWrapper id="modal-wrapper" show={isOpen} onClick={onClose}>
-      <s.ModalContent onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+    <s.ModalWrapper id="modal-wrapper" style={{minHeight: fullHeight}} show={isOpen} onClick={onClose}>
+    <s.ModalContent onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
         <s.ModalInnerContent>
         {children}
         </s.ModalInnerContent>
