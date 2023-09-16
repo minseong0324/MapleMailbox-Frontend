@@ -44,7 +44,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
         if (nowDate === 1 && menuButtonClickedCount === 1) {
             // 조건에 맞을 때 서버에 PUT 요청 보내기
             try {
-                const response = await axios.put(`https://maplemailbox.com/api/users/${userId}/missions/${nowDate}`, {
+                const response = await axios.put(`https://api.maplemailbox.com/api/users/${userId}/missions/${nowDate}`, {
                     menuButtonClicked: true
                 }, {
                     headers: {
@@ -86,7 +86,7 @@ const Menu: React.FC<MenuProps> = ({ onServiceDescription, nowDate }) => {
   //로그아웃 버튼 함수
   const handleSubmitLogout = async () => { 
     try {
-      const response = await axios.put(`https://maplemailbox.com/api/auth/logout/${userId}`, {}, {
+      const response = await axios.put(`https://api.maplemailbox.com/api/auth/logout/${userId}`, {}, {
           headers: {
               'authorization': `${accessToken}`
           }

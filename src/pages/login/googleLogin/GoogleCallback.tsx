@@ -13,14 +13,14 @@ function GoogleCallback() {
   const handleOAuthGoogle = async (code: string) => {
     try {
         // 구글로부터 받아온 code를 서버에 전달하고 구글로 회원가입 & 로그인한다
-        const response = await axios.get(`https://maplemailbox.com/api/oauth/login/google?code=${code}`);
+        const response = await axios.get(`https://api.maplemailbox.com/api/oauth/login/google?code=${code}`);
         if (response.status === 200) {
           const accessToken = response.headers['authorization'];
           const refreshToken = response.headers['reauthorization'];
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
           try {
-            const userResponse = await axios.get(`https://maplemailbox.com/api/users`, {
+            const userResponse = await axios.get(`https://api.maplemailbox.com/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
               }

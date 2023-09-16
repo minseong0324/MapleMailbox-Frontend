@@ -16,7 +16,7 @@ const GoogleLogin: React.FC<GoogleLoginButtonProps> = ({ buttonImage }) => {
 
     // 이미지 클릭 시 구글 로그인 페이지로 이동
     const handleButtonClick = () => {
-        //window.location.href = 'https://maplemailbox.com/api/oauth/google'; //구글 검수 완료 시 주석 해제
+        //window.location.href = 'https://api.maplemailbox.com/api/oauth/google'; //구글 검수 완료 시 주석 해제
         setErrorModalOpen(true);
         setModalErrorContent(
           <s.ErrorCenterModalWrapper>

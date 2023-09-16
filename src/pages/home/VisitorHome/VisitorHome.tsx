@@ -57,7 +57,7 @@ function VisitorHome() {
   const [isServiceModalOpen, setServiceModalOpen] = useState(false); // "서비스 설명" 모달의 보임/안보임을 관리하는 상태
   const [lettersOverFive, setLettersOverFive] = useState<boolean[]>(Array(30).fill(false));
   const [nowDate, setNowDate] = useState<number | null>(0); // 회원가입 한지 며칠이 되었는가.
-  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 5개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
+  const [reloadUserInfo, setReloadUserInfo] = useState(false);//편지를 보낼 때 마다 상대방 정보를 업데이트 하기 위해 생선한 상태변수, 이유는 상대방 페이지에서 2개의 편지를 쓰면 실시간으로 나무가 물들게 하기 위해.
 
   const { userId } = useParams<{ userId: string }>(); // URL에서 userId 값을 추출
 
@@ -73,7 +73,7 @@ const getUserInfoFromServer = async (userId: string) => {
   try {
     
     // 백엔드 서버에 GET 요청을 보냅니다.
-    const response = await axios.get(`https://maplemailbox.com/api/users/visitor/${userId}`);
+    const response = await axios.get(`https://api.maplemailbox.com/api/users/visitor/${userId}`);
 
     // 응답에서 사용자 정보를 추출합니다.
     const userInfo = response.data;
@@ -84,7 +84,7 @@ const getUserInfoFromServer = async (userId: string) => {
       characterType: userInfo.characterType, // 사용자 캐릭터 종류
       userName: userInfo.userName, // 사용자 이름을 추가합니다.
       nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
-      lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
+      lettersOverFive: userInfo.lettersOverFive // 2개를 넘었는지 여부. boolean
     };
     
   } catch (error: unknown) { //에러 일 경우
@@ -154,7 +154,7 @@ const handleNavigateHome = () => {
 
   // 나무의 성장 단계에 따라 이미지를 가져오는 함수입니다.
   const getTreeImageByGrowthStage = useCallback(async (treeType: string | null, stage: number) => {
-     // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
+     // 편지가 2개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
     if (!treeType) {
       return null; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
     // return mapleTreeImages[22]; // 테스트용입니다. initial tree위에 잘 얹어지는거 확인.
@@ -172,7 +172,7 @@ const handleNavigateHome = () => {
  // 편지가 추가될 때마다 나무의 성장 단계를 업데이트합니다.
  useEffect(() => {
   if (nowDate !== null && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
-    // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
+    // 편지가 2개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
     setTreeGrowthStage(prevStage => {
       const newStage = nowDate - 1;
       getTreeImageByGrowthStage(treeType, newStage).then(newImage => {
@@ -274,7 +274,7 @@ const handleSendLetter = async (event: React.FormEvent) => {
     try {
       // 백엔드로 편지 데이터를 보냅니다.
       // 엔드포인트 맞춰야 함
-      const response = await axios.post(`https://maplemailbox.com/api/users/${userId}/letters`, letterData, {
+      const response = await axios.post(`https://api.maplemailbox.com/api/users/${userId}/letters`, letterData, {
         headers: {
           'authorization': `${accessToken}`
         }

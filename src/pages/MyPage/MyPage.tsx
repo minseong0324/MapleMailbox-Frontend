@@ -80,7 +80,7 @@ function MyPage() {
             return; // 함수 종료
         }
         try {
-            const response = await axios.delete(`https://maplemailbox.com/api/auth/leave/${MyUserId}`, {
+            const response = await axios.delete(`https://api.maplemailbox.com/api/auth/leave/${MyUserId}`, {
                 headers: {
                     'authorization': `${accessToken}`
                 }

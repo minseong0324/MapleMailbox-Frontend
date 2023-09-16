@@ -30,7 +30,7 @@ function TokenProvider({ children }: TokenProviderProps) {
             const refreshToken = localStorage.getItem('refreshToken');
             try {
             if (refreshToken) {
-                const response = await axios.post(`https://maplemailbox.com/api/auth/refresh`,{}, {
+                const response = await axios.post(`https://api.maplemailbox.com/api/auth/refresh`,{}, {
                     headers: {
                         'reauthorization': `${refreshToken}`
                     }

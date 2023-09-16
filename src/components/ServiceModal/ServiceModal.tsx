@@ -42,11 +42,11 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose }) => {
                 </s.HorizontalContainer3>
                 <s.HorizontalContainer3>
                     <s.GinkgoLeafImageSmall/>
-                    <s.Text>하루에 편지 5장 이상을 받으면 나무가 물들어요.</s.Text>
+                    <s.Text>하루에 편지 2장 이상을 받으면 나무가 물들어요.</s.Text>
                 </s.HorizontalContainer3>
                 <s.HorizontalContainer3>
                     <s.GinkgoLeafImageSmall/>
-                    <s.Text>하지만, 하루에 편지 5장 이상을 받지 못하면 30일 뒤에 편지를 열람할 수 있어요.
+                    <s.Text>하지만, 하루에 편지 2장 이상을 받지 못하면 30일 뒤에 편지를 열람할 수 있어요.
                         그래도 우울해하지 말아요. 위로의 편지를 단풍나라 친구들이 보내줄거니까요.
                     </s.Text>
                 </s.HorizontalContainer3>
