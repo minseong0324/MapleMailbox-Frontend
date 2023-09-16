@@ -30,13 +30,18 @@ function App() {
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
 
+  const handleNavigateInstagram = () => {
+    window.location.href = 'https://instagram.com/maplemailbox_official?igshid=NGVhN2U2NjQ0Yg==';
+}
+
+
   //점검할 때  전역적으로 띄울 공지모달을 위한 코드
   useEffect(() => {
       setModalErrorContent(
           <s.ErrorCenterModalWrapper>
               <s.ErrorModalTextsWrapper2>이용 중 불편을 드려 죄송합니다.</s.ErrorModalTextsWrapper2>
               <s.ErrorModalTextsWrapper2>점검-09/16 17:00~22:00</s.ErrorModalTextsWrapper2>
-              <s.ModalButton>인스타그램 이동하기</s.ModalButton>
+              <s.ModalButton onClick={handleNavigateInstagram}>인스타그램 이동하기</s.ModalButton>
           </s.ErrorCenterModalWrapper>
       );
       //setErrorModalOpen(false) //임시 확인용
