@@ -368,11 +368,22 @@ const ModalButton = styled.button`
   color: #444;
 `;
 
+const WordInput = styled.input`
+  font-family: 'BareunHipi';
+width: 190px;
+height: 30px;
+border: none; // 모든 테두리를 제거합니다.
+color: #222;
+margin-bottom: 20px;
+background-color: #fff8f0;
+`;
+
   //점검할 때  전역적으로 띄울 공지모달을 위한 코드
 export const s ={
   ErrorCenterModalWrapper,
   ErrorModalTextsWrapper1,
   ErrorModalTextsWrapper2,
-  ModalButton
+  ModalButton,
+  WordInput
 }
 
