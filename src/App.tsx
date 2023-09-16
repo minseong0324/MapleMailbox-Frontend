@@ -19,13 +19,15 @@ import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
 
-import ErrorModal from './components/ErrorModal/ErrorModal'; //점검할 때  전역적으로 띄울 공지모달을 위한 코드
-import {s} from './style'  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+//import ErrorModal from './components/ErrorModal/ErrorModal'; //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+//import {s} from './style'  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
 
 
 const queryClient = new QueryClient();
 
 function App() {
+
+  /*
   //점검할 때  전역적으로 띄울 공지모달을 위한 코드
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
@@ -73,7 +75,7 @@ const handleModalClose = () => {
 
   }, [isErrorModalOpen, word]);
 
-
+*/
   useEffect(() => {
     function isAndroid() {
       return /Android/i.test(navigator.userAgent);
@@ -127,11 +129,11 @@ const handleModalClose = () => {
     </UserProvider>
     </QueryClientProvider>
 
-    {/*점검할 때  전역적으로 띄울 공지모달을 위한 코드*/}
+    {/*점검할 때  전역적으로 띄울 공지모달을 위한 코드
     <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
       {modalErrorContent}
     </ErrorModal>
-    
+      */}
     </>
     
   );
