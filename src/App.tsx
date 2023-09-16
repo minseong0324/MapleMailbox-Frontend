@@ -34,8 +34,9 @@ function App() {
   useEffect(() => {
       setModalErrorContent(
           <s.ErrorCenterModalWrapper>
-              <s.ErrorModalTextsWrapper1>점검중입니다. 이용 중 불편을 드려 죄송합니다.</s.ErrorModalTextsWrapper1>
-              <s.ErrorModalTextsWrapper2>09/16 17:00~22:00</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>이용 중 불편을 드려 죄송합니다.</s.ErrorModalTextsWrapper2>
+              <s.ErrorModalTextsWrapper2>점검-09/16 17:00~22:00</s.ErrorModalTextsWrapper2>
+              <s.ModalButton>인스타그램 이동하기</s.ModalButton>
           </s.ErrorCenterModalWrapper>
       );
       //setErrorModalOpen(false) //임시 확인용
