@@ -41,7 +41,7 @@ const writeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
 }
 
 const handleModalClose = () => {
-  if (word !== '강승준') {
+  if (word !== 'rkdtmdwns') {
     setErrorModalOpen(false);
     return;
   }
@@ -49,7 +49,7 @@ const handleModalClose = () => {
 
   //점검할 때  전역적으로 띄울 공지모달을 위한 코드
   useEffect(() => {
-    if (word === '강승준') {
+    if (word === 'rkdtmdwns') {
       // word가 '강승준'이라면 이 useEffect는 실행하지 않음
       return;
     }
