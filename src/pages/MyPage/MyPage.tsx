@@ -115,8 +115,8 @@ function MyPage() {
             } 
             setErrorModalOpen(true);
             return null;
-          }
         }
+    }
     
 
     return (

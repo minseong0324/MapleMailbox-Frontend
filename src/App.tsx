@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import VisitorHome from './pages/home/VisitorHome/VisitorHome';
 import Home from './pages/home/Home';
@@ -19,9 +19,30 @@ import MyPage from './pages/MyPage/MyPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TokenProvider from './contexts/TokenProvider/TokenProvider';
 
+import ErrorModal from './components/ErrorModal/ErrorModal'; //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+import {s} from './style'  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+
+
 const queryClient = new QueryClient();
 
 function App() {
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [modalErrorContent, setModalErrorContent] = useState<React.ReactNode>(null); // 모달에 표시될 내용을 저장합니다.
+
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+  useEffect(() => {
+      setModalErrorContent(
+          <s.ErrorCenterModalWrapper>
+              <s.ErrorModalTextsWrapper1>점검중입니다. 이용 중 불편을 드려 죄송합니다.</s.ErrorModalTextsWrapper1>
+              <s.ErrorModalTextsWrapper2>09/16 17:00~22:00</s.ErrorModalTextsWrapper2>
+          </s.ErrorCenterModalWrapper>
+      );
+      //setErrorModalOpen(false) //임시 확인용
+      setErrorModalOpen(true) //실제 배포시 이 코드
+
+  }, [isErrorModalOpen]);
+
 
   useEffect(() => {
     function isAndroid() {
@@ -34,6 +55,8 @@ function App() {
       }
     }
 
+
+    
     window.addEventListener('resize', checkOrientation);
 
     // Cleanup
@@ -73,6 +96,11 @@ function App() {
       </Router>
     </UserProvider>
     </QueryClientProvider>
+
+    {/*점검할 때  전역적으로 띄울 공지모달을 위한 코드*/}
+    <ErrorModal isOpen={isErrorModalOpen} onClose={() => setErrorModalOpen(false)} >
+      {modalErrorContent}
+    </ErrorModal>
     
     </>
     

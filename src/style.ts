@@ -319,3 +319,37 @@ export const AppStyle = styled.div`
 
   `;
 
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+`;
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+const ErrorModalTextsWrapper1 = styled.div` // 한줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 20px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: 10px;
+`;
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+const ErrorModalTextsWrapper2 = styled.div` //두줄짜리 에러창일 때 사용
+position: relative;
+display: flex;
+font-size: 20px;
+align-items: center;
+  justify-content: center;
+line-height: 2;  // 글자 간격
+margin-bottom: -10px;
+`;
+  //점검할 때  전역적으로 띄울 공지모달을 위한 코드
+export const s ={
+  ErrorCenterModalWrapper,
+  ErrorModalTextsWrapper1,
+  ErrorModalTextsWrapper2
+}
+
