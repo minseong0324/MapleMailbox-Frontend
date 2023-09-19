@@ -320,7 +320,7 @@ export const AppStyle = styled.div`
 
   `;
 
-
+/*
   //점검할 때  전역적으로 띄울 공지모달을 위한 코드
 const ErrorCenterModalWrapper = styled.div` //에러 모달창 wrapper
   align-items: center;
@@ -389,4 +389,4 @@ export const s ={
   WordInput
 }
 
- 
+ */
