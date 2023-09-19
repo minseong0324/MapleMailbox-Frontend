@@ -27,7 +27,7 @@ function LettersList() {
     const fetchUserData = async () => {
       const userId = localStorage.getItem("userId");
       try {
-        const response = await axios.get(`https://maplemailbox.com/api/users/${userId}/letters`, {
+        const response = await axios.get(`https://api.maplemailbox.com/api/users/${userId}/letters`, {
           headers: {
             'authorization': `${accessToken}`
           }
@@ -126,7 +126,7 @@ function LettersList() {
                     setModalErrorContent(
                       <s.ErrorCenterModalWrapper>
                           <s.ErrorModalTextsWrapper2>오늘 받은 편지 수가</s.ErrorModalTextsWrapper2>
-                          <s.ErrorModalTextsWrapper2>아직 5개 미만이에요.</s.ErrorModalTextsWrapper2>
+                          <s.ErrorModalTextsWrapper2>아직 2개 미만이에요.</s.ErrorModalTextsWrapper2>
                           <s.ModalButton onClick={handleErrorModalClose}>닫기</s.ModalButton>
                       </s.ErrorCenterModalWrapper>
                   );

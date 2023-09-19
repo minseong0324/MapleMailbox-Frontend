@@ -73,7 +73,7 @@ function SelectTreeCharacter() {
 
     try {
       // 나무, 캐릭터 선택 후, 백엔드 서버로 데이터 전송
-      const response = await axios.put(`https://maplemailbox.com/api/users/${MyUserId}`, selectedData, {
+      const response = await axios.put(`https://api.maplemailbox.com/api/users/${MyUserId}`, selectedData, {
         headers: {
           'authorization': `${accessToken}` // accessToken을 헤더에 추가
         }
@@ -186,7 +186,7 @@ function SelectTreeCharacter() {
           <Modal isOpen={isServiceModalOpen} onClose={() => setServiceModalOpen(false)}>
             <s.H2>이용안내</s.H2>
             <s.P>
-              하루에 5개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
+              하루에 2개 이상의 편지를 받으면 오늘의 편지를 열람할 수 있어요.
               <s.Break/>
               어쩌구 저쩌구
             </s.P>

@@ -34,7 +34,7 @@ function Login() {
   // 요청이 성공하면 성공 메시지를 보여주고, 실패하면 오류 메시지를 보여줍니다.
   // 요청이 성공하면 토큰을 로컬 스토리지에 저장합니다.
   const loginMutation = useMutation(async (credentials: LoginCredentials) => {
-    const response = await axios.post(`https://maplemailbox.com/api/auth/login/self`, credentials);
+    const response = await axios.post(`https://api.maplemailbox.com/api/auth/login/self`, credentials);
     return response; // return whole response object, not just data
   }, {
     
@@ -50,7 +50,7 @@ function Login() {
         if (response.status === 200) {
           // 로그인 성공 시 GET 요청을 수행
           try {
-            const userResponse = await axios.get(`https://maplemailbox.com/api/users`, {
+            const userResponse = await axios.get(`https://api.maplemailbox.com/api/users`, {
               headers: {
                 'authorization': `${accessToken}` 
               }

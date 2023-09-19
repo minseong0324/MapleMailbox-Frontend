@@ -99,7 +99,7 @@ function OwnerHome() {
   const getUserInfoFromServer = async (userId: string) => {
     try {
       // 백엔드 서버에 GET 요청을 보냅니다.
-      const response = await axios.get(`https://maplemailbox.com/api/users/${userId}`, {
+      const response = await axios.get(`https://api.maplemailbox.com/api/users/${userId}`, {
         headers: {
           'authorization': `${accessToken}`
         }
@@ -114,7 +114,7 @@ function OwnerHome() {
           characterType: userInfo.characterType, // 사용자 캐릭터 종류
           userName: userInfo.userName, // 사용자 이름을 추가합니다.
           nowDate: userInfo.nowDate, // startDate 값을 추가했습니다.
-          lettersOverFive: userInfo.lettersOverFive // 5개를 넘었는지 여부. boolean
+          lettersOverFive: userInfo.lettersOverFive // 2개를 넘었는지 여부. boolean
         };
       }
     } catch (error: unknown) { //에러 일 경우
@@ -193,7 +193,7 @@ const handleNavigateHome = () => {
   
   // 나무의 성장 단계에 따라 나무 이미지를 반환하는 함수입니다.
   const getTreeImageByGrowthStage = useCallback(async (treeType: string | null, stage: number) => {
-    // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
+    // 편지가 2개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       if (!treeType) {
         return null; // treeType이 null이거나 undefined일 때 기본 나무 이미지를 반환합니다.
       }
@@ -210,7 +210,7 @@ const handleNavigateHome = () => {
 
   useEffect(() => {
     if (nowDate && typeof nowDate === 'number'&& lettersOverFive[nowDate - 1] === true) { 
-      // 편지가 5개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
+      // 편지가 2개 이상일 때마다 나무의 성장 단계를 업데이트하고 새로운 이미지를 추가합니다.
       setTreeGrowthStage(prevStage => {
         const newStage = nowDate - 1;
         getTreeImageByGrowthStage(treeType, newStage).then(newImage => {

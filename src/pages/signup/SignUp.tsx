@@ -38,7 +38,7 @@ function SignUp() {
 
       // 회원가입 API 요청
       try {
-        const response = await axios.post(`https://maplemailbox.com/api/auth/signup/self`, {
+        const response = await axios.post(`https://api.maplemailbox.com/api/auth/signup/self`, {
           userName,
           email,
           password,
