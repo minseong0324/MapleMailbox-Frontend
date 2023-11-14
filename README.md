@@ -21,8 +21,8 @@
 
 |      김민성       |          기도은         |                                                                                                      
 | :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: |
-|   <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    |                      <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    |
-|   [@minseong0324](https://github.com/miseong03234)   |    [@minseong0324](https://github.com/miseong03234)  |
+|   <img width="200px" src="https://github.com/minseong0324/minseong0324/assets/65233075/640645f9-bca2-409c-89fa-4a3a97f20c43" />    |                      <img width="200px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    |
+|   [@minseong0324](https://github.com/miseong0324)   |    [@doeun436](https://github.com/doeun436)  |
 | 동국대학교 멀티미디어공학과 3학년 | 삼육대학교 00학과 2학년 |
 
 ## 프로젝트 소개
@@ -61,9 +61,9 @@ As autumn approaches, it is a service where you can feel the sensibility of autu
 ## 화면 구성 📺
 | 온보딩 페이지  |  로그인 페이지   |
 | :-------------------------------------------: | :------------: |
-|  <img width="329" src=""/> |  <img width="329" src=""/>|  
+|  <img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/a810ff87-4aa7-4352-b788-ffd4931fe6cf"/> |  <img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/f71da5ee-b5a9-4c1e-bfaa-ce246f31f83c"/>|  
 | 메인 페이지   |  나무/캐릭터 선택 페이지   |  
-| <img width="329" src=""/>   |  <img width="329" src=""/>     |
+| <img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/c794deb5-3633-428b-9b9e-ea1a680a5a6c"/>   |  <img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/c5630405-d739-4492-9a04-53caa4aba4bc"/>     |
 
 ---
 ## 주요 기능 📦
@@ -71,18 +71,27 @@ As autumn approaches, it is a service where you can feel the sensibility of autu
 ### ⭐️ 편지 작성 기능
 - 공유 받은 링크로 접속한 후, 로그인 상태일 때 작성 가능. 비로그인 상태일 때 로그인 후 다시 공유 받은 링크로 리다이렉트되는 기능 제공.
 - 편지 작성에 따른 나무의 변화를 유저에게 즉각적으로 반영.
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/d3aa98a4-86ed-4d04-94dc-fba3725c2451"/>
 
 ### ⭐️ 편지 열람 기능
 - 지날 날짜 ~ 어제 날짜의 편지를 열람할 수 있음. 당일 편지는 받은 편지가 2개 이상일 때 열람 가능.
 - 2개 미만의 편지를 받은 날은 가입한지 30일 이후에 열람 가능. 실제 유저에게 받은 편지 대신 캐릭터 10종이 보내주는 위로 편지가 담김.
 - 선택했던 나무의 종류에 따라 편지 리스트에서의 버튼 이미지가 바뀜. (단풍잎, 은행잎)
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/a9f938ec-cf4a-40c6-9952-7eb1ace02791"/>
+
+### ⭐️ 우표 컬렉션 기능
+- 우측 상단의 미션 버튼을 통해 미션을 확인하고, 수행한 후 완료하면 컬렉션에 Disabled된 우표 활성화.
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/4de67cc1-3567-4ae7-91f9-6911e254b514"/>
 
 ### ⭐️ 캐릭터/나무 변경 기능
 - 유저가 원하는 캐릭터/나무 종류를 클릭해 변경할 수 있는 기능.
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/c5630405-d739-4492-9a04-53caa4aba4bc"/>
 
 ### ⭐️ 링크 공유 기능
 - 링크 공유하기 버튼을 클릭하면 클립보드에 링크가 복사됨.
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/56e097f1-fd64-4599-83ff-09add221f5d2"/>
 
 ### ⭐️ 메뉴
 - 로그인/로그아웃, 이용안내, 마이페이지
 - 재미를 더하기 위해 햇빛이 내려쬐는 애니메이션 적용
+<img width="329" src="https://github.com/minseong0324/minseong0324/assets/65233075/9c841376-eb4c-4995-bda6-286ba67ccd13"/>
