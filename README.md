@@ -1,7 +1,7 @@
 # maplemailbox
 
 <div align="center">
-<img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />
+<img width="600" alt="image" src="https://github.com/minseong0324/minseong0324/assets/65233075/dd26b341-6660-440a-82ea-5c79aee9e731" />
 
 </div>
 
